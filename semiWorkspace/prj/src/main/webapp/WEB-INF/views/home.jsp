@@ -5,9 +5,12 @@
 <head>
 <meta charset="EUC-KR">
 <title>홈페이지</title>
+<link rel="stylesheet"
+	href="${pageContext.request.contextPath}/resources/css/home.css">
+
 </head>
 <body>
 
-<h1>환영합니다~</h1>
+	<h1>환영합니다~</h1>
 </body>
 </html>

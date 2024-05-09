@@ -12,5 +12,6 @@
 <body>
 
 	<h1>환영합니다~</h1>
+	<a href="/app/user/login">로그인</a>
 </body>
 </html>

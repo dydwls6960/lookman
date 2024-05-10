@@ -5,6 +5,7 @@
 <head>
 <meta charset="UTF-8">
 <title>Lookman</title>
+<%@ include file="/WEB-INF/views/layout/util.jsp"%>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 

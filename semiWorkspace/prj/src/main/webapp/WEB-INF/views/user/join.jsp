@@ -5,6 +5,8 @@
   <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
+    <%@ include file="/WEB-INF/views/layout/util.jsp"%>
+    
   </head>
 
   <body>

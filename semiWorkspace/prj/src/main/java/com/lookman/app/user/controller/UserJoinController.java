@@ -8,11 +8,11 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/user/login")
-public class UserLoginController extends HttpServlet {
+@WebServlet("/user/join")
+public class UserJoinController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/user/join.jsp").forward(req, resp);
 	}
 
 	@Override
@@ -20,5 +20,4 @@ public class UserLoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		super.doPost(req, resp);
 	}
-
 }

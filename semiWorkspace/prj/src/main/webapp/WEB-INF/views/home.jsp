@@ -1,17 +1,17 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
-<title>È¨ÆäÀÌÁö</title>
+<meta charset="UTF-8">
+<title>Lookman</title>
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath}/resources/css/home.css">
 
 </head>
 <body>
 
-	<h1>È¯¿µÇÕ´Ï´Ù~</h1>
-	<a href="/app/user/login">·Î±×ÀÎ</a>
+	<h1>í™˜ì˜í•©ë‹ˆë‹¤</h1>
+	<a href="/app/user/login">ë¡œê·¸ì¸</a>
 </body>
 </html>

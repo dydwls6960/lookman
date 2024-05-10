@@ -1,0 +1,23 @@
+@charset "UTF-8";
+
+:root {
+  --bp-lg: 1044px;
+  --bp-md: 650px;
+  --bp-sm: 400px;
+}
+
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.container {
+  display: grid;
+  /* DESKTOP VIEW */
+  grid-template-columns: repeat(12, 1fr);
+  margin: 0 32px;
+  gap: 24px;
+
+  min-height: 100vh;
+  max-width: 720px;
+}

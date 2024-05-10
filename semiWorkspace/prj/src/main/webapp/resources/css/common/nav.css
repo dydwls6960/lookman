@@ -1,6 +1,5 @@
 /* NAV */
 .nav {
-  grid-column: 2 / 8;
   display: flex;
   gap: 16px;
 }
@@ -47,15 +46,15 @@
   padding: 0;
   padding-left: 32px;
   line-height: 24px;
-  background-color: #f5f5f5;
+  background-color: var(--color-light);
   border-radius: 8px;
 
   &:focus {
-    outline: 1px solid #9f9f9f;
+    outline: 1px solid var(--color-med);
   }
 
   &::placeholder {
-    color: #9f9f9f;
+    color: var(--color-med);
     font-size: 12px;
     line-height: 24px;
   }

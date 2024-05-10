@@ -12,15 +12,16 @@
 
   <body>
     <div class="container">
+
       <%@ include file="/WEB-INF/views/layout/nav.jsp" %>
 
-        <main class="main">
-          <h1>환영합니다</h1>
-          <a href="/app/user/login">로그인</a>
-        </main>
+        <!-- <a href="/app/user/login">로그인</a> -->
 
-        
-      <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
+        <%@ include file="/WEB-INF/views/layout/main-list.jsp" %>
+
+
+
+          <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
     </div>
   </body>
 

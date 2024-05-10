@@ -1,0 +1,73 @@
+.main-list {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 24px 16px;
+
+  max-width: 720px;
+  width: 100%;
+}
+
+.main-list--item {
+  width: 100%;
+  min-height: 100px;
+
+  & a {
+    font-size: 14px;
+    text-decoration: none;
+    color: inherit;
+  }
+}
+
+/* 상품 카드 컴포넌트 */
+.item-container {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+
+  height: 100%; /* 카드 높이 다 똑같이해줌 */
+}
+
+/* 카드 이미지 */
+.item-container__img {
+  height: 184px;
+  width: 100%;
+}
+
+.item-container__img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+/* 카드 상세 */
+.item-container__desc {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+
+  padding: 0 4px;
+}
+
+.item-container__desc--price {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.item-container__desc--name {
+  font-size: 10px;
+}
+
+.item-container__desc--rating {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+.rating-number {
+  font-size: 8px;
+}
+
+.rating-number__avg {
+  font-weight: 700;
+}

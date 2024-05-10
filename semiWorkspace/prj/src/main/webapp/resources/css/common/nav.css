@@ -2,6 +2,7 @@
 .nav {
   display: flex;
   gap: 16px;
+  padding: 24px 0;
 }
 
 .nav__logo-container {

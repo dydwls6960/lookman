@@ -4,6 +4,14 @@
   --bp-lg: 1044px;
   --bp-md: 650px;
   --bp-sm: 400px;
+
+  --font-family: "Noto Sans KR", sans-serif;
+  --font-color: #333333;
+}
+
+html {
+  font-family: var(--font-family);
+  color: var(--font-color);
 }
 
 body {
@@ -14,8 +22,10 @@ body {
 .container {
   display: grid;
   /* DESKTOP VIEW */
-  grid-template-columns: repeat(12, 1fr);
-  margin: 0 32px;
+  grid-template-columns: repeat(8, 1fr);
+  grid-template-rows: min-content;
+  /* TODO: grid-template-rows */
+  margin: 0 auto;
   gap: 24px;
 
   min-height: 100vh;

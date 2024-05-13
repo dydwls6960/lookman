@@ -11,11 +11,11 @@
   </head>
 
   <body>
+    <!-- <a href="/app/user/login">로그인</a> -->
     <div class="container">
 
       <%@ include file="/WEB-INF/views/layout/nav.jsp" %>
 
-        <!-- <a href="/app/user/login">로그인</a> -->
 
         <%@ include file="/WEB-INF/views/layout/main-list.jsp" %>
 

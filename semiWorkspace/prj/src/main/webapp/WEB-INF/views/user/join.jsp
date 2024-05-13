@@ -5,61 +5,50 @@
   <head>
     <meta charset="UTF-8">
     <title>회원가입</title>
-    <%@ include file="/WEB-INF/views/layout/util.jsp"%>
-    
+    <%@ include file="/WEB-INF/views/layout/util.jsp" %>
+      <link rel="stylesheet" href="/app/resources/css/join.css">
+      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+      <script src="/app/resources/js/join.js" defer></script>
+
   </head>
 
   <body>
-    <h1>회원가입</h1>
-    <a href="/app/home">홈으로 돌아가기</a>
-    <a href="/app/user/login">로그인</a>
+    <div class="container">
+      <%@ include file="/WEB-INF/views/layout/nav-mini.jsp" %>
 
-    <form action="/app/user/join" method="post" class="form form__join">
-      <div class="input form__join--id">
-        <label for="id">아이디</label>
-        <input type="email" name="id" id="id">
-      </div>
+        <main class="main main-join">
+          <img src="/app/resources/img/logo.svg" alt="Logo image">
+          <form action="/app/user/join" method="post" class="form form__join">
+            <input type="email" name="id" id="id" placeholder="아이디">
+            <button type="button" onclick="console.log('api 호출')">중복검사</button>
 
-      <div class="input form__join-pwd">
-        <label for="pwd">비밀번호</label>
-        <input type="password" name="pwd" id="pwd">
-      </div>
+            <input type="password" name="pwd" id="pwd" placeholder="비밀번호">
 
-      <div class="input form__join-pwd2">
-        <label for="pwd2">비밀번호 확인</label>
-        <input type="password" name="pwd2" id="pwd2">
-      </div>
+            <input type="password" name="pwd2" id="pwd2" placeholder="비밀번호 확인">
 
-      <div class="input form__join--name">
-        <label for="name">이름</label>
-        <input type="text" name="name" id="name">
-      </div>
+            <input type="text" name="name" id="name" placeholder="이름">
 
-      <div class="input form__join--phone">
-        <label for="phone">전화번호</label>
-        <input type="text" name="phone" id="phone">
-      </div>
+            <input type="text" name="phone" id="phone" placeholder="전화번호">
 
-      <div class="input form__join--postcode">
-        <label for="postcode">우편번호</label>
-        <input type="text" name="postcode" id="postcode">
-        <button type="button" onclick="console.log('api 호출')">우편번호 검색</button>
-      </div>
+            <input type="text" name="postcode" id="postcode" placeholder="우편번호">
+            <button type="button" onclick="console.log('api 호출')">우편번호
+              검색</button>
 
-      <div class="input form__join--address">
-        <label for="address">주소</label>
-        <input type="text" name="address" id="address">
-      </div>
+            <input type="text" name="address" id="address" placeholder="주소">
 
-      <div class="input form__join--address2">
-        <label for="address2">상세주소</label>
-        <input type="text" name="address2" id="address2">
-      </div>
+            <input type="text" name="address2" id="address2" placeholder="상세주소">
 
-      <div class="submit-btn form__join--submit-btn">
-        <button type="submit">회원가입</button>
-      </div>
-    </form>
+            <input type="text" name="extraAddress" id="extraAddress" placeholder="참고사항">
+
+            <div class="submit-btn form__join--submit-btn">
+              <button type="submit">회원가입</button>
+            </div>
+          </form>
+        </main>
+
+        <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
+
+    </div>
 
   </body>
 

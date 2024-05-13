@@ -1,0 +1,67 @@
+@charset "UTF-8";
+
+.main-join {
+  display: flex;
+  flex-direction: column;
+  gap: 48px;
+}
+
+.form__join {
+  display: grid;
+  grid-template-columns: 3fr 1fr;
+  row-gap: 24px;
+  column-gap: 16px;
+
+  & input:not(#id, #postcode, #address2, #extraAddress) {
+    grid-column: span 2;
+  }
+
+  & input {
+    font-size: 12px;
+    color: inherit;
+    border-radius: 8px;
+    border: none;
+    padding: 8px;
+
+    background-color: var(--color-light);
+    border-radius: 8px;
+
+    &:focus {
+      outline: 1px solid var(--color-med);
+    }
+
+    &::placeholder {
+      color: var(--color-med);
+      font-size: 12px;
+    }
+  }
+}
+.form__join--submit-btn {
+  grid-column: span 2;
+
+  & button {
+    width: 100%;
+    border: none;
+    background-color: var(--color-dark);
+    color: var(--color-white);
+    font-size: 12px;
+    padding: 8px 16px;
+    border-radius: 8px;
+    cursor: pointer;
+  }
+}
+
+button[type="button"] {
+  background-color: var(--color-white);
+  color: inherit;
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--color-med);
+  text-wrap: nowrap;
+}
+
+#extraAddress {
+  max-width: 105px;
+}

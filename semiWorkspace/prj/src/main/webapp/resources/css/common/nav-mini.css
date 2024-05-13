@@ -1,0 +1,5 @@
+.nav-mini {
+  display: flex;
+  justify-content: space-between;
+  padding: 24px 0 8px 0;
+}

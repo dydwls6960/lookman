@@ -8,6 +8,9 @@
 /* NAV */
 @import url("./nav.css");
 
+/* NAV-MINI */
+@import url("./nav-mini.css");
+
 /* 푸터 */
 @import url("./footer.css");
 
@@ -62,6 +65,11 @@ body {
   grid-row: 2;
   grid-column: 2 / 8;
 }
+
+.main-login {
+  grid-column: 3 / 7;
+}
+
 .footer {
   grid-row: 3;
   grid-column: 2 / 8;

@@ -20,7 +20,7 @@
 
         <main class="main main-join">
           <img src="/app/resources/img/logo.svg" alt="Logo image">
-          <form action="/app/user/join" method="post" class="form form__join">
+          <form action="/app/member/join" method="post" class="form form__join">
             <input type="email" name="id" id="id" placeholder="아이디">
             <button type="button" onclick="console.log('api 호출')">중복검사</button>
 
@@ -30,7 +30,7 @@
 
             <input type="text" name="name" id="name" placeholder="이름">
 
-            <input type="text" name="phone" id="phone" placeholder="전화번호">
+            <input type="text" name="phone" id="phone" placeholder="전화번호 (01000000000)" maxlength="11">
 
             <input type="text" name="postcode" id="postcode" placeholder="우편번호">
             <button type="button" class="" onclick="execDaumPostcode()">우편번호

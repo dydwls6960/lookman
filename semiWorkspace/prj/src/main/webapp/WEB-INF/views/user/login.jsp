@@ -17,15 +17,15 @@
 
         <main class="main main-login">
           <img src="/app/resources/img/logo.svg" alt="Logo image">
-          <form action="/app/user/login" method="post" class="form form__login">
+          <form action="/app/member/login" method="post" class="form form__login">
             <input type="email" name="id" id="id" placeholder="아이디 (이메일)">
             <input type="password" name="pwd" id="pwd" placeholder="비밀번호">
             <div class="submit-btn form__login--submit-btn"><button type="submit">로그인</button></div>
           </form>
           <div class="login__links">
-            <a href="/app/user/find">아이디 · 비밀번호 찾기</a>
+            <a href="/app/member/find">아이디 · 비밀번호 찾기</a>
             <span>|</span>
-            <a href="/app/user/join">회원가입</a>
+            <a href="/app/member/join">회원가입</a>
           </div>
         </main>
 

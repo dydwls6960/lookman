@@ -7,6 +7,8 @@
     <title>회원가입</title>
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/join.css">
+
+      <!-- 다음 주소 api -->
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
       <script src="/app/resources/js/join.js" defer></script>
 
@@ -31,7 +33,7 @@
             <input type="text" name="phone" id="phone" placeholder="전화번호">
 
             <input type="text" name="postcode" id="postcode" placeholder="우편번호">
-            <button type="button" onclick="console.log('api 호출')">우편번호
+            <button type="button" class="" onclick="execDaumPostcode()">우편번호
               검색</button>
 
             <input type="text" name="address" id="address" placeholder="주소">

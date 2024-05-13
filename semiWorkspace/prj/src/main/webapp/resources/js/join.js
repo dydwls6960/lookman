@@ -52,3 +52,100 @@ function execDaumPostcode() {
     },
   }).open();
 }
+
+function checkDuplicateId() {
+  const id = document.querySelector("#id").value;
+  if (!id) {
+    alert("아이디를 입력하세요.");
+    return;
+  }
+
+  // 이메일 형식 검사
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(id)) {
+    alert("유효한 이메일 형식이 아닙니다.");
+    return;
+  }
+
+  $.ajax({
+    url: "/app/member/id-dup",
+    type: "get",
+    data: { id: id },
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    success: (res) => {
+      if (res === "ok") {
+        alert("사용 가능한 아이디입니다.");
+        document.getElementById("id").dataset.checked = "true";
+      } else {
+        alert("이미 사용 중인 아이디입니다.");
+        document.getElementById("id").dataset.checked = "false";
+      }
+    },
+    error: () => {
+      alert("중복 검사 실패...");
+      document.getElementById("id").dataset.checked = "false";
+    },
+  });
+}
+
+function validateForm(e) {
+  // 아이디 중복검사
+  const idInput = document.querySelector("#id");
+  if (idInput.dataset.checked !== "true") {
+    alert("아이디 중복 검사를 완료해주세요.");
+    e.preventDefault();
+    return;
+  }
+
+  // 이메일 형식 검사
+  const emailPattern = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+  if (!emailPattern.test(idInput.value)) {
+    alert("유효한 이메일 형식이 아닙니다.");
+    e.preventDefault();
+    return;
+  }
+
+  // 비밀번호 일치
+  const pwdInput = document.querySelector("#pwd").value;
+  const pwd2Input = document.querySelector("#pwd2").value;
+  if (pwdInput !== pwd2Input) {
+    alert("비밀번호와 비밀번호 확인이 다릅니다.");
+    e.preventDefault();
+    return;
+  }
+
+  // 비밀번호 강도 검사
+  const passwordPattern =
+    /^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$/;
+  if (!passwordPattern.test(pwdInput)) {
+    alert(
+      "비밀번호는 최소 8자 이상이어야 하며, 문자, 숫자, 특수문자를 포함해야 합니다."
+    );
+    e.preventDefault();
+    return;
+  }
+
+  // 전화번호 형식 검사
+  const phoneInput = document.querySelector("#phone").value;
+  const phonePattern = /^01[0-9]{8,9}$/;
+  if (!phonePattern.test(phoneInput)) {
+    alert("유효한 전화번호 형식이 아닙니다.");
+    e.preventDefault();
+    return;
+  }
+}
+
+function changeCheckStatus(e) {
+  const idInput = document.querySelector("#id");
+  idInput.dataset.checked = "false";
+}
+
+document.addEventListener("DOMContentLoaded", () => {
+  // 회원가입 form 제출할 때 유효성검사
+  document
+    .querySelector(".form__join")
+    .addEventListener("submit", validateForm);
+
+  // 아이디 중복검사 후 또 바꿨을 때 유효성검사
+  document.querySelector("#id").addEventListener("change", changeCheckStatus);
+});

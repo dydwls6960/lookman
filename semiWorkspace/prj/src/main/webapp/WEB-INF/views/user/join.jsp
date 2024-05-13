@@ -21,16 +21,17 @@
         <main class="main main-join">
           <img src="/app/resources/img/logo.svg" alt="Logo image">
           <form action="/app/member/join" method="post" class="form form__join">
-            <input type="email" name="id" id="id" placeholder="아이디">
-            <button type="button" onclick="console.log('api 호출')">중복검사</button>
+            <input type="email" name="id" id="id" placeholder="아이디 (이메일)*" required>
+            <button type="button" onclick="checkDuplicateId()">중복검사</button>
 
-            <input type="password" name="pwd" id="pwd" placeholder="비밀번호">
+            <input type="password" name="pwd" id="pwd" placeholder="비밀번호*" required>
 
-            <input type="password" name="pwd2" id="pwd2" placeholder="비밀번호 확인">
+            <input type="password" name="pwd2" id="pwd2" placeholder="비밀번호 확인*" required>
 
-            <input type="text" name="name" id="name" placeholder="이름">
+            <input type="text" name="name" id="name" placeholder="이름*" required>
 
-            <input type="text" name="phone" id="phone" placeholder="전화번호 (01000000000)" maxlength="11">
+            <input type="tel" name="phone" id="phone" placeholder="전화번호 (01000000000)*" minlength="8" maxlength="11"
+              required>
 
             <input type="text" name="postcode" id="postcode" placeholder="우편번호">
             <button type="button" class="" onclick="execDaumPostcode()">우편번호

@@ -9,9 +9,17 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lookman.app.member.service.MemberService;
+import com.lookman.app.member.vo.MemberVo;
 
 @WebServlet("/member/join")
 public class MemberJoinController extends HttpServlet {
+
+	private MemberService ms;
+
+	public MemberJoinController() {
+		this.ms = new MemberService();
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		req.getRequestDispatcher("/WEB-INF/views/user/join.jsp").forward(req, resp);
@@ -28,16 +36,29 @@ public class MemberJoinController extends HttpServlet {
 			String name = req.getParameter("name");
 			String phone = req.getParameter("phone");
 
+			MemberVo mvo = new MemberVo();
+			mvo.setId(id);
+			mvo.setPwd(pwd);
+			mvo.setPwd2(pwd2);
+			mvo.setName(name);
+			mvo.setPhoneNo(phone);
+
 			// address
 			String postcode = req.getParameter("postcode");
 			String address = req.getParameter("address");
 			String address2 = req.getParameter("address2");
 			String extraAddress = req.getParameter("extraAddress");
 
-			MemberService ms = new MemberService();
+			int r = ms.join(mvo);
+			System.out.println(mvo);
 
 		} catch (Exception e) {
 			// TODO: handle exception
+			e.printStackTrace();
+			String errMsg = e.getMessage();
+			System.out.println(e.getMessage());
+			req.setAttribute("errMsg", errMsg);
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 
 	}

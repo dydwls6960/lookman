@@ -1,0 +1,11 @@
+.nav-with-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 24px 0 8px 0;
+}
+
+.nav__icons {
+  display: flex;
+  gap: 16px;
+}

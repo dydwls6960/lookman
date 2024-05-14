@@ -10,10 +10,10 @@
     </div>
     <div class="nav__icons">
       <!-- TODO: add userid -->
-      <a href="/app/cart?userId=${userId}"> <img src="/app/resources/img/icon__cart.svg" alt="Cart icon">
+      <a href="/app/member/cart"> <img src="/app/resources/img/icon__cart.svg" alt="Cart icon">
       </a>
       <!-- TODO: add userid -->
-      <a href="/app/member/settings?userId=${userId}"> <img src="/app/resources/img/icon__settings.svg"
+      <a href="/app/member/settings"> <img src="/app/resources/img/icon__settings.svg"
           alt="Setting icon">
       </a>
     </div>

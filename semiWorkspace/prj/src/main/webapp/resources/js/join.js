@@ -39,7 +39,7 @@ function execDaumPostcode() {
           extraAddr = " (" + extraAddr + ")";
         }
         // 조합된 참고항목을 해당 필드에 넣는다.
-        extraAddress.value = extraAddr;
+        extraAddress.value = extraAddr.trim();
       } else {
         extraAddress.value = "";
       }
@@ -130,6 +130,15 @@ function validateForm(e) {
   const phonePattern = /^01[0-9]{8,9}$/;
   if (!phonePattern.test(phoneInput)) {
     alert("유효한 전화번호 형식이 아닙니다.");
+    e.preventDefault();
+    return;
+  }
+
+  // 주소 형식 검사
+  const postcodeInput = document.querySelector("#postcode").value;
+  const addressInput = document.querySelector("#address").value;
+  if (!postcodeInput || !addressInput) {
+    alert("우편번호와 주소를 입력하세요.");
     e.preventDefault();
     return;
   }

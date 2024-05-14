@@ -67,19 +67,57 @@ public class MemberDao {
 	public String getMemberNo(Connection conn, MemberVo mvo) throws SQLException {
 		String sql = "SELECT MEMBER_NO FROM MEMBER WHERE ID = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		
+
 		pstmt.setString(1, mvo.getId());
-		
+
 		ResultSet rs = pstmt.executeQuery();
-		
+
 		String memberNo = "";
-		
+
 		if (rs.next()) {
 			memberNo = rs.getString("MEMBER_NO");
 			System.out.println("memberNo in getMemberNo: " + memberNo);
 		}
-		
+
 		return memberNo;
+	}
+
+	public MemberVo login(Connection conn, MemberVo mvo) throws SQLException {
+		String sql = "SELECT * FROM MEMBER WHERE ID = ? AND PWD = ? AND DELETED_YN = 'N' AND BAN_DATE IS NULL";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, mvo.getId());
+		pstmt.setString(2, mvo.getPwd());
+
+		ResultSet rs = pstmt.executeQuery();
+
+		MemberVo loginMemberVo = null;
+		if (rs.next()) {
+			String memberNo = rs.getString("MEMBER_NO");
+			String id = rs.getString("ID");
+			String name = rs.getString("NAME");
+			String phoneNo = rs.getString("PHONE_NO");
+			String premiumYn = rs.getString("PREMIUM_YN");
+			String deletedYn = rs.getString("DELETED_YN");
+			String createdDate = rs.getString("CREATED_DATE");
+			String banDate = rs.getString("BAN_DATE");
+
+			loginMemberVo = new MemberVo();
+			loginMemberVo.setMemberNo(memberNo);
+			loginMemberVo.setId(id);
+			loginMemberVo.setName(name);
+			loginMemberVo.setPhoneNo(phoneNo);
+			loginMemberVo.setPremiumYn(premiumYn);
+			loginMemberVo.setDeletedYn(deletedYn);
+			loginMemberVo.setCreatedDate(createdDate);
+			loginMemberVo.setBanDate(banDate);
+			System.out.println(loginMemberVo);
+		}
+
+		close(rs);
+		close(pstmt);
+
+		return loginMemberVo;
 	}
 
 }

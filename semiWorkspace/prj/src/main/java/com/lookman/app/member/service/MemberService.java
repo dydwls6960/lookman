@@ -40,6 +40,7 @@ public class MemberService {
 			throw new Exception("유효한 전화번호 형식이 아닙니다.");
 		}
 
+		// 주소 비어있는지 체크
 		if (avo.getAddress() == null || avo.getAddress().isEmpty()) {
 			throw new Exception("주소가 비어있습니다.");
 		}
@@ -88,6 +89,16 @@ public class MemberService {
 		close(conn);
 
 		return result == 0;
+	}
+
+	public MemberVo login(MemberVo mvo) throws Exception {
+		
+		Connection conn = getConnection();
+		MemberVo loginMemberVo = dao.login(conn, mvo);
+		
+		close(conn);
+
+		return loginMemberVo;
 	}
 
 }

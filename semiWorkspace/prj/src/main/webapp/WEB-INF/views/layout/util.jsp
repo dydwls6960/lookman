@@ -25,6 +25,16 @@
 <%-- CSS --%>
 <link rel="stylesheet" href="/app/resources/css/common/base.css">
 
+<%-- alertMsg --%>
+<script type="text/javascript">
+  <c:if test="${!empty alertMsg}">
+    alert("${alertMsg}");
+  </c:if>
+</script>
+
+<c:remove var="alertMsg" scope="session" />
+
+
 <%-- CSS 컴포넌트 --%>
 <%-- <link rel="stylesheet" href="/app/resources/css/common/reset.css">
               <link rel="stylesheet" href="/app/resources/css/common/nav.css">

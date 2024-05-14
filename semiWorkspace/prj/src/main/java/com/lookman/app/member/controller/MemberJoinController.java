@@ -23,7 +23,14 @@ public class MemberJoinController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
+
+		MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
+
+		if (loginMemberVo != null) {
+			resp.sendRedirect("/app/home");
+		} else {
+			req.getRequestDispatcher("/WEB-INF/views/member/join.jsp").forward(req, resp);
+		}
 	}
 
 	@Override
@@ -61,7 +68,7 @@ public class MemberJoinController extends HttpServlet {
 			if (r != 1) {
 				throw new Exception("회원가입 도중 실패...");
 			}
-			
+
 			resp.sendRedirect("/app/home");
 
 		} catch (Exception e) {

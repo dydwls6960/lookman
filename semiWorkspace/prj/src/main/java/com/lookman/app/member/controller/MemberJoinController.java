@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lookman.app.member.service.MemberService;
+import com.lookman.app.member.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
 
 @WebServlet("/member/join")
@@ -29,7 +30,7 @@ public class MemberJoinController extends HttpServlet {
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 
 		try {
-			// userinfo
+			// memberVo
 			String id = req.getParameter("id");
 			String pwd = req.getParameter("pwd");
 			String pwd2 = req.getParameter("pwd2");
@@ -43,14 +44,20 @@ public class MemberJoinController extends HttpServlet {
 			mvo.setName(name);
 			mvo.setPhoneNo(phone);
 
-			// address
+			// addressVo
 			String postcode = req.getParameter("postcode");
 			String address = req.getParameter("address");
 			String address2 = req.getParameter("address2");
 			String extraAddress = req.getParameter("extraAddress");
 
-			int r = ms.join(mvo);
-			System.out.println(mvo);
+			AddressVo avo = new AddressVo();
+			avo.setPostcode(postcode);
+			avo.setAddress(address);
+			avo.setDetailedAddress(address2);
+			avo.setExtraAddress(extraAddress);
+
+			// result
+			int r = ms.join(mvo, avo);
 
 		} catch (Exception e) {
 			// TODO: handle exception

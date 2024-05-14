@@ -58,6 +58,11 @@ public class MemberJoinController extends HttpServlet {
 
 			// result
 			int r = ms.join(mvo, avo);
+			if (r != 1) {
+				throw new Exception("회원가입 도중 실패...");
+			}
+			
+			resp.sendRedirect("/app/home");
 
 		} catch (Exception e) {
 			// TODO: handle exception

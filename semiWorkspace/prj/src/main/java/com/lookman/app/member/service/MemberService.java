@@ -40,17 +40,21 @@ public class MemberService {
 			throw new Exception("유효한 전화번호 형식이 아닙니다.");
 		}
 
+		if (avo.getAddress() == null || avo.getAddress().isEmpty()) {
+			throw new Exception("주소가 비어있습니다.");
+		}
+		
 		// dao
 		Connection conn = getConnection();
 
 		// join
 		int result = dao.join(conn, mvo);
 
-		// get current memberno
 		if (result != 1) {
 			throw new Exception("회원가입 도중 에러...");
 		}
 
+		// 현재 멤버번호 가져오기
 		String currentMemberNo = dao.getMemberNo(conn, mvo);
 		if (currentMemberNo.equals("")) {
 			throw new Exception("회원번호 가져오는 중 에러...");

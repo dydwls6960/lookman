@@ -23,7 +23,7 @@ public class MemberLoginController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/user/login.jsp").forward(req, resp);
+		req.getRequestDispatcher("/WEB-INF/views/member/login.jsp").forward(req, resp);
 	}
 
 	@Override

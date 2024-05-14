@@ -4,17 +4,12 @@
     <a href="javascript:history.back()"> <img src="/app/resources/img/icon__arrow-left.svg" alt="Arrow left icon">
     </a>
     <div class="nav__title">
-      <!-- TODO: add dynamic heading -->
-      <!-- <strong>${pageTitle}</strong> -->
-      <strong>마이 페이지</strong>
+      <strong>${requestScope.pageTitle}</strong>
     </div>
     <div class="nav__icons">
-      <!-- TODO: add userid -->
       <a href="/app/member/cart"> <img src="/app/resources/img/icon__cart.svg" alt="Cart icon">
       </a>
-      <!-- TODO: add userid -->
-      <a href="/app/member/settings"> <img src="/app/resources/img/icon__settings.svg"
-          alt="Setting icon">
+      <a href="/app/member/settings"> <img src="/app/resources/img/icon__settings.svg" alt="Setting icon">
       </a>
     </div>
   </nav>

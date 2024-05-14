@@ -18,7 +18,7 @@ public class MemberProfileController extends HttpServlet {
 
 		if (loginMemberVo != null) {
 			// do something if req profile.jsp needs
-
+			req.setAttribute("pageTitle", "마이프로필");
 			req.getRequestDispatcher("/WEB-INF/views/member/profile.jsp").forward(req, resp);
 		} else {
 			resp.sendRedirect("/app/member/login");

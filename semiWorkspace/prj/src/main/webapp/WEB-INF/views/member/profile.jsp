@@ -60,15 +60,15 @@
                   </span>
                   <div class="text-container">
                     <span class="text-status">
-                      <strong>배송중</strong>
+                      <strong>입금/결제</strong>
                     </span>
                     <span class="text-name">
-                      [해외] 문스타 스니커즈 810s 에잇텐스 ET028 PROTET 단화 신발 슈즈 남녀
+                      [비오는 날씨에 딱] Airflow 바람막이
                     </span>
                     <div class="text-categories">
-                      <span class="text-color">블랙</span>
+                      <span class="text-color">그린</span>
                       <span class="text-dash">/</span>
-                      <span class="text-size">260</span>
+                      <span class="text-size">105</span>
                       <span class="text-dash">/</span>
                       <span class="text-quantity">1개</span>
                     </div>
@@ -91,25 +91,25 @@
                 </div>
                 <div class="order__upper--text">
                   <span class="text-seller">
-                    포유바잉
+                    NBA
                   </span>
                   <div class="text-container">
                     <span class="text-status">
-                      <strong>배송중</strong>
+                      <strong>입금/결제</strong>
                     </span>
                     <span class="text-name">
-                      [해외] 문스타 스니커즈 810s 에잇텐스 ET028 PROTET 단화 신발 슈즈 남녀
+                      머리에 잘맞는 검은색 비니 [56호]
                     </span>
                     <div class="text-categories">
                       <span class="text-color">블랙</span>
                       <span class="text-dash">/</span>
-                      <span class="text-size">260</span>
+                      <span class="text-size">FREE</span>
                       <span class="text-dash">/</span>
                       <span class="text-quantity">1개</span>
                     </div>
                   </div>
                   <span class="text-price">
-                    <strong>108,900원</strong>
+                    <strong>38,900원</strong>
                   </span>
                 </div>
               </div>
@@ -126,25 +126,25 @@
                 </div>
                 <div class="order__upper--text">
                   <span class="text-seller">
-                    포유바잉
+                    Aqua Bottles
                   </span>
                   <div class="text-container">
                     <span class="text-status">
-                      <strong>배송중</strong>
+                      <strong>입금/결제</strong>
                     </span>
                     <span class="text-name">
-                      [해외] 문스타 스니커즈 810s 에잇텐스 ET028 PROTET 단화 신발 슈즈 남녀
+                      [해외] 탄탄하고 좋은 물통
                     </span>
                     <div class="text-categories">
                       <span class="text-color">블랙</span>
                       <span class="text-dash">/</span>
-                      <span class="text-size">260</span>
+                      <span class="text-size">600ml</span>
                       <span class="text-dash">/</span>
-                      <span class="text-quantity">1개</span>
+                      <span class="text-quantity">2개</span>
                     </div>
                   </div>
                   <span class="text-price">
-                    <strong>108,900원</strong>
+                    <strong>59,800원</strong>
                   </span>
                 </div>
               </div>

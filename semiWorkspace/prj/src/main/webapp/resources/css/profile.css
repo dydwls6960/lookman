@@ -85,7 +85,7 @@
 .profile__order {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 8px;
 }
 
 .order__upper {
@@ -125,7 +125,6 @@
 .order__lower {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  width: 50%;
   min-width: 264px;
   gap: 8px;
 

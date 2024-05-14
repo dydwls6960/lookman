@@ -127,6 +127,7 @@
   grid-template-columns: 1fr 1fr;
   min-width: 264px;
   gap: 8px;
+  width: 70%;
 
   & button {
     background-color: var(--color-white);

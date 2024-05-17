@@ -15,7 +15,7 @@ import com.lookman.app.product.vo.ProductVo;
 public class ProductDetailsController extends HttpServlet {
 	private ProductService ps;
 
-	public void ProductDetailsController() {
+	public ProductDetailsController() {
 		this.ps = new ProductService();
 	}
 
@@ -32,8 +32,8 @@ public class ProductDetailsController extends HttpServlet {
 
 			String productNo = pathInfo.substring(1);
 //			
-//			ProductVo pvo = ps.selectProductByNo(productNo);
-//			req.setAttribute("pvo", pvo);
+			ProductVo pvo = ps.selectProductByNo(productNo);
+			req.setAttribute("pvo", pvo);
 			req.getRequestDispatcher("/WEB-INF/views/product/details.jsp").forward(req, resp);
 
 		} catch (Exception e) {

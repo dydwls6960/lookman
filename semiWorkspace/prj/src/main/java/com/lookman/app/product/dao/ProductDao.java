@@ -32,10 +32,6 @@ public class ProductDao {
 			pvo.setPrice(price);
 			pvo.setSellerNo(sellerName);
 			pvo.setName(productName);
-			pvo.setFilename(filename);
-			pvo.setRating(avgRating);
-			pvo.setReviewCnt(reviewCnt);
-
 			pvoList.add(pvo);
 
 		}
@@ -44,9 +40,29 @@ public class ProductDao {
 	}
 
 	public ProductVo selectProductByNo(Connection conn, String productNo) throws Exception {
-		String sql = "";
-		conn.prepareStatement(sql);
+		String sql = "SELECT P.PRODUCT_NO, S.NAME SELLER_NAME, P.NAME NAME, P.DETAILS, P.PRICE, P.HIT FROM PRODUCT P JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO WHERE P.PRODUCT_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+
+		pstmt.setString(1, productNo);
+
+		ResultSet rs = pstmt.executeQuery();
 		ProductVo pvo = null;
+		if (rs.next()) {
+			String prodNo = rs.getString("PRODUCT_NO");
+			String sellerNo = rs.getString("SELLER_NAME");
+			String name = rs.getString("NAME");
+			String details = rs.getString("DETAILS");
+			String price = rs.getString("PRICE");
+			String hit = rs.getString("HIT");
+			
+			pvo = new ProductVo();
+			pvo.setProductNo(prodNo);
+			pvo.setSellerNo(sellerNo);
+			pvo.setName(name);
+			pvo.setDetails(details);
+			pvo.setPrice(price);
+			pvo.setHit(hit);
+		}
 
 		return pvo;
 	}

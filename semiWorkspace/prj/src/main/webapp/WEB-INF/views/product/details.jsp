@@ -35,12 +35,11 @@
 
           <section class="details__text">
             <div class="details__text--upper">
-              <span class="text__seller">아디다스</span>
-              <h1 class="text__name">따뜻한 바람막이 (비 막아주는 소재)</h1>
+              <span class="text__seller">${requestScope.pvo.sellerNo}</span>
+              <h1 class="text__name">${requestScope.pvo.name}</h1>
             </div>
-            <span class="text__price">26,900원</span>
-            <p class="text__details">실버 B 로고 바람막이입니다. 고신축 면스판 원단을 사용하며 실버 B 고주파 와펜을 가지고 있습니다. 핏은 머슬핏이고 비가 통과되지 않는
-              소재입니다.</p>
+            <span class="text__price">${requestScope.pvo.price}원</span>
+            <p class="text__details">${requestScope.pvo.details}</p>
 
             <div class="details__text--lower">
               <div class="text__delievery">배송정보: 아디다스는 명절간 (2/8~2/10) 배송이 되지 않습니다.</div>
@@ -48,7 +47,7 @@
                 구매후기: &nbsp;<img src="/app/resources/img/icon__star.svg" alt="starIcon" class="review__star"> 4.5 / <a
                   href="#details__review">3개</a>
               </span>
-              <span class="text__hit">조회수: 89,500</span>
+              <span class="text__hit">조회수: ${requestScope.pvo.hit}</span>
             </div>
           </section>
 

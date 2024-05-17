@@ -11,17 +11,13 @@ public class ProductVo {
 	private String editedDate;
 	private String hit;
 	private String deletedYn;
-	private String filename;
-	private String rating;
-	private String reviewCnt;
 
 	public ProductVo() {
 		super();
 	}
 
 	public ProductVo(String productNo, String sellerNo, String categoryNo, String name, String details, String price,
-			String createdDate, String editedDate, String hit, String deletedYn, String filename, String rating,
-			String reviewCnt) {
+			String createdDate, String editedDate, String hit, String deletedYn) {
 		super();
 		this.productNo = productNo;
 		this.sellerNo = sellerNo;
@@ -33,9 +29,6 @@ public class ProductVo {
 		this.editedDate = editedDate;
 		this.hit = hit;
 		this.deletedYn = deletedYn;
-		this.filename = filename;
-		this.rating = rating;
-		this.reviewCnt = reviewCnt;
 	}
 
 	public String getProductNo() {
@@ -118,36 +111,11 @@ public class ProductVo {
 		this.deletedYn = deletedYn;
 	}
 
-	public String getFilename() {
-		return filename;
-	}
-
-	public void setFilename(String filename) {
-		this.filename = filename;
-	}
-
-	public String getRating() {
-		return rating;
-	}
-
-	public void setRating(String rating) {
-		this.rating = rating;
-	}
-
-	public String getReviewCnt() {
-		return reviewCnt;
-	}
-
-	public void setReviewCnt(String reviewCnt) {
-		this.reviewCnt = reviewCnt;
-	}
-
 	@Override
 	public String toString() {
 		return "ProductVo [productNo=" + productNo + ", sellerNo=" + sellerNo + ", categoryNo=" + categoryNo + ", name="
 				+ name + ", details=" + details + ", price=" + price + ", createdDate=" + createdDate + ", editedDate="
-				+ editedDate + ", hit=" + hit + ", deletedYn=" + deletedYn + ", filename=" + filename + ", rating="
-				+ rating + ", reviewCnt=" + reviewCnt + "]";
+				+ editedDate + ", hit=" + hit + ", deletedYn=" + deletedYn + "]";
 	}
 
 }

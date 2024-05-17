@@ -26,7 +26,7 @@ public class ProductHomeController extends HttpServlet {
 			List<ProductVo> pvoList = ps.selectProducts();
 			
 			req.setAttribute("pvoList", pvoList);
-			req.getRequestDispatcher("/WEB-INF/views/product/hometest.jsp").forward(req, resp);
+			req.getRequestDispatcher("/WEB-INF/views/product/home.jsp").forward(req, resp);
 			
 		} catch (Exception e) {
 			req.setAttribute("errMsg", e.getMessage());

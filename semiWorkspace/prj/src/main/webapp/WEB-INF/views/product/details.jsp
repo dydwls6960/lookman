@@ -6,9 +6,9 @@
     <meta charset="UTF-8">
     <title>Lookman 상품정보</title>
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
-        <%@ include file="/WEB-INF/views/layout/splide.jsp" %>
-    
-      <link rel="stylesheet" href="/app/resources/css/product-details.css">
+      <%@ include file="/WEB-INF/views/layout/splide.jsp" %>
+
+        <link rel="stylesheet" href="/app/resources/css/product-details.css">
 
   </head>
 
@@ -33,7 +33,155 @@
             </div>
           </section>
 
+          <section class="details__text">
+            <div class="details__text--upper">
+              <span class="text__seller">아디다스</span>
+              <h1 class="text__name">따뜻한 바람막이 (비 막아주는 소재)</h1>
+            </div>
+            <span class="text__price">26,900원</span>
+            <p class="text__details">실버 B 로고 바람막이입니다. 고신축 면스판 원단을 사용하며 실버 B 고주파 와펜을 가지고 있습니다. 핏은 머슬핏이고 비가 통과되지 않는
+              소재입니다.</p>
 
+            <div class="details__text--lower">
+              <div class="text__delievery">배송정보: 아디다스는 명절간 (2/8~2/10) 배송이 되지 않습니다.</div>
+              <span class="text__review">
+                구매후기: &nbsp;<img src="/app/resources/img/icon__star.svg" alt="starIcon" class="review__star"> 4.5 / <a
+                  href="#details__review">3개</a>
+              </span>
+              <span class="text__hit">조회수: 89,500</span>
+            </div>
+          </section>
+
+          <section class="details__imgs">
+            <img alt="img" src="/app/resources/img/product/img-3.jpg">
+            <img alt="img-1" src="/app/resources/img/product/img-4.jpg">
+            <img alt="img" src="/app/resources/img/product/img-5.jpg">
+          </section>
+
+
+          <section class="details__review" id="details__review">
+            <h2 class="review__heading">구매후기 (3)</h2>
+            <div class="review__item">
+              <div class="review__item--upper">
+                <span>김철수</span>
+                <div class="upper__div">
+                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
+                  <div class="upper__div--text">
+                    <span class="review__date">2024.05.17</span>
+                    <a href="/app/report/4" class="review__report">신고</a>
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--mid">
+                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
+                <div class="img-div__text">
+                  <div class="review__name">
+                    따뜻한 바람막이 (비 막아주는 소재)
+                  </div>
+                  <div class="review__category">
+                    L / 검정색 / 2개 구매
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--lower">
+                <p class="review__content">
+                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
+                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
+                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
+                </p>
+              </div>
+            </div>
+            <div class="review__item">
+              <div class="review__item--upper">
+                <span>김철수</span>
+                <div class="upper__div">
+                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
+                  <div class="upper__div--text">
+                    <span class="review__date">2024.05.17</span>
+                    <a href="/app/report/4" class="review__report">신고</a>
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--mid">
+                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
+                <div class="img-div__text">
+                  <div class="review__name">
+                    따뜻한 바람막이 (비 막아주는 소재)
+                  </div>
+                  <div class="review__category">
+                    L / 검정색 / 2개 구매
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--lower">
+                <p class="review__content">
+                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
+                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
+                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
+                </p>
+              </div>
+            </div>
+            <div class="review__item">
+              <div class="review__item--upper">
+                <span>김철수</span>
+                <div class="upper__div">
+                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
+                  <div class="upper__div--text">
+                    <span class="review__date">2024.05.17</span>
+                    <a href="/app/report/4" class="review__report">신고</a>
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--mid">
+                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
+                <div class="img-div__text">
+                  <div class="review__name">
+                    따뜻한 바람막이 (비 막아주는 소재)
+                  </div>
+                  <div class="review__category">
+                    L / 검정색 / 2개 구매
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--lower">
+                <p class="review__content">
+                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
+                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
+                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
+                </p>
+              </div>
+            </div>
+            <div class="review__item">
+              <div class="review__item--upper">
+                <span>김철수</span>
+                <div class="upper__div">
+                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
+                  <div class="upper__div--text">
+                    <span class="review__date">2024.05.17</span>
+                    <a href="/app/report/4" class="review__report">신고</a>
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--mid">
+                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
+                <div class="img-div__text">
+                  <div class="review__name">
+                    따뜻한 바람막이 (비 막아주는 소재)
+                  </div>
+                  <div class="review__category">
+                    L / 검정색 / 2개 구매
+                  </div>
+                </div>
+              </div>
+              <div class="review__item--lower">
+                <p class="review__content">
+                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
+                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
+                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
+                </p>
+              </div>
+            </div>
+          </section>
 
         </main>
 

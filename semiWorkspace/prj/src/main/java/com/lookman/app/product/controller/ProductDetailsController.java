@@ -24,14 +24,13 @@ public class ProductDetailsController extends HttpServlet {
 		try {
 			// data
 
-//			String pathInfo = req.getPathInfo();
-//			if (pathInfo == null || pathInfo.equals("/")) {
-//				resp.sendRedirect("/app/products");
-//				System.out.println(pathInfo + "WHAT");
-//				return;
-//			}
-//
-//			String productNo = pathInfo.substring(1);
+			String pathInfo = req.getPathInfo();
+			if (pathInfo == null || pathInfo.equals("/")) {
+				resp.sendRedirect("/app/products");
+				return;
+			}
+
+			String productNo = pathInfo.substring(1);
 //			
 //			ProductVo pvo = ps.selectProductByNo(productNo);
 //			req.setAttribute("pvo", pvo);

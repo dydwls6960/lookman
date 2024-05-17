@@ -1,4 +1,4 @@
--- ¸ÞÀÎÆäÀÌÁö
+-- ë©”ì¸íŽ˜ì´ì§€
 SELECT 
     P.PRODUCT_NO, 
     TO_CHAR(P.PRICE, '999,999,999.00') PRICE,  
@@ -18,34 +18,14 @@ GROUP BY P.PRODUCT_NO, P.PRICE, S.NAME, P.NAME, PI.FILENAME
 ORDER BY AVG_RATING DESC, PRICE DESC
 ;
 
--- »ó¼¼ÆäÀÌÁö¿¡´Â 
--- ½æ³×ÀÏ, ºê·£µå¸í, »óÇ°Á¦¸ñ, »óÇ°°¡°Ý, ¹è¼ÛÁ¤º¸, ½æ³×ÀÏ Á¦¿Ü »çÁøµé, »óÇ°¼³¸í, ¸®ºä, 
--- Àç°íÀÇ »ö»ó, »çÀÌÁî, °¢ ¸Â´Â Àç°í·®ÀÌ ÇÊ¿äÇÕ´Ï´Ù.
-SELECT *
+-- ìƒì„¸íŽ˜ì´ì§€ì—ëŠ” 
+-- ì¸ë„¤ì¼, ë¸Œëžœë“œëª…, ìƒí’ˆì œëª©, ìƒí’ˆê°€ê²©, ë°°ì†¡ì •ë³´, ì¸ë„¤ì¼ ì œì™¸ ì‚¬ì§„ë“¤, ìƒí’ˆì„¤ëª…, ë¦¬ë·°, 
+-- ìž¬ê³ ì˜ ìƒ‰ìƒ, ì‚¬ì´ì¦ˆ, ê° ë§žëŠ” ìž¬ê³ ëŸ‰ì´ í•„ìš”í•©ë‹ˆë‹¤.
+SELECT P.PRODUCT_NO, S.NAME SELLER_NAME, P.NAME NAME, P.DETAILS, P.PRICE, P.HIT
 FROM PRODUCT P
-JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO 
-WHERE P.PRODUCT_NO = 3
---AND THUMBNAIL_YN = 'N'
-;
-
-SELECT * 
-FROM PRODUCT P
-LEFT JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO
 JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO
-JOIN SHIPMENT
-WHERE P.PRODUCT_NO = 5;
-
--- ½æ³×ÀÏ
-SELECT FILENAME THUMBNAIL
-FROM PRODUCT P
-JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO
-WHERE P.PRODUCT_NO = 3 
-AND THUMBNAIL_YN = 'Y'
+WHERE P.PRODUCT_NO = 5
 ;
-
-
-select * from address where member_no = 14;
-select * from member;
 
 -- MemberDao - getMemberNo()
 SELECT MEMBER_NO

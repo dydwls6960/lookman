@@ -1,4 +1,4 @@
-package com.lookman.app.home.controller;
+package com.lookman.app;
 
 import java.io.IOException;
 
@@ -8,23 +8,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.lookman.app.product.service.ProductService;
-
-@WebServlet("/home")
-public class HomeController extends HttpServlet {
-
-	private ProductService ps;
-
-	public HomeController() {
-		this.ps = new ProductService();
-	}
-
+@WebServlet("/list/ranking")
+public class ListRankingController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
-		// setAttribute voList
-
-		req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
+		// order by ranking
+		
+		// set in req.setAttribute("productVoList", productVoList);
+		
+		req.getRequestDispatcher("/WEB-INF/views/list/ranking.jsp").forward(req, resp);
 	}
 
 	@Override

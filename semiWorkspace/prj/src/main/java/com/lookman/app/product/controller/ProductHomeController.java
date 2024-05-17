@@ -1,6 +1,7 @@
-package com.lookman.app.home.controller;
+package com.lookman.app.product.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,22 +10,30 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.lookman.app.product.service.ProductService;
+import com.lookman.app.product.vo.ProductVo;
 
-@WebServlet("/home")
-public class HomeController extends HttpServlet {
-
+@WebServlet("/products")
+public class ProductHomeController extends HttpServlet {
 	private ProductService ps;
 
-	public HomeController() {
+	public ProductHomeController() {
 		this.ps = new ProductService();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			List<ProductVo> pvoList = ps.selectProducts();
+			
+			req.setAttribute("pvoList", pvoList);
+			req.getRequestDispatcher("/WEB-INF/views/product/hometest.jsp").forward(req, resp);
+			
+		} catch (Exception e) {
+			req.setAttribute("errMsg", e.getMessage());
+			e.printStackTrace();
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 
-		// setAttribute voList
-
-		req.getRequestDispatcher("/WEB-INF/views/home.jsp").forward(req, resp);
+		}
 	}
 
 	@Override

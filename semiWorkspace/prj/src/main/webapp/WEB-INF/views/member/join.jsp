@@ -30,16 +30,16 @@
 
             <input type="text" name="name" id="name" placeholder="이름*" required>
 
-            <input type="tel" name="phone" id="phone" placeholder="전화번호 (01000000000)*" minlength="8" maxlength="11"
+            <input type="tel" name="phone" id="phone" placeholder="전화번호 ('-' 없이)*" minlength="8" maxlength="11"
               required>
 
-            <input type="text" name="postcode" id="postcode" placeholder="우편번호" required>
+            <input type="text" name="postcode" id="postcode" placeholder="우편번호*" required>
             <button type="button" class="" onclick="execDaumPostcode()">우편번호
               검색</button>
 
-            <input type="text" name="address" id="address" placeholder="주소" required>
+            <input type="text" name="address" id="address" placeholder="주소*" required>
 
-            <input type="text" name="address2" id="address2" placeholder="상세주소" required>
+            <input type="text" name="address2" id="address2" placeholder="상세주소*" required>
 
             <input type="text" name="extraAddress" id="extraAddress" placeholder="참고사항">
 

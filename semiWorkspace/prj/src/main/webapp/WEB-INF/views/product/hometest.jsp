@@ -8,6 +8,9 @@
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/home.css">
 
+      
+      <%@ include file="/WEB-INF/views/layout/splide.jsp" %>
+
   </head>
 
   <body>
@@ -19,8 +22,24 @@
 
 
         <main class="main main-list">
-          <h1>HELO</h1>
+     		<section id="image-carousel" class="splide" aria-label="Beautiful Images">
+            <div class="splide__track">
+              <ul class="splide__list">
+                <li class="splide__slide">
+                  <img src="/app/resources/img/product/img-1.jpg" alt="img-1">
+                </li>
+                <li class="splide__slide">
+                  <img src="/app/resources/img/product/img-2.jpg" alt="img-2">
+                </li>
+                <li class="splide__slide">
+                  <img src="/app/resources/img/product/img-3.jpg" alt="img-3">
+                </li>
+              </ul>
+            </div>
+          </section>
+        
           <c:forEach var="pvo" items="${requestScope.pvoList}">
+          
           <div class="main-list--item">
             <a href="/app/products/${pvo.productNo}">
               <div class="item-container">
@@ -55,6 +74,7 @@
               </div>
             </a>
           </div>
+          
           </c:forEach>
         </main>
 

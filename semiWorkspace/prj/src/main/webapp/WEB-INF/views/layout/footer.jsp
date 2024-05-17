@@ -13,6 +13,7 @@
       </div>
     </div>
     <div class="footer__btns">
+      <button class="footer__btns--join">광고문의</button>
       <button class="footer__btns--join">입점문의</button>
       <button class="footer__btns--newsite" onclick="location.href='/app/seller/login'">관리자/판매자사이트</button>
     </div>

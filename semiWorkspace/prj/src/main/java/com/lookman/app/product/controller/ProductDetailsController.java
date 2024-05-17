@@ -1,7 +1,6 @@
 package com.lookman.app.product.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -12,32 +11,40 @@ import javax.servlet.http.HttpServletResponse;
 import com.lookman.app.product.service.ProductService;
 import com.lookman.app.product.vo.ProductVo;
 
-@WebServlet(value ={"/products", "/home"})
-public class ProductHomeController extends HttpServlet {
+@WebServlet("/products/*")
+public class ProductDetailsController extends HttpServlet {
 	private ProductService ps;
 
-	public ProductHomeController() {
+	public void ProductDetailsController() {
 		this.ps = new ProductService();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			List<ProductVo> pvoList = ps.selectProducts();
-			
-			req.setAttribute("pvoList", pvoList);
-			req.getRequestDispatcher("/WEB-INF/views/product/hometest.jsp").forward(req, resp);
-			
-		} catch (Exception e) {
-			req.setAttribute("errMsg", e.getMessage());
-			e.printStackTrace();
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+			// data
 
+//			String pathInfo = req.getPathInfo();
+//			if (pathInfo == null || pathInfo.equals("/")) {
+//				resp.sendRedirect("/app/products");
+//				System.out.println(pathInfo + "WHAT");
+//				return;
+//			}
+//
+//			String productNo = pathInfo.substring(1);
+//			
+//			ProductVo pvo = ps.selectProductByNo(productNo);
+//			req.setAttribute("pvo", pvo);
+			req.getRequestDispatcher("/WEB-INF/views/product/details.jsp").forward(req, resp);
+
+		} catch (Exception e) {
+			// TODO: handle exception
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		doGet(req, resp);
 	}
 }

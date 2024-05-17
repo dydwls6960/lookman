@@ -3,6 +3,7 @@ package com.lookman.app.product.dao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -39,12 +40,15 @@ public class ProductDao {
 
 		}
 
-		for (ProductVo productVo : pvoList) {
-
-			System.out.println(productVo);
-		}
-
 		return pvoList;
+	}
+
+	public ProductVo selectProductByNo(Connection conn, String productNo) throws Exception {
+		String sql = "";
+		conn.prepareStatement(sql);
+		ProductVo pvo = null;
+
+		return pvo;
 	}
 
 }

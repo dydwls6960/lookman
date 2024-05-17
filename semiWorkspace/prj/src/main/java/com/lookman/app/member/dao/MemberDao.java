@@ -49,13 +49,13 @@ public class MemberDao {
 	}
 
 	public int insertAddress(Connection conn, AddressVo avo) throws SQLException {
-		String sql = "INSERT INTO ADDRESS(ADDRESS_NO, MEMBER_NO, POSTCODE, ADDRESS, DETAILED_ADDRESS, EXTRA_ADDRESS) VALUES (SEQ_ADDRESS.NEXTVAL, ?, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ADDRESS(ADDRESS_NO, MEMBER_NO, POSTCODE, ADDRESS, DETAILED_ADDRESS, EXTRA_ADDRESS) VALUES (SEQ_ADDRESS.NEXTVAL, SEQ_MEMBER.CURRVAL, ?, ?, ?, ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
-		pstmt.setString(1, avo.getMemberNo());
-		pstmt.setString(2, avo.getPostcode());
-		pstmt.setString(3, avo.getAddress());
-		pstmt.setString(4, avo.getDetailedAddress());
-		pstmt.setString(5, avo.getExtraAddress());
+//		pstmt.setString(1, avo.getMemberNo());
+		pstmt.setString(1, avo.getPostcode());
+		pstmt.setString(2, avo.getAddress());
+		pstmt.setString(3, avo.getDetailedAddress());
+		pstmt.setString(4, avo.getExtraAddress());
 
 		int result = pstmt.executeUpdate();
 

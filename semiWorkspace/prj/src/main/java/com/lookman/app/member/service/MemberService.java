@@ -49,20 +49,21 @@ public class MemberService {
 		Connection conn = getConnection();
 
 		// join
-		int result = dao.join(conn, mvo);
+		int resultMember = dao.join(conn, mvo);
 
-		if (result != 1) {
+		if (resultMember != 1) {
 			throw new Exception("회원가입 도중 에러...");
 		}
 
 		// 현재 멤버번호 가져오기
-		String currentMemberNo = dao.getMemberNo(conn, mvo);
-		if (currentMemberNo.equals("")) {
-			throw new Exception("회원번호 가져오는 중 에러...");
-		}
-
+//		String currentMemberNo = dao.getMemberNo(conn, mvo);
+//		if (currentMemberNo.equals("")) {
+//			throw new Exception("회원번호 가져오는 중 에러...");
+//		}
+//
+//		avo.setMemberNo(currentMemberNo);
+		
 		// 주소 입력
-		avo.setMemberNo(currentMemberNo);
 		int resultAddress = dao.insertAddress(conn, avo);
 		
 		if (resultAddress != 1) {
@@ -70,7 +71,7 @@ public class MemberService {
 		}
 		
 
-		if (result == 1 && resultAddress == 1) {
+		if (resultMember * resultAddress == 1) {
 			commit(conn);
 		} else {
 			rollback(conn);
@@ -79,7 +80,7 @@ public class MemberService {
 
 		close(conn);
 
-		return result;
+		return resultMember * resultAddress;
 	}
 
 	public boolean checkIdDup(String id) throws Exception {

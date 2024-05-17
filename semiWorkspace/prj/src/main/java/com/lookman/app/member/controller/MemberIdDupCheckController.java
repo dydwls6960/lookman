@@ -34,7 +34,7 @@ public class MemberIdDupCheckController extends HttpServlet {
 			resp.getWriter().write("ok");
 			
 		} catch (Exception e) {
-			e.printStackTrace();
+			System.out.println("중복된 아이디입니다.");
 			resp.getWriter().write("bad");
 		}
 	}

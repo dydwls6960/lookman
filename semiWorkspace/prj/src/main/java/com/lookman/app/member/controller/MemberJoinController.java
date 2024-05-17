@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.lookman.app.member.service.MemberService;
 import com.lookman.app.member.vo.AddressVo;
@@ -63,13 +64,16 @@ public class MemberJoinController extends HttpServlet {
 			avo.setDetailedAddress(address2);
 			avo.setExtraAddress(extraAddress);
 
+			HttpSession session = req.getSession();
 			// result
 			int r = ms.join(mvo, avo);
 			if (r != 1) {
-				throw new Exception("회원가입 도중 실패...");
+				session.setAttribute("alertMsg", "회원가입 실패..");
+				resp.sendRedirect("/app/member/join");
 			}
 
-			resp.sendRedirect("/app/home");
+			session.setAttribute("alertMsg", "회원가입 성공!");
+			resp.sendRedirect("/app/member/login");
 
 		} catch (Exception e) {
 			// TODO: handle exception

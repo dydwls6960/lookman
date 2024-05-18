@@ -52,6 +52,8 @@ public class ProductService {
 	public ProductDetailsDto selectProductDetails(String productNo) throws Exception {
 		Connection conn = null;
 		ProductDetailsDto dto = null;
+		List<ImageVo> images = null;
+		List<ReviewDto> reviews = null;
 
 		try {
 			// dao
@@ -61,7 +63,7 @@ public class ProductService {
 			dto = dao.selectProductDetails(conn, productNo);
 
 			// 이미지들
-			List<ImageVo> images = imgDao.getProductImagesByNo(conn, productNo);
+			images = imgDao.getProductImagesByNo(conn, productNo);
 			for (ImageVo imageVo : images) {
 				if (imageVo.getThumbnailYn().equals("Y")) {
 					// 썸네일 사진 구분
@@ -72,7 +74,7 @@ public class ProductService {
 			dto.setImages(images);
 
 			// 리뷰들
-			List<ReviewDto> reviews = revDao.getReviewsByProductNo(conn, productNo);
+			reviews = revDao.getReviewsByProductNo(conn, productNo);
 			dto.setReviews(reviews);
 
 		} finally {

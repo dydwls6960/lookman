@@ -47,7 +47,7 @@
                   <img loading="lazy" src="/app/resources/img/product/${dto.thumbnailFilename}" alt="Product image">
                 </div>
                 <div class="item-container__desc">
-                  <div class="item-container__desc--price">${dto.price}</div>
+                  <div class="item-container__desc--price">${dto.price}원</div>
                   <p class="item-container__desc--name">${dto.sellerName} | ${dto.productName}</p>
                   <div class="item-container__desc--rating">
                     <div class="rating-star">

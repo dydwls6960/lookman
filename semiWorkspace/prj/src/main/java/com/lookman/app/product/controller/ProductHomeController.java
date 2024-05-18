@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lookman.app.product.dto.ProductHomeDto;
 import com.lookman.app.product.service.ProductService;
-import com.lookman.app.product.vo.ProductVo;
 
 @WebServlet(value ={"/products", "/home"})
 public class ProductHomeController extends HttpServlet {
@@ -24,9 +24,9 @@ public class ProductHomeController extends HttpServlet {
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			System.out.println("hello world");
-			List<ProductVo> pvoList = ps.selectProducts();
+			List<ProductHomeDto> dtoList = ps.selectProducts();
 			
-			req.setAttribute("pvoList", pvoList);
+			req.setAttribute("dtoList", dtoList);
 			req.getRequestDispatcher("/WEB-INF/views/product/home.jsp").forward(req, resp);
 			
 		} catch (Exception e) {

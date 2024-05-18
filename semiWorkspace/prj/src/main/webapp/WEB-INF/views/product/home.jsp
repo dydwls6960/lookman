@@ -38,17 +38,17 @@
             </div>
           </section>
         
-          <c:forEach var="pvo" items="${requestScope.pvoList}">
+          <c:forEach var="dto" items="${requestScope.dtoList}">
           
           <div class="main-list--item">
-            <a href="/app/products/${pvo.productNo}">
+            <a href="/app/products/${dto.productNo}">
               <div class="item-container">
                 <div class="item-container__img">
-                  <img src="/app/resources/img/product/${pvo.filename}" alt="Product image">
+                  <img src="/app/resources/img/product/${dto.thumbnailFilename}" alt="Product image">
                 </div>
                 <div class="item-container__desc">
-                  <div class="item-container__desc--price">${pvo.price}</div>
-                  <p class="item-container__desc--name">${pvo.sellerNo} | ${pvo.name}</p>
+                  <div class="item-container__desc--price">${dto.price}</div>
+                  <p class="item-container__desc--name">${dto.sellerName} | ${dto.productName}</p>
                   <div class="item-container__desc--rating">
                     <div class="rating-star">
                       <svg width="8" height="8" viewBox="0 0 8 8" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -66,7 +66,7 @@
 
                     </div>
                     <div class="rating-number">
-                      <span class="rating-number__avg">${pvo.rating}</span> <span class="rating-number__cnt">(${pvo.reviewCnt})</span>
+                      <span class="rating-number__avg">${dto.avgRating}</span> <span class="rating-number__cnt">(${dto.reviewCnt})</span>
                     </div>
                   </div>
 

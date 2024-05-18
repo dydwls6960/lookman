@@ -10,6 +10,7 @@ import com.lookman.app.image.dao.ImageDao;
 import com.lookman.app.image.vo.ImageVo;
 import com.lookman.app.product.dao.ProductDao;
 import com.lookman.app.product.dto.ProductDetailsDto;
+import com.lookman.app.product.dto.ProductHomeDto;
 import com.lookman.app.product.vo.ProductVo;
 import com.lookman.app.review.dao.ReviewDao;
 import com.lookman.app.review.dto.ReviewDto;
@@ -25,15 +26,15 @@ public class ProductService {
 		this.revDao = new ReviewDao();
 	}
 
-	public List<ProductVo> selectProducts() throws Exception {
+	public List<ProductHomeDto> selectProducts() throws Exception {
 
 		Connection conn = getConnection();
 
-		List<ProductVo> pvoList = dao.selectProducts(conn);
+		List<ProductHomeDto> dtoList = dao.selectProducts(conn);
 
 		close(conn);
 
-		return pvoList;
+		return dtoList;
 	}
 
 	public ProductVo selectProductByNo(String productNo) throws Exception {

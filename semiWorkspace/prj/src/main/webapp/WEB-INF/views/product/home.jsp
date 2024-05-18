@@ -44,7 +44,7 @@
             <a href="/app/products/${dto.productNo}">
               <div class="item-container">
                 <div class="item-container__img">
-                  <img src="/app/resources/img/product/${dto.thumbnailFilename}" alt="Product image">
+                  <img loading="lazy" src="/app/resources/img/product/${dto.thumbnailFilename}" alt="Product image">
                 </div>
                 <div class="item-container__desc">
                   <div class="item-container__desc--price">${dto.price}</div>

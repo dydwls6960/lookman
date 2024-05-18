@@ -49,7 +49,7 @@
 
           <section class="details__imgs">
             <c:forEach var="img" items="${requestScope.dto.images}">
-              <img alt="img" src="/app/resources/img/product/${img.filename}">
+              <img loading="lazy" alt="img" src="/app/resources/img/product/${img.filename}">
             </c:forEach>
           </section>
 

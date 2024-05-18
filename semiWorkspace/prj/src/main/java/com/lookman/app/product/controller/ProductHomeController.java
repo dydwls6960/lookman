@@ -23,7 +23,6 @@ public class ProductHomeController extends HttpServlet {
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			System.out.println("hello world");
 			List<ProductHomeDto> dtoList = ps.selectProducts();
 			
 			req.setAttribute("dtoList", dtoList);

@@ -12,7 +12,7 @@ import com.lookman.app.product.dao.ProductDao;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.vo.ProductVo;
 import com.lookman.app.review.dao.ReviewDao;
-import com.lookman.app.review.vo.ReviewVo;
+import com.lookman.app.review.dto.ReviewDto;
 
 public class ProductService {
 	private ProductDao dao;
@@ -71,7 +71,7 @@ public class ProductService {
 			dto.setImages(images);
 
 			// 리뷰들
-			List<ReviewVo> reviews = revDao.getReviewsByProductNo(conn, productNo);
+			List<ReviewDto> reviews = revDao.getReviewsByProductNo(conn, productNo);
 			dto.setReviews(reviews);
 
 		} finally {

@@ -20,166 +20,74 @@
           <section id="image-carousel" class="splide" aria-label="Beautiful Images">
             <div class="splide__track">
               <ul class="splide__list">
-                <li class="splide__slide">
-                  <img src="/app/resources/img/product/img-1.jpg" alt="">
-                </li>
-                <li class="splide__slide">
-                  <img src="/app/resources/img/product/img-2.jpg" alt="">
-                </li>
-                <li class="splide__slide">
-                  <img src="/app/resources/img/product/img-3.jpg" alt="">
-                </li>
+                <c:forEach var="img" items="${requestScope.dto.images}">
+                  <li class="splide__slide">
+                    <img src="/app/resources/img/product/${img.filename}" alt="product image">
+                  </li>
+                </c:forEach>
               </ul>
             </div>
           </section>
 
           <section class="details__text">
             <div class="details__text--upper">
-              <span class="text__seller">${requestScope.pvo.sellerNo}</span>
-              <h1 class="text__name">${requestScope.pvo.name}</h1>
+              <span class="text__seller">${requestScope.dto.sellerName}</span>
+              <h1 class="text__name">${requestScope.dto.productName}</h1>
             </div>
-            <span class="text__price">${requestScope.pvo.price}원</span>
-            <p class="text__details">${requestScope.pvo.details}</p>
+            <span class="text__price">${requestScope.dto.price}원</span>
+            <p class="text__details">${requestScope.dto.details}</p>
 
             <div class="details__text--lower">
-              <div class="text__delievery">배송정보: 아디다스는 명절간 (2/8~2/10) 배송이 되지 않습니다.</div>
+              <div class="text__delievery">배송정보: ${requestScope.dto.shippingDetails}</div>
               <span class="text__review">
-                구매후기: &nbsp;<img src="/app/resources/img/icon__star.svg" alt="starIcon" class="review__star"> 4.5 / <a
-                  href="#details__review">3개</a>
+                구매후기: &nbsp;<img src="/app/resources/img/icon__star.svg" alt="starIcon" class="review__star">
+                ${requestScope.dto.avgRating} / <a href="#details__review">${requestScope.dto.reviewCnt}개</a>
               </span>
-              <span class="text__hit">조회수: ${requestScope.pvo.hit}</span>
+              <span class="text__hit">조회수: ${requestScope.dto.hit}</span>
             </div>
           </section>
 
           <section class="details__imgs">
-            <img alt="img" src="/app/resources/img/product/img-3.jpg">
-            <img alt="img-1" src="/app/resources/img/product/img-4.jpg">
-            <img alt="img" src="/app/resources/img/product/img-5.jpg">
+            <c:forEach var="img" items="${requestScope.dto.images}">
+              <img alt="img" src="/app/resources/img/product/${img.filename}">
+            </c:forEach>
           </section>
 
 
           <section class="details__review" id="details__review">
-            <h2 class="review__heading">구매후기 (3)</h2>
-            <div class="review__item">
-              <div class="review__item--upper">
-                <span>김철수</span>
-                <div class="upper__div">
-                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
-                  <div class="upper__div--text">
-                    <span class="review__date">2024.05.17</span>
-                    <a href="/app/report/4" class="review__report">신고</a>
+            <h2 class="review__heading">구매후기 (${requestScope.dto.reviewCnt})</h2>
+            <c:forEach var="review" items="${requestScope.dto.reviews}">
+              <div class="review__item">
+                <div class="review__item--upper">
+                  <span>${review.memberName}</span>
+                  <div class="upper__div">
+                    <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
+                    <div class="upper__div--text">
+                      <span class="review__date">${review.createdDate}</span>
+                      <a href="/app/report/${review.memberNo}" class="review__report">신고</a>
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="review__item--mid">
-                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
-                <div class="img-div__text">
-                  <div class="review__name">
-                    따뜻한 바람막이 (비 막아주는 소재)
-                  </div>
-                  <div class="review__category">
-                    L / 검정색 / 2개 구매
-                  </div>
-                </div>
-              </div>
-              <div class="review__item--lower">
-                <p class="review__content">
-                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
-                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
-                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
-                </p>
-              </div>
-            </div>
-            <div class="review__item">
-              <div class="review__item--upper">
-                <span>김철수</span>
-                <div class="upper__div">
-                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
-                  <div class="upper__div--text">
-                    <span class="review__date">2024.05.17</span>
-                    <a href="/app/report/4" class="review__report">신고</a>
+                <div class="review__item--mid">
+                  <img src="/app/resources/img/product/${requestScope.dto.thumbnailFilename}" alt="img"
+                    class="review__img">
+                  <div class="img-div__text">
+                    <div class="review__name">
+                      ${requestScope.dto.productName}
+                    </div>
+                    <div class="review__category">
+                      ${review.productSize} / ${review.productColor} / ${review.orderQuantity}개 구매
+                    </div>
                   </div>
                 </div>
-              </div>
-              <div class="review__item--mid">
-                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
-                <div class="img-div__text">
-                  <div class="review__name">
-                    따뜻한 바람막이 (비 막아주는 소재)
-                  </div>
-                  <div class="review__category">
-                    L / 검정색 / 2개 구매
-                  </div>
+                <div class="review__item--lower">
+                  <p class="review__content">
+                    ${review.content}
+                  </p>
                 </div>
               </div>
-              <div class="review__item--lower">
-                <p class="review__content">
-                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
-                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
-                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
-                </p>
-              </div>
-            </div>
-            <div class="review__item">
-              <div class="review__item--upper">
-                <span>김철수</span>
-                <div class="upper__div">
-                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
-                  <div class="upper__div--text">
-                    <span class="review__date">2024.05.17</span>
-                    <a href="/app/report/4" class="review__report">신고</a>
-                  </div>
-                </div>
-              </div>
-              <div class="review__item--mid">
-                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
-                <div class="img-div__text">
-                  <div class="review__name">
-                    따뜻한 바람막이 (비 막아주는 소재)
-                  </div>
-                  <div class="review__category">
-                    L / 검정색 / 2개 구매
-                  </div>
-                </div>
-              </div>
-              <div class="review__item--lower">
-                <p class="review__content">
-                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
-                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
-                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
-                </p>
-              </div>
-            </div>
-            <div class="review__item">
-              <div class="review__item--upper">
-                <span>김철수</span>
-                <div class="upper__div">
-                  <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
-                  <div class="upper__div--text">
-                    <span class="review__date">2024.05.17</span>
-                    <a href="/app/report/4" class="review__report">신고</a>
-                  </div>
-                </div>
-              </div>
-              <div class="review__item--mid">
-                <img src="/app/resources/img/product/img-1.jpg" alt="img" class="review__img">
-                <div class="img-div__text">
-                  <div class="review__name">
-                    따뜻한 바람막이 (비 막아주는 소재)
-                  </div>
-                  <div class="review__category">
-                    L / 검정색 / 2개 구매
-                  </div>
-                </div>
-              </div>
-              <div class="review__item--lower">
-                <p class="review__content">
-                  어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우
-                  너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무
-                  좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요어우 너무 좋은 제품이네요
-                </p>
-              </div>
-            </div>
+            </c:forEach>
+
           </section>
 
         </main>

@@ -97,10 +97,13 @@ public class ProductDao {
 			dto.setPrice(price);
 			dto.setDetails(details);
 			dto.setHit(hit);
-			dto.setAvgRating(avgRating);
+			if (avgRating.equals("0")) {
+				dto.setAvgRating("0.0");
+			} else {				
+				dto.setAvgRating(avgRating);
+			}
 			dto.setShippingDetails(shippingDetails);
 			dto.setReviewCnt(reviewCnt);
-
 		}
 
 		close(rs);

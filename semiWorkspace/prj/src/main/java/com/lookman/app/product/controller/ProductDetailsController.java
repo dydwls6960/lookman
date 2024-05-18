@@ -1,5 +1,6 @@
 package com.lookman.app.product.controller;
 
+import java.awt.font.ImageGraphicAttribute;
 import java.io.IOException;
 import java.util.List;
 
@@ -21,36 +22,40 @@ public class ProductDetailsController extends HttpServlet {
 	public ProductDetailsController() {
 		this.ps = new ProductService();
 	}
-
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		try {
-			// data
-
-			String pathInfo = req.getPathInfo();
-			if (pathInfo == null || pathInfo.equals("/")) {
-				resp.sendRedirect("/app/products");
-				return;
+	
+		@Override
+		protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+			try {
+				// data
+	
+				String pathInfo = req.getPathInfo();
+				if (pathInfo == null || pathInfo.equals("/")) {
+					resp.sendRedirect("/app/products");
+					return;
+				}
+	
+				String productNo = pathInfo.substring(1).replaceAll("[^0-9]", "");
+				
+				
+				ProductDetailsDto dto = ps.selectProductDetails(productNo);
+				
+				
+				if (dto == null) {
+					throw new Exception("상품을 찾을 수 없습니다: " + productNo);
+				}
+				
+				req.setAttribute("dto", dto);
+				req.getRequestDispatcher("/WEB-INF/views/product/details.jsp").forward(req, resp);
+	
+			} catch (Exception e) {
+				e.printStackTrace();
+				req.setAttribute("errMsg", e.getMessage());
+				req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 			}
-
-			String productNo = pathInfo.substring(1);
-//			
-//			ProductVo pvo = ps.selectProductByNo(productNo);
-//			req.setAttribute("pvo", pvo);
-			
-			ProductDetailsDto dto = ps.selectProductDetails(productNo);
-			
-			
-			req.getRequestDispatcher("/WEB-INF/views/product/details.jsp").forward(req, resp);
-
-		} catch (Exception e) {
-			e.printStackTrace();
-			req.setAttribute("errMsg", e.getMessage());
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
-	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 	}
 }

@@ -3,6 +3,7 @@ package com.lookman.app.product.dto;
 import java.util.List;
 
 import com.lookman.app.image.vo.ImageVo;
+import com.lookman.app.review.dto.ReviewDto;
 import com.lookman.app.review.vo.ReviewVo;
 
 public class ProductDetailsDto {
@@ -16,14 +17,14 @@ public class ProductDetailsDto {
 	private String hit;
 	private String thumbnailFilename;
 	List<ImageVo> images;
-	List<ReviewVo> reviews;
+	List<ReviewDto> reviews;
 
 	public ProductDetailsDto() {
 	}
 
 	public ProductDetailsDto(String sellerName, String productName, String price, String details,
 			String shippingDetails, String avgRating, String reviewCnt, String hit, String thumbnailFilename,
-			List<ImageVo> images, List<ReviewVo> reviews) {
+			List<ImageVo> images, List<ReviewDto> reviews) {
 		this.sellerName = sellerName;
 		this.productName = productName;
 		this.price = price;
@@ -117,11 +118,11 @@ public class ProductDetailsDto {
 		this.images = images;
 	}
 
-	public List<ReviewVo> getReviews() {
+	public List<ReviewDto> getReviews() {
 		return reviews;
 	}
 
-	public void setReviews(List<ReviewVo> reviews) {
+	public void setReviews(List<ReviewDto> reviews) {
 		this.reviews = reviews;
 	}
 

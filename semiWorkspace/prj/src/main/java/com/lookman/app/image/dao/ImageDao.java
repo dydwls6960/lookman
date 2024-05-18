@@ -13,7 +13,7 @@ import static com.lookman.app.db.JDBCTemplate.*;
 public class ImageDao {
 
 	public List<ImageVo> getProductImagesByNo(Connection conn, String productNo) throws Exception {
-		String sql = "SELECT IMG_NO, PRODUCT_NO, FILENAME, THUMBNAIL_YN, DELETED_YN, CREATED_DATE FROM PRODUCT_IMG WHERE PRODUCT_NO = ? AND DELETED_YN = 'N' ORDER BY IMG_NO ASC";
+		String sql = "SELECT IMG_NO, PRODUCT_NO, FILENAME, THUMBNAIL_YN, DELETED_YN, CREATED_DATE FROM PRODUCT_IMG WHERE PRODUCT_NO = ? AND DELETED_YN = 'N' ORDER BY THUMBNAIL_YN DESC, IMG_NO ASC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, productNo);
 		ResultSet rs = pstmt.executeQuery();

@@ -144,13 +144,24 @@ public class ProductDao {
 
 			dtoList.add(dto);
 		}
-		
 
 		close(pstmt);
 		close(rs);
 
 		return dtoList;
 
+	}
+
+	public int incrementHit(Connection conn, String productNo) throws Exception {
+		String sql = "UPDATE PRODUCT SET HIT = HIT + 1 WHERE PRODUCT_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, productNo);
+
+		int result = pstmt.executeUpdate();
+
+		close(pstmt);
+
+		return result;
 	}
 
 }

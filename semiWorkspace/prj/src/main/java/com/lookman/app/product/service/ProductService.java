@@ -1,7 +1,9 @@
 package com.lookman.app.product.service;
 
 import static com.lookman.app.db.JDBCTemplate.close;
+import static com.lookman.app.db.JDBCTemplate.commit;
 import static com.lookman.app.db.JDBCTemplate.getConnection;
+import static com.lookman.app.db.JDBCTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.List;
@@ -48,7 +50,6 @@ public class ProductService {
 		return dtoList;
 	}
 
-
 	public ProductVo selectProductByNo(String productNo) throws Exception {
 		// logic
 
@@ -88,6 +89,15 @@ public class ProductService {
 			// 리뷰들
 			reviews = revDao.getReviewsByProductNo(conn, productNo);
 			dto.setReviews(reviews);
+
+			// 조회수 증가
+			int result = dao.incrementHit(conn, productNo);
+
+			if (result == 1) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
 
 		} finally {
 			close(conn);

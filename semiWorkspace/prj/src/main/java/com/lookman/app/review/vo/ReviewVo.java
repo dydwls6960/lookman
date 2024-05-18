@@ -7,13 +7,13 @@ public class ReviewVo {
 	private String rating;
 	private String content;
 	private String createdDate;
+	private String deletedYn;
 
 	public ReviewVo() {
-		super();
 	}
 
 	public ReviewVo(String reviewNo, String memberNo, String productNo, String rating, String content,
-			String createdDate) {
+			String createdDate, String deletedYn) {
 		super();
 		this.reviewNo = reviewNo;
 		this.memberNo = memberNo;
@@ -21,6 +21,7 @@ public class ReviewVo {
 		this.rating = rating;
 		this.content = content;
 		this.createdDate = createdDate;
+		this.deletedYn = deletedYn;
 	}
 
 	public String getReviewNo() {
@@ -71,10 +72,18 @@ public class ReviewVo {
 		this.createdDate = createdDate;
 	}
 
+	public String getDeletedYn() {
+		return deletedYn;
+	}
+
+	public void setDeletedYn(String deletedYn) {
+		this.deletedYn = deletedYn;
+	}
+
 	@Override
 	public String toString() {
 		return "ReviewVo [reviewNo=" + reviewNo + ", memberNo=" + memberNo + ", productNo=" + productNo + ", rating="
-				+ rating + ", content=" + content + ", createdDate=" + createdDate + "]";
+				+ rating + ", content=" + content + ", createdDate=" + createdDate + ", deletedYn=" + deletedYn + "]";
 	}
 
 }

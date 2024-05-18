@@ -2,6 +2,7 @@ package com.lookman.app.product.dto;
 
 import java.util.List;
 
+import com.lookman.app.image.vo.ImageVo;
 import com.lookman.app.review.vo.ReviewVo;
 
 public class ProductDetailsDto {
@@ -13,15 +14,16 @@ public class ProductDetailsDto {
 	private String avgRating;
 	private String reviewCnt;
 	private String hit;
-	List<String> images;
+	private String thumbnailFilename;
+	List<ImageVo> images;
 	List<ReviewVo> reviews;
 
 	public ProductDetailsDto() {
 	}
 
 	public ProductDetailsDto(String sellerName, String productName, String price, String details,
-			String shippingDetails, String avgRating, String reviewCnt, String hit, List<String> images,
-			List<ReviewVo> reviews) {
+			String shippingDetails, String avgRating, String reviewCnt, String hit, String thumbnailFilename,
+			List<ImageVo> images, List<ReviewVo> reviews) {
 		this.sellerName = sellerName;
 		this.productName = productName;
 		this.price = price;
@@ -30,6 +32,7 @@ public class ProductDetailsDto {
 		this.avgRating = avgRating;
 		this.reviewCnt = reviewCnt;
 		this.hit = hit;
+		this.thumbnailFilename = thumbnailFilename;
 		this.images = images;
 		this.reviews = reviews;
 	}
@@ -98,11 +101,19 @@ public class ProductDetailsDto {
 		this.hit = hit;
 	}
 
-	public List<String> getImages() {
+	public String getThumbnailFilename() {
+		return thumbnailFilename;
+	}
+
+	public void setThumbnailFilename(String thumbnailFilename) {
+		this.thumbnailFilename = thumbnailFilename;
+	}
+
+	public List<ImageVo> getImages() {
 		return images;
 	}
 
-	public void setImages(List<String> images) {
+	public void setImages(List<ImageVo> images) {
 		this.images = images;
 	}
 
@@ -118,7 +129,8 @@ public class ProductDetailsDto {
 	public String toString() {
 		return "ProductDetailsDto [sellerName=" + sellerName + ", productName=" + productName + ", price=" + price
 				+ ", details=" + details + ", shippingDetails=" + shippingDetails + ", avgRating=" + avgRating
-				+ ", reviewCnt=" + reviewCnt + ", hit=" + hit + ", images=" + images + ", reviews=" + reviews + "]";
+				+ ", reviewCnt=" + reviewCnt + ", hit=" + hit + ", thumbnailFilename=" + thumbnailFilename + ", images="
+				+ images + ", reviews=" + reviews + "]";
 	}
 
 }

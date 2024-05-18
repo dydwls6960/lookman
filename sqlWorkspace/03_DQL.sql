@@ -18,19 +18,61 @@ GROUP BY P.PRODUCT_NO, P.PRICE, S.NAME, P.NAME, PI.FILENAME
 ORDER BY AVG_RATING DESC, PRICE DESC
 ;
 
--- 상세페이지에는 
--- 썸네일, 브랜드명, 상품제목, 상품가격, 배송정보, 썸네일 제외 사진들, 상품설명, 리뷰, 
--- 재고의 색상, 사이즈, 각 맞는 재고량이 필요합니다.
-SELECT P.PRODUCT_NO, S.NAME SELLER_NAME, P.NAME NAME, P.DETAILS, P.PRICE, P.HIT
+-- PRODUCTDETAILSDTO
+--	private String sellerName;
+--	private String productName;
+--	private String price;
+--	private String details;
+--	private String shippingDetails;
+--	private String avgRating;
+--	private String reviewCnt;
+--	private String hit;
+--  private String thumbnailImage;
+--	List<String> images;
+--	List<ReviewVo> reviews;
+
+SELECT 
+    S.NAME SELLER_NAME
+    , P.NAME PRODUCT_NAME
+    , P.PRICE PRICE
+    , P.DETAILS DETAILS
+    , P.HIT HIT
+    , NVL(S.SHIPPING_INFO, '기본 배송') SHIPPING_DETAILS
+    , NVL(ROUND(AVG(R.RATING), 1), 0) AVG_RATING
+    , COUNT(R.REVIEW_NO) REVIEW_CNT
 FROM PRODUCT P
 JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO
-WHERE P.PRODUCT_NO = 5
+LEFT JOIN REVIEW R ON R.PRODUCT_NO = P.PRODUCT_NO
+WHERE P.PRODUCT_NO = 2
+GROUP BY S.NAME, P.NAME, P.PRICE, P.DETAILS, P.HIT, NVL(S.SHIPPING_INFO, '기본 배송')
 ;
 
--- MemberDao - getMemberNo()
-SELECT MEMBER_NO
-FROM MEMBER
-WHERE ID = 'taewookim02@gmail.com';
+-- /products/*
+-- IMGS
+SELECT *
+FROM PRODUCT_IMG
+WHERE PRODUCT_NO = 2
+AND DELETED_YN = 'N'
+ORDER BY IMG_NO ASC
+;
+
+
+-- REVIEWS
+SELECT *
+FROM REVIEW
+WHERE PRODUCT_NO = 2
+AND DELETED_YN = 'N'
+ORDER BY REVIEW_NO DESC, CREATED_DATE DESC
+;
+
+
+
+
+SELECT RATING
+FROM PRODUCT P
+LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+WHERE P.PRODUCT_NO = 2
+;
 
 
 -- MemberDao - login()

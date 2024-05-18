@@ -1,6 +1,7 @@
 package com.lookman.app.product.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -8,8 +9,10 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.lookman.app.image.dao.ImageDao;
+import com.lookman.app.image.vo.ImageVo;
+import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.service.ProductService;
-import com.lookman.app.product.vo.ProductVo;
 
 @WebServlet("/products/*")
 public class ProductDetailsController extends HttpServlet {
@@ -32,12 +35,16 @@ public class ProductDetailsController extends HttpServlet {
 
 			String productNo = pathInfo.substring(1);
 //			
-			ProductVo pvo = ps.selectProductByNo(productNo);
-			req.setAttribute("pvo", pvo);
+//			ProductVo pvo = ps.selectProductByNo(productNo);
+//			req.setAttribute("pvo", pvo);
+			
+			ProductDetailsDto dto = ps.selectProductDetails(productNo);
+			
+			
 			req.getRequestDispatcher("/WEB-INF/views/product/details.jsp").forward(req, resp);
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 			req.setAttribute("errMsg", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}

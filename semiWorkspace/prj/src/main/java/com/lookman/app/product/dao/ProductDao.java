@@ -1,13 +1,16 @@
 package com.lookman.app.product.dao;
 
 import java.sql.Connection;
+
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lookman.app.image.vo.ImageVo;
+import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.vo.ProductVo;
+import static com.lookman.app.db.JDBCTemplate.*;
 
 public class ProductDao {
 
@@ -54,7 +57,7 @@ public class ProductDao {
 			String details = rs.getString("DETAILS");
 			String price = rs.getString("PRICE");
 			String hit = rs.getString("HIT");
-			
+
 			pvo = new ProductVo();
 			pvo.setProductNo(prodNo);
 			pvo.setSellerNo(sellerNo);
@@ -65,6 +68,45 @@ public class ProductDao {
 		}
 
 		return pvo;
+	}
+
+	public ProductDetailsDto selectProductDetails(Connection conn, String productNo) throws Exception {
+
+		String sql = "SELECT S.NAME SELLER_NAME , P.NAME PRODUCT_NAME , P.PRICE PRICE , P.DETAILS DETAILS , P.HIT HIT , NVL(S.SHIPPING_INFO, '기본 배송') SHIPPING_DETAILS , NVL(ROUND(AVG(R.RATING), 1), 0) AVG_RATING , COUNT(R.REVIEW_NO) REVIEW_CNT FROM PRODUCT P JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO LEFT JOIN REVIEW R ON R.PRODUCT_NO = P.PRODUCT_NO WHERE P.PRODUCT_NO = ? GROUP BY S.NAME, P.NAME, P.PRICE, P.DETAILS, P.HIT, NVL(S.SHIPPING_INFO, '기본 배송')";
+
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, productNo);
+
+		ResultSet rs = pstmt.executeQuery();
+
+		ProductDetailsDto dto = null;
+
+		if (rs.next()) {
+			String sellerName = rs.getString("SELLER_NAME");
+			String productName = rs.getString("PRODUCT_NAME");
+			String price = rs.getString("PRICE");
+			String details = rs.getString("DETAILS");
+			String hit = rs.getString("HIT");
+			String shippingDetails = rs.getString("SHIPPING_DETAILS");
+			String avgRating = rs.getString("AVG_RATING");
+			String reviewCnt = rs.getString("REVIEW_CNT");
+
+			dto = new ProductDetailsDto();
+			dto.setSellerName(sellerName);
+			dto.setProductName(productName);
+			dto.setPrice(price);
+			dto.setDetails(details);
+			dto.setHit(hit);
+			dto.setAvgRating(avgRating);
+			dto.setShippingDetails(shippingDetails);
+			dto.setReviewCnt(reviewCnt);
+
+		}
+
+		close(rs);
+		close(pstmt);
+
+		return dto;
 	}
 
 }

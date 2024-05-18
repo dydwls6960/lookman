@@ -5,6 +5,7 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,7 +16,6 @@ import com.lookman.app.product.vo.ProductVo;
 public class ProductDao {
 
 	public List<ProductHomeDto> selectProducts(Connection conn) throws Exception {
-
 		String sql = "SELECT P.PRODUCT_NO, TO_CHAR(P.PRICE, '999,999,999') PRICE, S.NAME SELLER_NAME, P.NAME PRODUCT_NAME, PI.FILENAME, NVL(ROUND(AVG(R.RATING), 1), 0) AVG_RATING, COUNT(R.RATING) REVIEW_CNT FROM PRODUCT P LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO WHERE PI.THUMBNAIL_YN = 'Y' AND P.DELETED_YN = 'N' AND PI.DELETED_YN = 'N' GROUP BY P.PRODUCT_NO, P.PRICE, S.NAME, P.NAME, PI.FILENAME ORDER BY P.PRODUCT_NO DESC";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		ResultSet rs = pstmt.executeQuery();
@@ -38,9 +38,12 @@ public class ProductDao {
 			dto.setThumbnailFilename(filename);
 			dto.setAvgRating(avgRating);
 			dto.setReviewCnt(reviewCnt);
-			
+
 			dtoList.add(dto);
 		}
+
+		close(pstmt);
+		close(rs);
 
 		return dtoList;
 	}
@@ -102,7 +105,7 @@ public class ProductDao {
 			dto.setHit(hit);
 			if (avgRating.equals("0")) {
 				dto.setAvgRating("0.0");
-			} else {				
+			} else {
 				dto.setAvgRating(avgRating);
 			}
 			dto.setShippingDetails(shippingDetails);
@@ -113,6 +116,41 @@ public class ProductDao {
 		close(pstmt);
 
 		return dto;
+	}
+
+	public List<ProductHomeDto> selectProductsRanking(Connection conn) throws Exception {
+		String sql = "SELECT P.PRODUCT_NO, TO_CHAR(P.PRICE, '999,999,999') PRICE, S.NAME SELLER_NAME, P.NAME PRODUCT_NAME, PI.FILENAME, NVL(ROUND(AVG(R.RATING), 1), 0) AVG_RATING, COUNT(R.RATING) REVIEW_CNT FROM PRODUCT P LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO WHERE PI.THUMBNAIL_YN = 'Y' AND P.DELETED_YN = 'N' AND PI.DELETED_YN = 'N' GROUP BY P.PRODUCT_NO, P.PRICE, S.NAME, P.NAME, PI.FILENAME ORDER BY NVL(ROUND(AVG(R.RATING), 1), 0) DESC, COUNT(R.RATING) DESC";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		ResultSet rs = pstmt.executeQuery();
+		List<ProductHomeDto> dtoList = new ArrayList<ProductHomeDto>();
+
+		while (rs.next()) {
+			String productNo = rs.getString("PRODUCT_NO");
+			String price = rs.getString("PRICE");
+			String sellerName = rs.getString("SELLER_NAME");
+			String productName = rs.getString("PRODUCT_NAME");
+			String filename = rs.getString("FILENAME");
+			String avgRating = rs.getString("AVG_RATING");
+			String reviewCnt = rs.getString("REVIEW_CNT");
+
+			ProductHomeDto dto = new ProductHomeDto();
+			dto.setProductNo(productNo);
+			dto.setPrice(price);
+			dto.setSellerName(sellerName);
+			dto.setProductName(productName);
+			dto.setThumbnailFilename(filename);
+			dto.setAvgRating(avgRating);
+			dto.setReviewCnt(reviewCnt);
+
+			dtoList.add(dto);
+		}
+		
+
+		close(pstmt);
+		close(rs);
+
+		return dtoList;
+
 	}
 
 }

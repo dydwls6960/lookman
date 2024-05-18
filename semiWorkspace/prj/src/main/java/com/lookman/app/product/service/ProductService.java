@@ -37,6 +37,18 @@ public class ProductService {
 		return dtoList;
 	}
 
+	public List<ProductHomeDto> selectProductsRanking() throws Exception {
+
+		Connection conn = getConnection();
+
+		List<ProductHomeDto> dtoList = dao.selectProductsRanking(conn);
+
+		close(conn);
+
+		return dtoList;
+	}
+
+
 	public ProductVo selectProductByNo(String productNo) throws Exception {
 		// logic
 

@@ -1,2 +1,12 @@
 @charset "UTF-8";
 
+.main-settings {
+	display: flex;
+	flex-direction: column;
+}
+
+.settings__lower,
+.settings__upper {
+	display: flex;
+	flex-direction: column;
+}

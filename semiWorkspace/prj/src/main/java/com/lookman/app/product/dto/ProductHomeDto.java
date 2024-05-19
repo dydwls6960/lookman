@@ -14,6 +14,7 @@ public class ProductHomeDto {
 
 	public ProductHomeDto(String productNo, String price, String sellerName, String productName,
 			String thumbnailFilename, String avgRating, String reviewCnt) {
+		super();
 		this.productNo = productNo;
 		this.price = price;
 		this.sellerName = sellerName;

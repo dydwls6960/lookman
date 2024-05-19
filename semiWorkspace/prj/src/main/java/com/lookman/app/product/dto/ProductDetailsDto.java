@@ -3,8 +3,8 @@ package com.lookman.app.product.dto;
 import java.util.List;
 
 import com.lookman.app.image.vo.ImageVo;
+import com.lookman.app.inquiry.dto.ProductInquiryDto;
 import com.lookman.app.review.dto.ReviewDto;
-import com.lookman.app.review.vo.ReviewVo;
 
 public class ProductDetailsDto {
 	private String sellerName;
@@ -18,13 +18,14 @@ public class ProductDetailsDto {
 	private String thumbnailFilename;
 	List<ImageVo> images;
 	List<ReviewDto> reviews;
+	List<ProductInquiryDto> inquiries;
 
 	public ProductDetailsDto() {
 	}
 
 	public ProductDetailsDto(String sellerName, String productName, String price, String details,
 			String shippingDetails, String avgRating, String reviewCnt, String hit, String thumbnailFilename,
-			List<ImageVo> images, List<ReviewDto> reviews) {
+			List<ImageVo> images, List<ReviewDto> reviews, List<ProductInquiryDto> inquiries) {
 		this.sellerName = sellerName;
 		this.productName = productName;
 		this.price = price;
@@ -36,6 +37,7 @@ public class ProductDetailsDto {
 		this.thumbnailFilename = thumbnailFilename;
 		this.images = images;
 		this.reviews = reviews;
+		this.inquiries = inquiries;
 	}
 
 	public String getSellerName() {
@@ -126,12 +128,20 @@ public class ProductDetailsDto {
 		this.reviews = reviews;
 	}
 
+	public List<ProductInquiryDto> getInquiries() {
+		return inquiries;
+	}
+
+	public void setInquiries(List<ProductInquiryDto> inquiries) {
+		this.inquiries = inquiries;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDetailsDto [sellerName=" + sellerName + ", productName=" + productName + ", price=" + price
 				+ ", details=" + details + ", shippingDetails=" + shippingDetails + ", avgRating=" + avgRating
 				+ ", reviewCnt=" + reviewCnt + ", hit=" + hit + ", thumbnailFilename=" + thumbnailFilename + ", images="
-				+ images + ", reviews=" + reviews + "]";
+				+ images + ", reviews=" + reviews + ", inquiries=" + inquiries + "]";
 	}
 
 }

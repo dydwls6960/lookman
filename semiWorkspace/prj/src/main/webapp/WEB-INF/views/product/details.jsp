@@ -7,9 +7,11 @@
     <title>Lookman 상품정보</title>
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <%@ include file="/WEB-INF/views/layout/splide.jsp" %>
+
+
         <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
         <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
-		<link rel="stylesheet" href="/app/resources/css/product-details.css">
+        <link rel="stylesheet" href="/app/resources/css/product-details.css">
         <script defer>
           $(function () {
             $("#accordion").accordion();
@@ -43,7 +45,7 @@
             <p class="text__details">${requestScope.dto.details}</p>
 
             <div class="details__text--lower">
-              <div class="text__delievery">배송정보: ${requestScope.dto.shippingDetails}</div>
+              <div class="text__delivery">배송정보: ${requestScope.dto.shippingDetails}</div>
               <span class="text__review">
                 구매후기: &nbsp;<img src="/app/resources/img/icon__star.svg" alt="starIcon" class="review__star">
                 ${requestScope.dto.avgRating} / <a href="#details__review">${requestScope.dto.reviewCnt}개</a>
@@ -95,32 +97,41 @@
           </section>
 
           <section class="details__inquiry">
-            <h2 class="inquiry__heading">Q&A 상품문의 (19)</h2>
+            <h2 class="inquiry__heading">Q&A 상품문의 (${requestScope.dto.inquiries.size()})</h2>
             <div id="accordion" class="inquiry__item">
-              <h3 class="accordion__header">배송언제오나요?</h3>
-              <div>
-                <p> Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-                  ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-                  amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-                  odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-                </p>
-              </div>
-              <h3>siasiasia?</h3>
-              <div>
-                <p> Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-                  ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-                  amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-                  odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-                </p>
-              </div>
-              <h3>siazzzsiasia?</h3>
-              <div>
-                <p> Mauris mauris ante, blandit et, ultrices a, suscipit eget, quam. Integer
-                  ut neque. Vivamus nisi metus, molestie vel, gravida in, condimentum sit
-                  amet, nunc. Nam a nibh. Donec suscipit eros. Nam mi. Proin viverra leo ut
-                  odio. Curabitur malesuada. Vestibulum a velit eu ante scelerisque vulputate.
-                </p>
-              </div>
+              <c:forEach var="inquiry" items="${requestScope.dto.inquiries}">
+                <h3 class="accordion__header">
+                  <div class="inquiry__header">
+                    <span class="inquiry-title">${inquiry.title}</span>
+                    <div class="inquiry-info">
+                    	
+                    	<span class="inquiry-user">${inquiry.memberName}</span>
+	                    <span class="inquiry-status">${inquiry.status}</span>
+	                    <span class="inquiry-date">${inquiry.questionDate}</span>
+	                    
+                    </div>
+                  </div>
+                </h3>
+                <div>
+             		<c:if test="${sessionScope.loginMemberVo.memberNo eq inquiry.memberNo}">
+                 		<div class="inquiry-controls">
+	                 		<a href="/app/inquiry/edit/${inquiry.productInquiryNo}">수정</a>
+	                 		<a href="/app/inquiry/delete/${inquiry.productInquiryNo}">삭제</a>
+                 		</div>
+                 	</c:if>
+                  <p>${inquiry.questionContent}</p>
+                  
+                  <c:if test="${not empty inquiry.responseContent}">
+	                  <div class="accordion__answer">
+	                    <span class="accordion__answer--seller">
+	                      ${inquiry.sellerName} <br> 
+	                    </span>
+	                    <p class="accordion__answer--content">${inquiry.responseContent}</p>
+	                    <span class="accordion__answer--date">${inquiry.responseDate}</span>
+	                  </div>
+                  </c:if>
+                </div>
+              </c:forEach>
             </div>
           </section>
 

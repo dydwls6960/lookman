@@ -8,9 +8,7 @@
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/home.css">
 
-      
-      <%@ include file="/WEB-INF/views/layout/splide.jsp" %>
-
+     
   </head>
 
   <body>

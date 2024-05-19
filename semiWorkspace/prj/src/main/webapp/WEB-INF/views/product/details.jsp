@@ -133,6 +133,11 @@
                 </div>
               </c:forEach>
             </div>
+    
+    		        
+            <c:if test="${not empty sessionScope.loginMemberVo}">
+	            <button onclick="location.href='/app/inquiry/insert'">질문하기</button>
+            </c:if>
           </section>
 
         </main>

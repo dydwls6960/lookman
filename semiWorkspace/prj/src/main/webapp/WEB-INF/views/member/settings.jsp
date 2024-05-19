@@ -16,7 +16,7 @@
 <body>
 	<div class="container">
 		<%@ include file="/WEB-INF/views/layout/nav-with-header-cart.jsp"%>
-
+		
 
 		<%@ include file="/WEB-INF/views/layout/footer.jsp"%>
 	</div>

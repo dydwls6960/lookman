@@ -56,9 +56,11 @@ function execDaumPostcode() {
 // MODAL
 document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
+  const defaultBtns = document.querySelectorAll(".default-btn");
 
+  // 수정 버튼
   editBtns.forEach((btn) => {
-    btn.addEventListener("click", (e) => {
+    btn.addEventListener("click", () => {
       const memberNo = btn.dataset.memberNo;
       const addressNo = btn.dataset.addressNo;
       const postcode = btn.dataset.postcode;
@@ -112,6 +114,31 @@ document.addEventListener("DOMContentLoaded", () => {
             form.setAttribute("action", "/app/member/address/edit");
             form.setAttribute("method", "post");
           }
+        },
+      });
+    });
+  });
+
+  // 기본주소 버튼
+  defaultBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const memberNo = btn.dataset.memberNo;
+      const addressNo = btn.dataset.addressNo;
+
+      $.ajax({
+        url: "/app/member/address/default",
+        type: "post",
+        data: { memberNo: memberNo, addressNo: addressNo },
+        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+        success: (res) => {
+          if (res === "ok") {
+            location.reload();
+          } else {
+            alert("업데이트 실패..");
+          }
+        },
+        error: () => {
+          alert("업데이트 실패...:", err);
         },
       });
     });

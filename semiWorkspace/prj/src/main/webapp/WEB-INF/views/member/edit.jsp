@@ -8,19 +8,25 @@
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/join.css">
       <style type="text/css">
+        .main-join {
+          padding: 48px 0;
+        }
+
         #id {
           grid-column: span 2;
         }
       </style>
       <script src="/app/resources/js/edit.js" defer></script>
+      <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
+
   </head>
 
   <body>
     <div class="container">
-      <%@ include file="/WEB-INF/views/layout/nav-mini.jsp" %>
+      <%@ include file="/WEB-INF/views/layout/nav-with-header-only.jsp" %>
 
         <main class="main main-join">
-          <img src="/app/resources/img/logo.svg" alt="Logo image">
+          <!-- <img src="/app/resources/img/logo.svg" alt="Logo image"> -->
           <form action="/app/member/edit" method="post" class="form form__join">
             <input type="hidden" name="memberNo" value="${requestScope.loginMemberVo.memberNo}">
             <input type="email" name="id" id="id" placeholder="아이디 (이메일)*" value="${requestScope.loginMemberVo.id}"

@@ -42,7 +42,9 @@
                   <span class="address__number">${dto.phoneNo}</span>
                 </div>
                 <div class="address-controls">
-                  <button class="edit-btn" type="button">수정</button>
+                  <button class="edit-btn" type="button" data-member-no="${dto.memberNo}"
+                    data-address-no="${dto.addressNo}" data-postcode="${dto.postcode}" data-address="${dto.address}"
+                    data-detailed-address="${dto.detailedAddress}" data-extra-address="${dto.extraAddress}">수정</button>
                   <button class="delete-btn" type="button">삭제</button>
                 </div>
               </div>

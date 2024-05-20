@@ -1,6 +1,7 @@
 package com.lookman.app.address.dto;
 
 public class AddressDto {
+	private String addressNo;
 	private String memberName;
 	private String memberNo;
 	private String phoneNo;
@@ -14,8 +15,9 @@ public class AddressDto {
 	public AddressDto() {
 	}
 
-	public AddressDto(String memberName, String memberNo, String phoneNo, String postcode, String address,
-			String detailedAddress, String extraAddress, String defaultYn, String deletedYn) {
+	public AddressDto(String addressNo, String memberName, String memberNo, String phoneNo, String postcode,
+			String address, String detailedAddress, String extraAddress, String defaultYn, String deletedYn) {
+		this.addressNo = addressNo;
 		this.memberName = memberName;
 		this.memberNo = memberNo;
 		this.phoneNo = phoneNo;
@@ -25,6 +27,14 @@ public class AddressDto {
 		this.extraAddress = extraAddress;
 		this.defaultYn = defaultYn;
 		this.deletedYn = deletedYn;
+	}
+
+	public String getAddressNo() {
+		return addressNo;
+	}
+
+	public void setAddressNo(String addressNo) {
+		this.addressNo = addressNo;
 	}
 
 	public String getMemberName() {
@@ -101,9 +111,10 @@ public class AddressDto {
 
 	@Override
 	public String toString() {
-		return "AddressDto [memberName=" + memberName + ", memberNo=" + memberNo + ", phoneNo=" + phoneNo
-				+ ", postcode=" + postcode + ", address=" + address + ", detailedAddress=" + detailedAddress
-				+ ", extraAddress=" + extraAddress + ", defaultYn=" + defaultYn + ", deletedYn=" + deletedYn + "]";
+		return "AddressDto [addressNo=" + addressNo + ", memberName=" + memberName + ", memberNo=" + memberNo
+				+ ", phoneNo=" + phoneNo + ", postcode=" + postcode + ", address=" + address + ", detailedAddress="
+				+ detailedAddress + ", extraAddress=" + extraAddress + ", defaultYn=" + defaultYn + ", deletedYn="
+				+ deletedYn + "]";
 	}
 
 }

@@ -14,13 +14,14 @@ import com.lookman.app.member.vo.MemberVo;
 public class AddressDao {
 
 	public List<AddressDto> selectAddressesByMemberNo(Connection conn, MemberVo loginMemberVo) throws Exception {
-		String sql = "SELECT M.NAME MEMBER_NAME , A.MEMBER_NO MEMBER_NO , M.PHONE_NO PHONE_NO , A.POSTCODE POSTCODE , A.ADDRESS ADDRESS , A.DETAILED_ADDRESS DETAILED_ADDRESS , NVL(A.EXTRA_ADDRESS, '') EXTRA_ADDRESS , A.DEFAULT_YN DEFAULT_YN , A.DELETED_YN DELETED_YN FROM ADDRESS A JOIN MEMBER M ON A.MEMBER_NO = M.MEMBER_NO WHERE A.MEMBER_NO = ? AND A.DELETED_YN = 'N'";
+		String sql = "SELECT A.ADDRESS_NO , M.NAME MEMBER_NAME , A.MEMBER_NO MEMBER_NO , M.PHONE_NO PHONE_NO , A.POSTCODE POSTCODE , A.ADDRESS ADDRESS , A.DETAILED_ADDRESS DETAILED_ADDRESS , NVL(A.EXTRA_ADDRESS, '') EXTRA_ADDRESS , A.DEFAULT_YN DEFAULT_YN , A.DELETED_YN DELETED_YN FROM ADDRESS A JOIN MEMBER M ON A.MEMBER_NO = M.MEMBER_NO WHERE A.MEMBER_NO = ? AND A.DELETED_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, loginMemberVo.getMemberNo());
 
 		ResultSet rs = pstmt.executeQuery();
 		List<AddressDto> addresses = new ArrayList<AddressDto>();
 		while (rs.next()) {
+			String addressNo = rs.getString("ADDRESS_NO");
 			String memberName = rs.getString("MEMBER_NAME");
 			String memberNo = rs.getString("MEMBER_NO");
 			String phoneNo = rs.getString("PHONE_NO");
@@ -32,6 +33,7 @@ public class AddressDao {
 			String deletedYn = rs.getString("DELETED_YN");
 
 			AddressDto dto = new AddressDto();
+			dto.setAddressNo(addressNo);
 			dto.setMemberName(memberName);
 			dto.setMemberNo(memberNo);
 			dto.setPhoneNo(phoneNo);
@@ -50,7 +52,5 @@ public class AddressDao {
 
 		return addresses;
 	}
-	
-	
 
 }

@@ -1,4 +1,4 @@
-package com.lookman.app.address;
+package com.lookman.app.address.controller;
 
 import java.io.IOException;
 

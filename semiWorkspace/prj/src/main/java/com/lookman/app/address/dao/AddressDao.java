@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.lookman.app.address.dto.AddressDto;
+import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
 
 public class AddressDao {
@@ -51,6 +52,21 @@ public class AddressDao {
 		close(pstmt);
 
 		return addresses;
+	}
+
+	public int updateAddress(Connection conn, AddressVo avo) throws Exception {
+		String sql = "UPDATE ADDRESS SET POSTCODE = ?, ADDRESS = ?, DETAILED_ADDRESS = ?, EXTRA_ADDRESS = ? WHERE ADDRESS_NO = ? AND DELETED_YN = 'N'";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, avo.getPostcode());
+		pstmt.setString(2, avo.getAddress());
+		pstmt.setString(3, avo.getDetailedAddress());
+		pstmt.setString(4, avo.getExtraAddress());
+		pstmt.setString(5, avo.getAddressNo());
+		int result = pstmt.executeUpdate();
+
+		close(pstmt);
+
+		return result;
 	}
 
 }

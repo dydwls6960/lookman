@@ -79,7 +79,17 @@ document.addEventListener("DOMContentLoaded", () => {
           `<input type="text" name="extraAddress" id="extraAddress" placeholder="참고사항" value="${extraAddress}">`,
         ].join(""),
         buttons: [
-          $.extend({}, vex.dialog.buttons.YES, { text: "수정" }),
+          {
+            text: "수정",
+            type: "submit",
+            className: "vex-dialog-button-primary vex-dialog-button vex-first",
+            click: function () {
+              const form = document.querySelector(".vex-dialog-form");
+              if (form) {
+                form.submit();
+              }
+            },
+          },
           $.extend({}, vex.dialog.buttons.NO, { text: "취소" }),
         ],
         callback: function (data) {

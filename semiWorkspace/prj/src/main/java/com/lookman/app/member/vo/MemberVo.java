@@ -6,6 +6,8 @@ public class MemberVo {
 	private String id;
 	private String pwd;
 	private String pwd2;
+	private String newPwd;
+	private String newPwd2;
 	private String name;
 	private String phoneNo;
 	private String premiumYn;
@@ -14,16 +16,16 @@ public class MemberVo {
 	private String banDate;
 
 	public MemberVo() {
-		super();
 	}
 
-	public MemberVo(String memberNo, String id, String pwd, String pwd2, String name, String phoneNo, String premiumYn,
-			String deletedYn, String createdDate, String banDate) {
-		super();
+	public MemberVo(String memberNo, String id, String pwd, String pwd2, String newPwd, String newPwd2, String name,
+			String phoneNo, String premiumYn, String deletedYn, String createdDate, String banDate) {
 		this.memberNo = memberNo;
 		this.id = id;
 		this.pwd = pwd;
 		this.pwd2 = pwd2;
+		this.newPwd = newPwd;
+		this.newPwd2 = newPwd2;
 		this.name = name;
 		this.phoneNo = phoneNo;
 		this.premiumYn = premiumYn;
@@ -62,6 +64,22 @@ public class MemberVo {
 
 	public void setPwd2(String pwd2) {
 		this.pwd2 = pwd2;
+	}
+
+	public String getNewPwd() {
+		return newPwd;
+	}
+
+	public void setNewPwd(String newPwd) {
+		this.newPwd = newPwd;
+	}
+
+	public String getNewPwd2() {
+		return newPwd2;
+	}
+
+	public void setNewPwd2(String newPwd2) {
+		this.newPwd2 = newPwd2;
 	}
 
 	public String getName() {
@@ -114,9 +132,10 @@ public class MemberVo {
 
 	@Override
 	public String toString() {
-		return "MemberVo [memberNo=" + memberNo + ", id=" + id + ", pwd=" + pwd + ", pwd2=" + pwd2 + ", name=" + name
-				+ ", phoneNo=" + phoneNo + ", premiumYn=" + premiumYn + ", deletedYn=" + deletedYn + ", createdDate="
-				+ createdDate + ", banDate=" + banDate + "]";
+		return "MemberVo [memberNo=" + memberNo + ", id=" + id + ", pwd=" + pwd + ", pwd2=" + pwd2 + ", newPwd="
+				+ newPwd + ", newPwd2=" + newPwd2 + ", name=" + name + ", phoneNo=" + phoneNo + ", premiumYn="
+				+ premiumYn + ", deletedYn=" + deletedYn + ", createdDate=" + createdDate + ", banDate=" + banDate
+				+ "]";
 	}
 
 }

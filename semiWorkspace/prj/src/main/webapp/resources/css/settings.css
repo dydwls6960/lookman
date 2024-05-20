@@ -35,6 +35,8 @@
   width: 60%;
   margin: 0 auto;
   min-width: 360px;
+  font-weight: 700;
+  font-size: 12px;
 
   &:last-child {
     border-bottom: 1px solid var(--color-med);

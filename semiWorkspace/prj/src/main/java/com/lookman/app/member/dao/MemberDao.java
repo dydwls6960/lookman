@@ -111,13 +111,55 @@ public class MemberDao {
 			loginMemberVo.setDeletedYn(deletedYn);
 			loginMemberVo.setCreatedDate(createdDate);
 			loginMemberVo.setBanDate(banDate);
-			System.out.println(loginMemberVo);
 		}
 
 		close(rs);
 		close(pstmt);
 
 		return loginMemberVo;
+	}
+
+	public boolean validateCurrentPwd(Connection conn, MemberVo mvo) throws Exception {
+		String sql = "SELECT COUNT(*) FROM MEMBER WHERE MEMBER_NO = ? AND PWD = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, mvo.getMemberNo());
+		pstmt.setString(2, mvo.getPwd());
+		ResultSet rs = pstmt.executeQuery();
+		rs.next();
+
+		int result = rs.getInt(1);
+		
+		close(rs);
+		close(pstmt);
+
+		return result == 1;
+	}
+
+	public int updatePassword(Connection conn, MemberVo mvo) throws Exception {
+		String sql = "UPDATE MEMBER SET PWD = ? WHERE MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, mvo.getNewPwd());
+		pstmt.setString(2, mvo.getMemberNo());
+
+		int result = pstmt.executeUpdate();
+
+		close(pstmt);
+
+		return result;
+	}
+
+	public int updateMemberInfo(Connection conn, MemberVo mvo) throws Exception {
+		String sql = "UPDATE MEMBER SET NAME = ?, PHONE_NO = ? WHERE MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, mvo.getName());
+		pstmt.setString(2, mvo.getPhoneNo());
+		pstmt.setString(3, mvo.getMemberNo());
+
+		int result = pstmt.executeUpdate();
+
+		close(pstmt);
+
+		return result;
 	}
 
 }

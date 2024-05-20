@@ -127,6 +127,17 @@ ORDER BY AVG_RATING DESC, REVIEW_CNT DESC
 
 
 
+--------------------------------------------------------
+-- 회원정보 수정 페이지
+    -- 비밀번호 확인
+SELECT COUNT(*) 
+FROM MEMBER 
+WHERE MEMBER_NO = ? 
+AND PWD = ?
+;
+
+
+
 -- MemberDao - login()
 SELECT * 
 FROM MEMBER 

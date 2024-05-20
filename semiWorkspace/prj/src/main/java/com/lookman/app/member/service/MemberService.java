@@ -44,7 +44,7 @@ public class MemberService {
 		if (avo.getAddress() == null || avo.getAddress().isEmpty()) {
 			throw new Exception("주소가 비어있습니다.");
 		}
-		
+
 		// dao
 		Connection conn = getConnection();
 
@@ -62,14 +62,13 @@ public class MemberService {
 //		}
 //
 //		avo.setMemberNo(currentMemberNo);
-		
+
 		// 주소 입력
 		int resultAddress = dao.insertAddress(conn, avo);
-		
+
 		if (resultAddress != 1) {
 			throw new Exception("주소 insert 중 에러...");
 		}
-		
 
 		if (resultMember * resultAddress == 1) {
 			commit(conn);
@@ -93,13 +92,53 @@ public class MemberService {
 	}
 
 	public MemberVo login(MemberVo mvo) throws Exception {
-		
+
 		Connection conn = getConnection();
 		MemberVo loginMemberVo = dao.login(conn, mvo);
-		
+
 		close(conn);
 
 		return loginMemberVo;
+	}
+
+	public int edit(MemberVo mvo) throws Exception {
+		Connection conn = getConnection();
+
+		// logic
+		// 현재 비밀번호 체크
+		boolean isCurrentPwdValid = dao.validateCurrentPwd(conn, mvo);
+		if (!isCurrentPwdValid) {
+			throw new Exception("현재 비밀번호가 일치하지 않습니다.");
+		}
+
+		// 새 비밀번호 설정할건지 체크
+		int pwdResult = 1;
+		if (mvo.getNewPwd() != null && !mvo.getNewPwd().isEmpty() && mvo.getNewPwd2() != null
+				&& !mvo.getNewPwd2().isEmpty()) {
+			if (!mvo.getNewPwd().equals(mvo.getNewPwd2())) {
+				throw new Exception("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+			}
+
+			// 새 비밀번호 업데이트
+			pwdResult = dao.updatePassword(conn, mvo);
+			if (pwdResult != 1) {
+				throw new Exception("비밀번호 수정 중 예외 발생.");
+			}
+		}
+
+		// 다른 정보 수정
+		int infoResult = dao.updateMemberInfo(conn, mvo);
+		if (infoResult != 1) {
+			throw new Exception("회원정보 수정 중 예외 발생.");
+		}
+
+		if (pwdResult * infoResult == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		return pwdResult * infoResult;
 	}
 
 }

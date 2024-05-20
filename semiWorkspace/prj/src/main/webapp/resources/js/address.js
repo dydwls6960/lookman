@@ -74,7 +74,7 @@ document.addEventListener("DOMContentLoaded", () => {
           `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
           `<input type="hidden" name="addressNo" id="addressNo"value="${addressNo}">`,
           `<div class="postcode-container"><input type="text" name="postcode" id="postcode" placeholder="우편번호*" required value="${postcode}">`,
-          `<button type="button" onclick="execDaumPostcode()">우편번호
+          `<button class="post-btn" type="button" onclick="execDaumPostcode()">우편번호
   검색</button></div>`,
           `<input type="text" name="address" id="address" placeholder="주소*" required value="${address}">`,
           `<input type="text" name="address2" id="address2" placeholder="상세주소*" required value="${detailedAddress}">`,
@@ -128,13 +128,13 @@ function updateDefaultAddress(memberNo, addressNo) {
     contentType: "application/x-www-form-urlencoded; charset=UTF-8",
     success: (res) => {
       if (res === "ok") {
-        alert("성공");
+        window.location.reload();
       } else {
         alert("실패");
       }
     },
     error: () => {
-      alert("에러났음..");
+      alert("에러났습니다..");
     },
   });
 }

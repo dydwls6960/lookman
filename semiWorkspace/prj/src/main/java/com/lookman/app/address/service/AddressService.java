@@ -41,16 +41,17 @@ public class AddressService {
 	public int updateDefaultAddress(AddressVo avo) throws Exception {
 		Connection conn = getConnection();
 
+		int resetResult = dao.resetDefaultAddress(conn, avo);
 		int result = dao.updateDefaultAddress(conn, avo);
-		
-		if (result == 1) {
+
+		if (result * resetResult > 0) {
 			commit(conn);
 		} else {
 			rollback(conn);
 		}
-		
+
 		close(conn);
-		
+
 		return result;
 	}
 }

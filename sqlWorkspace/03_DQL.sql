@@ -182,6 +182,12 @@ where member_no = 1;
 
 UPDATE ADDRESS SET DEFAULT_YN = 'N' WHERE ADDRESS_NO = 2 AND DELETED_YN = 'N';
 
+-- 기본주소 리셋
+UPDATE ADDRESS
+SET DEFAULT_YN = 'N'
+WHERE MEMBER_NO = ?
+AND DELETED_YN = 'N'
+;
 
 -- 기본주소 설정
 UPDATE ADDRESS
@@ -189,6 +195,7 @@ SET DEFAULT_YN = 'Y'
 WHERE ADDRESS_NO = ?
 AND DELETED_YN = 'N'
 ;
+
 
 --------------------------------------------------------
 -- 로그인 페이지

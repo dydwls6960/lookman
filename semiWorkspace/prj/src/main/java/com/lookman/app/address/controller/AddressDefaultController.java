@@ -43,7 +43,7 @@ public class AddressDefaultController extends HttpServlet {
 
 			int result = as.updateDefaultAddress(avo);
 
-			if (result == 1) {
+			if (result > 0) {
 				resp.getWriter().write("ok");
 			} else {
 				throw new Exception("bad");

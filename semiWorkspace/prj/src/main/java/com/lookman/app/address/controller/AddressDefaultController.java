@@ -23,11 +23,6 @@ public class AddressDefaultController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET method is not supported for this endpoint.");
-	}
-
-	@Override
-	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
 			MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
 
@@ -59,6 +54,11 @@ public class AddressDefaultController extends HttpServlet {
 			System.out.println(e.getMessage());
 			resp.getWriter().write("bad");
 		}
+	}
+
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		doGet(req, resp);
 
 	}
 }

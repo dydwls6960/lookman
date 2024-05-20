@@ -63,7 +63,8 @@
                 </div>
                 <div class="address-controls__default" data-micromodal-trigger="modal-1">
                   <button class="default-btn" type="button" data-member-no="${dto.memberNo}"
-                    data-address-no="${dto.addressNo}">기본주소 지정</button>
+                    data-address-no="${dto.addressNo}"
+                    onclick="updateDefaultAddress(${dto.memberNo}, ${dto.addressNo})">기본주소 지정</button>
                 </div>
               </div>
               <c:if test="${dto.defaultYn eq 'Y'}">

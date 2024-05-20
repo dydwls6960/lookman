@@ -5,7 +5,6 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -71,11 +70,13 @@ public class AddressDao {
 	}
 
 	public int updateDefaultAddress(Connection conn, AddressVo avo) throws Exception {
+		
 		String sql = "UPDATE ADDRESS SET DEFAULT_YN = 'Y' WHERE ADDRESS_NO = ? AND DELETED_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, avo.getAddressNo());
 		int result = pstmt.executeUpdate();
-
+		
+		
 		close(pstmt);
 
 		return result;

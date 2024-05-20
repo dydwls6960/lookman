@@ -151,8 +151,9 @@ WHERE MEMBER_NO = ?
 
 --------------------------------------------------------
 -- 배송지 관리 페이지
-SELECT 
-    M.NAME MEMBER_NAME
+SELECT
+    A.ADDRESS_NO
+    , M.NAME MEMBER_NAME
     , A.MEMBER_NO MEMBER_NO
     , M.PHONE_NO PHONE_NO
     , A.POSTCODE POSTCODE
@@ -166,6 +167,28 @@ JOIN MEMBER M ON A.MEMBER_NO = M.MEMBER_NO
 WHERE A.MEMBER_NO = ?
 AND A.DELETED_YN = 'N';
 
+-- 주소 업데이트
+UPDATE ADDRESS 
+SET POSTCODE = ?
+, ADDRESS = ?
+, DETAILED_ADDRESS = ?
+, EXTRA_ADDRESS = ?
+WHERE ADDRESS_NO = ?
+AND DELETED_YN = 'N';
+
+select *
+from address
+where member_no = 1;
+
+UPDATE ADDRESS SET DEFAULT_YN = 'N' WHERE ADDRESS_NO = 2 AND DELETED_YN = 'N';
+
+
+-- 기본주소 설정
+UPDATE ADDRESS
+SET DEFAULT_YN = 'Y'
+WHERE ADDRESS_NO = ?
+AND DELETED_YN = 'N'
+;
 
 --------------------------------------------------------
 -- 로그인 페이지

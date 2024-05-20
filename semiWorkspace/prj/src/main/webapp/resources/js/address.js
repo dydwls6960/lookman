@@ -118,29 +118,23 @@ document.addEventListener("DOMContentLoaded", () => {
       });
     });
   });
-
-  // 기본주소 버튼
-  defaultBtns.forEach((btn) => {
-    btn.addEventListener("click", () => {
-      const memberNo = btn.dataset.memberNo;
-      const addressNo = btn.dataset.addressNo;
-
-      $.ajax({
-        url: "/app/member/address/default",
-        type: "post",
-        data: { memberNo: memberNo, addressNo: addressNo },
-        contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-        success: (res) => {
-          if (res === "ok") {
-            location.reload();
-          } else {
-            alert("업데이트 실패..");
-          }
-        },
-        error: () => {
-          alert("업데이트 실패...:", err);
-        },
-      });
-    });
-  });
 });
+
+function updateDefaultAddress(memberNo, addressNo) {
+  $.ajax({
+    url: "/app/member/address/default",
+    type: "get",
+    data: { memberNo: memberNo, addressNo: addressNo },
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    success: (res) => {
+      if (res === "ok") {
+        alert("성공");
+      } else {
+        alert("실패");
+      }
+    },
+    error: () => {
+      alert("에러났음..");
+    },
+  });
+}

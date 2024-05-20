@@ -128,7 +128,7 @@ public class MemberDao {
 		rs.next();
 
 		int result = rs.getInt(1);
-		
+
 		close(rs);
 		close(pstmt);
 

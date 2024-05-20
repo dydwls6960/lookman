@@ -23,12 +23,12 @@ ORDER BY P.PRODUCT_NO DESC
 
 --------------------------------------------------------
 -- 상세페이지
-    -- 조회수 증가
+-- 조회수 증가
 UPDATE PRODUCT
 SET HIT = HIT + 1
 WHERE PRODUCT_NO = 2;
 
-    -- dto
+-- dto
 SELECT 
     S.NAME SELLER_NAME
     , P.NAME PRODUCT_NAME
@@ -129,16 +129,36 @@ ORDER BY AVG_RATING DESC, REVIEW_CNT DESC
 
 --------------------------------------------------------
 -- 회원정보 수정 페이지
-    -- 비밀번호 확인
+-- 비밀번호 확인
 SELECT COUNT(*) 
 FROM MEMBER 
 WHERE MEMBER_NO = ? 
 AND PWD = ?
 ;
 
+-- 새 비밀번호 
+UPDATE MEMBER 
+SET PWD = ? 
+WHERE MEMBER_NO = ?
+;
+
+-- 회원정보 업데이트
+UPDATE MEMBER 
+SET NAME = ?, PHONE_NO = ? 
+WHERE MEMBER_NO = ?
+;
 
 
--- MemberDao - login()
+--------------------------------------------------------
+-- 배송지 관리 페이지
+SELECT *
+FROM ADDRESS
+WHERE MEMBER_NO = 3
+AND DELETED_YN = 'N';
+
+
+--------------------------------------------------------
+-- 로그인 페이지
 SELECT * 
 FROM MEMBER 
 WHERE ID = 'taewookim02@gmail.com' 

@@ -75,7 +75,6 @@
   grid-template-columns: repeat(4, 1fr);
   justify-content: space-around;
   align-items: center;
-  background-color: var(--color-light);
   font-size: 14px;
 
   & a {
@@ -83,14 +82,13 @@
     padding: 8px 16px;
     color: inherit;
     text-align: center;
+    box-sizing: border-box;
     &:hover {
-      background-color: var(--color-med);
-      color: var(--color-white);
-    }
-
-    &:active {
-      background-color: var(--color-dark);
-      color: var(--color-white);
+      border-bottom: 1px solid var(--color-dark);
     }
   }
+}
+
+.sub-nav .sub-nav__item.active {
+  border-bottom: 1px solid var(--color-dark);
 }

@@ -67,9 +67,9 @@
       </div>
       <div class="sub-nav">
         <!-- TODO: 현재페이지에 따라 class active 추가 -->
-        <a href="/app/home">홈</a>
-        <a href="/app/ranking">랭킹</a>
-        <a href="/app/category">카테고리</a>
-        <a href="/app/store">스토어</a>
+        <a href="/app/home" class="sub-nav__item sub-nav__home">홈</a>
+        <a href="/app/ranking" class="sub-nav__item sub-nav__ranking">랭킹</a>
+        <a href="/app/category" class="sub-nav__item sub-nav__category">카테고리</a>
+        <a href="/app/store" class="sub-nav__item sub-nav__store">스토어</a>
       </div>
     </nav>

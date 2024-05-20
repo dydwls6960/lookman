@@ -8,6 +8,10 @@
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
 
+      <!-- 다음 주소 api -->
+      <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
+
+
       <!-- vex modal -->
       <script src="
       https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.min.js

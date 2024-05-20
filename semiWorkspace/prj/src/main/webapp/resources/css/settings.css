@@ -1,12 +1,42 @@
 @charset "UTF-8";
 
 .main-settings {
-	display: flex;
-	flex-direction: column;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 40px 0 40px 0;
 }
 
-.settings__lower,
+.settings__upper,
+.settings__lower {
+  display: flex;
+  flex-direction: column;
+}
+
 .settings__upper {
-	display: flex;
-	flex-direction: column;
+  align-items: center;
+}
+
+.settings__name {
+	font-size: 12px;
+}
+
+.settings__email {
+	font-weight: 700;
+	font-size: 16px;
+}
+
+
+.settings__link {
+  padding: 8px 16px;
+  color: inherit;
+  border-top: 1px solid var(--color-med);
+  text-decoration: none;
+  width: 60%;
+  margin: 0 auto;
+  min-width: 360px;
+
+  &:last-child {
+    border-bottom: 1px solid var(--color-med);
+  }
 }

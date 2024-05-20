@@ -8,7 +8,7 @@
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
 
-	<link rel="stylesheet" href="/app/resources/css/settings.css">
+      <link rel="stylesheet" href="/app/resources/css/settings.css">
   </head>
 
   <body>
@@ -16,14 +16,14 @@
       <%@ include file="/WEB-INF/views/layout/nav-with-header-cart.jsp" %>
         <main class="main main-settings">
           <div class="settings__upper">
-            <span>김태우님, 환영합니다.</span>
-            <span>taewookim02@gmail.com</span>
+            <span class="settings__name">김태우님, 환영합니다.</span>
+            <span class="settings__email">taewookim02@gmail.com</span>
           </div>
           <div class="settings__lower">
-            <a href="#">내 정보 수정</a>
-            <a href="#">배송지 관리</a>
-            <a href="#">내가 쓴 리뷰</a>
-            <a href="#">로그아웃</a>
+            <a href="/app/member/edit" class="settings__link">내 정보 수정</a>
+            <a href="/app/member/address" class="settings__link">배송지 관리</a>
+            <a href="/app/member/review" class="settings__link">내가 쓴 리뷰</a>
+            <a href="/app/member/logout" class="settings__link">로그아웃</a>
           </div>
         </main>
 

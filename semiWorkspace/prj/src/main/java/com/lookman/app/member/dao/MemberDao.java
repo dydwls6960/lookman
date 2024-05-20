@@ -8,7 +8,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import com.lookman.app.member.vo.AddressVo;
+import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
 
 public class MemberDao {
@@ -49,7 +49,7 @@ public class MemberDao {
 	}
 
 	public int insertAddress(Connection conn, AddressVo avo) throws SQLException {
-		String sql = "INSERT INTO ADDRESS(ADDRESS_NO, MEMBER_NO, POSTCODE, ADDRESS, DETAILED_ADDRESS, EXTRA_ADDRESS) VALUES (SEQ_ADDRESS.NEXTVAL, SEQ_MEMBER.CURRVAL, ?, ?, ?, ?)";
+		String sql = "INSERT INTO ADDRESS(ADDRESS_NO, MEMBER_NO, POSTCODE, ADDRESS, DETAILED_ADDRESS, EXTRA_ADDRESS, DEFAULT_YN) VALUES (SEQ_ADDRESS.NEXTVAL, SEQ_MEMBER.CURRVAL, ?, ?, ?, ?, 'Y')";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 //		pstmt.setString(1, avo.getMemberNo());
 		pstmt.setString(1, avo.getPostcode());

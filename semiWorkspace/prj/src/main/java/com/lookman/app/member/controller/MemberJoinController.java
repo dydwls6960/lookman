@@ -9,8 +9,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.service.MemberService;
-import com.lookman.app.member.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
 
 @WebServlet("/member/join")

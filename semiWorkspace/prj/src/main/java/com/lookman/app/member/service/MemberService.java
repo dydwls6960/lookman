@@ -6,18 +6,23 @@ import static com.lookman.app.db.JDBCTemplate.getConnection;
 import static com.lookman.app.db.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 import java.util.regex.Pattern;
 
+import com.lookman.app.address.dao.AddressDao;
+import com.lookman.app.address.dto.AddressDto;
+import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.dao.MemberDao;
-import com.lookman.app.member.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
 
 public class MemberService {
 
-	private MemberDao dao;
+	private MemberDao memDao;
+	private AddressDao addDao;
 
 	public MemberService() {
-		this.dao = new MemberDao();
+		this.memDao = new MemberDao();
+		this.addDao = new AddressDao();
 	}
 
 	public int join(MemberVo mvo, AddressVo avo) throws Exception {
@@ -49,7 +54,7 @@ public class MemberService {
 		Connection conn = getConnection();
 
 		// join
-		int resultMember = dao.join(conn, mvo);
+		int resultMember = memDao.join(conn, mvo);
 
 		if (resultMember != 1) {
 			throw new Exception("회원가입 도중 에러...");
@@ -64,7 +69,7 @@ public class MemberService {
 //		avo.setMemberNo(currentMemberNo);
 
 		// 주소 입력
-		int resultAddress = dao.insertAddress(conn, avo);
+		int resultAddress = memDao.insertAddress(conn, avo);
 
 		if (resultAddress != 1) {
 			throw new Exception("주소 insert 중 에러...");
@@ -84,7 +89,7 @@ public class MemberService {
 
 	public boolean checkIdDup(String id) throws Exception {
 		Connection conn = getConnection();
-		int result = dao.checkIdDup(conn, id);
+		int result = memDao.checkIdDup(conn, id);
 
 		close(conn);
 
@@ -94,7 +99,7 @@ public class MemberService {
 	public MemberVo login(MemberVo mvo) throws Exception {
 
 		Connection conn = getConnection();
-		MemberVo loginMemberVo = dao.login(conn, mvo);
+		MemberVo loginMemberVo = memDao.login(conn, mvo);
 
 		close(conn);
 
@@ -114,7 +119,7 @@ public class MemberService {
 			}
 
 			// 현재 비밀번호 체크
-			boolean isCurrentPwdValid = dao.validateCurrentPwd(conn, mvo);
+			boolean isCurrentPwdValid = memDao.validateCurrentPwd(conn, mvo);
 			if (!isCurrentPwdValid) {
 				throw new Exception("현재 비밀번호가 일치하지 않습니다.");
 			}
@@ -134,14 +139,14 @@ public class MemberService {
 				}
 
 				// 새 비밀번호 업데이트
-				pwdResult = dao.updatePassword(conn, mvo);
+				pwdResult = memDao.updatePassword(conn, mvo);
 				if (pwdResult != 1) {
 					throw new Exception("비밀번호 수정 중 예외 발생.");
 				}
 			}
 
 			// 다른 정보 수정
-			int infoResult = dao.updateMemberInfo(conn, mvo);
+			int infoResult = memDao.updateMemberInfo(conn, mvo);
 			if (infoResult != 1) {
 				throw new Exception("회원정보 수정 중 예외 발생.");
 			}
@@ -161,4 +166,18 @@ public class MemberService {
 			close(conn);
 		}
 	}
+
+	public List<AddressDto> selectAddressesByMemberNo(MemberVo loginMemberVo) throws Exception {
+		// logic
+
+		// dao
+		Connection conn = getConnection();
+
+		List<AddressDto> addresses = addDao.selectAddressesByMemberNo(conn, loginMemberVo);
+
+		close(conn);
+
+		return addresses;
+	}
+
 }

@@ -1,4 +1,4 @@
-package com.lookman.app.member.vo;
+package com.lookman.app.address.vo;
 
 public class AddressVo {
 	private String addressNo;
@@ -9,12 +9,13 @@ public class AddressVo {
 	private String extraAddress;
 	private String defaultAddressYn;
 	private String defaultShippingReq;
+	private String deletedYn;
 
 	public AddressVo() {
 	}
 
 	public AddressVo(String addressNo, String memberNo, String postcode, String address, String detailedAddress,
-			String extraAddress, String defaultAddressYn, String defaultShippingReq) {
+			String extraAddress, String defaultAddressYn, String defaultShippingReq, String deletedYn) {
 		this.addressNo = addressNo;
 		this.memberNo = memberNo;
 		this.postcode = postcode;
@@ -23,6 +24,7 @@ public class AddressVo {
 		this.extraAddress = extraAddress;
 		this.defaultAddressYn = defaultAddressYn;
 		this.defaultShippingReq = defaultShippingReq;
+		this.deletedYn = deletedYn;
 	}
 
 	public String getAddressNo() {
@@ -89,11 +91,20 @@ public class AddressVo {
 		this.defaultShippingReq = defaultShippingReq;
 	}
 
+	public String getDeletedYn() {
+		return deletedYn;
+	}
+
+	public void setDeletedYn(String deletedYn) {
+		this.deletedYn = deletedYn;
+	}
+
 	@Override
 	public String toString() {
 		return "AddressVo [addressNo=" + addressNo + ", memberNo=" + memberNo + ", postcode=" + postcode + ", address="
 				+ address + ", detailedAddress=" + detailedAddress + ", extraAddress=" + extraAddress
-				+ ", defaultAddressYn=" + defaultAddressYn + ", defaultShippingReq=" + defaultShippingReq + "]";
+				+ ", defaultAddressYn=" + defaultAddressYn + ", defaultShippingReq=" + defaultShippingReq
+				+ ", deletedYn=" + deletedYn + "]";
 	}
 
 }

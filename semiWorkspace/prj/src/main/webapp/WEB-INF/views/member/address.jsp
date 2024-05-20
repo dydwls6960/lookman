@@ -8,7 +8,18 @@
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
 
+      <!-- vex modal -->
+      <script src="
+      https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.min.js
+      "></script>
+      <link href="
+      https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex.min.css
+      " rel="stylesheet">
+
+
       <link rel="stylesheet" href="/app/resources/css/address.css">
+      <script type="text/javascript" defer src="/app/resources/js/address.js"></script>
+
   </head>
 
   <body>
@@ -21,35 +32,40 @@
             <button class="add-btn" type="button">주소 추가</button>
           </div>
           <h3>주소</h3>
-          <div class="address__item">
-            <div class="address__upper">
-              <div class="address-user">
-                <span class="address__name">김태우</span>
-                <div>|</div>
-                <span class="address__number">01036207737</span>
-              </div>
-              <div class="address-controls">
-                <button class="edit-btn" type="button">수정</button>
-                <button class="delete-btn" type="button">삭제</button>
-              </div>
-            </div>
 
-            <div class="address__med">
-              <div class="address-container">
-                <div class="address__med--general">경기 용인시 기흥구 기흥역로 16 (17066)</div>
-                <div class="address__med--detail">107동 202호</div>
-                <div class="address__med--extra">(구갈동, 기흥역지웰푸르지오)</div>
+          <c:forEach var="dto" items="${requestScope.addresses}">
+            <div class="address__item">
+              <div class="address__upper">
+                <div class="address-user">
+                  <span class="address__name">${dto.memberName}</span>
+                  <div>|</div>
+                  <span class="address__number">${dto.phoneNo}</span>
+                </div>
+                <div class="address-controls">
+                  <button class="edit-btn" type="button">수정</button>
+                  <button class="delete-btn" type="button">삭제</button>
+                </div>
               </div>
-              <div class="address-controls__default">
-                <button class="default-btn" type="button">기본주소 지정</button>
+
+              <div class="address__med">
+                <div class="address-container">
+                  <div class="address__med--general">${dto.address}</div>
+                  <div class="address__med--detail">${dto.detailedAddress}</div>
+                  <c:if test="${not empty dto.extraAddress}">
+                    <div class="address__med--extra">${dto.extraAddress}</div>
+                  </c:if>
+                </div>
+                <div class="address-controls__default" data-micromodal-trigger="modal-1">
+                  <button class="default-btn" type="button">기본주소 지정</button>
+                </div>
               </div>
+              <c:if test="${dto.defaultYn eq 'Y'}">
+                <div class="address__lower">
+                  <span class="badge__default-address">기본주소</span>
+                </div>
+              </c:if>
             </div>
-
-            <div class="address__lower">
-              <span class="badge__default-address">기본주소</span>
-            </div>
-
-          </div>
+          </c:forEach>
         </main>
 
         <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

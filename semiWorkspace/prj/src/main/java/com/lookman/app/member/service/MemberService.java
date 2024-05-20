@@ -102,43 +102,63 @@ public class MemberService {
 	}
 
 	public int edit(MemberVo mvo) throws Exception {
-		Connection conn = getConnection();
+		Connection conn = null;
+		try {
+			conn = getConnection();
 
-		// logic
-		// 현재 비밀번호 체크
-		boolean isCurrentPwdValid = dao.validateCurrentPwd(conn, mvo);
-		if (!isCurrentPwdValid) {
-			throw new Exception("현재 비밀번호가 일치하지 않습니다.");
-		}
-
-		// 새 비밀번호 설정할건지 체크
-		int pwdResult = 1;
-		if (mvo.getNewPwd() != null && !mvo.getNewPwd().isEmpty() && mvo.getNewPwd2() != null
-				&& !mvo.getNewPwd2().isEmpty()) {
-			if (!mvo.getNewPwd().equals(mvo.getNewPwd2())) {
-				throw new Exception("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+			// logic
+			// 전화번호 형식
+			String phonePattern = "^01[0-9]{8,9}$";
+			if (!Pattern.matches(phonePattern, mvo.getPhoneNo())) {
+				throw new Exception("유효한 전화번호 형식이 아닙니다.");
 			}
 
-			// 새 비밀번호 업데이트
-			pwdResult = dao.updatePassword(conn, mvo);
-			if (pwdResult != 1) {
-				throw new Exception("비밀번호 수정 중 예외 발생.");
+			// 현재 비밀번호 체크
+			boolean isCurrentPwdValid = dao.validateCurrentPwd(conn, mvo);
+			if (!isCurrentPwdValid) {
+				throw new Exception("현재 비밀번호가 일치하지 않습니다.");
 			}
-		}
 
-		// 다른 정보 수정
-		int infoResult = dao.updateMemberInfo(conn, mvo);
-		if (infoResult != 1) {
-			throw new Exception("회원정보 수정 중 예외 발생.");
-		}
+			// 새 비밀번호 설정할건지 체크
+			int pwdResult = 1;
+			if (mvo.getNewPwd() != null && !mvo.getNewPwd().isEmpty() && mvo.getNewPwd2() != null
+					&& !mvo.getNewPwd2().isEmpty()) {
+				if (!mvo.getNewPwd().equals(mvo.getNewPwd2())) {
+					throw new Exception("새 비밀번호와 비밀번호 확인이 일치하지 않습니다.");
+				}
 
-		if (pwdResult * infoResult == 1) {
-			commit(conn);
-		} else {
+				// 비밀번호 강도
+				String passwordPattern = "^(?=.*[A-Za-z])(?=.*\\d)(?=.*[@$!%*#?&])[A-Za-z\\d@$!%*#?&]{8,}$";
+				if (!Pattern.matches(passwordPattern, mvo.getNewPwd())) {
+					throw new Exception("비밀번호는 최소 8자 이상이어야 하며, 문자, 숫자, 특수문자를 포함해야 합니다.");
+				}
+
+				// 새 비밀번호 업데이트
+				pwdResult = dao.updatePassword(conn, mvo);
+				if (pwdResult != 1) {
+					throw new Exception("비밀번호 수정 중 예외 발생.");
+				}
+			}
+
+			// 다른 정보 수정
+			int infoResult = dao.updateMemberInfo(conn, mvo);
+			if (infoResult != 1) {
+				throw new Exception("회원정보 수정 중 예외 발생.");
+			}
+
+			if (pwdResult * infoResult == 1) {
+				commit(conn);
+			} else {
+				rollback(conn);
+			}
+
+			return pwdResult * infoResult;
+
+		} catch (Exception e) {
 			rollback(conn);
+			return 0;
+		} finally {
+			close(conn);
 		}
-
-		return pwdResult * infoResult;
 	}
-
 }

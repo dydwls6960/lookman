@@ -55,8 +55,7 @@ public class MemberEditController extends HttpServlet {
 			mvo.setName(name);
 			mvo.setPhoneNo(phone);
 
-			int result = ms.edit(mvo); 
-			
+			int result = ms.edit(mvo);
 
 			if (result != 1) {
 				throw new Exception("회원정보 수정 중 예외 발생");
@@ -70,8 +69,8 @@ public class MemberEditController extends HttpServlet {
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
-			req.setAttribute("errMsg", "회원정보 수정 중 에러");
-			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+			req.setAttribute("alertMsg", e.getMessage());
+			doGet(req, resp);
 		}
 
 	}

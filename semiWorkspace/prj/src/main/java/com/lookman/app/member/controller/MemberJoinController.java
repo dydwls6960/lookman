@@ -66,8 +66,8 @@ public class MemberJoinController extends HttpServlet {
 
 			HttpSession session = req.getSession();
 			// result
-			int r = ms.join(mvo, avo);
-			if (r != 1) {
+			int result = ms.join(mvo, avo);
+			if (result != 1) {
 				session.setAttribute("alertMsg", "회원가입 실패..");
 				resp.sendRedirect("/app/member/join");
 			}

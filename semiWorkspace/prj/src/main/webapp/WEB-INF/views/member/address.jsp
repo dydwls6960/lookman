@@ -55,7 +55,7 @@
 
               <div class="address__med">
                 <div class="address-container">
-                  <div class="address__med--general">${dto.address}</div>
+                  <div class="address__med--general">${dto.address} (${dto.postcode})</div>
                   <div class="address__med--detail">${dto.detailedAddress}</div>
                   <c:if test="${not empty dto.extraAddress}">
                     <div class="address__med--extra">${dto.extraAddress}</div>

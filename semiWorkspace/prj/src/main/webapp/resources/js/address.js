@@ -67,12 +67,12 @@ document.addEventListener("DOMContentLoaded", () => {
       const extraAddress = btn.dataset.extraAddress;
 
       vex.dialog.open({
-        // message: "Enter your username and password:",
+        message: "주소 수정",
         input: [
-          `<input type="hidden" name="memberNo" value="${memberNo}"`,
-          `<input type="hidden" name="addressNo" value="${addressNo}">`,
+          `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
+          `<input type="hidden" name="addressNo" id="addressNo"value="${addressNo}">`,
           `<div class="postcode-container"><input type="text" name="postcode" id="postcode" placeholder="우편번호*" required value="${postcode}">`,
-          `<button type="button" class="" onclick="execDaumPostcode()">우편번호
+          `<button type="button" onclick="execDaumPostcode()">우편번호
   검색</button></div>`,
           `<input type="text" name="address" id="address" placeholder="주소*" required value="${address}">`,
           `<input type="text" name="address2" id="address2" placeholder="상세주소*" required value="${detailedAddress}">`,
@@ -84,9 +84,23 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
         callback: function (data) {
           if (!data) {
-            console.log("Cancelled");
+            console.log("모달창 닫음.");
           } else {
-            console.log("Username", data.username, "Password", data.password);
+            console.log(
+              data.memberNo,
+              data.addressNo,
+              data.postcode,
+              data.address,
+              data.address2,
+              data.extraAddress
+            );
+          }
+        },
+        afterOpen: function () {
+          const form = document.querySelector(".vex-dialog-form");
+          if (form) {
+            form.setAttribute("action", "/app/member/address/edit");
+            form.setAttribute("method", "post");
           }
         },
       });

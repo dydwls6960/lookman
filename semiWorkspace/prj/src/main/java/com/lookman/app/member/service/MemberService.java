@@ -14,15 +14,19 @@ import com.lookman.app.address.dto.AddressDto;
 import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.dao.MemberDao;
 import com.lookman.app.member.vo.MemberVo;
+import com.lookman.app.review.dao.ReviewDao;
+import com.lookman.app.review.dto.ReviewDto;
 
 public class MemberService {
 
 	private MemberDao memDao;
 	private AddressDao addDao;
+	private ReviewDao revDao;
 
 	public MemberService() {
 		this.memDao = new MemberDao();
 		this.addDao = new AddressDao();
+		this.revDao = new ReviewDao();
 	}
 
 	public int join(MemberVo mvo, AddressVo avo) throws Exception {
@@ -178,6 +182,14 @@ public class MemberService {
 		close(conn);
 
 		return addresses;
+	}
+
+	public List<ReviewDto> selectReviewsByMemberNo(MemberVo loginMemberVo) throws Exception {
+		Connection conn = getConnection();
+		
+		List<ReviewDto> reviews = revDao.selectReviewsByMemberNo(conn, loginMemberVo);
+
+		return reviews;
 	}
 
 }

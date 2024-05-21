@@ -4,23 +4,26 @@ public class ReviewVo {
 	private String reviewNo;
 	private String memberNo;
 	private String productNo;
+	private String ordersNo;
 	private String rating;
 	private String content;
 	private String createdDate;
+	private String editedDate;
 	private String deletedYn;
 
 	public ReviewVo() {
 	}
 
-	public ReviewVo(String reviewNo, String memberNo, String productNo, String rating, String content,
-			String createdDate, String deletedYn) {
-		super();
+	public ReviewVo(String reviewNo, String memberNo, String productNo, String ordersNo, String rating, String content,
+			String createdDate, String editedDate, String deletedYn) {
 		this.reviewNo = reviewNo;
 		this.memberNo = memberNo;
 		this.productNo = productNo;
+		this.ordersNo = ordersNo;
 		this.rating = rating;
 		this.content = content;
 		this.createdDate = createdDate;
+		this.editedDate = editedDate;
 		this.deletedYn = deletedYn;
 	}
 
@@ -48,6 +51,14 @@ public class ReviewVo {
 		this.productNo = productNo;
 	}
 
+	public String getOrdersNo() {
+		return ordersNo;
+	}
+
+	public void setOrdersNo(String ordersNo) {
+		this.ordersNo = ordersNo;
+	}
+
 	public String getRating() {
 		return rating;
 	}
@@ -72,6 +83,14 @@ public class ReviewVo {
 		this.createdDate = createdDate;
 	}
 
+	public String getEditedDate() {
+		return editedDate;
+	}
+
+	public void setEditedDate(String editedDate) {
+		this.editedDate = editedDate;
+	}
+
 	public String getDeletedYn() {
 		return deletedYn;
 	}
@@ -82,8 +101,9 @@ public class ReviewVo {
 
 	@Override
 	public String toString() {
-		return "ReviewVo [reviewNo=" + reviewNo + ", memberNo=" + memberNo + ", productNo=" + productNo + ", rating="
-				+ rating + ", content=" + content + ", createdDate=" + createdDate + ", deletedYn=" + deletedYn + "]";
+		return "ReviewVo [reviewNo=" + reviewNo + ", memberNo=" + memberNo + ", productNo=" + productNo + ", ordersNo="
+				+ ordersNo + ", rating=" + rating + ", content=" + content + ", createdDate=" + createdDate
+				+ ", editedDate=" + editedDate + ", deletedYn=" + deletedYn + "]";
 	}
 
 }

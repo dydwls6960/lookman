@@ -23,7 +23,7 @@
 
   <body>
     <div class="container">
-      <%@ include file="/WEB-INF/views/layout/nav-with-header-only.jsp" %>
+      <%@ include file="/WEB-INF/views/layout/nav-with-header.jsp" %>
 
         <main class="main main-join">
           <!-- <img src="/app/resources/img/logo.svg" alt="Logo image"> -->

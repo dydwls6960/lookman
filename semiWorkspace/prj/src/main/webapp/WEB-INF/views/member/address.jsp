@@ -12,15 +12,15 @@
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
 
       <!-- vex modal -->
-	    <%@ include file="/WEB-INF/views/layout/vex-modal.jsp" %>
-      <link rel="stylesheet" href="/app/resources/css/address.css">
-      <script type="text/javascript" defer src="/app/resources/js/address.js"></script>
+      <%@ include file="/WEB-INF/views/layout/vex-modal.jsp" %>
+        <link rel="stylesheet" href="/app/resources/css/address.css">
+        <script type="text/javascript" defer src="/app/resources/js/address.js"></script>
 
   </head>
 
   <body>
     <div class="container">
-      <%@ include file="/WEB-INF/views/layout/nav-with-header-only.jsp" %>
+      <%@ include file="/WEB-INF/views/layout/nav-with-header.jsp" %>
 
         <main class="main main-address">
           <div class="address__header">

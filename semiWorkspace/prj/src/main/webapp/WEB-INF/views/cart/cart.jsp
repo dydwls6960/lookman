@@ -12,7 +12,7 @@
 
   <body>
     <div class="container">
-      <%@ include file="/WEB-INF/views/layout/nav-with-header-only.jsp" %>
+      <%@ include file="/WEB-INF/views/layout/nav-with-header-settings.jsp" %>
 
 
         <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

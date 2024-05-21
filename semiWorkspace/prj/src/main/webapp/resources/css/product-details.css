@@ -1,155 +1,163 @@
 @charset "UTF-8";
 
-.review__item {
-	display: flex;
-	flex-direction: column;
-	/* gap: 8px; */
-}
-
-.details__text, .details__imgs, .details__review, .details__inquiry {
-	font-size: 12px;
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	padding: 32px 8px;
-}
-
-.details__review {
-	gap: 40px;
+.details__text,
+.details__imgs,
+.details__review,
+.details__inquiry {
+  font-size: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 32px 8px;
 }
 
 .details__inquiry {
-	gap: 24px;
+  gap: 24px;
 }
 
 .details__text--upper {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .text__delivery {
-	padding-bottom: 8px;
+  padding-bottom: 8px;
 }
 
 .text__name {
-	font-size: 32px;
+  font-size: 32px;
 }
 
 .text__price {
-	font-size: 16px;
-	font-weight: 700;
-	padding-bottom: 8px;
+  font-size: 16px;
+  font-weight: 700;
+  padding-bottom: 8px;
 }
 
 .text__review {
-	display: flex;
+  display: flex;
 }
 
 /* REVIEW SECTION */
+.review__item {
+  display: flex;
+  flex-direction: column;
+  /* gap: 8px; */
+}
+
+.details__review {
+  gap: 40px;
+}
+
 .review__star {
-	padding-right: 4px;
+  padding-right: 4px;
 }
 
 .details__imgs {
-	width: 100%;
-	object-fit: cover;
+  width: 100%;
+  object-fit: cover;
 }
 
 .upper__div {
-	display: flex;
-	gap: 16px;
-	align-items: center;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .upper__div--text {
-	display: flex;
-	gap: 8px;
+  display: flex;
+  gap: 8px;
 }
 
 .review__item--mid {
-	display: flex;
-	align-items: center;
-	gap: 24px;
-	padding: 4px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 4px;
 }
 
 .review__img {
-	width: 80px;
-	height: 80px;
-	object-fit: cover;
+  width: 80px;
+  height: 80px;
+  object-fit: cover;
 }
 
 .img-div__text {
-	display: flex;
-	flex-direction: column;
-	gap: 8px;
-	font-size: 12px;
-	color: var(--color-med);
-	border-radius: var(--base-border-radius);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  font-size: 12px;
+  color: var(--color-med);
+  border-radius: var(--base-border-radius);
 }
 
 /* ACCORDION */
-.ui-state-active, .ui-widget-content .ui-state-active, .ui-widget-header .ui-state-active,
-	a.ui-button:active, .ui-button:active, .ui-button.ui-state-active:hover
-	{
-	border: 1px solid var(--color-med);
-	background-color: var(--color-med);
+.ui-state-active,
+.ui-widget-content .ui-state-active,
+.ui-widget-header .ui-state-active,
+a.ui-button:active,
+.ui-button:active,
+.ui-button.ui-state-active:hover {
+  border: 1px solid var(--color-med);
+  background-color: var(--color-med);
 }
 
 .ui-widget-content {
-	border: none;
+  border: none;
 }
 
-.ui-state-default, .ui-widget-content .ui-state-default,
-	.ui-widget-header .ui-state-default, .ui-button, html .ui-button.ui-state-disabled:hover,
-	html .ui-button.ui-state-disabled:active {
-	border: none;
+.ui-state-default,
+.ui-widget-content .ui-state-default,
+.ui-widget-header .ui-state-default,
+.ui-button,
+html .ui-button.ui-state-disabled:hover,
+html .ui-button.ui-state-disabled:active {
+  border: none;
 }
 
 .ui-accordion .ui-accordion-header {
-	display: flex;
+  display: flex;
 }
 
 .ui-accordion .ui-accordion-content {
-	display: flex;
-	flex-direction: column;
-	gap: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
 .accordion__answer {
-	display: flex;
-	gap: 16px;
-	align-items: center;
+  display: flex;
+  gap: 16px;
+  align-items: center;
 }
 
 .accordion__answer--seller {
-	text-wrap: nowrap;
-	font-weight: 700;
+  text-wrap: nowrap;
+  font-weight: 700;
 }
 .accordion__answer--date {
-	margin-left: auto;
+  margin-left: auto;
 }
 
 .inquiry__header {
-	width: 100%;
-	display: flex;
-	justify-content: space-between;
-	display: flex;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  display: flex;
 }
 
 .inquiry-title {
-	font-weight: 700;
+  font-weight: 700;
 }
 
 .inquiry-info {
-	display: flex;
-	gap: 16px;
+  display: flex;
+  gap: 16px;
 }
 
 .inquiry-controls {
-	display: flex;
-	gap: 8px;
-	justify-content: end;
+  display: flex;
+  gap: 8px;
+  justify-content: end;
 }
-

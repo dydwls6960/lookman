@@ -1,0 +1,133 @@
+.sidenav {
+  height: 100%;
+  width: 250px; 
+  position: fixed;
+  z-index: 1;
+  top: 0;
+  left: -250px; 
+  background-color: lightgray;
+  overflow-x: hidden;
+  transition: 0.5s;
+  padding-top: 60px;
+}
+
+.sidenav a, .sidenav li {
+  padding: 8px 8px 8px 32px;
+  text-decoration: none;
+  font-size: 20px;
+  color: #363636;
+  display: block;
+  transition: 0.3s;
+}
+
+.sidenav a:hover, .sidenav li:hover {
+  color: #A9CFE2;
+}
+
+.sidenav .closebtn {
+  position: absolute;
+  top: 0;
+  right: 25px;
+  font-size: 36px;
+  margin-left: 50px;
+}
+
+#container {
+  transition: margin-left .5s;
+  padding: 16px;
+ 
+}
+
+
+
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a, .sidenav li {font-size: 18px;}
+}
+
+.sidenav ul {
+  list-style-type: none;
+  padding-left: 0;
+}
+
+.sidenav ul ul {
+  display: none; 
+}
+
+.sidenav ul li {
+  padding-left: 0; 
+}
+
+.sidenav ul li a {
+  padding-left: 32px; 
+  cursor: pointer;
+  font-weight: bold;
+}
+
+.sidenav ul ul li a {
+  font-size: 15px; 
+  padding-left: 40px; 
+  margin: 0;
+}
+
+.sidenav ul li a .indicator {
+  float: right;
+  margin-right: 20px;
+  transition: transform 0.3s;
+}
+
+.sidenav ul li a.collapsed .indicator {
+  transform: rotate(0deg);
+}
+
+.sidenav ul li a.expanded .indicator {
+  transform: rotate(90deg);
+}
+
+#header-div {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 20px; 
+}
+
+#div-icon {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+/* 기본적으로 숨겨진 상태로 설정 */
+#header-div > span {
+  display: none; 
+}
+
+/* 햄버거 아이콘과 로고는 항상 보이도록 설정 */
+#header-div > span {
+  display: flex;
+  align-items: center;
+}
+
+
+#b-g{
+	color: gray;
+	font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+footer{
+    color: gray;
+    text-align: center;
+    font-weight: bolder;
+}

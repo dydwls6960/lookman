@@ -11,16 +11,8 @@
       <!-- 다음 주소 api -->
       <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js" defer></script>
 
-
       <!-- vex modal -->
-      <script src="
-      https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/js/vex.combined.min.js
-      "></script>
-      <link href="
-      https://cdn.jsdelivr.net/npm/vex-js@4.1.0/dist/css/vex.min.css
-      " rel="stylesheet">
-
-
+	    <%@ include file="/WEB-INF/views/layout/vex-modal.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/address.css">
       <script type="text/javascript" defer src="/app/resources/js/address.js"></script>
 

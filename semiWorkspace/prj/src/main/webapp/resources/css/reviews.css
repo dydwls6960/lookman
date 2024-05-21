@@ -53,3 +53,17 @@
   color: var(--color-med);
   border-radius: var(--base-border-radius);
 }
+
+
+/* BUTTONS */
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-primary-dark);
+  }
+}

@@ -1,3 +1,30 @@
+function returnHiddenInputElement(name, value) {
+  const inputEl = document.createElement("input");
+  inputEl.setAttribute("type", "hidden");
+  inputEl.setAttribute("name", name);
+  inputEl.setAttribute("value", value);
+  return inputEl;
+}
+
+function updateDefaultAddress(memberNo, addressNo) {
+  $.ajax({
+    url: "/app/member/address/default",
+    type: "get",
+    data: { memberNo: memberNo, addressNo: addressNo },
+    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+    success: (res) => {
+      if (res === "ok") {
+        window.location.reload();
+      } else {
+        alert("실패");
+      }
+    },
+    error: () => {
+      alert("에러났습니다..");
+    },
+  });
+}
+
 function execDaumPostcode() {
   new daum.Postcode({
     oncomplete: function (data) {
@@ -199,30 +226,3 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
-
-function returnHiddenInputElement(name, value) {
-  const inputEl = document.createElement("input");
-  inputEl.setAttribute("type", "hidden");
-  inputEl.setAttribute("name", name);
-  inputEl.setAttribute("value", value);
-  return inputEl;
-}
-
-function updateDefaultAddress(memberNo, addressNo) {
-  $.ajax({
-    url: "/app/member/address/default",
-    type: "get",
-    data: { memberNo: memberNo, addressNo: addressNo },
-    contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-    success: (res) => {
-      if (res === "ok") {
-        window.location.reload();
-      } else {
-        alert("실패");
-      }
-    },
-    error: () => {
-      alert("에러났습니다..");
-    },
-  });
-}

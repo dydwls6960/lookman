@@ -5,6 +5,7 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +86,22 @@ public class AddressDao {
 		String sql = "UPDATE ADDRESS SET DEFAULT_YN = 'N' WHERE MEMBER_NO = ? AND DELETED_YN = 'N'";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, avo.getMemberNo());
+		int result = pstmt.executeUpdate();
+
+		close(pstmt);
+
+		return result;
+	}
+
+	public int insertAddress(Connection conn, AddressVo avo) throws Exception {
+		String sql = "INSERT INTO ADDRESS(ADDRESS_NO, MEMBER_NO, POSTCODE, ADDRESS, DETAILED_ADDRESS, EXTRA_ADDRESS) VALUES(SEQ_ADDRESS.NEXTVAL, ?, ?, ?, ?, ?)";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, avo.getMemberNo());
+		pstmt.setString(2, avo.getPostcode());
+		pstmt.setString(3, avo.getAddress());
+		pstmt.setString(4, avo.getDetailedAddress());
+		pstmt.setString(5, avo.getExtraAddress());
+
 		int result = pstmt.executeUpdate();
 
 		close(pstmt);

@@ -33,7 +33,7 @@
         <main class="main main-address">
           <div class="address__header">
             <h2>내 주소</h2>
-            <button class="add-btn" type="button">주소 추가</button>
+            <button class="add-btn" type="button" data-member-no="${sessionScope.loginMemberVo.memberNo}">주소 추가</button>
           </div>
           <h3>주소</h3>
 

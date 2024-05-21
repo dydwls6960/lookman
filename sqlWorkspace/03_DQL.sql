@@ -196,6 +196,13 @@ WHERE ADDRESS_NO = ?
 AND DELETED_YN = 'N'
 ;
 
+-- 주소 삽입
+INSERT INTO ADDRESS(ADDRESS_NO, MEMBER_NO, POSTCODE, ADDRESS, DETAILED_ADDRESS, EXTRA_ADDRESS) 
+VALUES(SEQ_ADDRESS.NEXTVAL, 1, '123', '주소1', '주소2', '');
+
+SELECT *
+FROM ADDRESS
+WHERE MEMBER_NO = 1;
 
 --------------------------------------------------------
 -- 로그인 페이지

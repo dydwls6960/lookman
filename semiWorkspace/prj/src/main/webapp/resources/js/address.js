@@ -56,7 +56,51 @@ function execDaumPostcode() {
 // MODAL
 document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
-  const defaultBtns = document.querySelectorAll(".default-btn");
+  const addBtn = document.querySelector(".add-btn");
+
+  // 삽입 버튼
+  addBtn.addEventListener("click", () => {
+    const memberNo = addBtn.dataset.memberNo;
+    vex.dialog.open({
+      message: "주소 추가",
+      input: [
+        `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
+        `<div class="postcode-container"><input type="text" name="postcode" id="postcode" placeholder="우편번호*" required>`,
+        `<button class="post-btn" type="button" onclick="execDaumPostcode()">우편번호
+검색</button></div>`,
+        `<input type="text" name="address" id="address" placeholder="주소*" required>`,
+        `<input type="text" name="address2" id="address2" placeholder="상세주소*" required>`,
+        `<input type="text" name="extraAddress" id="extraAddress" placeholder="참고사항">`,
+      ].join(""),
+      buttons: [
+        {
+          text: "추가",
+          type: "submit",
+          className: "vex-dialog-button-primary vex-dialog-button vex-first",
+          click: function () {
+            const form = document.querySelector(".vex-dialog-form");
+            if (form) {
+              form.submit();
+            }
+          },
+        },
+        $.extend({}, vex.dialog.buttons.NO, { text: "취소" }),
+      ],
+      callback: function (data) {
+        if (!data) {
+          // console.log("모달창 닫음.");
+        } else {
+        }
+      },
+      afterOpen: function () {
+        const form = document.querySelector(".vex-dialog-form");
+        if (form) {
+          form.setAttribute("action", "/app/member/address/insert");
+          form.setAttribute("method", "post");
+        }
+      },
+    });
+  });
 
   // 수정 버튼
   editBtns.forEach((btn) => {
@@ -96,7 +140,7 @@ document.addEventListener("DOMContentLoaded", () => {
         ],
         callback: function (data) {
           if (!data) {
-            console.log("모달창 닫음.");
+            // console.log("모달창 닫음.");
           } else {
             console.log(
               data.memberNo,

@@ -54,4 +54,25 @@ public class AddressService {
 
 		return result;
 	}
+
+	public int insertAddress(AddressVo avo) throws Exception {
+		// 주소 비어있는지 체크
+		if (avo.getAddress() == null || avo.getAddress().isEmpty()) {
+			throw new Exception("주소가 비어있습니다.");
+		}
+
+		// dao
+		Connection conn = getConnection();
+		int result = dao.insertAddress(conn, avo);
+
+		if (result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+		
+		close(conn);
+
+		return result;
+	}
 }

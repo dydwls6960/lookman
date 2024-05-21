@@ -1,0 +1,126 @@
+input,button,
+textarea,select {
+  font: inherit;
+}
+
+* {
+  margin: 0;
+}
+
+
+
+body {
+  min-width: 100vw;
+  min-height: 100vh;
+}
+
+.container {
+  padding: 0 200px;
+}
+
+header{
+	display: grid;
+	grid-template-columns: 1fr;
+  	grid-template-rows: repeat(3, 1fr);	
+  	
+	
+	
+	
+    
+}
+
+article{
+  background-color: lightgray;
+  margin-bottom: 10px;
+  align-content: center;
+  max-height: 23px; /* 최대 높이를 100px로 설정 (원하는 값으로 조정 가능) */
+  overflow: auto; /* 내용이 넘칠 때 스크롤 표시 */
+  
+}
+
+#art-ul{
+    text-align: right;
+}
+#art-ul>*{
+    list-style-type: none;
+    display: inline;
+    
+}
+#art-ul>li>a{
+    
+  text-decoration: none;
+  color: inherit;
+    
+}
+
+#art-ul>li:not(:last-child) {
+    padding-right: 4px;
+    border-right: 1px solid black;
+    border-color: black;
+}
+
+
+#art-ul>li:last-child>a {
+  color: red; 
+}
+
+#header_div{
+	display: grid;
+	grid-template-columns: repeat(2, 1fr);
+  	grid-template-rows: 1fr;	
+  	
+  	align-items: center;
+}
+
+#up-nav {
+  justify-self: start;
+}
+
+#div-icon {
+  justify-self: end;
+}
+
+#up-nav img{
+	width:auto;
+	height: auto;
+}
+#div-icon img {
+  width: 30px; 
+  height: auto; 
+}
+
+
+
+#mainMenu{
+    background-color: lightgray;
+    
+    
+}
+
+#nav-ul {
+    list-style-type: none; 
+    padding: 0; 
+    margin: 0; 
+    display: flex; 
+}
+
+.menulist {
+    flex-grow: 1; 
+    text-align: center; 
+    border-right: 1px solid #ccc;
+}
+
+.menulist a {
+    display: block; 
+    padding: 10px; 
+    text-decoration: none;
+    color: white;
+}
+
+
+
+footer{
+    color: gray;
+    text-align: center;
+    font-weight: bolder;
+}

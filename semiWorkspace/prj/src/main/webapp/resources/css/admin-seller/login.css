@@ -1,0 +1,88 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+}
+
+.container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #fff;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+}
+
+.logo {
+    display: block;
+    margin: 0 auto 20px;
+    width: 300px;
+}
+
+.login-options {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.login-options button {
+    padding: 10px 20px;
+    margin: 0 10px;
+    font-size: 16px;
+    background-color: lightgray;
+    color: black;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.login-options button:hover {
+    background-color: gray;
+	color: white;
+}
+
+.form-login div {
+    margin-bottom: 15px;
+}
+
+.form-login input[type="email"],
+.form-login input[type="password"],
+.form-login input[type="submit"] {
+    width: 100%;
+    padding: 10px;
+    margin: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+.form-login input[type="submit"]{
+	background-color: lightgray;
+	color: black;
+}
+
+.form-login input[type="submit"]:hover{
+	background-color: gray;
+	color: white;
+	cursor: pointer;
+}
+
+.login__links {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.login__links a {
+    color: gray;
+    text-decoration: none;
+}
+
+.login__links span {
+    margin: 0 5px;
+}
+
+

@@ -57,6 +57,7 @@ function execDaumPostcode() {
 document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
   const addBtn = document.querySelector(".add-btn");
+  const delBtns = document.querySelectorAll(".delete-btn");
 
   // 삽입 버튼
   addBtn.addEventListener("click", () => {
@@ -99,6 +100,41 @@ document.addEventListener("DOMContentLoaded", () => {
           form.setAttribute("method", "post");
         }
       },
+    });
+  });
+
+  // 삭제 버튼
+  delBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const memberNo = btn.dataset.memberNo;
+      const addressNo = btn.dataset.addressNo;
+
+      vex.dialog.confirm({
+        message: "삭제하시겠습니까?",
+        buttons: [
+          $.extend({}, vex.dialog.buttons.YES, { text: "삭제" }),
+          $.extend({}, vex.dialog.buttons.NO, { text: "취소" }),
+        ],
+        callback: function (data) {
+          if (data) {
+            const form = document.querySelector(".vex-dialog-form");
+            form.submit();
+          }
+        },
+        afterOpen: function () {
+          const form = document.querySelector(".vex-dialog-form");
+          form.setAttribute("method", "post");
+          form.setAttribute("action", "/app/member/address/delete");
+          const memberInput = returnHiddenInputElement("memberNo", memberNo);
+          const addressNoInput = returnHiddenInputElement(
+            "addressNo",
+            addressNo
+          );
+
+          form.querySelector(".vex-dialog-input").appendChild(memberInput);
+          form.querySelector(".vex-dialog-input").appendChild(addressNoInput);
+        },
+      });
     });
   });
 
@@ -163,6 +199,14 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   });
 });
+
+function returnHiddenInputElement(name, value) {
+  const inputEl = document.createElement("input");
+  inputEl.setAttribute("type", "hidden");
+  inputEl.setAttribute("name", name);
+  inputEl.setAttribute("value", value);
+  return inputEl;
+}
 
 function updateDefaultAddress(memberNo, addressNo) {
   $.ajax({

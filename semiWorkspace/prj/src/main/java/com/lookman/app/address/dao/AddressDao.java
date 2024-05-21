@@ -109,4 +109,16 @@ public class AddressDao {
 		return result;
 	}
 
+	public int deleteAddress(Connection conn, AddressVo avo) throws Exception {
+		String sql = "UPDATE ADDRESS SET DELETED_YN = 'Y' WHERE ADDRESS_NO = ? AND MEMBER_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, avo.getAddressNo());
+		pstmt.setString(2, avo.getMemberNo());
+		int result = pstmt.executeUpdate();
+
+		close(pstmt);
+		
+		return result;
+	}
+
 }

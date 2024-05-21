@@ -75,4 +75,19 @@ public class AddressService {
 
 		return result;
 	}
+
+	public int deleteAddress(AddressVo avo) throws Exception {
+		Connection conn = getConnection();
+		int result = dao.deleteAddress(conn, avo);
+		
+		if (result == 1) {
+			commit(conn);
+		} else {
+			rollback(conn);
+		}
+
+		close(conn);
+		
+		return result;
+	}
 }

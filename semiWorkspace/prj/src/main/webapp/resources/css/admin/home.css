@@ -1,0 +1,112 @@
+#first ,#second,#third,#search,#info{
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto;
+}
+
+#addr,#search-result-total{
+	font-size: 15px;
+	color: gray;
+}
+
+#f-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr; /* 두 개의 열로 나눔 */
+    gap: 10px; /* 요소 사이의 간격 */
+    padding: 10px; /* 내부 여백 추가 */
+}
+
+.f-c-item {
+    padding: 10px; /* 내부 여백 추가 */
+    border: 1px solid #ddd; /* 테두리 스타일 추가 */
+    text-align: center;
+    
+}
+
+#userCnt {
+  margin: 10px auto; /* 가운데 정렬 */
+  border-collapse: collapse; /* 테이블 셀 경계를 병합 */
+  width: 80%; /* 표의 너비 지정 */
+}
+.userList{
+  margin: 10px auto; /* 가운데 정렬 */
+  border-collapse: collapse; /* 테이블 셀 경계를 병합 */
+  width: 100%; /* 표의 너비 지정 */
+}
+
+#userCnt th,.userList th {
+  background-color: #f0f0f0; /* 밝은 그레이 배경색 */
+  padding: 8px; /* 셀 안의 여백 */
+}
+
+#userCnt td,.userList td {
+  background-color: #f8f8f8; /* 연한 그레이 배경색 */
+  padding: 8px; /* 셀 안의 여백 */
+}
+
+#userCnt th,
+#userCnt td,
+.userList th,
+.userList td {
+  border: 1px solid #ddd; /* 테두리 스타일 지정 */
+}
+
+#userCnt td:first-child,
+#userCnt th:first-child,
+.userList td:first-child,
+.userList th:first-child {
+  padding-left: 20px; /* 왼쪽 여백 조정 */
+}
+
+#userCnt td:last-child,
+#userCnt th:last-child 
+.userList td:last-child,
+.userList th:last-child {
+  padding-right: 20px; /* 오른쪽 여백 조정 */
+}
+
+
+
+.userList th,
+.userList td{
+	text-align: center;
+}
+
+
+#user-search th {
+  width: 10%; /* 글자 크기에 맞춰 너비 자동 조정 */
+  white-space: nowrap; /* 줄바꿈 방지 */
+}
+
+#search-result-total{
+	float: right; /* 우측 정렬 */
+}
+
+#s-title a, #t-title a {
+  float: right; /* 우측 정렬 */
+  background-color: #333; /* 짙은 회색 배경색 */
+  color: #fff; /* 흰색 텍스트 */
+  text-decoration: none; /* 밑줄 제거 */
+  padding: 5px 10px; /* 내부 여백 */
+  margin-left: 10px; /* 왼쪽 여백 */
+  font-size: 10px;
+}
+
+#s-title a:hover, #t-title a:hover {
+  background-color: #555; /* 마우스 오버시 더 진한 회색 배경색 */
+}
+
+#s-title a:focus, #t-title a:focus {
+  outline: none; /* 포커스 표시 제거 */
+}
+
+
+#search-div{
+	justify-content: center;
+}
+
+
+
+
+
+

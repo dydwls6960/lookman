@@ -1,13 +1,15 @@
-#first ,#second,#third,#search,#info{
+#first ,#second,#third,#four,#search,#info,.seller-div{
     display: grid;
     grid-template-columns: 1fr;
     grid-template-rows: auto auto;
 }
 
+
 #addr,#search-result-total{
 	font-size: 15px;
 	color: gray;
 }
+
 
 #f-content {
     display: grid;
@@ -82,7 +84,25 @@
 	float: right; /* 우측 정렬 */
 }
 
-#s-title a, #t-title a {
+#add a {
+  float: right; /* 우측 정렬 */
+  background-color: #ff4d4d; /* 밝은 빨간색 배경색 */
+  color: white; /* 흰색 텍스트 */
+  text-decoration: none; /* 밑줄 제거 */
+  padding: 5px 10px; /* 내부 여백 */
+  margin-left: 10px; /* 왼쪽 여백 */
+  font-size: 18px;
+  width: 100px;
+  text-align: center;
+  transition: background-color 0.3s ease; /* 부드러운 전환 효과 */
+}
+
+#add a:hover {
+  background-color: #cc0000; /* 진한 빨간색 배경색 */
+}
+
+
+#s-title a, #t-title a, #f-title a {
   float: right; /* 우측 정렬 */
   background-color: #333; /* 짙은 회색 배경색 */
   color: #fff; /* 흰색 텍스트 */
@@ -92,11 +112,11 @@
   font-size: 10px;
 }
 
-#s-title a:hover, #t-title a:hover {
+#s-title a:hover, #t-title a:hover, #f-title a:hover {
   background-color: #555; /* 마우스 오버시 더 진한 회색 배경색 */
 }
 
-#s-title a:focus, #t-title a:focus {
+#s-title a:focus, #t-title a:focus, #f-title a:focus {
   outline: none; /* 포커스 표시 제거 */
 }
 

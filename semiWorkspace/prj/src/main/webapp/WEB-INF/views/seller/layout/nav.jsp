@@ -6,31 +6,25 @@
       <li>
         <a href="#" class="collapsed">상품관리 <span class="indicator">&#9654;</span></a>
         <ul>
-          <li><a href="#">상품 리스트</a></li>
-          <li><a href="#">상품 추가</a></li>
-          <li><a href="#">상품 재고관리</a></li>
-          <li><a href="#">상품 수정</a></li>
-          <li><a href="#">상품 문의관리</a></li>
-          <li><a href="#">상품 후기관리</a></li>
+          <li><a href="/app/seller/home/product/list">상품 리스트</a></li>
+          <li><a href="/app/seller/home/product/inquiry">상품 문의관리</a></li>
+          <li><a href="/app/seller/home/product/review">상품 후기관리</a></li>
         </ul>
       </li>
       <li>
-        <a href="#" class="collapsed">주문/배송관리 <span class="indicator">&#9654;</span></a>
+        <a href="#" class="collapsed">판매관리 <span class="indicator">&#9654;</span></a>
         <ul>
-          <li><a href="#">주문 리스트</a></li>
-          <li><a href="#">입금대기</a></li>
-          <li><a href="#">입금완료</a></li>
-          <li><a href="#">배송준비</a></li>
-          <li><a href="#">배송완료</a></li>
+          <li><a href="/app/seller/home/order/list">판매내역</a></li>
+          <li><a href="/app/seller/home/order/state">주문상태</a></li>
         </ul>
       </li>
       <li>
         <a href="#" class="collapsed">반품/취소/교환 <span class="indicator">&#9654;</span></a>
         <ul>
-          <li><a href="#">입금전 취소</a></li>
-          <li><a href="#">배송전 환불</a></li>
-          <li><a href="#">배송후 반품</a></li>
-          <li><a href="#">배송후 교환</a></li>
+          <li><a href="/app/seller/home/request/pbe">입금전 취소요청</a></li>
+          <li><a href="/app/seller/home/request/dbe">배송전 환불요청</a></li>
+          <li><a href="/app/seller/home/request/daf">배송후 반품요청</a></li>
+          <li><a href="/app/seller/home/request/dafex">배송후 교환요청</a></li>
         </ul>
       </li>
       <li>

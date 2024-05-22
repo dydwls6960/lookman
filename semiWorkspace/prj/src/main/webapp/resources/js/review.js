@@ -55,7 +55,7 @@ document.addEventListener("DOMContentLoaded", () => {
         input: [
           `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
           `<input type="hidden" name="reviewNo" id="reviewNo"value="${reviewNo}">`,
-          `<input type="number" name="rating" id="rating" placeholder="주소*" required value="${rating}">`,
+          `<input type="number" min="1" step="1" max="5" name="rating" id="rating" placeholder="평점*" required value="${rating}">`,
           `<input type="text" name="content" id="content" placeholder="내용" required value="${content}">`,
         ].join(""),
         buttons: [

@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductInquiryMapper">
+
+	<update id="editProductInquiryQuestion">
+		UPDATE PRODUCT_INQUIRY
+		SET 
+		    TITLE = #{title},
+		    QUESTION_CONTENT = #{questionContent},
+		    PRIVATE_YN = #{privateYn}
+		WHERE PRODUCT_INQUIRY_NO = ${productInquiryNo}
+		AND MEMBER_NO = ${memberNo}
+	</update>
+	
+</mapper>

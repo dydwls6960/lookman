@@ -7,16 +7,18 @@
     <title>Lookman 상품정보</title>
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <%@ include file="/WEB-INF/views/layout/splide.jsp" %>
+        <%@ include file="/WEB-INF/views/layout/vex-modal.jsp" %>
+          <script src="/app/resources/js/details.js" defer></script>
 
 
-        <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
-        <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
-        <link rel="stylesheet" href="/app/resources/css/product-details.css">
-        <script defer>
-          $(function () {
-            $("#accordion").accordion();
-          });
-        </script>
+          <script src="https://code.jquery.com/ui/1.13.3/jquery-ui.js"></script>
+          <link rel="stylesheet" href="https://code.jquery.com/ui/1.13.3/themes/base/jquery-ui.css">
+          <link rel="stylesheet" href="/app/resources/css/product-details.css">
+          <script defer>
+            $(function () {
+              $("#accordion").accordion();
+            });
+          </script>
   </head>
 
   <body>
@@ -104,39 +106,43 @@
                   <div class="inquiry__header">
                     <span class="inquiry-title">${inquiry.title}</span>
                     <div class="inquiry-info">
-                    	
-                    	<span class="inquiry-user">${inquiry.memberName}</span>
-	                    <span class="inquiry-status">${inquiry.status}</span>
-	                    <span class="inquiry-date">${inquiry.questionDate}</span>
-	                    
+
+                      <span class="inquiry-user">${inquiry.memberName}</span>
+                      <span class="inquiry-status">${inquiry.status}</span>
+                      <span class="inquiry-date">${inquiry.questionDate}</span>
+
                     </div>
                   </div>
                 </h3>
                 <div>
-             		<c:if test="${sessionScope.loginMemberVo.memberNo eq inquiry.memberNo}">
-                 		<div class="inquiry-controls">
-	                 		<a href="/app/inquiry/edit/${inquiry.productInquiryNo}">수정</a>
-	                 		<a href="/app/inquiry/delete/${inquiry.productInquiryNo}">삭제</a>
-                 		</div>
-                 	</c:if>
+                  <c:if test="${sessionScope.loginMemberVo.memberNo eq inquiry.memberNo}">
+                    <div class="inquiry-controls">
+                      <button type="button" class="edit-btn" data-product-no="${inquiry.productNo}"  data-product-inquiry-no="${inquiry.productInquiryNo}"
+                        data-member-no="${inquiry.memberNo}" data-title="${inquiry.title}"
+                        data-question-content="${inquiry.questionContent}"
+                        data-private-yn="${inquiry.privateYn}">수정</button>
+                      <button type="button" class="delete-btn" data-product-inquiry-no="${inquiry.productInquiryNo}"
+                        data-member-no="${inquiry.memberNo}">삭제</butto>
+                    </div>
+                  </c:if>
                   <p>${inquiry.questionContent}</p>
-                  
+
                   <c:if test="${not empty inquiry.responseContent}">
-	                  <div class="accordion__answer">
-	                    <span class="accordion__answer--seller">
-	                      ${inquiry.sellerName} <br> 
-	                    </span>
-	                    <p class="accordion__answer--content">${inquiry.responseContent}</p>
-	                    <span class="accordion__answer--date">${inquiry.responseDate}</span>
-	                  </div>
+                    <div class="accordion__answer">
+                      <span class="accordion__answer--seller">
+                        ${inquiry.sellerName} <br>
+                      </span>
+                      <p class="accordion__answer--content">${inquiry.responseContent}</p>
+                      <span class="accordion__answer--date">${inquiry.responseDate}</span>
+                    </div>
                   </c:if>
                 </div>
               </c:forEach>
             </div>
-    
-    		        
+
+
             <c:if test="${not empty sessionScope.loginMemberVo}">
-	            <button onclick="location.href='/app/inquiry/insert'">질문하기</button>
+              <button onclick="location.href='/app/inquiry/insert'">질문하기</button>
             </c:if>
           </section>
 

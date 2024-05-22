@@ -105,6 +105,10 @@ WHERE PI.PRODUCT_NO = ?
 AND PI.DELETED_YN = 'N'
 ;
 
+-- 상품문의 수정
+select *
+from product_inquiry;
+
 --------------------------------------------------------
 -- 랭킹페이지
 SELECT 

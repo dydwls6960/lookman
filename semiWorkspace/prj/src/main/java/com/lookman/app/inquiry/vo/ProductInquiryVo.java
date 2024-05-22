@@ -12,13 +12,14 @@ public class ProductInquiryVo {
 	private String askDate;
 	private String responseDate;
 	private String privateYn;
+	private String deletedYn;
 
 	public ProductInquiryVo() {
 	}
 
 	public ProductInquiryVo(String productInquiryNo, String memberNo, String sellerNo, String productNo,
 			String statusNo, String title, String questionContent, String responseContent, String askDate,
-			String responseDate, String privateYn) {
+			String responseDate, String privateYn, String deletedYn) {
 		this.productInquiryNo = productInquiryNo;
 		this.memberNo = memberNo;
 		this.sellerNo = sellerNo;
@@ -30,6 +31,7 @@ public class ProductInquiryVo {
 		this.askDate = askDate;
 		this.responseDate = responseDate;
 		this.privateYn = privateYn;
+		this.deletedYn = deletedYn;
 	}
 
 	public String getProductInquiryNo() {
@@ -120,12 +122,21 @@ public class ProductInquiryVo {
 		this.privateYn = privateYn;
 	}
 
+	public String getDeletedYn() {
+		return deletedYn;
+	}
+
+	public void setDeletedYn(String deletedYn) {
+		this.deletedYn = deletedYn;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductInquiryVo [productInquiryNo=" + productInquiryNo + ", memberNo=" + memberNo + ", sellerNo="
 				+ sellerNo + ", productNo=" + productNo + ", statusNo=" + statusNo + ", title=" + title
 				+ ", questionContent=" + questionContent + ", responseContent=" + responseContent + ", askDate="
-				+ askDate + ", responseDate=" + responseDate + ", privateYn=" + privateYn + "]";
+				+ askDate + ", responseDate=" + responseDate + ", privateYn=" + privateYn + ", deletedYn=" + deletedYn
+				+ "]";
 	}
 
 }

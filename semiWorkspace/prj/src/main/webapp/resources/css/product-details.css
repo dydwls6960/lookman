@@ -123,7 +123,7 @@ html .ui-button.ui-state-disabled:active {
 .ui-accordion .ui-accordion-content {
   display: flex;
   flex-direction: column;
-  gap: 24px;
+  gap: 8px;
 }
 
 .accordion__answer {
@@ -160,4 +160,34 @@ html .ui-button.ui-state-disabled:active {
   display: flex;
   gap: 8px;
   justify-content: end;
+}
+
+/* MODAL */
+
+.privateYn-label {
+  font-weight: 700;
+}
+
+.radio-outer-container {
+  display: flex;
+  gap: 24px;
+}
+
+.radio-container {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+/* BUTTONS */
+.edit-btn,
+.delete-btn {
+  background: none;
+  border: none;
+  color: var(--color-primary);
+  cursor: pointer;
+
+  &:hover {
+    color: var(--color-primary-dark);
+  }
 }

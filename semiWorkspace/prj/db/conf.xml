@@ -8,6 +8,7 @@
 	</settings>
 
 	<typeAliases>
+
 	</typeAliases>
 
 	<environments default="development">
@@ -25,5 +26,6 @@
 	</environments>
 	<mappers>
 		<mapper resource="/review-mapper.xml" />
+		<mapper resource="/product-inquiry-mapper.xml" />
 	</mappers>
 </configuration>

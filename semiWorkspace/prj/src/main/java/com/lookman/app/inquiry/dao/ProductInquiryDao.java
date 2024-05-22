@@ -6,7 +6,10 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.lookman.app.inquiry.dto.ProductInquiryDto;
+import com.lookman.app.inquiry.vo.ProductInquiryVo;
 
 public class ProductInquiryDao {
 
@@ -52,6 +55,10 @@ public class ProductInquiryDao {
 		}
 
 		return inquiries;
+	}
+
+	public int editInquiryQuestion(SqlSession ss, ProductInquiryVo pivo) {
+		return ss.update("ProductInquiryMapper.editProductInquiryQuestion", pivo);
 	}
 
 }

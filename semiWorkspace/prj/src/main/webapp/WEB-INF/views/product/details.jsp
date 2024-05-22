@@ -142,7 +142,7 @@
 
 
             <c:if test="${not empty sessionScope.loginMemberVo}">
-              <button onclick="location.href='/app/inquiry/insert'">질문하기</button>
+              <button class="add-btn" data-member-no="${sessionScope.loginMemberVo.memberNo}" data-seller-no="${requestScope.dto.sellerNo}" data-product-no="${requestScope.dto.productNo}" type="button">질문하기</button>
             </c:if>
           </section>
 

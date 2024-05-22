@@ -5,6 +5,7 @@ public class ProductInquiryDto {
 	private String productNo;
 	private String memberNo;
 	private String memberName;
+	private String sellerNo;
 	private String sellerName;
 	private String status;
 	private String title;
@@ -19,12 +20,13 @@ public class ProductInquiryDto {
 	}
 
 	public ProductInquiryDto(String productInquiryNo, String productNo, String memberNo, String memberName,
-			String sellerName, String status, String title, String questionContent, String responseContent,
-			String questionDate, String responseDate, String privateYn, String deletedYn) {
+			String sellerNo, String sellerName, String status, String title, String questionContent,
+			String responseContent, String questionDate, String responseDate, String privateYn, String deletedYn) {
 		this.productInquiryNo = productInquiryNo;
 		this.productNo = productNo;
 		this.memberNo = memberNo;
 		this.memberName = memberName;
+		this.sellerNo = sellerNo;
 		this.sellerName = sellerName;
 		this.status = status;
 		this.title = title;
@@ -66,6 +68,14 @@ public class ProductInquiryDto {
 
 	public void setMemberName(String memberName) {
 		this.memberName = memberName;
+	}
+
+	public String getSellerNo() {
+		return sellerNo;
+	}
+
+	public void setSellerNo(String sellerNo) {
+		this.sellerNo = sellerNo;
 	}
 
 	public String getSellerName() {
@@ -143,10 +153,10 @@ public class ProductInquiryDto {
 	@Override
 	public String toString() {
 		return "ProductInquiryDto [productInquiryNo=" + productInquiryNo + ", productNo=" + productNo + ", memberNo="
-				+ memberNo + ", memberName=" + memberName + ", sellerName=" + sellerName + ", status=" + status
-				+ ", title=" + title + ", questionContent=" + questionContent + ", responseContent=" + responseContent
-				+ ", questionDate=" + questionDate + ", responseDate=" + responseDate + ", privateYn=" + privateYn
-				+ ", deletedYn=" + deletedYn + "]";
+				+ memberNo + ", memberName=" + memberName + ", sellerNo=" + sellerNo + ", sellerName=" + sellerName
+				+ ", status=" + status + ", title=" + title + ", questionContent=" + questionContent
+				+ ", responseContent=" + responseContent + ", questionDate=" + questionDate + ", responseDate="
+				+ responseDate + ", privateYn=" + privateYn + ", deletedYn=" + deletedYn + "]";
 	}
 
 }

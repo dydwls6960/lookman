@@ -7,7 +7,9 @@ import com.lookman.app.inquiry.dto.ProductInquiryDto;
 import com.lookman.app.review.dto.ReviewDto;
 
 public class ProductDetailsDto {
+	private String sellerNo;
 	private String sellerName;
+	private String productNo;
 	private String productName;
 	private String price;
 	private String details;
@@ -23,10 +25,13 @@ public class ProductDetailsDto {
 	public ProductDetailsDto() {
 	}
 
-	public ProductDetailsDto(String sellerName, String productName, String price, String details,
-			String shippingDetails, String avgRating, String reviewCnt, String hit, String thumbnailFilename,
-			List<ImageVo> images, List<ReviewDto> reviews, List<ProductInquiryDto> inquiries) {
+	public ProductDetailsDto(String sellerNo, String sellerName, String productNo, String productName, String price,
+			String details, String shippingDetails, String avgRating, String reviewCnt, String hit,
+			String thumbnailFilename, List<ImageVo> images, List<ReviewDto> reviews,
+			List<ProductInquiryDto> inquiries) {
+		this.sellerNo = sellerNo;
 		this.sellerName = sellerName;
+		this.productNo = productNo;
 		this.productName = productName;
 		this.price = price;
 		this.details = details;
@@ -40,12 +45,28 @@ public class ProductDetailsDto {
 		this.inquiries = inquiries;
 	}
 
+	public String getSellerNo() {
+		return sellerNo;
+	}
+
+	public void setSellerNo(String sellerNo) {
+		this.sellerNo = sellerNo;
+	}
+
 	public String getSellerName() {
 		return sellerName;
 	}
 
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
+	}
+
+	public String getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 
 	public String getProductName() {
@@ -138,10 +159,11 @@ public class ProductDetailsDto {
 
 	@Override
 	public String toString() {
-		return "ProductDetailsDto [sellerName=" + sellerName + ", productName=" + productName + ", price=" + price
-				+ ", details=" + details + ", shippingDetails=" + shippingDetails + ", avgRating=" + avgRating
-				+ ", reviewCnt=" + reviewCnt + ", hit=" + hit + ", thumbnailFilename=" + thumbnailFilename + ", images="
-				+ images + ", reviews=" + reviews + ", inquiries=" + inquiries + "]";
+		return "ProductDetailsDto [sellerNo=" + sellerNo + ", sellerName=" + sellerName + ", productNo=" + productNo
+				+ ", productName=" + productName + ", price=" + price + ", details=" + details + ", shippingDetails="
+				+ shippingDetails + ", avgRating=" + avgRating + ", reviewCnt=" + reviewCnt + ", hit=" + hit
+				+ ", thumbnailFilename=" + thumbnailFilename + ", images=" + images + ", reviews=" + reviews
+				+ ", inquiries=" + inquiries + "]";
 	}
 
 }

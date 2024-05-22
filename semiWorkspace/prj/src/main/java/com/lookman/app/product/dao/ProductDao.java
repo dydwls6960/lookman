@@ -78,7 +78,7 @@ public class ProductDao {
 
 	public ProductDetailsDto selectProductDetails(Connection conn, String productNo) throws Exception {
 
-		String sql = "SELECT S.NAME SELLER_NAME , P.NAME PRODUCT_NAME , TO_CHAR(P.PRICE, '999,999,999') PRICE , P.DETAILS DETAILS , P.HIT HIT , NVL(S.SHIPPING_INFO, '기본 배송') SHIPPING_DETAILS , NVL(ROUND(AVG(R.RATING), 1), 0) AVG_RATING , COUNT(R.REVIEW_NO) REVIEW_CNT FROM PRODUCT P JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO LEFT JOIN REVIEW R ON R.PRODUCT_NO = P.PRODUCT_NO WHERE P.PRODUCT_NO = ? GROUP BY S.NAME, P.NAME, P.PRICE, P.DETAILS, P.HIT, NVL(S.SHIPPING_INFO, '기본 배송')";
+		String sql = "SELECT S.SELLER_NO SELLER_NO , S.NAME SELLER_NAME , P.PRODUCT_NO PRODUCT_NO , P.NAME PRODUCT_NAME , TO_CHAR(P.PRICE, '999,999,999') PRICE , P.DETAILS DETAILS , P.HIT HIT , NVL(S.SHIPPING_INFO, '기본 배송') SHIPPING_DETAILS , NVL(ROUND(AVG(R.RATING), 1), 0) AVG_RATING , COUNT(R.REVIEW_NO) REVIEW_CNT FROM PRODUCT P JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO LEFT JOIN REVIEW R ON R.PRODUCT_NO = P.PRODUCT_NO WHERE P.PRODUCT_NO = ? GROUP BY S.SELLER_NO, S.NAME, P.PRODUCT_NO, P.NAME, P.PRICE, P.DETAILS, P.HIT, NVL(S.SHIPPING_INFO, '기본 배송')";
 
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, productNo);
@@ -88,7 +88,9 @@ public class ProductDao {
 		ProductDetailsDto dto = null;
 
 		if (rs.next()) {
+			String sellerNo = rs.getString("SELLER_NO");
 			String sellerName = rs.getString("SELLER_NAME");
+			String prodNo = rs.getString("PRODUCT_NO");
 			String productName = rs.getString("PRODUCT_NAME");
 			String price = rs.getString("PRICE");
 			String details = rs.getString("DETAILS");
@@ -98,7 +100,9 @@ public class ProductDao {
 			String reviewCnt = rs.getString("REVIEW_CNT");
 
 			dto = new ProductDetailsDto();
+			dto.setSellerNo(sellerNo);
 			dto.setSellerName(sellerName);
+			dto.setProductNo(prodNo);
 			dto.setProductName(productName);
 			dto.setPrice(price);
 			dto.setDetails(details);

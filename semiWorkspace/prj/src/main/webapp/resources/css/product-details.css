@@ -191,3 +191,14 @@ html .ui-button.ui-state-disabled:active {
     color: var(--color-primary-dark);
   }
 }
+
+.add-btn {
+  background-color: var(--color-white);
+  color: inherit;
+  font-size: 12px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+  border: 1px solid var(--color-med);
+  text-wrap: nowrap;
+}

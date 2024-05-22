@@ -8,16 +8,54 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-@WebServlet("/inquiry/insert/*")
+import com.lookman.app.inquiry.service.ProductInquiryService;
+import com.lookman.app.inquiry.vo.ProductInquiryVo;
+
+@WebServlet("/inquiry/insert")
 public class ProductInquiryInsertController extends HttpServlet {
+
+	private ProductInquiryService pis;
+
+	public ProductInquiryInsertController() {
+		this.pis = new ProductInquiryService();
+	}
+
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		req.getRequestDispatcher("/WEB-INF/views/inquiry/insert.jsp").forward(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		super.doPost(req, resp);
+		try {
+			String memberNo = req.getParameter("memberNo");
+			String productNo = req.getParameter("productNo");
+			String sellerNo = req.getParameter("sellerNo");
+			String title = req.getParameter("title");
+			String questionContent = req.getParameter("questionContent");
+			String privateYn = req.getParameter("privateYn");
+
+			ProductInquiryVo pivo = new ProductInquiryVo();
+			pivo.setMemberNo(memberNo);
+			pivo.setProductNo(productNo);
+			pivo.setSellerNo(sellerNo);
+			pivo.setTitle(title);
+			pivo.setQuestionContent(questionContent);
+			pivo.setPrivateYn(privateYn);
+
+			int result = pis.insertInquiry(pivo);
+
+			if (result == 1) {
+				resp.sendRedirect("/app/products/" + productNo);
+			} else {
+				throw new Exception("질문 삽입 중 에러 발생했습니다.");
+			}
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+		}
+
 	}
 }

@@ -19,10 +19,10 @@ public class ProductInquiryDeleteController extends HttpServlet {
 		this.pis = new ProductInquiryService();
 	}
 
-	@Override
-	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		super.doGet(req, resp);
-	}
+//	@Override
+//	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+//		super.doGet(req, resp);
+//	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -39,7 +39,6 @@ public class ProductInquiryDeleteController extends HttpServlet {
 			int result = pis.deleteInquiry(pivo);
 			if (result == 1) {
 				resp.sendRedirect("/app/products/" + productNo);
-				return;
 			} else {
 				throw new Exception("문의 삭제 중 에러 발생했습니다.");
 			}

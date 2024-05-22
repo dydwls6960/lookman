@@ -10,63 +10,45 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lookman.app.inquiry.service.ProductInquiryService;
 import com.lookman.app.inquiry.vo.ProductInquiryVo;
-import com.lookman.app.member.vo.MemberVo;
 
-@WebServlet("/inquiry/edit-question")
-public class ProductInquiryQuestionEditController extends HttpServlet {
-
+@WebServlet("/inquiry/delete")
+public class ProductInquiryDeleteController extends HttpServlet {
 	private final ProductInquiryService pis;
 
-	public ProductInquiryQuestionEditController() {
+	public ProductInquiryDeleteController() {
 		this.pis = new ProductInquiryService();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		resp.sendError(HttpServletResponse.SC_METHOD_NOT_ALLOWED, "GET method is not supported");
+		super.doGet(req, resp);
 	}
 
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
-
-			if (loginMemberVo == null) {
-				throw new Exception("로그인 되어있지 않습니다");
-			}
-
+			String memberNo = req.getParameter("memberNo");
 			String productInquiryNo = req.getParameter("productInquiryNo");
 			String productNo = req.getParameter("productNo");
-			String memberNo = req.getParameter("memberNo");
-			String title = req.getParameter("title");
-			String questionContent = req.getParameter("questionContent");
-			String privateYn = req.getParameter("privateYn");
 			ProductInquiryVo pivo = new ProductInquiryVo();
+			pivo.setMemberNo(memberNo);
 			pivo.setProductInquiryNo(productInquiryNo);
 			pivo.setProductNo(productNo);
-			pivo.setMemberNo(memberNo);
-			pivo.setTitle(title);
-			pivo.setQuestionContent(questionContent);
-			pivo.setPrivateYn(privateYn);
+			
 
-			if (!loginMemberVo.getMemberNo().equals(memberNo)) {
-				throw new Exception("수정 권한이 없습니다.");
-			}
-
-			int result = pis.editInquiryQuestion(pivo);
-
+			int result = pis.deleteInquiry(pivo);
 			if (result == 1) {
 				resp.sendRedirect("/app/products/" + productNo);
+				return;
 			} else {
-				throw new Exception("상품문의 수정 실패.");
+				throw new Exception("문의 삭제 중 에러 발생했습니다.");
 			}
-
+			
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println(e.getMessage());
-			req.setAttribute(getServletName(), e.getMessage());
+			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
-
 	}
 }

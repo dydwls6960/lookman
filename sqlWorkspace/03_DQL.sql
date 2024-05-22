@@ -106,8 +106,24 @@ AND PI.DELETED_YN = 'N'
 ;
 
 -- 상품문의 수정
-select *
-from product_inquiry;
+UPDATE PRODUCT_INQUIRY
+SET 
+    TITLE = 'ZZZTT',
+    QUESTION_CONTENT = 'ZZCC',
+    PRIVATE_YN = 'Y'
+WHERE PRODUCT_INQUIRY_NO = 1
+AND MEMBER_NO = 1
+;
+
+    
+-- 상품문의 삭제
+UPDATE PRODUCT_INQUIRY
+SET
+    DELETED_YN = 'Y'
+WHERE PRODUCT_INQUIRY_NO = 1
+AND MEMBER_NO = 1
+;
+    
 
 --------------------------------------------------------
 -- 랭킹페이지

@@ -61,4 +61,8 @@ public class ProductInquiryDao {
 		return ss.update("ProductInquiryMapper.editProductInquiryQuestion", pivo);
 	}
 
+	public int deleteInquiry(SqlSession ss, ProductInquiryVo pivo) {
+		return ss.update("ProductInquiryMapper.deleteProductInquiry", pivo);
+	}
+
 }

@@ -23,6 +23,7 @@ ORDER BY P.PRODUCT_NO DESC
 
 --------------------------------------------------------
 -- 상세페이지
+
 -- 조회수 증가
 UPDATE PRODUCT
 SET HIT = HIT + 1
@@ -176,11 +177,6 @@ SET POSTCODE = ?
 WHERE ADDRESS_NO = ?
 AND DELETED_YN = 'N';
 
-select *
-from address
-where member_no = 1;
-
-UPDATE ADDRESS SET DEFAULT_YN = 'N' WHERE ADDRESS_NO = 2 AND DELETED_YN = 'N';
 
 -- 기본주소 리셋
 UPDATE ADDRESS
@@ -240,9 +236,24 @@ AND R.DELETED_YN = 'N'
 ORDER BY R.REVIEW_NO DESC, R.CREATED_DATE DESC
 ;
 
+-- 리뷰 수정
+UPDATE REVIEW 
+SET 
+    RATING = 1.0,
+    CONTENT = 'ZZZZZZ',
+    EDITED_DATE = SYSDATE
+WHERE REVIEW_NO = 2
+AND MEMBER_NO = 1
+;
 
-SELECT *
-FROM PRODUCT_IMG;
+-- 리뷰 삭제
+UPDATE REVIEW
+SET DELETED_YN = 'N',
+EDITED_DATE = SYSDATE
+WHERE REVIEW_NO = 2
+AND MEMBER_NO = 1
+;
+commit;
 --------------------------------------------------------
 -- 로그인 페이지
 SELECT * 

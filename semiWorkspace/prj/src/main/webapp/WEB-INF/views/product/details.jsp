@@ -121,7 +121,7 @@
                         data-member-no="${inquiry.memberNo}" data-title="${inquiry.title}"
                         data-question-content="${inquiry.questionContent}"
                         data-private-yn="${inquiry.privateYn}">수정</button>
-                      <button type="button" class="delete-btn" data-product-inquiry-no="${inquiry.productInquiryNo}"
+                      <button type="button" class="delete-btn" data-product-no="${inquiry.productNo}" data-product-inquiry-no="${inquiry.productInquiryNo}"
                         data-member-no="${inquiry.memberNo}">삭제</butto>
                     </div>
                   </c:if>

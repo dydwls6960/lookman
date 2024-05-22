@@ -14,4 +14,11 @@
 		AND MEMBER_NO = ${memberNo}
 	</update>
 	
+	<update id="deleteProductInquiry">
+		UPDATE PRODUCT_INQUIRY
+		SET
+		    DELETED_YN = 'Y'
+		WHERE PRODUCT_INQUIRY_NO = ${productInquiryNo}
+		AND MEMBER_NO = ${memberNo}
+	</update>
 </mapper>

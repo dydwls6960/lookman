@@ -131,7 +131,7 @@ AND MEMBER_NO = 1
 INSERT INTO PRODUCT_INQUIRY (PRODUCT_INQUIRY_NO, MEMBER_NO, SELLER_NO, PRODUCT_NO, STATUS_NO, TITLE, QUESTION_CONTENT, PRIVATE_YN) 
 VALUES (SEQ_PRODUCT_INQUIRY.NEXTVAL, ?, ?, ?, 10, ?, ?, ?);
 
-rollback;
+
 
 --------------------------------------------------------
 -- 랭킹페이지

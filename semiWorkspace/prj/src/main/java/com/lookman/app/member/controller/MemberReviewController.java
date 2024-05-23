@@ -33,7 +33,7 @@ public class MemberReviewController extends HttpServlet {
 
 			List<ReviewDto> reviews = ms.selectReviewsByMemberNo(loginMemberVo);
 			req.setAttribute("reviews", reviews);
-			req.setAttribute("pageTitle", "내 리뷰 관리");
+			req.setAttribute("pageTitle", "구매후기");
 			req.getRequestDispatcher("/WEB-INF/views/member/review.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

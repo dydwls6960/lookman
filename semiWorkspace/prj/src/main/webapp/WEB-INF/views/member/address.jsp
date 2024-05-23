@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>내 주소 관리</title>
+    <title>내 배송지 관리</title>
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
 
@@ -24,10 +24,10 @@
 
         <main class="main main-address">
           <div class="address__header">
-            <h2>내 주소</h2>
+            <h2>배송지 목록</h2>
             <button class="add-btn" type="button" data-member-no="${sessionScope.loginMemberVo.memberNo}">주소 추가</button>
           </div>
-          <h3>주소</h3>
+          <h3>배송지</h3>
 
           <c:forEach var="dto" items="${requestScope.addresses}">
             <div class="address__item">

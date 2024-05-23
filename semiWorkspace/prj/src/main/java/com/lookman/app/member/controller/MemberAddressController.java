@@ -31,7 +31,7 @@ public class MemberAddressController extends HttpServlet {
 
 				List<AddressDto> addresses = ms.selectAddressesByMemberNo(loginMemberVo);
 
-				req.setAttribute("pageTitle", "내 주소 관리");
+				req.setAttribute("pageTitle", "배송지 관리");
 				req.setAttribute("loginMemberVo", loginMemberVo);
 				req.setAttribute("addresses", addresses);
 				req.getRequestDispatcher("/WEB-INF/views/member/address.jsp").forward(req, resp);

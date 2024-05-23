@@ -33,7 +33,7 @@ public class ProductInquiryInsertController extends HttpServlet {
 			if (loginMemberVo == null) {
 				throw new Exception("로그인 되어있지 않습니다");
 			}
-			
+
 			String memberNo = req.getParameter("memberNo");
 			String productNo = req.getParameter("productNo");
 			String sellerNo = req.getParameter("sellerNo");
@@ -56,6 +56,7 @@ public class ProductInquiryInsertController extends HttpServlet {
 			int result = pis.insertInquiry(pivo);
 
 			if (result == 1) {
+				req.getSession().setAttribute("alertMsg", "상품문의 추가 완료!");
 				resp.sendRedirect("/app/products/" + productNo);
 			} else {
 				throw new Exception("질문 삽입 중 에러 발생했습니다.");

@@ -196,6 +196,8 @@ public class MemberService {
 
 		List<ReviewDto> reviews = revDao.selectReviewsByMemberNo(conn, loginMemberVo);
 
+		close(conn);
+		
 		return reviews;
 	}
 
@@ -204,7 +206,6 @@ public class MemberService {
 
 		List<ProductMemberInquiryDto> pidtoList = piDao.selectProductInquiriesByMemberNo(ss, loginMemberVo);
 
-		System.out.println("pivoList: " + pidtoList);
 		ss.close();
 
 		return pidtoList;

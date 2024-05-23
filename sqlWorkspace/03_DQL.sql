@@ -286,22 +286,7 @@ AND MEMBER_NO = 1
 
 --------------------------------------------------------
 -- 내 상품문의 관리 페이지
---	private String productInquiryNo;
---	private String productNo;
---	private String memberNo;
---	private String memberName;
---	private String sellerNo;
---	private String sellerName;
---	private String thumbnailFilename;
---	private String status;
---	private String title;
---	private String questionContent;
---	private String responseContent;
---	private String questionDate;
---	private String responseDate;
---	private String privateYn;
---	private String deletedYn;
-
+-- 내 상품문의들 
 SELECT 
     PI.PRODUCT_INQUIRY_NO PRODUCT_INQUIRY_NO
     , PI.PRODUCT_NO PRODUCT_NO
@@ -323,11 +308,19 @@ JOIN MEMBER M ON PI.MEMBER_NO = M.MEMBER_NO
 JOIN SELLER S ON PI.SELLER_NO = S.SELLER_NO
 JOIN PRODUCT_IMG PIMG ON PI.PRODUCT_NO = PIMG.PRODUCT_NO AND PIMG.THUMBNAIL_YN = 'Y'
 JOIN STATUS ST ON PI.STATUS_NO = ST.STATUS_NO
-WHERE PI.MEMBER_NO = 1
+WHERE PI.MEMBER_NO = ?
 AND PI.DELETED_YN = 'N'
 ORDER BY ASK_DATE DESC
 ;
 
+-- 상품문의 수정
+UPDATE PRODUCT_INQUIRY
+SET 
+    TITLE = #{title},
+    QUESTION_CONTENT = #{questionContent},
+    PRIVATE_YN = #{privateYn}
+WHERE PRODUCT_INQUIRY_NO = ${productInquiryNo}
+AND MEMBER_NO = ${memberNo}
 
 
 

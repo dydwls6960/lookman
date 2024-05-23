@@ -34,7 +34,8 @@ public class ProductInquiryQuestionEditController extends HttpServlet {
 			if (loginMemberVo == null) {
 				throw new Exception("로그인 되어있지 않습니다");
 			}
-
+			String source = req.getParameter("source");
+System.out.println(source);
 			String productInquiryNo = req.getParameter("productInquiryNo");
 			String productNo = req.getParameter("productNo");
 			String memberNo = req.getParameter("memberNo");
@@ -54,8 +55,14 @@ public class ProductInquiryQuestionEditController extends HttpServlet {
 			}
 
 			int result = pis.editInquiryQuestion(pivo);
-
+System.out.println(result);
 			if (result == 1) {
+				req.getSession().setAttribute("alertMsg", "수정 완료!");
+				
+				if (source.equals("member")) {
+					resp.sendRedirect("/app/member/product-inquiry");
+					return;
+				}
 				resp.sendRedirect("/app/products/" + productNo);
 			} else {
 				throw new Exception("상품문의 수정 실패.");

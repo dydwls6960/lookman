@@ -28,7 +28,7 @@ public class MemberProductInquiryController extends HttpServlet {
 			
 			List<ProductMemberInquiryDto> pidtoList = ms.selectProductInquiriesByMemberNo(loginMemberVo);
 			req.setAttribute("pageTitle", "상품문의");
-			req.setAttribute("pivoList", pidtoList);
+			req.setAttribute("pidtoList", pidtoList);
 			req.getRequestDispatcher("/WEB-INF/views/member/product-inquiry.jsp").forward(req, resp);
 			
 		} catch (Exception e) {

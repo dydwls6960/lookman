@@ -42,4 +42,49 @@
 			, #{questionContent}
 			, #{privateYn})
 	</update>
+	
+	<resultMap type="ProductMemberInquiryDto" id="ProductMemberInquiryDtoMap">
+		<result property="productInquiryNo" column="PRODUCT_INQUIRY_NO"/>
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="memberNo" column="MEMBER_NO"/>
+		<result property="memberName" column="MEMBER_NAME"/>
+		<result property="sellerNo" column="SELLER_NO"/>
+		<result property="sellerName" column="SELLER_NAME"/>
+		<result property="thumbnailFilename" column="THUMBNAIL_FILENAME"/>
+		<result property="status" column="STATUS"/>
+		<result property="title" column="TITLE"/>
+		<result property="questionContent" column="QUESTION_CONTENT"/>
+		<result property="responseContent" column="RESPONSE_CONTENT"/>
+		<result property="questionDate" column="QUESTION_DATE"/>
+		<result property="responseDate" column="RESPONSE_DATE"/>
+		<result property="privateYn" column="PRIVATE_YN"/>
+		<result property="deletedYn" column="DELETED_YN"/>
+	</resultMap>
+	
+	<select id="selectProductInquiriesByMemberNo" resultMap="ProductMemberInquiryDtoMap">
+		SELECT 
+		    PI.PRODUCT_INQUIRY_NO PRODUCT_INQUIRY_NO
+		    , PI.PRODUCT_NO PRODUCT_NO
+		    , PI.MEMBER_NO MEMBER_NO
+		    , M.NAME MEMBER_NAME
+		    , PI.SELLER_NO SELLER_NO
+		    , S.NAME SELLER_NAME
+		    , PIMG.FILENAME THUMBNAIL_FILENAME
+		    , ST.NAME STATUS
+		    , PI.TITLE TITLE
+		    , PI.QUESTION_CONTENT QUESTION_CONTENT
+		    , PI.RESPONSE_CONTENT RESPONSE_CONTENT
+		    , PI.ASK_DATE QUESTION_DATE
+		    , PI.RESPONSE_DATE
+		    , PI.PRIVATE_YN
+		    , PI.DELETED_YN
+		FROM PRODUCT_INQUIRY PI
+		JOIN MEMBER M ON PI.MEMBER_NO = M.MEMBER_NO
+		JOIN SELLER S ON PI.SELLER_NO = S.SELLER_NO
+		JOIN PRODUCT_IMG PIMG ON PI.PRODUCT_NO = PIMG.PRODUCT_NO AND PIMG.THUMBNAIL_YN = 'Y'
+		JOIN STATUS ST ON PI.STATUS_NO = ST.STATUS_NO
+		WHERE PI.MEMBER_NO = ${memberNo}
+		AND PI.DELETED_YN = 'N'
+		ORDER BY ASK_DATE DESC
+	</select>
 </mapper>

@@ -179,7 +179,7 @@ WHERE MEMBER_NO = ?
 
 
 --------------------------------------------------------
--- 배송지 관리 페이지
+-- 내 배송지 관리 페이지
 SELECT
     A.ADDRESS_NO
     , M.NAME MEMBER_NAME
@@ -233,7 +233,7 @@ WHERE ADDRESS_NO = 12
 
 
 --------------------------------------------------------
--- 리뷰 관리 페이지
+-- 내 리뷰 관리 페이지
 SELECT 
     R.REVIEW_NO,
     R.MEMBER_NO,
@@ -281,7 +281,57 @@ EDITED_DATE = SYSDATE
 WHERE REVIEW_NO = 2
 AND MEMBER_NO = 1
 ;
-commit;
+
+
+
+--------------------------------------------------------
+-- 내 상품문의 관리 페이지
+--	private String productInquiryNo;
+--	private String productNo;
+--	private String memberNo;
+--	private String memberName;
+--	private String sellerNo;
+--	private String sellerName;
+--	private String thumbnailFilename;
+--	private String status;
+--	private String title;
+--	private String questionContent;
+--	private String responseContent;
+--	private String questionDate;
+--	private String responseDate;
+--	private String privateYn;
+--	private String deletedYn;
+
+SELECT 
+    PI.PRODUCT_INQUIRY_NO PRODUCT_INQUIRY_NO
+    , PI.PRODUCT_NO PRODUCT_NO
+    , PI.MEMBER_NO MEMBER_NO
+    , M.NAME MEMBER_NAME
+    , PI.SELLER_NO SELLER_NO
+    , S.NAME SELLER_NAME
+    , PIMG.FILENAME THUMBNAIL_FILENAME
+    , ST.NAME STATUS
+    , PI.TITLE TITLE
+    , PI.QUESTION_CONTENT QUESTION_CONTENT
+    , PI.RESPONSE_CONTENT RESPONSE_CONTENT
+    , PI.ASK_DATE QUESTION_DATE
+    , PI.RESPONSE_DATE
+    , PI.PRIVATE_YN
+    , PI.DELETED_YN
+FROM PRODUCT_INQUIRY PI
+JOIN MEMBER M ON PI.MEMBER_NO = M.MEMBER_NO
+JOIN SELLER S ON PI.SELLER_NO = S.SELLER_NO
+JOIN PRODUCT_IMG PIMG ON PI.PRODUCT_NO = PIMG.PRODUCT_NO AND PIMG.THUMBNAIL_YN = 'Y'
+JOIN STATUS ST ON PI.STATUS_NO = ST.STATUS_NO
+WHERE PI.MEMBER_NO = 1
+AND PI.DELETED_YN = 'N'
+ORDER BY ASK_DATE DESC
+;
+
+
+
+
+
 --------------------------------------------------------
 -- 로그인 페이지
 SELECT * 

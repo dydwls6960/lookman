@@ -8,7 +8,9 @@
 	</settings>
 
 	<typeAliases>
-
+		<typeAlias
+			type="com.lookman.app.inquiry.dto.ProductMemberInquiryDto"
+			alias="ProductMemberInquiryDto" />
 	</typeAliases>
 
 	<environments default="development">

@@ -4,14 +4,19 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import static com.lookman.app.db.JDBCTemplate.commit;
 import static com.lookman.app.db.JDBCTemplate.getConnection;
 import static com.lookman.app.db.JDBCTemplate.rollback;
+import static com.lookman.app.db.SQLSessionTemplate.getSqlSession;
 
 import java.sql.Connection;
 import java.util.List;
 import java.util.regex.Pattern;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.lookman.app.address.dao.AddressDao;
 import com.lookman.app.address.dto.AddressDto;
 import com.lookman.app.address.vo.AddressVo;
+import com.lookman.app.inquiry.dao.ProductInquiryDao;
+import com.lookman.app.inquiry.dto.ProductMemberInquiryDto;
 import com.lookman.app.member.dao.MemberDao;
 import com.lookman.app.member.vo.MemberVo;
 import com.lookman.app.review.dao.ReviewDao;
@@ -22,11 +27,13 @@ public class MemberService {
 	private MemberDao memDao;
 	private AddressDao addDao;
 	private ReviewDao revDao;
+	private ProductInquiryDao piDao;
 
 	public MemberService() {
 		this.memDao = new MemberDao();
 		this.addDao = new AddressDao();
 		this.revDao = new ReviewDao();
+		this.piDao = new ProductInquiryDao();
 	}
 
 	public int join(MemberVo mvo, AddressVo avo) throws Exception {
@@ -186,10 +193,21 @@ public class MemberService {
 
 	public List<ReviewDto> selectReviewsByMemberNo(MemberVo loginMemberVo) throws Exception {
 		Connection conn = getConnection();
-		
+
 		List<ReviewDto> reviews = revDao.selectReviewsByMemberNo(conn, loginMemberVo);
 
 		return reviews;
+	}
+
+	public List<ProductMemberInquiryDto> selectProductInquiriesByMemberNo(MemberVo loginMemberVo) throws Exception {
+		SqlSession ss = getSqlSession();
+
+		List<ProductMemberInquiryDto> pidtoList = piDao.selectProductInquiriesByMemberNo(ss, loginMemberVo);
+
+		System.out.println("pivoList: " + pidtoList);
+		ss.close();
+
+		return pidtoList;
 	}
 
 }

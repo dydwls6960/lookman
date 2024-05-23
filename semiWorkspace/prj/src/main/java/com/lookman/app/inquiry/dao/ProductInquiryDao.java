@@ -9,7 +9,9 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lookman.app.inquiry.dto.ProductInquiryDto;
+import com.lookman.app.inquiry.dto.ProductMemberInquiryDto;
 import com.lookman.app.inquiry.vo.ProductInquiryVo;
+import com.lookman.app.member.vo.MemberVo;
 
 public class ProductInquiryDao {
 
@@ -69,6 +71,11 @@ public class ProductInquiryDao {
 
 	public int insertInquiry(SqlSession ss, ProductInquiryVo pivo) {
 		return ss.update("ProductInquiryMapper.insertProductInquiry", pivo);
+	}
+
+	public List<ProductMemberInquiryDto> selectProductInquiriesByMemberNo(SqlSession ss, MemberVo loginMemberVo) {
+
+		return ss.selectList("ProductInquiryMapper.selectProductInquiriesByMemberNo", loginMemberVo);
 	}
 
 }

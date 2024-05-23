@@ -18,14 +18,18 @@
 }
 
 .settings__name {
-	font-size: 12px;
+  font-size: 12px;
 }
 
 .settings__email {
-	font-weight: 700;
-	font-size: 16px;
+  font-weight: 700;
+  font-size: 16px;
 }
 
+.settings__phone {
+  font-size: 10px;
+  color: var(--color-med);
+}
 
 .settings__link {
   padding: 8px 16px;

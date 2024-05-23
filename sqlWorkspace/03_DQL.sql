@@ -329,10 +329,30 @@ SET
 WHERE PRODUCT_INQUIRY_NO = ${productInquiryNo}
 AND MEMBER_NO = ${memberNo}
 
-
-select *
-from product_inquiry
-where member_no = 1;
+-- 상품문의 삽입
+INSERT INTO PRODUCT_INQUIRY 
+    (PRODUCT_INQUIRY_NO
+    , MEMBER_NO
+    , SELLER_NO
+    , PRODUCT_NO
+    , STATUS_NO
+    , TITLE
+    , QUESTION_CONTENT
+    , PRIVATE_YN) 
+VALUES 
+    (SEQ_PRODUCT_INQUIRY.NEXTVAL
+    , ${memberNo}
+    , ${sellerNo}
+    , ${productNo}
+    , 10
+    , #{title}
+    , #{questionContent}
+    , #{privateYn})
+;
+--------------------------------------------------------
+-- 카테고리 페이지
+SELECT *
+FROM CATEGORY;
 
 
 --------------------------------------------------------

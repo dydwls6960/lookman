@@ -18,6 +18,7 @@ public class MemberSettingsController extends HttpServlet {
 		MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
 
 		if (loginMemberVo != null) {
+			req.setAttribute("loginMemberVo", loginMemberVo);
 			req.setAttribute("pageTitle", "내 설정"); // nav-with-header에서 사용
 			req.getRequestDispatcher("/WEB-INF/views/member/settings.jsp").forward(req, resp);
 		} else {

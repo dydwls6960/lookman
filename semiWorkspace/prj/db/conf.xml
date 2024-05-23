@@ -11,6 +11,8 @@
 		<typeAlias
 			type="com.lookman.app.inquiry.dto.ProductMemberInquiryDto"
 			alias="ProductMemberInquiryDto" />
+		<typeAlias type="com.lookman.app.category.vo.CategoryVo"
+			alias="CategoryVo" />
 	</typeAliases>
 
 	<environments default="development">
@@ -29,5 +31,6 @@
 	<mappers>
 		<mapper resource="/review-mapper.xml" />
 		<mapper resource="/product-inquiry-mapper.xml" />
+		<mapper resource="/category-mapper.xml" />
 	</mappers>
 </configuration>

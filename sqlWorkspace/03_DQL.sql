@@ -320,9 +320,19 @@ SET
     QUESTION_CONTENT = #{questionContent},
     PRIVATE_YN = #{privateYn}
 WHERE PRODUCT_INQUIRY_NO = ${productInquiryNo}
+AND MEMBER_NO = ${memberNo};
+
+-- 상품문의 삭제
+UPDATE PRODUCT_INQUIRY
+SET
+    DELETED_YN = 'Y'
+WHERE PRODUCT_INQUIRY_NO = ${productInquiryNo}
 AND MEMBER_NO = ${memberNo}
 
 
+select *
+from product_inquiry
+where member_no = 1;
 
 
 --------------------------------------------------------

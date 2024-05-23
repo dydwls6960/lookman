@@ -34,6 +34,7 @@ public class ProductInquiryDeleteController extends HttpServlet {
 				throw new Exception("로그인 되어있지 않습니다");
 			}
 
+			String source = req.getParameter("source");
 			String memberNo = req.getParameter("memberNo");
 			String productInquiryNo = req.getParameter("productInquiryNo");
 			String productNo = req.getParameter("productNo");
@@ -49,6 +50,12 @@ public class ProductInquiryDeleteController extends HttpServlet {
 
 			int result = pis.deleteInquiry(pivo);
 			if (result == 1) {
+				if (source != null && source.equals("member")) {
+					req.getSession().setAttribute("alertMsg", "삭제 성공!");
+					resp.sendRedirect("/app/member/product-inquiry");
+					return;
+				}
+				req.getSession().setAttribute("alertMsg", "삭제 성공!");
 				resp.sendRedirect("/app/products/" + productNo);
 			} else {
 				throw new Exception("문의 삭제 중 에러 발생했습니다.");

@@ -5,7 +5,6 @@ function returnHiddenInputElement(name, value) {
   inputEl.setAttribute("value", value);
   return inputEl;
 }
-
 document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
   const delBtns = document.querySelectorAll(".delete-btn");

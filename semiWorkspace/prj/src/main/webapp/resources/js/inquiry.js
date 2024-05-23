@@ -1,5 +1,52 @@
+function returnHiddenInputElement(name, value) {
+  const inputEl = document.createElement("input");
+  inputEl.setAttribute("type", "hidden");
+  inputEl.setAttribute("name", name);
+  inputEl.setAttribute("value", value);
+  return inputEl;
+}
 document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
+  const delBtns = document.querySelectorAll(".delete-btn");
+
+  // 삭제 버튼
+  delBtns.forEach((btn) => {
+    btn.addEventListener("click", () => {
+      const memberNo = btn.dataset.memberNo;
+      const productInquiryNo = btn.dataset.productInquiryNo;
+      const source = btn.dataset.source;
+      vex.dialog.confirm({
+        message: "삭제하시겠습니까?",
+        buttons: [
+          $.extend({}, vex.dialog.buttons.YES, { text: "삭제" }),
+          $.extend({}, vex.dialog.buttons.NO, { text: "취소" }),
+        ],
+        callback: function (data) {
+          if (data) {
+            const form = document.querySelector(".vex-dialog-form");
+            form.submit();
+          }
+        },
+        afterOpen: function () {
+          const form = document.querySelector(".vex-dialog-form");
+          form.setAttribute("method", "post");
+          form.setAttribute("action", "/app/inquiry/delete");
+          const memberInput = returnHiddenInputElement("memberNo", memberNo);
+          const sourceInput = returnHiddenInputElement("source", source);
+          const productInquiryNoInput = returnHiddenInputElement(
+            "productInquiryNo",
+            productInquiryNo
+          );
+
+          form
+            .querySelector(".vex-dialog-input")
+            .appendChild(productInquiryNoInput);
+          form.querySelector(".vex-dialog-input").appendChild(memberInput);
+          form.querySelector(".vex-dialog-input").appendChild(sourceInput);
+        },
+      });
+    });
+  });
 
   // 수정 버튼
   editBtns.forEach((btn) => {

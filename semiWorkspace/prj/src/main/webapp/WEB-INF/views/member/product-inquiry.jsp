@@ -50,7 +50,7 @@
 										data-private-yn="${inquiry.privateYn}" data-source="member">수정</button>
 									<button type="button" class="delete-btn"
 										data-product-inquiry-no="${inquiry.productInquiryNo}"
-										data-member-no="${inquiry.memberNo}">삭제</button>
+										data-member-no="${inquiry.memberNo}" data-source="member">삭제</button>
 								</div>
 							</div>
 						</div>

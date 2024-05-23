@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ProductMapper">
+
+	<resultMap type="ProductByCategoryDto" id="ProductByCategoryDtoMap">
+		<result property="productNo" column="PRODUCT_NO"/>
+		<result property="price" column="PRICE"/>
+		<result property="sellerName" column="SELLER_NAME"/>
+		<result property="productName" column="PRODUCT_NAME"/>
+		<result property="thumbnailFilename" column="FILENAME"/>
+		<result property="categoryName" column="CATEGORY_NAME"/>
+		<result property="avgRating" column="AVG_RATING"/>
+		<result property="reviewCnt" column="REVIEW_CNT"/>
+	</resultMap>
+
+	<select id="selectProductByCategoryNo" resultMap="ProductByCategoryDtoMap">
+		SELECT 
+		    P.PRODUCT_NO, 
+		    TO_CHAR(P.PRICE, '999,999,999') PRICE,  
+		    S.NAME SELLER_NAME,
+		    P.NAME PRODUCT_NAME, 
+		    PI.FILENAME, 
+		    C.NAME CATEGORY_NAME,
+		    NVL(ROUND(AVG(R.RATING), 1), 0) AVG_RATING, 
+		    COUNT(R.RATING) REVIEW_CNT
+		FROM PRODUCT P
+		LEFT JOIN REVIEW R ON P.PRODUCT_NO = R.PRODUCT_NO
+		JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO
+		JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO
+		JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO
+		WHERE PI.THUMBNAIL_YN = 'Y'
+		    AND P.DELETED_YN = 'N' 
+		    AND PI.DELETED_YN = 'N'
+		    AND P.CATEGORY_NO = #{categoryNo}
+		GROUP BY P.PRODUCT_NO, P.PRICE, S.NAME, P.NAME, PI.FILENAME, C.NAME
+		ORDER BY P.PRODUCT_NO DESC
+	</select>
+	
+</mapper>

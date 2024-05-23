@@ -4,15 +4,19 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import static com.lookman.app.db.JDBCTemplate.commit;
 import static com.lookman.app.db.JDBCTemplate.getConnection;
 import static com.lookman.app.db.JDBCTemplate.rollback;
+import static com.lookman.app.db.SQLSessionTemplate.getSqlSession;
 
 import java.sql.Connection;
 import java.util.List;
+
+import org.apache.ibatis.session.SqlSession;
 
 import com.lookman.app.image.dao.ImageDao;
 import com.lookman.app.image.vo.ImageVo;
 import com.lookman.app.inquiry.dao.ProductInquiryDao;
 import com.lookman.app.inquiry.dto.ProductInquiryDto;
 import com.lookman.app.product.dao.ProductDao;
+import com.lookman.app.product.dto.ProductByCategoryDto;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.dto.ProductHomeDto;
 import com.lookman.app.product.vo.ProductVo;
@@ -94,7 +98,7 @@ public class ProductService {
 			// 리뷰들
 			reviews = revDao.getReviewsByProductNo(conn, productNo);
 			dto.setReviews(reviews);
-			
+
 			// 문의사항
 			inquiries = inqDao.getInquiriesByProductNo(conn, productNo);
 			dto.setInquiries(inquiries);
@@ -113,6 +117,13 @@ public class ProductService {
 		}
 
 		return dto;
+	}
+
+	public List<ProductByCategoryDto> selectProductByCategoryNo(String categoryNo) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<ProductByCategoryDto> dtoList = dao.selectProductByCategoryNo(ss, categoryNo);
+		ss.close();
+		return dtoList;
 	}
 
 }

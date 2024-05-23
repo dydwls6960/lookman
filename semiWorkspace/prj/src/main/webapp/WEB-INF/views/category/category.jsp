@@ -17,7 +17,7 @@
         <main class="main main-category">
           <div class="catagory__container">
             <c:forEach items="${requestScope.cvoList}" var="cvo">
-              <a href="/app/member/edit" class="category__item">${cvo.name}</a>
+              <a href="/app/search-by-category?categoryNo=${cvo.categoryNo}" class="category__item">${cvo.name}</a>
             </c:forEach>
           </div>
         </main>

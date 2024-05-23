@@ -5,10 +5,12 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
+import com.lookman.app.product.dto.ProductByCategoryDto;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.dto.ProductHomeDto;
 import com.lookman.app.product.vo.ProductVo;
@@ -166,6 +168,10 @@ public class ProductDao {
 		close(pstmt);
 
 		return result;
+	}
+
+	public List<ProductByCategoryDto> selectProductByCategoryNo(SqlSession ss, String categoryNo) {
+		return ss.selectList("ProductMapper.selectProductByCategoryNo", categoryNo);
 	}
 
 }

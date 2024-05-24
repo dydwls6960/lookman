@@ -9,6 +9,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.lookman.app.seller.service.SellerService;
+import com.lookman.app.seller.vo.SellerVo;
+
 @WebServlet("/seller/login")
 public class SellerLoginController extends HttpServlet{
 	@Override
@@ -18,31 +21,27 @@ public class SellerLoginController extends HttpServlet{
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
-			//세션
 			HttpSession session = req.getSession();
 			
-			//데이터 꺼내기
-			String id = req.getParameter("id");
-			String pwd = req.getParameter("pwd");
+			String accName = req.getParameter("sellerId");
+			String pwd = req.getParameter("sellerPwd");
 			
-			//데이터 뭉치기
 			SellerVo vo=new SellerVo();
-			vo.setId(id);
+			vo.setAccName(accName);
 			vo.setPwd(pwd);
 			
-			//복작한 작업
-			SellerService ms=new SellerService();
-			SellerVo loginSellerVo = ms.login(vo);
+			SellerService ss=new SellerService();
+			SellerVo loginSellerVo = ss.login(vo);
 			
 			
 			if(loginSellerVo != null) {
 				session.setAttribute("alertMsg", "로그인 성공 !!!");
 				session.setAttribute("loginSellerVo", loginSellerVo);
 			}else {
-
-				session.setAttribute("alertMsg", "로그인 실패...");
+				session.setAttribute("alertMsg", "로그인 실패...");				
 			}
 			resp.sendRedirect("/app/seller/home");
+			
 		}catch (Exception e) {
 			e.printStackTrace();
 			req.setAttribute("errMsg", "[ERROR-M0002]로그인 중 에러 발생...");

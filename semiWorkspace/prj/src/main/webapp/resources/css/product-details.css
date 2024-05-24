@@ -163,6 +163,14 @@
   }
 }
 
+.close-btn {
+  background-color: var(--color-white);
+  border: none;
+  padding: 0;
+  color: var(--color-dark);
+  cursor: pointer;
+}
+
 /* REVIEW SECTION */
 .review__item {
   display: flex;

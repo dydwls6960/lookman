@@ -76,7 +76,7 @@
                       <input type="text" name="item-quantity" class="item-quantity" value="1" maxlength="3">
                       <div class="item-price-close-container">
                         <span>18,900원</span>
-                        <button>x</button>
+                        <button class="close-btn">&times; </button>
                       </div>
                     </div>
                     <div class="details__action--item">
@@ -84,7 +84,7 @@
                       <input type="text" name="item-quantity" class="item-quantity" value="1" maxlength="3">
                       <div class="item-price-close-container">
                         <span>28,900원</span>
-                        <button>x</button>
+                        <button class="close-btn">&times; </button>
                       </div>
                     </div>
                   </div>

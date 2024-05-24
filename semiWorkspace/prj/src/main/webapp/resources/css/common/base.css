@@ -19,6 +19,8 @@
   --bp-md: 650px;
   --bp-sm: 400px;
 
+  --max-width: 896px;
+
   --font-family: "Noto Sans KR", sans-serif;
   --font-color: #333333;
 
@@ -54,7 +56,7 @@ body {
   gap: 24px;
 
   min-height: 100vh;
-  max-width: 896px;
+  max-width: var(--max-width);
 }
 
 /* GRID 그리드 레이아웃 */

@@ -56,28 +56,47 @@
               </div>
             </div>
             <div class="details__action">
-              <div class="details__action--options">
-                <select name="color" id="color" class="option-select">
-                  <option value="" disabled selected>옵션 선택</option>
-                  <option value="1">검정</option>
-                  <option value="2">빨강</option>
-                  <option value="3">파랑</option>
-                </select>
-                <select name="size" id="size" class="option-select">
-                  <option value="" disabled selected>옵션 선택</option>
-                  <option value="1">S</option>
-                  <option value="2">M</option>
-                  <option value="3">L</option>
-                </select>
-                <div class="details__action--items">
-                  <span>검정, S</span>
-                  <input type="text" name="item-quantity" class="item-quantity" value="1" maxlength="3">
-                  <div class="item-price-close-container">
-                    <span>18,900원</span>
-                    <button>x</button>
+              <div class="details__action--upper">
+                <div class="details__action--options">
+                  <select name="color" id="color" class="option-select">
+                    <option value="" disabled selected>옵션 선택</option>
+                    <option value="1">검정</option>
+                    <option value="2">빨강</option>
+                    <option value="3">파랑</option>
+                  </select>
+                  <select name="size" id="size" class="option-select">
+                    <option value="" disabled selected>옵션 선택</option>
+                    <option value="1">S</option>
+                    <option value="2">M</option>
+                    <option value="3">L</option>
+                  </select>
+                  <div class="details__action--items">
+                    <div class="details__action--item">
+                      <span>검정, S</span>
+                      <input type="text" name="item-quantity" class="item-quantity" value="1" maxlength="3">
+                      <div class="item-price-close-container">
+                        <span>18,900원</span>
+                        <button>x</button>
+                      </div>
+                    </div>
+                    <div class="details__action--item">
+                      <span>빨강, L</span>
+                      <input type="text" name="item-quantity" class="item-quantity" value="1" maxlength="3">
+                      <div class="item-price-close-container">
+                        <span>28,900원</span>
+                        <button>x</button>
+                      </div>
+                    </div>
                   </div>
                 </div>
+                <div class="details__action--total">
+                  <span class="total-label">총 상품 금액</span>
+
+                  <span class="total-price">47,800원</span>
+                </div>
               </div>
+
+
               <div class="details__action--buttons">
                 <button class="buy-btn">구매</button>
                 <button class="fav-btn"><svg width="24" height="24" viewBox="0 0 24 24" fill="none"

@@ -16,6 +16,6 @@ public class AdminLoginController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		req.getRequestDispatcher("/WEB-INF/views/admin/home.jsp").forward(req, resp);
 	}
 }

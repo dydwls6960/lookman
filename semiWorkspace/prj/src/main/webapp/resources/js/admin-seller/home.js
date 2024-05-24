@@ -44,3 +44,27 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   });
 });
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  const clickableElements = document.querySelectorAll('.clickable');
+  const dropdownMenu = document.getElementById('dropdown-menu');
+  const divIcon = document.getElementById('div-icon');
+
+  clickableElements.forEach(element => {
+    element.addEventListener('click', (event) => {
+      event.preventDefault(); // 링크 클릭으로 인한 페이지 이동 방지
+      const rect = divIcon.getBoundingClientRect();
+      dropdownMenu.style.display = dropdownMenu.style.display === 'block' ? 'none' : 'block';
+      dropdownMenu.style.width = rect.width + 'px';
+      dropdownMenu.style.top = rect.bottom + 'px';
+      dropdownMenu.style.left = rect.left + 'px';
+    });
+  });
+
+  document.addEventListener('click', (event) => {
+    if (!divIcon.contains(event.target) && !dropdownMenu.contains(event.target)) {
+      dropdownMenu.style.display = 'none';
+    }
+  });
+});
+

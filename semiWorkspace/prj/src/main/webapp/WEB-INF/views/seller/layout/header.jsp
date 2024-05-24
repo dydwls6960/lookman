@@ -7,7 +7,7 @@
 		    </span>
 		    <a style="font-size:30px;cursor:pointer;" href="/app/seller/home"><img src="/app/resources/img/logo.svg"></a>
 	      <span id="div-icon">
-			<a href="/app/home"><img src="/app/resources/img/icon__home.svg"></a>
+			<a href="/app/home"><img src="/app/resources/img/favicon/favicon-16x16.png" style="width: 24px; height: 24px;"></a>
 			<a class="clickable sellerInfo"><img src="/app/resources/img/icon__profile.svg"></a>
 			<a href="#"><img src="/app/resources/img/icon__settings.svg"></a>
 		  </span>

@@ -5,6 +5,43 @@
 }
 
 
+/*--------------------------------------*/
+#div-icon {
+  display: flex;
+  gap: 10px;
+  margin-left: auto; 
+  white-space: nowrap; 
+  overflow: hidden; 
+  text-overflow: ellipsis; 
+}
+
+#div-icon a:hover {
+  cursor: pointer;
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  background-color: white;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  width: auto;
+  border: 1px solid #ccc;
+}
+
+.dropdown-menu a {
+  padding: 12px 16px;
+  font-size: 10px;
+  text-decoration: none;
+  display: block;
+  color: black;
+}
+
+.dropdown-menu a:hover {
+  background-color: #f1f1f1;
+}
+/*--------------------------------------*/
+
 #addr,#search-result-total{
 	font-size: 15px;
 	color: gray;

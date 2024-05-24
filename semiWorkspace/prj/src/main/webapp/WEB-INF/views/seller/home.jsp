@@ -62,7 +62,7 @@
     	<div id="second">
     		<div id="s-title">
 			    <span><span id="b-g">&#10073;</span> 상품내역</span>
-			    <a href="#">상품내역 바로가기</a>
+			    <a href="/app/seller/home/product/list">상품내역 바로가기</a>
     		</div>
     		<div>
     			<table id="userInquiry" class="userList">
@@ -105,7 +105,7 @@
     	<div id="third">
     		<div id="t-title">
 			    <span><span id="b-g">&#10073;</span> 상품 문의내역</span>
-			    <a href="#">상품문의 바로가기</a>
+			    <a href="/app/seller/home/product/inquiry">상품문의 바로가기</a>
     		</div>
     		<div>
     			<table id="userDeclaration" class="userList">
@@ -148,7 +148,7 @@
     	<div id="four">
     		<div id="f-title">
 			    <span><span id="b-g">&#10073;</span> 간단 주문내역</span>
-			    <a href="#">주문내역 바로가기</a>
+			    <a href="/app/seller/home/order/list">주문내역 바로가기</a>
     		</div>
     		<div>
     			<table id="userDeclaration" class="userList">

@@ -99,6 +99,11 @@
   white-space: nowrap; 
   overflow: hidden; 
   text-overflow: ellipsis; 
+  
+}
+
+#div-icon a:hover, #div-icon .clickable:hover {
+  cursor: pointer;
 }
 
 /* 기본적으로 숨겨진 상태로 설정 */

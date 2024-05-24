@@ -1,6 +1,6 @@
 package com.lookman.app.product.dto;
 
-public class ProductByCategoryDto {
+public class ProductByDto {
 	private String productNo;
 	private String price;
 	private String sellerName;
@@ -10,10 +10,10 @@ public class ProductByCategoryDto {
 	private String reviewCnt;
 	private String categoryName;
 
-	public ProductByCategoryDto() {
+	public ProductByDto() {
 	}
 
-	public ProductByCategoryDto(String productNo, String price, String sellerName, String productName,
+	public ProductByDto(String productNo, String price, String sellerName, String productName,
 			String thumbnailFilename, String avgRating, String reviewCnt, String categoryName) {
 		this.productNo = productNo;
 		this.price = price;

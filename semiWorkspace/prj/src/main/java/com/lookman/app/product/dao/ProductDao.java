@@ -10,7 +10,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
-import com.lookman.app.product.dto.ProductByCategoryDto;
+import com.lookman.app.product.dto.ProductByDto;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.dto.ProductHomeDto;
 import com.lookman.app.product.vo.ProductVo;
@@ -170,8 +170,12 @@ public class ProductDao {
 		return result;
 	}
 
-	public List<ProductByCategoryDto> selectProductByCategoryNo(SqlSession ss, String categoryNo) {
+	public List<ProductByDto> selectProductByCategoryNo(SqlSession ss, String categoryNo) {
 		return ss.selectList("ProductMapper.selectProductByCategoryNo", categoryNo);
+	}
+
+	public List<ProductByDto> selectProductBySellerNo(SqlSession ss, String sellerNo) {
+		return ss.selectList("ProductMapper.selectProductBySellerNo", sellerNo);
 	}
 
 }

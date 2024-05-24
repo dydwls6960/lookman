@@ -16,7 +16,7 @@ import com.lookman.app.image.vo.ImageVo;
 import com.lookman.app.inquiry.dao.ProductInquiryDao;
 import com.lookman.app.inquiry.dto.ProductInquiryDto;
 import com.lookman.app.product.dao.ProductDao;
-import com.lookman.app.product.dto.ProductByCategoryDto;
+import com.lookman.app.product.dto.ProductByDto;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.dto.ProductHomeDto;
 import com.lookman.app.product.vo.ProductVo;
@@ -119,9 +119,16 @@ public class ProductService {
 		return dto;
 	}
 
-	public List<ProductByCategoryDto> selectProductByCategoryNo(String categoryNo) throws Exception {
+	public List<ProductByDto> selectProductByCategoryNo(String categoryNo) throws Exception {
 		SqlSession ss = getSqlSession();
-		List<ProductByCategoryDto> dtoList = dao.selectProductByCategoryNo(ss, categoryNo);
+		List<ProductByDto> dtoList = dao.selectProductByCategoryNo(ss, categoryNo);
+		ss.close();
+		return dtoList;
+	}
+
+	public List<ProductByDto> selectProductBySellerNo(String sellerNo) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<ProductByDto> dtoList = dao.selectProductBySellerNo(ss, sellerNo);
 		ss.close();
 		return dtoList;
 	}

@@ -12,29 +12,26 @@ import javax.servlet.http.HttpServletResponse;
 import com.lookman.app.product.dto.ProductByDto;
 import com.lookman.app.product.service.ProductService;
 
-@WebServlet("/search-by-category")
-public class ProductSearchCategoryController extends HttpServlet {
+@WebServlet("/search-by-store")
+public class ProductSearchSellerController extends HttpServlet {
 	private final ProductService ps;
 
-	public ProductSearchCategoryController() {
+	public ProductSearchSellerController() {
 		this.ps = new ProductService();
 	}
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-
 		try {
-			String categoryNo = req.getParameter("categoryNo");
-			List<ProductByDto> dtoList = ps.selectProductByCategoryNo(categoryNo);
+			String sellerNo = req.getParameter("sellerNo");
+			List<ProductByDto> dtoList = ps.selectProductBySellerNo(sellerNo);
 			req.setAttribute("dtoList", dtoList);
-			req.getRequestDispatcher("/WEB-INF/views/product/product-by-category.jsp").forward(req, resp);
-
+			req.getRequestDispatcher("/WEB-INF/views/product/product-by-seller.jsp").forward(req, resp);
 		} catch (Exception e) {
-			e.printStackTrace();
 			System.out.println(e.getMessage());
+			e.printStackTrace();
 			req.setAttribute("errMsg", e.getMessage());
 			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
 		}
-
 	}
 }

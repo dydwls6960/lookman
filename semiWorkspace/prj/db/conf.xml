@@ -15,8 +15,8 @@
 			alias="CategoryVo" />
 
 		<typeAlias
-			type="com.lookman.app.product.dto.ProductByCategoryDto"
-			alias="ProductByCategoryDto" />
+			type="com.lookman.app.product.dto.ProductByDto"
+			alias="ProductByDto" />
 
 		<typeAlias type="com.lookman.app.seller.vo.SellerVo"
 			alias="SellerVo" />

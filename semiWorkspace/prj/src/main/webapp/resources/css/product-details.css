@@ -69,6 +69,7 @@
   display: grid;
   grid-template-columns: 6fr 1fr 1fr;
   text-wrap: nowrap;
+  gap: 4px;
 }
 
 .details__action--options {
@@ -90,6 +91,52 @@
 
 .item-price-close-container {
   margin-left: auto;
+}
+
+/* BUTTONS */
+.details__action--buttons {
+  & button:hover {
+    cursor: pointer;
+  }
+}
+
+.buy-btn {
+  border: none;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  font-weight: 700;
+  font-size: 14px;
+  border-radius: var(--base-border-radius);
+  padding: 8px;
+}
+
+.fav-btn,
+.cart-btn {
+  border: 1px solid var(--color-med);
+  border-radius: var(--base-border-radius);
+  background-color: var(--color-white);
+  & svg {
+    & path {
+      fill: var(--color-med);
+    }
+  }
+}
+
+.fav-btn:hover,
+.cart-btn:hover {
+  background-color: var(--color-med);
+  & path {
+    fill: var(--color-white);
+  }
+}
+
+.fav-btn:active,
+.cart-btn:active {
+  background-color: var(--color-dark);
+  border-color: var(--color-dark);
+  & path {
+    fill: var(--color-white);
+  }
 }
 
 /* REVIEW SECTION */

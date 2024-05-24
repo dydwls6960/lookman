@@ -380,6 +380,14 @@ ORDER BY P.PRODUCT_NO DESC
 ;
 
 --------------------------------------------------------
+-- 스토어 페이지
+SELECT SELLER_NO, NAME, INFO
+FROM SELLER
+WHERE DELETED_YN = 'N';
+
+
+
+--------------------------------------------------------
 -- 로그인 페이지
 SELECT * 
 FROM MEMBER 

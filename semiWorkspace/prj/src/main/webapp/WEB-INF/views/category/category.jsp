@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>Lookman | 내 설정</title>
+    <title>카테고리</title>
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
       <link rel="stylesheet" href="/app/resources/css/common/nav.css">
       <link rel="stylesheet" href="/app/resources/css/category.css">

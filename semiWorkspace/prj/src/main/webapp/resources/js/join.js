@@ -134,7 +134,7 @@ function validateForm(e) {
     return;
   }
 
-  // 주소 형식 검사
+  // 주소 검사
   const postcodeInput = document.querySelector("#postcode").value;
   const addressInput = document.querySelector("#address").value;
   if (!postcodeInput || !addressInput) {

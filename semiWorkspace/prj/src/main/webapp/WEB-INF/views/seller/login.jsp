@@ -11,7 +11,7 @@
 	<div class="container">
 	   	<%@ include file="/WEB-INF/views/admin-seller/layout/login/nav.jsp" %>
 	   	<main>		
-		   	<form action="/admin/login" method="post" class="form-login">
+		   	<form action="/app/seller/login" method="post" class="form-login">
 		       <div class="seller-fields">
 		           <input type="email" name="sellerId" id="sellerId" placeholder="판매자 아이디 (이메일)">
 		           <input type="password" name="sellerPwd" id="sellerPwd" placeholder="판매자 비밀번호">

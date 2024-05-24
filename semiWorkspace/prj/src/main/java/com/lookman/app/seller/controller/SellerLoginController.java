@@ -16,6 +16,6 @@ public class SellerLoginController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		req.getRequestDispatcher("/WEB-INF/views/seller/home.jsp").forward(req, resp);
 	}
 }

@@ -10,9 +10,45 @@ document.addEventListener("DOMContentLoaded", () => {
   const editBtns = document.querySelectorAll(".edit-btn");
   const delBtns = document.querySelectorAll(".delete-btn");
   const addBtn = document.querySelector(".add-btn");
-
   const colorSelect = document.querySelector("#color");
-  console.log(colorSelect);
+  const sizeSelect = document.querySelector("#size");
+  colorSelect.addEventListener("change", (e) => {
+    const colorNo = colorSelect.value;
+    const productNo = colorSelect.dataset.productNo;
+
+    $.ajax({
+      url: "/app/get-size",
+      data: { colorNo, productNo },
+      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
+      success: (data) => {
+        // reset sizeSelect
+        sizeSelect.innerHTML = "";
+
+        // placeholder
+        const placeholderEl = document.createElement("option");
+        placeholderEl.value = "";
+        placeholderEl.setAttribute("disabled", "");
+        placeholderEl.setAttribute("selected", "");
+        placeholderEl.textContent = "옵션 선택";
+        sizeSelect.appendChild(placeholderEl);
+
+        data.forEach((dto) => {
+          // append options to sizeSelect
+          const optionEl = document.createElement("option");
+          optionEl.value = dto.sizeNo;
+          optionEl.textContent = dto.sizeName;
+          if (optionEl.inventoryQuantity < 1) {
+            optionEl.setAttribute("disabled", "");
+          }
+
+          sizeSelect.appendChild(optionEl);
+        });
+      },
+      error: (err) => {
+        console.log(err);
+      },
+    });
+  });
 
   if (addBtn) {
     // 질문 추가 버튼

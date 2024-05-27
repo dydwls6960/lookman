@@ -8,12 +8,13 @@ public class ProductInventoryDto {
 	private String sizeNo;
 	private String sizeName;
 	private String inventoryQuantity;
+	private String productPrice;
 
 	public ProductInventoryDto() {
 	}
 
 	public ProductInventoryDto(String inventoryNo, String productNo, String colorNo, String colorName, String sizeNo,
-			String sizeName, String inventoryQuantity) {
+			String sizeName, String inventoryQuantity, String productPrice) {
 		this.inventoryNo = inventoryNo;
 		this.productNo = productNo;
 		this.colorNo = colorNo;
@@ -21,6 +22,7 @@ public class ProductInventoryDto {
 		this.sizeNo = sizeNo;
 		this.sizeName = sizeName;
 		this.inventoryQuantity = inventoryQuantity;
+		this.productPrice = productPrice;
 	}
 
 	public String getInventoryNo() {
@@ -79,11 +81,19 @@ public class ProductInventoryDto {
 		this.inventoryQuantity = inventoryQuantity;
 	}
 
+	public String getProductPrice() {
+		return productPrice;
+	}
+
+	public void setProductPrice(String productPrice) {
+		this.productPrice = productPrice;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductInventoryDto [inventoryNo=" + inventoryNo + ", productNo=" + productNo + ", colorNo=" + colorNo
 				+ ", colorName=" + colorName + ", sizeNo=" + sizeNo + ", sizeName=" + sizeName + ", inventoryQuantity="
-				+ inventoryQuantity + "]";
+				+ inventoryQuantity + ", productPrice=" + productPrice + "]";
 	}
 
 }

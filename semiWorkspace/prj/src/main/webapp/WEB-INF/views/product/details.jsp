@@ -58,7 +58,7 @@
             <div class="details__action">
               <div class="details__action--upper">
                 <div class="details__action--options">
-                  <select name="color" id="color" class="option-select">
+                  <select name="color" id="color" class="option-select" data-product-no="${requestScope.dto.productNo}">
                     <option value="" disabled selected>옵션 선택</option>
                     <c:forEach var="idto" items="${requestScope.dto.inventoryDetails}">                    
                     	<option value="${idto.colorNo}">${idto.colorName}</option>
@@ -66,9 +66,11 @@
                   </select>
                   <select name="size" id="size" class="option-select">
                     <option value="" disabled selected>옵션 선택</option>
+                    <%-- 
                     <c:forEach var="idto" items="${requestScope.dto.inventoryDetails}">                    
                     	<option value="${idto.sizeNo}">${idto.sizeName}</option>
                     </c:forEach>
+                    --%>
                   </select>
                   <div class="details__action--items">
                     <div class="details__action--item">

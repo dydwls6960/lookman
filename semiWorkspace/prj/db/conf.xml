@@ -14,9 +14,11 @@
 		<typeAlias type="com.lookman.app.category.vo.CategoryVo"
 			alias="CategoryVo" />
 
-		<typeAlias
-			type="com.lookman.app.product.dto.ProductByDto"
+		<typeAlias type="com.lookman.app.product.dto.ProductByDto"
 			alias="ProductByDto" />
+		<typeAlias
+			type="com.lookman.app.product.dto.ProductInventoryDto"
+			alias="ProductInventoryDto" />
 
 		<typeAlias type="com.lookman.app.seller.vo.SellerVo"
 			alias="SellerVo" />
@@ -41,5 +43,6 @@
 		<mapper resource="/category-mapper.xml" />
 		<mapper resource="/product-mapper.xml" />
 		<mapper resource="/store-mapper.xml" />
+		<mapper resource="/inventory-mapper.xml" />
 	</mappers>
 </configuration>

@@ -181,7 +181,7 @@ public class ProductDao {
 	}
 
 	public List<ProductInventoryDto> getProductInventoryDetails(Connection conn, String productNo) throws SQLException {
-		String sql = "SELECT I.INVENTORY_NO, I.PRODUCT_NO, I.COLOR_NO, C.NAME COLOR_NAME, I.SIZE_NO, PS.NAME SIZE_NAME, I.QUANTITY INVENTORY_QUANTITY FROM INVENTORY I JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO WHERE I.PRODUCT_NO = ?";
+		String sql = "SELECT I.INVENTORY_NO, I.PRODUCT_NO, I.COLOR_NO, C.NAME COLOR_NAME, I.SIZE_NO, PS.NAME SIZE_NAME, I.QUANTITY INVENTORY_QUANTITY, TO_CHAR(P.PRICE, '999,999,999') PRODUCT_PRICE FROM INVENTORY I JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO JOIN PRODUCT P ON I.PRODUCT_NO = P.PRODUCT_NO WHERE I.PRODUCT_NO = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, productNo);
 		ResultSet rs = pstmt.executeQuery();
@@ -195,6 +195,7 @@ public class ProductDao {
 			String sizeNo = rs.getString("SIZE_NO");
 			String sizeName = rs.getString("SIZE_NAME");
 			String inventoryQuantity = rs.getString("INVENTORY_QUANTITY");
+			String productPrice = rs.getString("PRODUCT_PRICE");
 			ProductInventoryDto dto = new ProductInventoryDto();
 			dto.setInventoryNo(inventoryNo);
 			dto.setProductNo(prodNo);
@@ -203,6 +204,7 @@ public class ProductDao {
 			dto.setSizeNo(sizeNo);
 			dto.setSizeName(sizeName);
 			dto.setInventoryQuantity(inventoryQuantity);
+			dto.setProductPrice(productPrice);
 			inventoryDetails.add(dto);
 		}
 

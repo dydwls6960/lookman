@@ -99,7 +99,6 @@ public class ProductService {
 			// 재고 정보
 			List<ProductInventoryDto> inventoryDetails = dao.getProductInventoryDetails(conn, productNo);
 			dto.setInventoryDetails(inventoryDetails);
-			System.out.println("inv details: " + inventoryDetails);
 
 			// 리뷰들
 			reviews = revDao.getReviewsByProductNo(conn, productNo);

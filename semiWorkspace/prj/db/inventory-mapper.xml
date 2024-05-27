@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="InventoryMapper">
+
+	<resultMap type="ProductInventoryDto" id="ProductInventoryDtoMap">
+		<result property="inventoryNo" column="INVENTORY_NO"/>
+		<result property="sizeNo" column="SIZE_NO"/>
+		<result property="sizeName" column="SIZE_NAME"/>
+		<result property="inventoryQuantity" column="QUANTITY"/>
+	</resultMap>
+	
+	<select id="getSizeOptions" resultMap="ProductInventoryDtoMap">
+		SELECT I.INVENTORY_NO, I.SIZE_NO, PS.NAME SIZE_NAME, I.QUANTITY
+		FROM INVENTORY I
+		JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO 
+		JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO
+		WHERE I.COLOR_NO = #{colorNo}
+		AND I.PRODUCT_NO = #{productNo}
+	</select>
+
+</mapper>

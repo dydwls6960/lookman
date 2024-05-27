@@ -82,14 +82,16 @@ document.addEventListener("DOMContentLoaded", () => {
     updateTotalPrice();
 
     // 갯수 변화
-    // TODO: function to listen to quantity change
     quantityEl.addEventListener("input", () => {
       updateOrderPrice(actionItem);
       updateTotalPrice();
     });
+    // TODO: function to listen to close-btn click
+    closeBtnEl.addEventListener("click", () => {
+      actionItem.remove();
+      updateTotalPrice();
+    });
   });
-
-  // TODO: function to listen to close-btn click
 
   function updateOrderPrice(item) {
     const quantity = item.querySelector(".item-quantity").value;

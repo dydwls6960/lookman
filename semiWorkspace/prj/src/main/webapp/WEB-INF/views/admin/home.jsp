@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Lookman관리자페이지</title>
 <%@ include file="/WEB-INF/views/admin-seller/layout/home/util.jsp" %>
+<%@ include file="/WEB-INF/views/admin-seller/layout/alert.jsp" %>
 </head>
 
 <body>

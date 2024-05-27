@@ -6,6 +6,9 @@
 <meta charset="UTF-8">
 <title>관리자 로그인</title>
 <%@ include file="/WEB-INF/views/admin-seller/layout/login/util.jsp" %>
+<%@ include file="/WEB-INF/views/admin-seller/layout/alert.jsp" %>
+
+<c:remove var="alertMsg" scope="session" />
 </head>
 <body>
 	<div class="container">

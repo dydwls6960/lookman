@@ -79,7 +79,7 @@
                 <div class="details__action--total">
                   <span class="total-label">총 상품 금액</span>
 
-                  <span class="total-price">47,800원</span>
+                  <span class="total-price">0원</span>
                 </div>
               </div>
 

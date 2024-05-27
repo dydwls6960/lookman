@@ -46,6 +46,7 @@ document.addEventListener("DOMContentLoaded", () => {
     priceCloseContainer.classList.add("item-price-close-container");
     const priceSpanEl = document.createElement("span");
     priceSpanEl.textContent = price + "원";
+    priceSpanEl.classList.add("order-price");
     const closeBtnEl = document.createElement("button");
     closeBtnEl.classList.add("close-btn");
     closeBtnEl.innerHTML = "&times;";
@@ -57,10 +58,26 @@ document.addEventListener("DOMContentLoaded", () => {
     actionItem.appendChild(quantityEl);
     actionItem.appendChild(priceCloseContainer);
     actionItem.setAttribute("data-inventory-no", inventoryNo);
+    actionItem.setAttribute("data-price", price);
 
     // append to items container
     actionItemsContainer.appendChild(actionItem);
+
+    updateTotalPrice();
   });
+
+  function updateTotalPrice() {
+    let totalPrice = 0;
+    const actionItems = document.querySelectorAll(".details__action--item");
+    actionItems.forEach((item) => {
+      const quantity = item.querySelector(".item-quantity").value;
+      const price = item.dataset.price.replace(",", "");
+
+      totalPrice = quantity * price;
+    });
+    const totalPriceSpan = document.querySelector(".total-price");
+    totalPriceSpan.textContent = `${totalPrice.toLocaleString()}원`;
+  }
 
   // 상품 색상 옵션 선택
   colorSelect.addEventListener("change", (e) => {
@@ -277,7 +294,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 싱품 수량 input type="text"인데, text 못넣고 숫자만 넣게 하기
   const itemQuantityInput = document.querySelector(".item-quantity");
-  itemQuantityInput.addEventListener("input", (e) => {
-    itemQuantityInput.value = itemQuantityInput.value.replace(/[^0-9]/g, "");
-  });
+  if (itemQuantityInput) {
+    itemQuantityInput.addEventListener("input", (e) => {
+      itemQuantityInput.value = itemQuantityInput.value.replace(/[^0-9]/g, "");
+    });
+  }
 });

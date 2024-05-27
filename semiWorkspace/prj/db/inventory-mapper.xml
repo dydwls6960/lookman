@@ -9,13 +9,15 @@
 		<result property="sizeNo" column="SIZE_NO"/>
 		<result property="sizeName" column="SIZE_NAME"/>
 		<result property="inventoryQuantity" column="QUANTITY"/>
+		<result property="productPrice" column="PRODUCT_PRICE"/>
 	</resultMap>
 	
 	<select id="getSizeOptions" resultMap="ProductInventoryDtoMap">
-		SELECT I.INVENTORY_NO, I.SIZE_NO, PS.NAME SIZE_NAME, I.QUANTITY
+		SELECT I.INVENTORY_NO, I.SIZE_NO, PS.NAME SIZE_NAME, I.QUANTITY, TRIM(TO_CHAR(P.PRICE, '999,999,999')) PRODUCT_PRICE
 		FROM INVENTORY I
 		JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO 
 		JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO
+		JOIN PRODUCT P ON I.PRODUCT_NO = P.PRODUCT_NO
 		WHERE I.COLOR_NO = #{colorNo}
 		AND I.PRODUCT_NO = #{productNo}
 	</select>

@@ -12,6 +12,57 @@ document.addEventListener("DOMContentLoaded", () => {
   const addBtn = document.querySelector(".add-btn");
   const colorSelect = document.querySelector("#color");
   const sizeSelect = document.querySelector("#size");
+  const actionItemsContainer = document.querySelector(
+    ".details__action--items"
+  );
+
+  sizeSelect.addEventListener("change", (e) => {
+    // get data from selected options
+    const productNo = sizeSelect.dataset.productNo;
+    const sizeNo = sizeSelect.value;
+    const sizeName = sizeSelect.selectedOptions[0].textContent;
+    const price = sizeSelect.selectedOptions[0].dataset.price;
+    const inventoryNo = sizeSelect.selectedOptions[0].dataset.inventoryNo;
+    const colorNo = colorSelect.value;
+    const colorName = colorSelect.selectedOptions[0].textContent;
+
+    // create element
+    const actionItem = document.createElement("div");
+    actionItem.classList.add("details__action--item");
+
+    // create span
+    const spanEl = document.createElement("span");
+    spanEl.textContent = `${colorName}, ${sizeName}`;
+
+    // create quantity input
+    const quantityEl = document.createElement("input");
+    quantityEl.setAttribute("name", "item-quantity");
+    quantityEl.classList.add("item-quantity");
+    quantityEl.value = "1";
+    quantityEl.setAttribute("maxlength", 3);
+
+    // create price,close container
+    const priceCloseContainer = document.createElement("div");
+    priceCloseContainer.classList.add("item-price-close-container");
+    const priceSpanEl = document.createElement("span");
+    priceSpanEl.textContent = price + "원";
+    const closeBtnEl = document.createElement("button");
+    closeBtnEl.classList.add("close-btn");
+    closeBtnEl.innerHTML = "&times;";
+    priceCloseContainer.appendChild(priceSpanEl);
+    priceCloseContainer.appendChild(closeBtnEl);
+
+    // append item elements
+    actionItem.appendChild(spanEl);
+    actionItem.appendChild(quantityEl);
+    actionItem.appendChild(priceCloseContainer);
+    actionItem.setAttribute("data-inventory-no", inventoryNo);
+
+    // append to items container
+    actionItemsContainer.appendChild(actionItem);
+  });
+
+  // 상품 색상 옵션 선택
   colorSelect.addEventListener("change", (e) => {
     const colorNo = colorSelect.value;
     const productNo = colorSelect.dataset.productNo;
@@ -34,9 +85,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
         data.forEach((dto) => {
           // append options to sizeSelect
+          console.log(dto);
           const optionEl = document.createElement("option");
           optionEl.value = dto.sizeNo;
           optionEl.textContent = dto.sizeName;
+          optionEl.setAttribute("data-inventory-no", dto.inventoryNo);
+          optionEl.setAttribute("data-price", dto.productPrice);
           if (optionEl.inventoryQuantity < 1) {
             optionEl.setAttribute("disabled", "");
           }

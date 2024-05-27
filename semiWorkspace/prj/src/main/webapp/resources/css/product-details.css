@@ -115,6 +115,8 @@
 
 .item-price-close-container {
   margin-left: auto;
+  display: flex;
+  gap: 4px;
 }
 
 /* BUTTONS */

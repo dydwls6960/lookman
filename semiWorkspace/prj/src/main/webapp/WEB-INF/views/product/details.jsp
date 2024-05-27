@@ -61,10 +61,10 @@
                   <select name="color" id="color" class="option-select" data-product-no="${requestScope.dto.productNo}">
                     <option value="" disabled selected>옵션 선택</option>
                     <c:forEach var="idto" items="${requestScope.dto.inventoryDetails}">                    
-                    	<option value="${idto.colorNo}">${idto.colorName}</option>
+                    	<option value="${idto.colorNo}" data-inventory-no="${idto.inventoryNo}">${idto.colorName}</option>
                     </c:forEach>
                   </select>
-                  <select name="size" id="size" class="option-select">
+                  <select name="size" id="size" class="option-select" data-product-no="${requestScope.dto.productNo}">
                     <option value="" disabled selected>옵션 선택</option>
                     <%-- 
                     <c:forEach var="idto" items="${requestScope.dto.inventoryDetails}">                    
@@ -73,22 +73,7 @@
                     --%>
                   </select>
                   <div class="details__action--items">
-                    <div class="details__action--item">
-                      <span>검정, S</span>
-                      <input type="text" name="item-quantity" class="item-quantity" value="1" maxlength="3">
-                      <div class="item-price-close-container">
-                        <span>18,900원</span>
-                        <button class="close-btn">&times; </button>
-                      </div>
-                    </div>
-                    <div class="details__action--item">
-                      <span>빨강, L</span>
-                      <input type="text" name="item-quantity" class="item-quantity" value="1" maxlength="3">
-                      <div class="item-price-close-container">
-                        <span>28,900원</span>
-                        <button class="close-btn">&times; </button>
-                      </div>
-                    </div>
+                    
                   </div>
                 </div>
                 <div class="details__action--total">

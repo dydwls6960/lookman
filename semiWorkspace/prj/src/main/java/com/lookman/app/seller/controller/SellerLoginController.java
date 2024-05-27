@@ -37,10 +37,11 @@ public class SellerLoginController extends HttpServlet{
 			if(loginSellerVo != null) {
 				session.setAttribute("alertMsg", "로그인 성공 !!!");
 				session.setAttribute("loginSellerVo", loginSellerVo);
+				resp.sendRedirect("/app/seller/home");
 			}else {
-				session.setAttribute("alertMsg", "로그인 실패...");				
+				session.setAttribute("alertMsg", "로그인 실패...");
+				resp.sendRedirect("/app/seller/login");
 			}
-			resp.sendRedirect("/app/seller/home");
 			
 		}catch (Exception e) {
 			e.printStackTrace();

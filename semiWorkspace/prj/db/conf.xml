@@ -45,5 +45,6 @@
 		<mapper resource="/store-mapper.xml" />
 		<mapper resource="/inventory-mapper.xml" />
 		<mapper resource="/favorite-mapper.xml" />
+		<mapper resource="/cart-mapper.xml" />
 	</mappers>
 </configuration>

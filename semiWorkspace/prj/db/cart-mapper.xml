@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="CartMapper">
+	<insert id="addToCart">
+		INSERT ALL
+		<foreach collection="list" item="vo" separator=" ">
+			INTO CART(CART_NO, MEMBER_NO, INVENTORY_NO, QUANTITY)
+			VALUES ((SELECT FN_GET_CART_SEQ_NEXTVAL FROM DUAL), #{vo.memberNo}, #{vo.inventoryNo}, #{vo.quantity})				
+		</foreach>
+		SELECT * FROM DUAL
+	</insert>
+
+	<select id="getCartItems">
+		
+	</select>
+
+</mapper>

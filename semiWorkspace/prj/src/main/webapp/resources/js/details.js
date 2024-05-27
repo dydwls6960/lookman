@@ -61,6 +61,12 @@ document.addEventListener("DOMContentLoaded", () => {
   // 장바구니 버튼
   cartBtn.addEventListener("click", () => {
     const actionItems = document.querySelectorAll(".details__action--item");
+    const memberNo = cartBtn.dataset.memberNo;
+    console.log(memberNo);
+
+    if (!memberNo) {
+      return (window.location.href = "/app/member/login");
+    }
 
     if (actionItems.length === 0) {
       alert("옵션을 선택해주세요.");
@@ -75,21 +81,31 @@ document.addEventListener("DOMContentLoaded", () => {
     actionItems.forEach((item) => {
       const inventoryNo = item.dataset.inventoryNo;
       const quantity = item.querySelector(".item-quantity").value;
-      data.items.push({ inventoryNo: inventoryNo, quantity: quantity });
+      data.items.push({
+        inventoryNo: inventoryNo,
+        quantity: quantity,
+        memberNo,
+      });
     });
     console.log(data);
 
-    // TODO:
     // post to url
     $.ajax({
-      url: url,
-      data: { colorNo, productNo },
-      contentType: "application/x-www-form-urlencoded; charset=UTF-8",
-      success: (data) => {
-        alert(data, "success!");
+      url: "/app/member/cart",
+      method: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=UTF-8",
+      success: (res) => {
+        if (res === "ok") {
+          // send redirect to cart page
+          window.location.href = "/app/member/cart";
+        } else {
+          alert("장바구니 추가 실패..");
+        }
       },
       error: (err) => {
         console.log(err);
+        alert("에러 발생..");
       },
     });
   });

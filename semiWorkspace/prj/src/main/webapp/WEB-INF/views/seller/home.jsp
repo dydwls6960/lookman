@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Lookman판매자페이지</title>
 <%@ include file="/WEB-INF/views/admin-seller/layout/home/util.jsp" %>
+<%@ include file="/WEB-INF/views/admin-seller/layout/alert.jsp" %>
 </head>
 
 <body>
@@ -32,11 +33,11 @@
 						    <th>총액</th>
 						  </tr>
 						  <tr>
-						  	<td>5</td>
-						  	<td>500</td>
-						  	<td>150</td>
-						    <td>13</td>
-						    <td>500,000</td>
+						  	<td>${ssVo.getAllProductCnt()}</td>
+						  	<td>${ssVo.getAllHitSum()}</td>
+						  	<td>${ssVo.getAllFavoriteCnt()}</td>
+						    <td>${ssVo.getAllOrderCnt()}</td>
+						    <td>${ssVo.getAllPriceSum()}</td>
 						  </tr>
 						</table>
     				</div>
@@ -46,13 +47,18 @@
     				<div>
     					<table id="userCnt">
 						  <tr>
-						    <th>총매출</th>
+						    <th>주문수</th>
+						    <th>총주문금액</th>
+						    <th>수수료</th>
 						    <th>순이익</th>
 						  </tr>
-						  <tr>
-						    <td>500,000</td>
-						    <td>450,000</td>
-						  </tr>
+						 <tr>
+						    <td>${ssVo.getAllOrderCnt()}</td>
+						    <td>${ssVo.getAllPriceSum()}</td>
+						    <td>${ssVo.getAllPriceSum()*0.1}</td>
+						    <td>${ssVo.getAllPriceSum()-ssVo.getAllPriceSum()*0.1}</td>
+						</tr>
+
 						</table>
     				</div>
     			</span>
@@ -65,39 +71,29 @@
 			    <a href="/app/seller/home/product/list">상품내역 바로가기</a>
     		</div>
     		<div>
-    			<table id="userInquiry" class="userList">
+    			<table id="productList" class="userList">
 				  <tr>
 				  	<th>상품번호</th>
+				  	<th>카테고리</th>
 				    <th>상품명</th>
 				    <th>상품이미지</th>
 				    <th>상품금액</th>
+				    <th>판매자</th>
 				    <th>등록일</th>
-				    <th>수정일</th>
+				    <th>조회수</th>
 				  </tr>
-				  <tr>
-				  	<td>3</td>
-				    <td>옷</td>
-				    <td>[이미지]옷~~~~</td>
-				    <td>34,000원</td>
-				    <td>24년05월19 13:00</td>
-				    <td>없음</td>
-				  </tr>
-				  <tr>
-				  	<td>2</td>
-				    <td>바지</td>
-				    <td>[이미지]바지~~~~</td>
-				    <td>50,000원</td>
-				    <td>24년05월19 12:00</td>
-				    <td>없음</td>
-				  </tr>
-				  <tr>
-				  	<td>3</td>
-				    <td>신발</td>
-				    <td>[이미지]신발~~~~</td>
-				    <td>24,000원</td>
-				    <td>24년05월19 11:00</td>
-				    <td>24년05월19 13:00</td>
-				  </tr>
+				  <c:forEach items="${pVoList}" var="pVo">
+				  	  <tr>
+					  	<td>${pVo.getProductNo()}</td>
+					  	<td>${pVo.getCategoryNo()}</td>
+					    <td>${pVo.getName()}</td>
+					    <td><img src="/app/resources/img/product/${pVo.getDeletedYn()}" width="100" height="100">${pVo.getDetails()}</td>
+					    <td>${pVo.getPrice()}</td>
+					    <td>${pVo.getSellerNo()}</td>
+					    <td>${pVo.getCreatedDate()}</td>
+					    <td>${pVo.getHit()}</td>
+					  </tr>
+				  </c:forEach>
 				</table>
     		</div>
     	</div>
@@ -113,34 +109,24 @@
 				  	<th>문의번호</th>
 				    <th>아이디</th>
 				    <th>닉네임</th>
+				    <th>상품상태</th>
+				    <th>문의제목</th>
 				    <th>문의내용</th>
 				    <th>문의날짜</th>
 				    <th>처리여부</th>
 				  </tr>
-				  <tr>
-				  	<td>3</td>
-				    <td>dydwls</td>
-				    <td>이용진</td>
-				    <td>집가고싶어</td>
-				    <td>24-05-20 17:00</td>
-				    <td>N</td>
-				  </tr>
-				  <tr>
-				  	<td>2</td>
-				    <td>dydwls</td>
-				    <td>이용진</td>
-				    <td>집가고싶어</td>
-				    <td>24-05-20 17:00</td>
-				    <td>N</td>
-				  </tr>
-				  <tr>
-				  	<td>1</td>
-				    <td>dydwls</td>
-				    <td>이용진</td>
-				    <td>집가고싶어</td>
-				    <td>24-05-20 17:00</td>
-				    <td>N</td>
-				  </tr>
+				  <c:forEach items="${spiVoList}" var="spiVo">
+				  	  <tr>
+					  	<td>${spiVo.getProduct_inquiry_no()}</td>
+					    <td>${spiVo.getMember_id()}</td>
+					    <td>${spiVo.getMember_name()}</td>
+					    <td>${spiVo.getStatus_name()}</td>
+					    <td>${spiVo.getTitle()}</td>
+					    <td>${spiVo.getQuestion_content()}</td>
+					    <td>${spiVo.getAsk_date()}</td>
+					    <td>${spiVo.getPrivate_yn()}</td>
+					  </tr>
+				  </c:forEach>
 				</table>
     		</div>
     	</div>

@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>판매자 로그인</title>
 <%@ include file="/WEB-INF/views/admin-seller/layout/login/util.jsp" %>
+<%@ include file="/WEB-INF/views/admin-seller/layout/alert.jsp" %>
 </head>
 <body>
 	<div class="container">

@@ -37,8 +37,8 @@ public class CartService {
 	public List<CartHomeDto> getCartItems(MemberVo loginMemberVo) throws Exception {
 		SqlSession ss = getSqlSession();
 		
-		List<CartHomeDto> dtoList = cdao.getCartItems(loginMemberVo);
-
+		List<CartHomeDto> dtoList = cdao.getCartItems(ss, loginMemberVo);
+System.out.println(dtoList);
 		ss.close();
 		
 		return dtoList;

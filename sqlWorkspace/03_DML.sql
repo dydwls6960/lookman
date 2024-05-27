@@ -68,7 +68,7 @@ WHERE I.COLOR_NO = 1
 AND I.PRODUCT_NO = 1
 ;
 
--- 상품 좋아요 했는지
+-- 상품 좋아요 했는지 체크
 SELECT COUNT(*)
 FROM FAVORITE
 WHERE MEMBER_NO = 1
@@ -84,6 +84,15 @@ DELETE FROM FAVORITE
 WHERE MEMBER_NO = 1
 AND PRODUCT_NO = 2
 ;
+
+-- 장바구니 
+INSERT ALL
+<foreach collection="list" item="vo" separator=" ">
+    INTO CART(CART_NO, MEMBER_NO, INVENTORY_NO, QUANTITY)
+    VALUES ((SELECT FN_GET_CART_SEQ_NEXTVAL FROM DUAL), #{vo.memberNo}, #{vo.inventoryNo}, #{vo.quantity})				
+</foreach>
+SELECT * FROM DUAL
+
 
 
 -- /products/*
@@ -170,6 +179,32 @@ INSERT INTO PRODUCT_INQUIRY (PRODUCT_INQUIRY_NO, MEMBER_NO, SELLER_NO, PRODUCT_N
 VALUES (SEQ_PRODUCT_INQUIRY.NEXTVAL, ?, ?, ?, 10, ?, ?, ?);
 
 
+--------------------------------------------------------
+-- 장바구니 페이지
+
+SELECT 
+    C.CART_NO
+    , I.PRODUCT_NO
+    , P.NAME PRODUCT_NAME
+    , I.INVENTORY_NO
+    , C.COLOR_NO
+    , C.NAME COLOR_NAME
+    , PS.SIZE_NO
+    , PS.NAME SIZE_NAME
+    , P.PRICE
+    , PI.FILENAME THUMBNAIL_FILENAME
+    , C.QUANTITY
+    , C.CREATED_DATE
+    , C.MEMBER_NO
+FROM CART C
+JOIN INVENTORY I ON C.INVENTORY_NO = I.INVENTORY_NO
+JOIN PRODUCT P ON I.PRODUCT_NO = P.PRODUCT_NO
+JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO
+JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO
+JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO AND PI.THUMBNAIL_YN = 'Y'
+WHERE MEMBER_NO = 1
+ORDER BY C.CREATED_DATE DESC
+;
 
 --------------------------------------------------------
 -- 랭킹페이지

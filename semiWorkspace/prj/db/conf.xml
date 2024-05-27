@@ -5,6 +5,7 @@
 <configuration>
 	<settings>
 		<setting name="jdbcTypeForNull" value="NULL" />
+		<setting name="mapUnderscoreToCamelCase" value="true" />
 	</settings>
 
 	<typeAliases>
@@ -22,6 +23,9 @@
 
 		<typeAlias type="com.lookman.app.seller.vo.SellerVo"
 			alias="SellerVo" />
+
+		<typeAlias type="com.lookman.app.cart.dto.CartHomeDto"
+			alias="CartHomeDto" />
 	</typeAliases>
 
 	<environments default="development">

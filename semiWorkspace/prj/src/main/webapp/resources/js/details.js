@@ -26,6 +26,16 @@ document.addEventListener("DOMContentLoaded", () => {
     const colorNo = colorSelect.value;
     const colorName = colorSelect.selectedOptions[0].textContent;
 
+    // 이미 추가 되었는지 검사
+    const existingItem = actionItemsContainer.querySelector(
+      `.details__action--item[data-inventory-no="${inventoryNo}"]`
+    );
+    if (existingItem) {
+      alert("이미 추가되었습니다.");
+      resetSelectedOptions();
+      return;
+    }
+
     // create element
     const actionItem = document.createElement("div");
     actionItem.classList.add("details__action--item");
@@ -36,10 +46,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // create quantity input
     const quantityEl = document.createElement("input");
+    quantityEl.setAttribute("type", "number");
+    quantityEl.setAttribute("min", "1");
     quantityEl.setAttribute("name", "item-quantity");
     quantityEl.classList.add("item-quantity");
     quantityEl.value = "1";
-    quantityEl.setAttribute("maxlength", 3);
+    quantityEl.setAttribute("max", "3");
 
     // create price,close container
     const priceCloseContainer = document.createElement("div");
@@ -63,8 +75,38 @@ document.addEventListener("DOMContentLoaded", () => {
     // append to items container
     actionItemsContainer.appendChild(actionItem);
 
+    // 셀렉트 옵션 리셋
+    resetSelectedOptions();
+
+    // 총 가격 업데이트
     updateTotalPrice();
+
+    // 갯수 변화
+    // TODO: function to listen to quantity change
+    quantityEl.addEventListener("input", () => {
+      updateOrderPrice(actionItem);
+      updateTotalPrice();
+    });
   });
+
+  // TODO: function to listen to close-btn click
+
+  function updateOrderPrice(item) {
+    const quantity = item.querySelector(".item-quantity").value;
+    const price = item.getAttribute("data-price").replace(",", "");
+    const orderPriceSpan = item.querySelector(".order-price");
+
+    const updatedPrice = quantity * price;
+    orderPriceSpan.textContent = `${updatedPrice.toLocaleString()}원`;
+  }
+
+  function resetSelectedOptions() {
+    // 색상 선택 리셋
+    colorSelect.value = "";
+    // 사이즈 선택 리셋
+    sizeSelect.innerHTML =
+      '<option value="" disabled selected>옵션 선택</option>';
+  }
 
   function updateTotalPrice() {
     let totalPrice = 0;
@@ -73,7 +115,7 @@ document.addEventListener("DOMContentLoaded", () => {
       const quantity = item.querySelector(".item-quantity").value;
       const price = item.dataset.price.replace(",", "");
 
-      totalPrice = quantity * price;
+      totalPrice += quantity * price;
     });
     const totalPriceSpan = document.querySelector(".total-price");
     totalPriceSpan.textContent = `${totalPrice.toLocaleString()}원`;

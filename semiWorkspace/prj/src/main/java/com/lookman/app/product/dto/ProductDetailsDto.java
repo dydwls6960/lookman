@@ -18,6 +18,7 @@ public class ProductDetailsDto {
 	private String reviewCnt;
 	private String hit;
 	private String thumbnailFilename;
+	private boolean isFavorite;
 	List<ImageVo> images;
 	List<ReviewDto> reviews;
 	List<ProductInquiryDto> inquiries;
@@ -28,8 +29,8 @@ public class ProductDetailsDto {
 
 	public ProductDetailsDto(String sellerNo, String sellerName, String productNo, String productName, String price,
 			String details, String shippingDetails, String avgRating, String reviewCnt, String hit,
-			String thumbnailFilename, List<ImageVo> images, List<ReviewDto> reviews, List<ProductInquiryDto> inquiries,
-			List<ProductInventoryDto> inventoryDetails) {
+			String thumbnailFilename, boolean isFavorite, List<ImageVo> images, List<ReviewDto> reviews,
+			List<ProductInquiryDto> inquiries, List<ProductInventoryDto> inventoryDetails) {
 		super();
 		this.sellerNo = sellerNo;
 		this.sellerName = sellerName;
@@ -42,6 +43,7 @@ public class ProductDetailsDto {
 		this.reviewCnt = reviewCnt;
 		this.hit = hit;
 		this.thumbnailFilename = thumbnailFilename;
+		this.isFavorite = isFavorite;
 		this.images = images;
 		this.reviews = reviews;
 		this.inquiries = inquiries;
@@ -136,6 +138,14 @@ public class ProductDetailsDto {
 		this.thumbnailFilename = thumbnailFilename;
 	}
 
+	public boolean isFavorite() {
+		return isFavorite;
+	}
+
+	public void setFavorite(boolean isFavorite) {
+		this.isFavorite = isFavorite;
+	}
+
 	public List<ImageVo> getImages() {
 		return images;
 	}
@@ -173,8 +183,8 @@ public class ProductDetailsDto {
 		return "ProductDetailsDto [sellerNo=" + sellerNo + ", sellerName=" + sellerName + ", productNo=" + productNo
 				+ ", productName=" + productName + ", price=" + price + ", details=" + details + ", shippingDetails="
 				+ shippingDetails + ", avgRating=" + avgRating + ", reviewCnt=" + reviewCnt + ", hit=" + hit
-				+ ", thumbnailFilename=" + thumbnailFilename + ", images=" + images + ", reviews=" + reviews
-				+ ", inquiries=" + inquiries + ", inventoryDetails=" + inventoryDetails + "]";
+				+ ", thumbnailFilename=" + thumbnailFilename + ", isFavorite=" + isFavorite + ", images=" + images
+				+ ", reviews=" + reviews + ", inquiries=" + inquiries + ", inventoryDetails=" + inventoryDetails + "]";
 	}
 
 }

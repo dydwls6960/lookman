@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lookman.app.image.dao.ImageDao;
 import com.lookman.app.image.vo.ImageVo;
+import com.lookman.app.member.vo.MemberVo;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.service.ProductService;
 
@@ -36,9 +37,10 @@ public class ProductDetailsController extends HttpServlet {
 	
 				String productNo = pathInfo.substring(1).replaceAll("[^0-9]", "");
 				
-				
-				ProductDetailsDto dto = ps.selectProductDetails(productNo);
-				
+				MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
+
+				ProductDetailsDto dto = ps.selectProductDetails(productNo, loginMemberVo);
+				System.out.println(dto);
 				
 				if (dto == null) {
 					throw new Exception("상품을 찾을 수 없습니다: " + productNo);

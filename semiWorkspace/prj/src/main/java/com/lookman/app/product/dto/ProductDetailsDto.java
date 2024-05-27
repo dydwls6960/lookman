@@ -21,14 +21,16 @@ public class ProductDetailsDto {
 	List<ImageVo> images;
 	List<ReviewDto> reviews;
 	List<ProductInquiryDto> inquiries;
+	List<ProductInventoryDto> inventoryDetails;
 
 	public ProductDetailsDto() {
 	}
 
 	public ProductDetailsDto(String sellerNo, String sellerName, String productNo, String productName, String price,
 			String details, String shippingDetails, String avgRating, String reviewCnt, String hit,
-			String thumbnailFilename, List<ImageVo> images, List<ReviewDto> reviews,
-			List<ProductInquiryDto> inquiries) {
+			String thumbnailFilename, List<ImageVo> images, List<ReviewDto> reviews, List<ProductInquiryDto> inquiries,
+			List<ProductInventoryDto> inventoryDetails) {
+		super();
 		this.sellerNo = sellerNo;
 		this.sellerName = sellerName;
 		this.productNo = productNo;
@@ -43,6 +45,7 @@ public class ProductDetailsDto {
 		this.images = images;
 		this.reviews = reviews;
 		this.inquiries = inquiries;
+		this.inventoryDetails = inventoryDetails;
 	}
 
 	public String getSellerNo() {
@@ -157,13 +160,21 @@ public class ProductDetailsDto {
 		this.inquiries = inquiries;
 	}
 
+	public List<ProductInventoryDto> getInventoryDetails() {
+		return inventoryDetails;
+	}
+
+	public void setInventoryDetails(List<ProductInventoryDto> inventoryDetails) {
+		this.inventoryDetails = inventoryDetails;
+	}
+
 	@Override
 	public String toString() {
 		return "ProductDetailsDto [sellerNo=" + sellerNo + ", sellerName=" + sellerName + ", productNo=" + productNo
 				+ ", productName=" + productName + ", price=" + price + ", details=" + details + ", shippingDetails="
 				+ shippingDetails + ", avgRating=" + avgRating + ", reviewCnt=" + reviewCnt + ", hit=" + hit
 				+ ", thumbnailFilename=" + thumbnailFilename + ", images=" + images + ", reviews=" + reviews
-				+ ", inquiries=" + inquiries + "]";
+				+ ", inquiries=" + inquiries + ", inventoryDetails=" + inventoryDetails + "]";
 	}
 
 }

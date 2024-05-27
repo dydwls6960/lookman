@@ -11,6 +11,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const delBtns = document.querySelectorAll(".delete-btn");
   const addBtn = document.querySelector(".add-btn");
 
+  const colorSelect = document.querySelector("#color");
+  console.log(colorSelect);
+
   if (addBtn) {
     // 질문 추가 버튼
     addBtn.addEventListener("click", () => {
@@ -184,7 +187,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
   // 싱품 수량 input type="text"인데, text 못넣고 숫자만 넣게 하기
   const itemQuantityInput = document.querySelector(".item-quantity");
-  console.log(itemQuantityInput);
   itemQuantityInput.addEventListener("input", (e) => {
     itemQuantityInput.value = itemQuantityInput.value.replace(/[^0-9]/g, "");
   });

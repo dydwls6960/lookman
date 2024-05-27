@@ -5,6 +5,7 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -13,6 +14,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.lookman.app.product.dto.ProductByDto;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.dto.ProductHomeDto;
+import com.lookman.app.product.dto.ProductInventoryDto;
 import com.lookman.app.product.vo.ProductVo;
 
 public class ProductDao {
@@ -176,6 +178,38 @@ public class ProductDao {
 
 	public List<ProductByDto> selectProductBySellerNo(SqlSession ss, String sellerNo) {
 		return ss.selectList("ProductMapper.selectProductBySellerNo", sellerNo);
+	}
+
+	public List<ProductInventoryDto> getProductInventoryDetails(Connection conn, String productNo) throws SQLException {
+		String sql = "SELECT I.INVENTORY_NO, I.PRODUCT_NO, I.COLOR_NO, C.NAME COLOR_NAME, I.SIZE_NO, PS.NAME SIZE_NAME, I.QUANTITY INVENTORY_QUANTITY FROM INVENTORY I JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO WHERE I.PRODUCT_NO = ?";
+		PreparedStatement pstmt = conn.prepareStatement(sql);
+		pstmt.setString(1, productNo);
+		ResultSet rs = pstmt.executeQuery();
+
+		List<ProductInventoryDto> inventoryDetails = new ArrayList<ProductInventoryDto>();
+		while (rs.next()) {
+			String inventoryNo = rs.getString("INVENTORY_NO");
+			String prodNo = rs.getString("PRODUCT_NO");
+			String colorNo = rs.getString("COLOR_NO");
+			String colorName = rs.getString("COLOR_NAME");
+			String sizeNo = rs.getString("SIZE_NO");
+			String sizeName = rs.getString("SIZE_NAME");
+			String inventoryQuantity = rs.getString("INVENTORY_QUANTITY");
+			ProductInventoryDto dto = new ProductInventoryDto();
+			dto.setInventoryNo(inventoryNo);
+			dto.setProductNo(prodNo);
+			dto.setColorNo(colorNo);
+			dto.setColorName(colorName);
+			dto.setSizeNo(sizeNo);
+			dto.setSizeName(sizeName);
+			dto.setInventoryQuantity(inventoryQuantity);
+			inventoryDetails.add(dto);
+		}
+
+		close(rs);
+		close(pstmt);
+
+		return inventoryDetails;
 	}
 
 }

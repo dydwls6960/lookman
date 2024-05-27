@@ -19,6 +19,7 @@ import com.lookman.app.product.dao.ProductDao;
 import com.lookman.app.product.dto.ProductByDto;
 import com.lookman.app.product.dto.ProductDetailsDto;
 import com.lookman.app.product.dto.ProductHomeDto;
+import com.lookman.app.product.dto.ProductInventoryDto;
 import com.lookman.app.product.vo.ProductVo;
 import com.lookman.app.review.dao.ReviewDao;
 import com.lookman.app.review.dto.ReviewDto;
@@ -94,6 +95,11 @@ public class ProductService {
 				}
 			}
 			dto.setImages(images);
+
+			// 재고 정보
+			List<ProductInventoryDto> inventoryDetails = dao.getProductInventoryDetails(conn, productNo);
+			dto.setInventoryDetails(inventoryDetails);
+			System.out.println("inv details: " + inventoryDetails);
 
 			// 리뷰들
 			reviews = revDao.getReviewsByProductNo(conn, productNo);

@@ -1,6 +1,7 @@
 package com.lookman.app.cart.dto;
 
 public class CartHomeDto {
+	private String rownum;
 	private String memberNo;
 	private String cartNo;
 	private String productNo;
@@ -11,16 +12,21 @@ public class CartHomeDto {
 	private String sizeNo;
 	private String sizeName;
 	private String price;
+	private String orderPrice;
 	private String thumbnailFilename;
-	private String quantity;
+	private String orderQuantity;
+	private String inventoryQuantity;
 	private String createdDate;
+	private String sellerName;
 
 	public CartHomeDto() {
 	}
 
-	public CartHomeDto(String memberNo, String cartNo, String productNo, String productName, String inventoryNo,
-			String colorNo, String colorName, String sizeNo, String sizeName, String price, String thumbnailFilename,
-			String quantity, String createdDate) {
+	public CartHomeDto(String rownum, String memberNo, String cartNo, String productNo, String productName,
+			String inventoryNo, String colorNo, String colorName, String sizeNo, String sizeName, String price,
+			String orderPrice, String thumbnailFilename, String orderQuantity, String inventoryQuantity,
+			String createdDate, String sellerName) {
+		this.rownum = rownum;
 		this.memberNo = memberNo;
 		this.cartNo = cartNo;
 		this.productNo = productNo;
@@ -31,9 +37,20 @@ public class CartHomeDto {
 		this.sizeNo = sizeNo;
 		this.sizeName = sizeName;
 		this.price = price;
+		this.orderPrice = orderPrice;
 		this.thumbnailFilename = thumbnailFilename;
-		this.quantity = quantity;
+		this.orderQuantity = orderQuantity;
+		this.inventoryQuantity = inventoryQuantity;
 		this.createdDate = createdDate;
+		this.sellerName = sellerName;
+	}
+
+	public String getRownum() {
+		return rownum;
+	}
+
+	public void setRownum(String rownum) {
+		this.rownum = rownum;
 	}
 
 	public String getMemberNo() {
@@ -116,6 +133,14 @@ public class CartHomeDto {
 		this.price = price;
 	}
 
+	public String getOrderPrice() {
+		return orderPrice;
+	}
+
+	public void setOrderPrice(String orderPrice) {
+		this.orderPrice = orderPrice;
+	}
+
 	public String getThumbnailFilename() {
 		return thumbnailFilename;
 	}
@@ -124,12 +149,20 @@ public class CartHomeDto {
 		this.thumbnailFilename = thumbnailFilename;
 	}
 
-	public String getQuantity() {
-		return quantity;
+	public String getOrderQuantity() {
+		return orderQuantity;
 	}
 
-	public void setQuantity(String quantity) {
-		this.quantity = quantity;
+	public void setOrderQuantity(String orderQuantity) {
+		this.orderQuantity = orderQuantity;
+	}
+
+	public String getInventoryQuantity() {
+		return inventoryQuantity;
+	}
+
+	public void setInventoryQuantity(String inventoryQuantity) {
+		this.inventoryQuantity = inventoryQuantity;
 	}
 
 	public String getCreatedDate() {
@@ -140,13 +173,22 @@ public class CartHomeDto {
 		this.createdDate = createdDate;
 	}
 
+	public String getSellerName() {
+		return sellerName;
+	}
+
+	public void setSellerName(String sellerName) {
+		this.sellerName = sellerName;
+	}
+
 	@Override
 	public String toString() {
-		return "CartHomeDto [memberNo=" + memberNo + ", cartNo=" + cartNo + ", productNo=" + productNo
-				+ ", productName=" + productName + ", inventoryNo=" + inventoryNo + ", colorNo=" + colorNo
+		return "CartHomeDto [rownum=" + rownum + ", memberNo=" + memberNo + ", cartNo=" + cartNo + ", productNo="
+				+ productNo + ", productName=" + productName + ", inventoryNo=" + inventoryNo + ", colorNo=" + colorNo
 				+ ", colorName=" + colorName + ", sizeNo=" + sizeNo + ", sizeName=" + sizeName + ", price=" + price
-				+ ", thumbnailFilename=" + thumbnailFilename + ", quantity=" + quantity + ", createdDate=" + createdDate
-				+ "]";
+				+ ", orderPrice=" + orderPrice + ", thumbnailFilename=" + thumbnailFilename + ", orderQuantity="
+				+ orderQuantity + ", inventoryQuantity=" + inventoryQuantity + ", createdDate=" + createdDate
+				+ ", sellerName=" + sellerName + "]";
 	}
 
 }

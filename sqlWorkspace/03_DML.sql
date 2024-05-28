@@ -181,6 +181,7 @@ VALUES (SEQ_PRODUCT_INQUIRY.NEXTVAL, ?, ?, ?, 10, ?, ?, ?);
 
 --------------------------------------------------------
 -- 장바구니 페이지
+-- DTO
 SELECT ROWNUM, X.*
 FROM (SELECT 
     C.CART_NO
@@ -209,6 +210,20 @@ JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO
 WHERE MEMBER_NO = 1
 ORDER BY C.CREATED_DATE DESC) X
 ;
+
+
+-- 장바구니 개별 아이템 삭제
+DELETE FROM CART
+WHERE MEMBER_NO = 1
+AND CART_NO = 1
+;
+
+-- 장바구니 삭제
+DELETE FROM CART
+<foreach collection="array" item="no" separator="," open="WHERE CART_NO IN (" close=")">
+    #{no}
+</foreach>
+
 
 --------------------------------------------------------
 -- 랭킹페이지

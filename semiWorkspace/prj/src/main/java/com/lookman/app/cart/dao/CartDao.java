@@ -22,4 +22,8 @@ public class CartDao {
 		return ss.delete("CartMapper.deleteCartItem", cvo);
 	}
 
+	public int deleteCartItems(SqlSession ss, String[] cartNoList) {
+		return ss.delete("CartMapper.deleteCartItems", cartNoList);
+	}
+
 }

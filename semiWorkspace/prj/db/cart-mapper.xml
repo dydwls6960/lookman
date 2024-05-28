@@ -47,5 +47,12 @@
 		WHERE MEMBER_NO = ${memberNo}
 		AND CART_NO = ${cartNo}
 	</delete>
+	
+	<delete id="deleteCartItems">
+		DELETE FROM CART
+		<foreach collection="array" item="no" separator="," open="WHERE CART_NO IN (" close=")">
+			#{no}
+		</foreach>
+	</delete>
 
 </mapper>

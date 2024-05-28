@@ -47,7 +47,7 @@ public class CartService {
 		SqlSession ss = getSqlSession();
 
 		int result = cdao.deleteCartItem(ss, cvo);
-		
+
 		if (result == 1) {
 			ss.commit();
 		} else {
@@ -55,6 +55,21 @@ public class CartService {
 		}
 		ss.close();
 
+		return result;
+	}
+
+	public int deleteCartItems(String[] cartNoList) throws Exception {
+		SqlSession ss = getSqlSession();
+		int result = cdao.deleteCartItems(ss, cartNoList);
+		
+		if (result > 0) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+		
+		ss.close();
+		
 		return result;
 	}
 

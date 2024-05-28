@@ -38,7 +38,8 @@
                 <tr>
                   <td>${dto.rownum}</td>
                   <td class="checkbox-td"><input class="item-checkbox" type="checkbox" name="${dto.cartNo}"
-                      id="${dto.cartNo}" checked></td>
+                      id="${dto.cartNo}" data-cart-no="${dto.cartNo}"
+                      data-member-no="${dto.memberNo}" checked></td>
                   <td>
                     <div class="product-details">
                       <a href="/app/products/${dto.productNo}" class="product-link"><img class="product-detail__img"
@@ -61,7 +62,7 @@
               </c:forEach>
             </tbody>
           </table>
-          <button class="del-sel-button">선택삭제</button>
+          <button class="del-sel-button" data-member-no="${sessionScope.loginMemberVo.memberNo}">선택삭제</button>
 
           <div class="order-btn-container">
             <button class="order-btn">주문하기</button>

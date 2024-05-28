@@ -7,7 +7,10 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.lookman.app.category.vo.CategoryVo;
 import com.lookman.app.db.JDBCTemplate;
+import com.lookman.app.product.vo.ProductColorVo;
+import com.lookman.app.product.vo.ProductSizeVo;
 import com.lookman.app.product.vo.ProductVo;
 import com.lookman.app.seller.vo.SellerProductInquiryVo;
 import com.lookman.app.seller.vo.SellerSimpleOrderListVo;
@@ -224,22 +227,22 @@ public class SellerDao {
 
 	public List<SellerSimpleOrderListVo> getSimpleOrderListRowNum3(Connection conn, SellerVo loginSellerVo) throws Exception {
 		String sql="SELECT * FROM (\r\n"
-		           + "    SELECT O.ORDERS_NO, M.ID AS MEMBER_ID, M.NAME AS MEMBER_NAME, SS.NAME AS STATUS_NAME, C.NAME AS CARD_COMPANY_NAME, \r\n"
-		           + "           O.SHIPPING_FEE, P.PRICE, \r\n"
-		           + "           TO_CHAR(O.CREATED_DATE, 'YY\"년\"MM\"월\"DD\"일\" HH24:MI') AS FORMATTED_DATE\r\n"
-		           + "    FROM ORDERS O\r\n"
-		           + "    JOIN ORDER_DETAIL OD ON O.ORDERS_NO = OD.ORDER_DETAIL_NO\r\n"
-		           + "    JOIN PRODUCT P ON OD.PRODUCT_NO = P.PRODUCT_NO\r\n"
-		           + "    JOIN MEMBER M ON O.MEMBER_NO = M.MEMBER_NO\r\n"
-		           + "    JOIN ADDRESS A ON A.ADDRESS_NO = O.ADDRESS_NO\r\n"
-		           + "    JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO\r\n"
-		           + "    JOIN STATUS SS ON O.STATUS_NO = SS.STATUS_NO\r\n"
-		           + "    JOIN PAYMENT PM ON O.ORDERS_NO = PM.ORDERS_NO\r\n"
-		           + "    JOIN CARD_COMPANY C ON PM.CARD_COMPANY_NO = C.CARD_COMPANY_NO\r\n"
-		           + "    WHERE P.SELLER_NO = "+loginSellerVo.getSellerNo()
-		           + "    ORDER BY O.ORDERS_NO DESC\r\n"
-		           + ")\r\n"
-		           + "WHERE ROWNUM <= 3";
+				+ "    SELECT O.ORDERS_NO, M.ID AS MEMBER_ID, M.NAME AS MEMBER_NAME, SS.NAME AS STATUS_NAME, C.NAME AS CARD_COMPANY_NAME,\r\n"
+				+ "           O.SHIPPING_FEE, P.PRICE, S.SELLER_NO,\r\n"
+				+ "           TO_CHAR(O.CREATED_DATE, 'YY\"년\"MM\"월\"DD\"일\" HH24:MI') AS FORMATTED_DATE\r\n"
+				+ "    FROM ORDERS O\r\n"
+				+ "    JOIN ORDER_DETAIL OD ON O.ORDERS_NO = OD.ORDERS_NO -- Ensure correct JOIN condition\r\n"
+				+ "    JOIN PRODUCT P ON OD.PRODUCT_NO = P.PRODUCT_NO\r\n"
+				+ "    JOIN MEMBER M ON O.MEMBER_NO = M.MEMBER_NO\r\n"
+				+ "    JOIN ADDRESS A ON A.ADDRESS_NO = O.ADDRESS_NO\r\n"
+				+ "    JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO\r\n"
+				+ "    JOIN STATUS SS ON O.STATUS_NO = SS.STATUS_NO\r\n"
+				+ "    JOIN PAYMENT PM ON O.ORDERS_NO = PM.ORDERS_NO\r\n"
+				+ "    JOIN CARD_COMPANY C ON PM.CARD_COMPANY_NO = C.CARD_COMPANY_NO\r\n"
+				+ "    WHERE P.SELLER_NO ="+loginSellerVo.getSellerNo()
+				+ "    ORDER BY O.ORDERS_NO DESC\r\n"
+				+ ")\r\n"
+				+ "WHERE ROWNUM <= 3";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		ResultSet rs=pstmt.executeQuery();
 		
@@ -267,11 +270,137 @@ public class SellerDao {
             ssoVoList.add(ssoVo);
 		}
 		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+	
+		return ssoVoList;
+	}
+
+	public List<ProductVo> getProductList(Connection conn, SellerVo loginSellerVo) throws Exception {
+		String sql = "SELECT * FROM ("
+		           + "    SELECT "
+		           + "        P.PRODUCT_NO, "
+		           + "        P.SELLER_NO, "
+		           + "        P.NAME, "
+		           + "        P.DETAILS, "
+		           + "        P.PRICE, "
+		           + "        PI.FILENAME, "
+		           + "        P.CREATED_DATE, "
+		           + "        P.HIT, "
+		           + "        ROW_NUMBER() OVER (PARTITION BY P.PRODUCT_NO ORDER BY PI.FILENAME) AS RN, "
+		           + "        C.NAME AS 카테고리 "
+		           + "    FROM PRODUCT P "
+		           + "    JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO "
+		           + "    JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO "
+		           + "    WHERE P.SELLER_NO = " + loginSellerVo.getSellerNo() + " "
+		           + "    ORDER BY P.CREATED_DATE DESC"  // 내부 쿼리에서 정렬
+		           + ") PI_RANKED "
+		           + "WHERE PI_RANKED.RN = 1 "
+		           + "ORDER BY PI_RANKED.PRODUCT_NO DESC";
+
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		ResultSet rs=pstmt.executeQuery();
+		
+		List<ProductVo> pVoList=new ArrayList<ProductVo>();
+		while(rs.next()) {
+			String productNo=rs.getString("PRODUCT_NO");
+//			String sellerName=rs.getString(); loginSellerVo.getName
+			String categoryNo=rs.getString("카테고리");
+			String name=rs.getString("NAME");
+			String details=rs.getString("DETAILS");
+			String price=rs.getString("PRICE");
+			String createdDate=rs.getString("CREATED_DATE");
+			String file=rs.getString("FILENAME");
+			String hit=rs.getString("HIT");
+			
+			ProductVo pVo=new ProductVo();
+			pVo.setProductNo(productNo);
+			pVo.setSellerNo(loginSellerVo.getName());
+			pVo.setCategoryNo(categoryNo);
+			pVo.setName(name);
+			pVo.setDetails(details);
+			pVo.setPrice(price);
+			pVo.setCreatedDate(createdDate);
+			pVo.setHit(hit);
+			pVo.setDeletedYn(file);
+			
+			pVoList.add(pVo);
+		}
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		
+		return pVoList;
+	}
+
+	public List<CategoryVo> getCategoryList(Connection conn) throws Exception {
+		String sql="SELECT * FROM CATEGORY";
+		
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		ResultSet rs=pstmt.executeQuery();
+		
+		List<CategoryVo> cVoList=new ArrayList<CategoryVo>();
+		while(rs.next()) {
+			String categoryNo = rs.getString("CATEGORY_NO");
+			String categoryName = rs.getString("NAME");
+			
+			CategoryVo cVo=new CategoryVo();
+			cVo.setCategoryNo(categoryNo);
+			cVo.setName(categoryName);
+			
+			cVoList.add(cVo);
+		}
+		
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		return cVoList;
+	}
+
+	public List<ProductSizeVo> getSizeList(Connection conn) throws Exception {
+		String sql="SELECT * FROM PRODUCT_SIZE";
+		
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		ResultSet rs= pstmt.executeQuery();
+		
+		List<ProductSizeVo> psVoList=new ArrayList<ProductSizeVo>();
+		while(rs.next()) {
+			String sizeNo=rs.getString("SIZE_NO");
+			String name=rs.getString("NAME");
+			
+			ProductSizeVo psVo=new ProductSizeVo();
+			psVo.setSizeNo(sizeNo);
+			psVo.setName(name);
+			
+			psVoList.add(psVo);
+		}
+		JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+		return psVoList;
+	}
+
+	public List<ProductColorVo> getColorList(Connection conn) throws Exception {
+		String sql="SELECT * FROM COLOR";
+		PreparedStatement pstmt=conn.prepareStatement(sql);
+		ResultSet rs=pstmt.executeQuery();
+		
+		List<ProductColorVo> pcVoList=new ArrayList<ProductColorVo>();
+		while(rs.next()) {
+			String colorNo=rs.getString("COLOR_NO");
+			String name=rs.getString("NAME");
+			String hexcode=rs.getString("HEXCODE");
+			
+			ProductColorVo pcVo=new ProductColorVo();
+			pcVo.setColorNo(colorNo);
+			pcVo.setName(name);
+			pcVo.setHexcode(hexcode);
+			pcVoList.add(pcVo);
+		}
 		
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
 		
-		return ssoVoList;
+		return pcVoList;
 	}
 
 }

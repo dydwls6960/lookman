@@ -36,10 +36,9 @@ public class SellerHomeController extends HttpServlet{
 			List<ProductVo> pVoList=ss.getProductListRowNum3(loginSellerVo);
 			List<SellerProductInquiryVo> spiVoList=ss.getProductInquiryListRowNum3(loginSellerVo);
 			List<SellerSimpleOrderListVo> ssoVoList=ss.getSimplerOrderListRowNum3(loginSellerVo);
-			
 //			&& ssVo != null && pVoList !=null && spiVoList != null && ssoVoList != null
 			
-			if(loginSellerVo != null ) {
+			if(loginSellerVo != null) {
 				req.setAttribute("ssVo", ssVo);
 				req.setAttribute("pVoList", pVoList);
 				req.setAttribute("spiVoList", spiVoList);

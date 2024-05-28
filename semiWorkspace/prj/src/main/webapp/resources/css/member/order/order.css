@@ -4,14 +4,20 @@
   gap: 40px;
 }
 
+.heading {
+  font-size: 24px;
+}
+
 /* SHIPPING */
-.shipping-info {
+.shipping-info,
+.payment-info {
   display: flex;
   align-items: center;
   font-size: 12px;
 }
 
-.shipping-info > span {
+.shipping-info > span,
+.payment-info > span {
   flex: 0 0 150px;
   font-weight: 700;
 }
@@ -19,7 +25,8 @@
 .shipping-info__select,
 .shipping-info__contact,
 .shipping-info__address,
-.shipping-info__requirements {
+.shipping-info__requirements,
+.payment-info__contact {
   flex: 1;
 }
 
@@ -57,7 +64,8 @@
   & .checkbox-td {
     padding: 24px;
   }
-  & tbody td {
+  & tbody td,
+  & tfoot td {
     padding: 16px 0;
   }
 }
@@ -87,4 +95,29 @@
 .cart__order-options {
   color: var(--color-med);
   font-size: 10px;
+}
+
+/* PAYMENT */
+
+.payment-info__method {
+  display: flex;
+  gap: 16px;
+}
+
+#pay-btn {
+  width: 100%;
+  background-color: var(--color-dark);
+  color: var(--color-white);
+  padding: 8px;
+  margin-top: 24px;
+  border: 1px solid var(--color-dark);
+  cursor: pointer;
+  border-radius: var(--base-border-radius);
+}
+
+.order__shipping,
+.order__payment {
+  border: 1px solid var(--color-med);
+  border-radius: var(--base-border-radius);
+  padding: 16px;
 }

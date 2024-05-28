@@ -13,10 +13,10 @@
 				</th>
 				<td style="text-align: left">
 					<select name="s-len">
-				        <option value="name">상품명</option>
-				        <option value="no">상품번호</option>
+				        <option value="pName">상품명</option>
+				        <option value="pNo">상품번호</option>
 				    </select>
-	   				 <input type="text">
+	   				 <input type="text" name="searchListText">
 				</td>
 			</tr>
 
@@ -27,10 +27,9 @@
 				<td class="search-field" style="text-align: left">
 			        <select name="s-cate">
 			            <option value="all">전체</option>
-			            <option value="1">카테고리1</option>
-			            <option value="2">카테고리2</option>
-			            <option value="3">카테고리3</option>
-			            <option value="4">카테고리4</option>
+			        	<c:forEach items="${cVoList}" var="cVo">
+				            <option value="${cVo.getCategoryNo()}">${cVo.getName()}</option>    	
+				  		</c:forEach>
 			        </select>
     			</td>
 			</tr>
@@ -42,10 +41,9 @@
 				<td class="membership-checkboxes" style="text-align: left">
 			        <select name="s-size">
 			            <option value="all">전체</option>
-			            <option value="1">사이즈1</option>
-			            <option value="2">사이즈2</option>
-			            <option value="3">사이즈3</option>
-			            <option value="4">사이즈4</option>
+			            <c:forEach items="${psVoList}" var="psVo">
+				            <option value="${psVo.getSizeNo()}">${psVo.getName()}</option>    	
+				  		</c:forEach>
 			        </select>
     			</td>
 			</tr>
@@ -57,10 +55,9 @@
 				<td class="membership-checkboxes" style="text-align: left">
 			        <select name="s-color">
 			            <option value="all">전체</option>
-			            <option value="1">색상1</option>
-			            <option value="2">색상2</option>
-			            <option value="3">색상3</option>
-			            <option value="4">색상4</option>
+			            <c:forEach items="${pcVoList}" var="pcVo">
+				            <option value="${pcVo.getColorNo()}">${pcVo.getName()}</option>    	
+				  		</c:forEach>
 			        </select>
    				</td>
 			</tr>

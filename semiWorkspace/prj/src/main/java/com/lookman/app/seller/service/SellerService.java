@@ -7,6 +7,7 @@ import com.lookman.app.db.JDBCTemplate;
 import com.lookman.app.product.vo.ProductVo;
 import com.lookman.app.seller.dao.SellerDao;
 import com.lookman.app.seller.vo.SellerProductInquiryVo;
+import com.lookman.app.seller.vo.SellerSimpleOrderListVo;
 import com.lookman.app.seller.vo.SellerStatusVo;
 import com.lookman.app.seller.vo.SellerVo;
 
@@ -53,6 +54,16 @@ public class SellerService {
 		JDBCTemplate.close(conn);
 		
 		return spiVoList;
+	}
+
+	public List<SellerSimpleOrderListVo> getSimplerOrderListRowNum3(SellerVo loginSellerVo) throws Exception {
+		Connection conn=JDBCTemplate.getConnection();
+		
+		List<SellerSimpleOrderListVo> ssoVoList=dao.getSimpleOrderListRowNum3(conn,loginSellerVo);
+		
+		JDBCTemplate.close(conn);
+		
+		return null;
 	}
 
 }

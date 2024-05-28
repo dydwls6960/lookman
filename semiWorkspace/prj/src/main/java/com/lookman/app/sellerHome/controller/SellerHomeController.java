@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import com.lookman.app.product.vo.ProductVo;
 import com.lookman.app.seller.service.SellerService;
 import com.lookman.app.seller.vo.SellerProductInquiryVo;
+import com.lookman.app.seller.vo.SellerSimpleOrderListVo;
 import com.lookman.app.seller.vo.SellerStatusVo;
 import com.lookman.app.seller.vo.SellerVo;
 
@@ -34,11 +35,15 @@ public class SellerHomeController extends HttpServlet{
 			SellerStatusVo ssVo= ss.getSellerStatus(sellerNo);
 			List<ProductVo> pVoList=ss.getProductListRowNum3(loginSellerVo);
 			List<SellerProductInquiryVo> spiVoList=ss.getProductInquiryListRowNum3(loginSellerVo);
+			List<SellerSimpleOrderListVo> ssoVoList=ss.getSimplerOrderListRowNum3(loginSellerVo);
 			
-			if(loginSellerVo != null && ssVo != null && pVoList !=null && spiVoList != null) {
+//			&& ssVo != null && pVoList !=null && spiVoList != null && ssoVoList != null
+			
+			if(loginSellerVo != null ) {
 				req.setAttribute("ssVo", ssVo);
 				req.setAttribute("pVoList", pVoList);
 				req.setAttribute("spiVoList", spiVoList);
+				req.setAttribute("ssoVoList", ssoVoList);
 				req.getRequestDispatcher("/WEB-INF/views/seller/home.jsp").forward(req, resp);
 			}else {
 				resp.sendRedirect("/app/seller/login");

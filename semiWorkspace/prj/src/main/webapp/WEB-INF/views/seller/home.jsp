@@ -144,36 +144,20 @@
 				    <th>주문상태</th>
 				    <th>결제방식</th>
 				    <th>베송비</th>
-				    <th>총금액</th>
+				    <th>상품금액</th>
 				    <th>주문일</th>
 				  </tr>
-				  <tr>
-				  	<td>3</td>
-				    <td>dydwls</td>
-				    <td>입금전</td>
-				    <td>무통장</td>
-				    <td>3,000원</td>
-				    <td>53,000원</td>
-				    <td>24-05-17 17:00</td>
-				  </tr>
-				  <tr>
-				  	<td>2</td>
-				    <td>dydwls</td>
-				    <td>취소</td>
-				    <td>무통장</td>
-				    <td>5,000원</td>
-				    <td>65,000원</td>
-				    <td>24-05-26 16:00</td>
-				  </tr>
-				  <tr>
-				  	<td>1</td>
-				    <td>dydwls</td>
-				    <td>배송완료</td>
-				    <td>포인트</td>
-				    <td>무료배송</td>
-				    <td>100,000원</td>
-				    <td>24-05-15 15:00</td>
-				  </tr>
+				  <c:forEach items="ssoVoList" var="ssoVo">
+				  	  <tr>
+					  	<td>${ssoVo.getOrdersNo()}</td>
+					    <td>${ssoVo.getMemberName()}</td>
+					    <td>${ssoVo.getStatusName()}</td>
+					    <td>${ssoVo.getCardName()}</td>
+					    <td>${ssoVo.getShippingFee()}</td>
+					    <td>${ssoVo.getProductPrice()}</td>
+					    <td>${ssoVo.getCreatedDate()}</td>
+					  </tr>
+				  </c:forEach>
 				</table>
     		</div>
     	</div>

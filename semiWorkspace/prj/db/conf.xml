@@ -14,20 +14,25 @@
 			alias="ProductMemberInquiryDto" />
 		<typeAlias type="com.lookman.app.category.vo.CategoryVo"
 			alias="CategoryVo" />
-
 		<typeAlias type="com.lookman.app.product.dto.ProductByDto"
 			alias="ProductByDto" />
 		<typeAlias
 			type="com.lookman.app.product.dto.ProductInventoryDto"
 			alias="ProductInventoryDto" />
-
 		<typeAlias type="com.lookman.app.seller.vo.SellerVo"
 			alias="SellerVo" />
-
 		<typeAlias type="com.lookman.app.cart.dto.CartHomeDto"
 			alias="CartHomeDto" />
-			
-			<typeAlias type="com.lookman.app.favorite.dto.FavoriteHomeDto" alias="FavoriteHomeDto"/>
+		<typeAlias
+			type="com.lookman.app.favorite.dto.FavoriteHomeDto"
+			alias="FavoriteHomeDto" />
+		<typeAlias type="com.lookman.app.order.dto.OrderFormDto"
+			alias="OrderFormDto" />
+		<typeAlias
+			type="com.lookman.app.order.dto.OrderFormDetailsDto"
+			alias="OrderFormDetailsDto" />
+		<typeAlias type="com.lookman.app.address.vo.AddressVo"
+			alias="AddressVo" />
 	</typeAliases>
 
 	<environments default="development">
@@ -52,5 +57,6 @@
 		<mapper resource="/inventory-mapper.xml" />
 		<mapper resource="/favorite-mapper.xml" />
 		<mapper resource="/cart-mapper.xml" />
+		<mapper resource="/order-mapper.xml" />
 	</mappers>
 </configuration>

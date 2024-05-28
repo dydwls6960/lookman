@@ -11,6 +11,47 @@ document.addEventListener("DOMContentLoaded", () => {
   const checkboxes = document.querySelectorAll(".item-checkbox");
   const delBtns = document.querySelectorAll(".del-btn");
   const delSelBtn = document.querySelector(".del-sel-button");
+  const orderBtn = document.querySelector(".order-btn");
+
+  orderBtn.addEventListener("click", () => {
+    const memberNo = orderBtn.dataset.memberNo;
+    const checkedBoxes = document.querySelectorAll(".item-checkbox:checked");
+    const cartNoList = [];
+
+    checkedBoxes.forEach((btn) => {
+      cartNoList.push(btn.dataset.cartNo);
+    });
+
+    // validation
+    if (cartNoList.length == 0) {
+      alert("주문 할 상품을 선택해주세요.");
+      return;
+    }
+
+    const formData = new FormData();
+    formData.append("memberNo", memberNo);
+    cartNoList.forEach((cartNo) => {
+      formData.append("cartNo", cartNo);
+    });
+
+    console.log(formData.getAll("memberNo"));
+    console.log(formData.getAll("cartNo"));
+
+    $.ajax({
+      url: "/app/orders/order-form",
+      type: "POST",
+      data: formData,
+      cache: false,
+      contentType: false,
+      processData: false,
+      error: function (err) {
+        console.log(err);
+      },
+      success: function (data) {
+        console.log(data);
+      },
+    });
+  });
 
   // 선택삭제
   delSelBtn.addEventListener("click", () => {

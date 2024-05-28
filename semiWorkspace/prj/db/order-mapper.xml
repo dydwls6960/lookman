@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="OrderMapper">
+	<select id="getOrderFormDetails" resultType="OrderFormDetailsDto">
+		SELECT 
+		    PI.FILENAME THUMBNAIL_FILENAME
+		    , S.NAME SELLER_NAME
+		    , P.NAME PRODUCT_NAME
+		    , S.NAME SIZE_NAME
+		    , C.NAME COLOR_NAME
+		    , C.QUANTITY ORDER_QUANTITY
+		    , P.PRICE PRODUCT_PRICE
+		    , ROUND(C.QUANTITY * P.PRICE) ORDER_PRICE
+		    , I.QUANTITY INVENTORY_QUANTITY
+		FROM CART C
+		JOIN INVENTORY I ON C.INVENTORY_NO = I.INVENTORY_NO
+		JOIN PRODUCT P ON I.PRODUCT_NO = P.PRODUCT_NO
+		JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO
+		JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO AND PI.THUMBNAIL_YN = 'Y'
+		LEFT JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO
+		LEFT JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO
+		<foreach collection="array" item="no" open="WHERE CART_NO IN (" separator="," close=")">
+			${no}
+		</foreach>
+	</select>
+	
+	<select id="getMemberAddress" resultType="AddressVo">
+		SELECT 
+		    ADDRESS_NO
+		    , MEMBER_NO
+		    , POSTCODE
+		    , ADDRESS
+		    , DETAILED_ADDRESS
+		    , EXTRA_ADDRESS
+		    , DEFAULT_YN DEFAULT_ADDRESS_YN
+		    , DEFAULT_REQ DEFAULT_SHIPPING_REQ
+		    , DELETED_YN
+		FROM ADDRESS
+		WHERE MEMBER_NO = ${memberNo}
+		AND DELETED_YN = 'N'
+	</select>
+
+</mapper>

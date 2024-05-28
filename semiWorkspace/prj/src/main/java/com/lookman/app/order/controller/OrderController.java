@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
+import javax.servlet.annotation.MultipartConfig;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -13,9 +14,11 @@ import javax.servlet.http.HttpServletResponse;
 
 import com.lookman.app.member.vo.MemberVo;
 import com.lookman.app.order.dto.OrderDto;
+import com.lookman.app.order.dto.OrderFormDto;
 import com.lookman.app.order.service.OrderService;
 
 @WebServlet("/orders/order-form")
+@MultipartConfig
 public class OrderController extends HttpServlet {
 
 	private final OrderService os;
@@ -26,31 +29,40 @@ public class OrderController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-		MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
+	}
 
-		if (loginMemberVo == null) {
-			resp.sendRedirect("/app/member/login");
-			return;
-		}
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
 
-		Map<String, String[]> parameterMap = req.getParameterMap();
-		Map<Integer, Integer> orderItems = new HashMap<>();
-
-		parameterMap.forEach((key, values) -> {
-			if (key.startsWith("items[")) {
-				int inventoryNo = Integer.parseInt(key.substring(6, key.length() - 1));
-				int quantity = Integer.parseInt(values[0]);
-				orderItems.put(inventoryNo, quantity);
+			if (loginMemberVo == null) {
+				resp.sendRedirect("/app/member/login");
+				return;
 			}
-		});
+			String memberNo = req.getParameter("memberNo");
+			String[] cartNoList = req.getParameterValues("cartNo");
 
-		System.out.println(orderItems);
+			if (!loginMemberVo.getMemberNo().equals(memberNo)) {
+				throw new Exception("권한이 없습니다.");
+			}
 
-		List<OrderDto> odtoList = os.getOrderList(orderItems);
+			// dto
+			OrderFormDto dto = os.getOrderFormDetails(cartNoList, loginMemberVo);
 
-		// dispatch jsp
-//		req.setAttribute("orderItems", orderItems)
-		req.getRequestDispatcher("/WEB-INF/views/order/order.jsp").forward(req, resp);
+			if (dto == null) {
+				throw new Exception("주문 데이터 가져오는 중 에러 발생했습니다.");
+			}
+
+			req.setAttribute("dto", dto);
+			req.getRequestDispatcher("/WEB-INF/views/order/order.jsp").forward(req, resp);
+
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+			e.printStackTrace();
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+		}
 
 	}
 

@@ -65,7 +65,7 @@
           <button class="del-sel-button" data-member-no="${sessionScope.loginMemberVo.memberNo}">선택삭제</button>
 
           <div class="order-btn-container">
-            <button class="order-btn">주문하기</button>
+            <button class="order-btn" data-member-no="${sessionScope.loginMemberVo.memberNo}">주문하기</button>
           </div>
 
         </main>

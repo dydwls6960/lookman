@@ -24,33 +24,18 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // validation
     if (cartNoList.length == 0) {
-      alert("주문 할 상품을 선택해주세요.");
+      alert("주문할 상품을 선택해주세요.");
       return;
     }
 
-    const formData = new FormData();
-    formData.append("memberNo", memberNo);
+    const params = new URLSearchParams();
+    params.append("memberNo", memberNo);
     cartNoList.forEach((cartNo) => {
-      formData.append("cartNo", cartNo);
+      params.append("cartNo", cartNo);
     });
 
-    console.log(formData.getAll("memberNo"));
-    console.log(formData.getAll("cartNo"));
-
-    $.ajax({
-      url: "/app/orders/order-form",
-      type: "POST",
-      data: formData,
-      cache: false,
-      contentType: false,
-      processData: false,
-      error: function (err) {
-        console.log(err);
-      },
-      success: function (data) {
-        console.log(data);
-      },
-    });
+    // Redirect to the GET URL
+    window.location.href = `/app/orders/order-form?${params.toString()}`;
   });
 
   // 선택삭제

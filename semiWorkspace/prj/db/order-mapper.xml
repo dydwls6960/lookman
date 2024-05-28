@@ -24,6 +24,7 @@
 		<foreach collection="array" item="no" open="WHERE CART_NO IN (" separator="," close=")">
 			${no}
 		</foreach>
+		ORDER BY C.CREATED_DATE DESC
 	</select>
 	
 	<select id="getMemberAddress" resultType="AddressVo">
@@ -40,6 +41,7 @@
 		FROM ADDRESS
 		WHERE MEMBER_NO = ${memberNo}
 		AND DELETED_YN = 'N'
+		ORDER BY DEFAULT_YN DESC
 	</select>
 
 </mapper>

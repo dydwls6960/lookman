@@ -1,11 +1,14 @@
 package com.lookman.app.address.service;
 
 import static com.lookman.app.db.JDBCTemplate.close;
+import static com.lookman.app.db.SQLSessionTemplate.*;
 import static com.lookman.app.db.JDBCTemplate.commit;
 import static com.lookman.app.db.JDBCTemplate.getConnection;
 import static com.lookman.app.db.JDBCTemplate.rollback;
 
 import java.sql.Connection;
+
+import org.apache.ibatis.session.SqlSession;
 
 import com.lookman.app.address.dao.AddressDao;
 import com.lookman.app.address.vo.AddressVo;
@@ -70,7 +73,7 @@ public class AddressService {
 		} else {
 			rollback(conn);
 		}
-		
+
 		close(conn);
 
 		return result;
@@ -79,7 +82,7 @@ public class AddressService {
 	public int deleteAddress(AddressVo avo) throws Exception {
 		Connection conn = getConnection();
 		int result = dao.deleteAddress(conn, avo);
-		
+
 		if (result == 1) {
 			commit(conn);
 		} else {
@@ -87,7 +90,18 @@ public class AddressService {
 		}
 
 		close(conn);
-		
+
 		return result;
+	}
+
+	public AddressVo getAddressByNo(String addressNo) throws Exception {
+		SqlSession ss = getSqlSession();
+
+		AddressVo avo = dao.getAddressByNo(ss, addressNo);
+
+		ss.close();
+
+		return avo;
+
 	}
 }

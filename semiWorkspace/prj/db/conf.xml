@@ -58,5 +58,6 @@
 		<mapper resource="/favorite-mapper.xml" />
 		<mapper resource="/cart-mapper.xml" />
 		<mapper resource="/order-mapper.xml" />
+		<mapper resource="/address-mapper.xml" />
 	</mappers>
 </configuration>

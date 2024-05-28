@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.lookman.app.address.dto.AddressDto;
 import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
@@ -119,6 +121,10 @@ public class AddressDao {
 		close(pstmt);
 		
 		return result;
+	}
+
+	public AddressVo getAddressByNo(SqlSession ss, String addressNo) {
+		return ss.selectOne("AddressMapper.getAddressByNo", addressNo);
 	}
 
 }

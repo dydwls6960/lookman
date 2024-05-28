@@ -267,18 +267,25 @@ JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO AND PI.THUMBNAIL_YN = 'Y'
 LEFT JOIN PRODUCT_SIZE PS ON I.SIZE_NO = PS.SIZE_NO
 LEFT JOIN COLOR C ON I.COLOR_NO = C.COLOR_NO
 WHERE CART_NO IN (29, 27)
+ORDER BY C.CREATED_DATE DESC
 ;
 
+-- 배송지 하나 셀렉트
+SELECT 
+    ADDRESS_NO
+    , MEMBER_NO
+    , POSTCODE
+    , ADDRESS
+    , DETAILED_ADDRESS
+    , EXTRA_ADDRESS
+    , DEFAULT_YN DEFAULT_ADDRESS_YN
+    , DEFAULT_REQ DEFAULT_SHIPPING_REQ
+    , DELETED_YN
+FROM ADDRESS
+WHERE ADDRESS_NO = 1
+AND DELETED_YN = 'N';
+
 -- Addresses (AddressVo)
---	private String addressNo;
---	private String memberNo;
---	private String postcode;
---	private String address;
---	private String detailedAddress;
---	private String extraAddress;
---	private String defaultAddressYn;
---	private String defaultShippingReq;
---	private String deletedYn;
 SELECT 
     ADDRESS_NO
     , MEMBER_NO
@@ -292,6 +299,7 @@ SELECT
 FROM ADDRESS
 WHERE MEMBER_NO = 1
 AND DELETED_YN = 'N'
+ORDER BY DEFAULT_YN DESC
 ;
 
 --------------------------------------------------------

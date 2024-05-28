@@ -15,6 +15,7 @@
     <div class="container">
       <%@ include file="/WEB-INF/views/layout/nav-with-header-cart.jsp" %>
         <main class="main main-favorite">
+          <h1 class="heading">찜한 상품</h1>
           <div class="favorite-items">
             <c:forEach var="dto" items="${requestScope.dtoList}">
               <div class="favorite-item">
@@ -27,7 +28,8 @@
                       ${dto.sellerName}
                     </a></div>
                   <div class="text-product">
-                    <a class="text-product__name" href="/app/products/${dto.productNo}"><strong>${dto.productName}</strong></a>
+                    <a class="text-product__name"
+                      href="/app/products/${dto.productNo}"><strong>${dto.productName}</strong></a>
                     <p class="text-product__price">${dto.price}원</p>
                     <div class="text-product__fav-cnt">
                       <svg width="12" height="12" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">

@@ -18,4 +18,8 @@ public class CartDao {
 		return ss.selectList("CartMapper.getCartItems", loginMemberVo);
 	}
 
+	public int deleteCartItem(SqlSession ss, CartItemVo cvo) {
+		return ss.delete("CartMapper.deleteCartItem", cvo);
+	}
+
 }

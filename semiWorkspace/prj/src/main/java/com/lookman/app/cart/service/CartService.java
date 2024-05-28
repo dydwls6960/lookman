@@ -36,12 +36,26 @@ public class CartService {
 
 	public List<CartHomeDto> getCartItems(MemberVo loginMemberVo) throws Exception {
 		SqlSession ss = getSqlSession();
-		
+
 		List<CartHomeDto> dtoList = cdao.getCartItems(ss, loginMemberVo);
-System.out.println(dtoList);
 		ss.close();
-		
+
 		return dtoList;
+	}
+
+	public int deleteCartItem(CartItemVo cvo) throws Exception {
+		SqlSession ss = getSqlSession();
+
+		int result = cdao.deleteCartItem(ss, cvo);
+		
+		if (result == 1) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+		ss.close();
+
+		return result;
 	}
 
 }

@@ -42,4 +42,10 @@
 		ORDER BY C.CREATED_DATE DESC) X
 	</select>
 
+	<delete id="deleteCartItem">
+		DELETE FROM CART
+		WHERE MEMBER_NO = ${memberNo}
+		AND CART_NO = ${cartNo}
+	</delete>
+
 </mapper>

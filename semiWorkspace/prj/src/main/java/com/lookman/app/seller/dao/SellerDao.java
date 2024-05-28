@@ -12,6 +12,7 @@ import com.lookman.app.db.JDBCTemplate;
 import com.lookman.app.product.vo.ProductColorVo;
 import com.lookman.app.product.vo.ProductSizeVo;
 import com.lookman.app.product.vo.ProductVo;
+import com.lookman.app.seller.product.vo.SellerProductSearchVo;
 import com.lookman.app.seller.vo.SellerProductInquiryVo;
 import com.lookman.app.seller.vo.SellerSimpleOrderListVo;
 import com.lookman.app.seller.vo.SellerStatusVo;
@@ -401,6 +402,70 @@ public class SellerDao {
 		JDBCTemplate.close(pstmt);
 		
 		return pcVoList;
+	}
+
+	public List<ProductVo> getProductSearchList(Connection conn, SellerProductSearchVo spsVo, SellerVo loginSellerVo) throws Exception {
+		String sql = "SELECT * FROM (";
+	    sql += "    SELECT ";
+	    sql += "        P.PRODUCT_NO, ";
+	    sql += "        P.SELLER_NO, ";
+	    sql += "        P.NAME, ";
+	    sql += "        P.DETAILS, ";
+	    sql += "        P.PRICE, ";
+	    sql += "        PI.FILENAME, ";
+	    sql += "        P.CREATED_DATE, ";
+	    sql += "        P.HIT, ";
+	    sql += "        ROW_NUMBER() OVER (PARTITION BY P.PRODUCT_NO ORDER BY PI.FILENAME) AS RN, ";
+	    sql += "        C.NAME AS 카테고리 ";
+	    sql += "    FROM PRODUCT P ";
+	    sql += "    JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO ";
+	    sql += "    JOIN CATEGORY C ON P.CATEGORY_NO = C.CATEGORY_NO ";
+	    sql += "    WHERE P.SELLER_NO = '" + loginSellerVo.getSellerNo() + "' ";
+	    if(!spsVo.getSearchText().equals("all")) {	    	
+	    	sql += "    AND " + spsVo.getSearch() + " = '" + spsVo.getSearchText() + "' ";
+	    }
+	    if (!spsVo.getCategoryNo().equals("all")) {
+	        sql += "AND C.CATEGORY_NO = '" + spsVo.getCategoryNo() + "' ";
+	    }
+	    sql += "    ORDER BY P.CREATED_DATE DESC";
+	    sql += ") PI_RANKED ";
+	    sql += "WHERE PI_RANKED.RN = 1 ";
+	    sql += "ORDER BY PI_RANKED.PRODUCT_NO DESC";
+
+	    PreparedStatement pstmt = conn.prepareStatement(sql);
+	    ResultSet rs = pstmt.executeQuery(sql);
+
+	    List<ProductVo> pVoList = new ArrayList<ProductVo>();
+	    while (rs.next()) {
+	        String productNo = rs.getString("PRODUCT_NO");
+	        String categoryNo = rs.getString("카테고리");
+	        String name = rs.getString("NAME");
+	        String details = rs.getString("DETAILS");
+	        String price = rs.getString("PRICE");
+	        String createdDate = rs.getString("CREATED_DATE");
+	        String file = rs.getString("FILENAME");
+	        String hit = rs.getString("HIT");
+
+	        ProductVo pVo = new ProductVo();
+	        pVo.setProductNo(productNo);
+	        pVo.setSellerNo(loginSellerVo.getName());
+	        pVo.setCategoryNo(categoryNo);
+	        pVo.setName(name);
+	        pVo.setDetails(details);
+	        pVo.setPrice(price);
+	        pVo.setCreatedDate(createdDate);
+	        pVo.setHit(hit);
+	        pVo.setDeletedYn(file);
+
+	        pVoList.add(pVo);
+	    }
+
+	
+	    JDBCTemplate.close(rs);
+		JDBCTemplate.close(pstmt);
+		
+
+	    return pVoList;
 	}
 
 }

@@ -62,7 +62,6 @@ document.addEventListener("DOMContentLoaded", () => {
   cartBtn.addEventListener("click", () => {
     const actionItems = document.querySelectorAll(".details__action--item");
     const memberNo = cartBtn.dataset.memberNo;
-    console.log(memberNo);
 
     if (!memberNo) {
       return (window.location.href = "/app/member/login");
@@ -217,7 +216,7 @@ document.addEventListener("DOMContentLoaded", () => {
   // 아이템 하나의 가격 업데이트
   function updateOrderPrice(item) {
     const quantity = item.querySelector(".item-quantity").value;
-    const price = item.getAttribute("data-price").replace(",", "");
+    const price = item.getAttribute("data-price").replaceAll(",", "");
     const orderPriceSpan = item.querySelector(".order-price");
 
     const updatedPrice = quantity * price;
@@ -239,7 +238,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const actionItems = document.querySelectorAll(".details__action--item");
     actionItems.forEach((item) => {
       const quantity = item.querySelector(".item-quantity").value;
-      const price = item.dataset.price.replace(",", "");
+      const price = item.dataset.price.replaceAll(",", "");
 
       totalPrice += quantity * price;
     });

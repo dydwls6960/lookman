@@ -5,7 +5,6 @@ import static com.lookman.app.db.JDBCTemplate.close;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -119,11 +118,11 @@ public class AddressDao {
 		int result = pstmt.executeUpdate();
 
 		close(pstmt);
-		
+
 		return result;
 	}
 
-	public AddressVo getAddressByNo(SqlSession ss, String addressNo) {
+	public AddressDto getAddressByNo(SqlSession ss, String addressNo) {
 		return ss.selectOne("AddressMapper.getAddressByNo", addressNo);
 	}
 

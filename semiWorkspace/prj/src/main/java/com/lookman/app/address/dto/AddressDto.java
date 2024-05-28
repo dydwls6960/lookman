@@ -9,6 +9,7 @@ public class AddressDto {
 	private String address;
 	private String detailedAddress;
 	private String extraAddress;
+	private String defaultReq;
 	private String defaultYn;
 	private String deletedYn;
 
@@ -16,7 +17,8 @@ public class AddressDto {
 	}
 
 	public AddressDto(String addressNo, String memberName, String memberNo, String phoneNo, String postcode,
-			String address, String detailedAddress, String extraAddress, String defaultYn, String deletedYn) {
+			String address, String detailedAddress, String extraAddress, String defaultReq, String defaultYn,
+			String deletedYn) {
 		this.addressNo = addressNo;
 		this.memberName = memberName;
 		this.memberNo = memberNo;
@@ -25,6 +27,7 @@ public class AddressDto {
 		this.address = address;
 		this.detailedAddress = detailedAddress;
 		this.extraAddress = extraAddress;
+		this.defaultReq = defaultReq;
 		this.defaultYn = defaultYn;
 		this.deletedYn = deletedYn;
 	}
@@ -93,6 +96,14 @@ public class AddressDto {
 		this.extraAddress = extraAddress;
 	}
 
+	public String getDefaultReq() {
+		return defaultReq;
+	}
+
+	public void setDefaultReq(String defaultReq) {
+		this.defaultReq = defaultReq;
+	}
+
 	public String getDefaultYn() {
 		return defaultYn;
 	}
@@ -113,8 +124,8 @@ public class AddressDto {
 	public String toString() {
 		return "AddressDto [addressNo=" + addressNo + ", memberName=" + memberName + ", memberNo=" + memberNo
 				+ ", phoneNo=" + phoneNo + ", postcode=" + postcode + ", address=" + address + ", detailedAddress="
-				+ detailedAddress + ", extraAddress=" + extraAddress + ", defaultYn=" + defaultYn + ", deletedYn="
-				+ deletedYn + "]";
+				+ detailedAddress + ", extraAddress=" + extraAddress + ", defaultReq=" + defaultReq + ", defaultYn="
+				+ defaultYn + ", deletedYn=" + deletedYn + "]";
 	}
 
 }

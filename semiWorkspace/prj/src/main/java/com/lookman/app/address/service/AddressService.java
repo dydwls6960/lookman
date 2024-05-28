@@ -11,6 +11,7 @@ import java.sql.Connection;
 import org.apache.ibatis.session.SqlSession;
 
 import com.lookman.app.address.dao.AddressDao;
+import com.lookman.app.address.dto.AddressDto;
 import com.lookman.app.address.vo.AddressVo;
 
 public class AddressService {
@@ -94,14 +95,14 @@ public class AddressService {
 		return result;
 	}
 
-	public AddressVo getAddressByNo(String addressNo) throws Exception {
+	public AddressDto getAddressByNo(String addressNo) throws Exception {
 		SqlSession ss = getSqlSession();
 
-		AddressVo avo = dao.getAddressByNo(ss, addressNo);
+		AddressDto dto = dao.getAddressByNo(ss, addressNo);
 
 		ss.close();
 
-		return avo;
+		return dto;
 
 	}
 }

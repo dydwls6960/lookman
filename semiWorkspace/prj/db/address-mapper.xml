@@ -3,22 +3,22 @@
   PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="AddressMapper">
-
-<select id="getAddressByNo" resultType="AddressVo">
-	SELECT 
-	    ADDRESS_NO
-	    , MEMBER_NO
-	    , POSTCODE
-	    , ADDRESS
-	    , DETAILED_ADDRESS
-	    , EXTRA_ADDRESS
-	    , DEFAULT_YN DEFAULT_ADDRESS_YN
-	    , DEFAULT_REQ DEFAULT_SHIPPING_REQ
-	    , DELETED_YN
-	FROM ADDRESS
-	WHERE ADDRESS_NO = ${addressNo}
-	AND DELETED_YN = 'N'
-</select>
-
-
+	<select id="getAddressByNo" resultType="AddressDto">
+		SELECT 
+		    A.ADDRESS_NO
+		    , M.NAME MEMBER_NAME
+		    , M.MEMBER_NO
+		    , M.PHONE_NO
+		    , A.POSTCODE
+		    , A.ADDRESS
+		    , A.DETAILED_ADDRESS
+		    , A.EXTRA_ADDRESS
+		    , A.DEFAULT_YN 
+		    , A.DEFAULT_REQ 
+		    , A.DELETED_YN
+		FROM ADDRESS A
+		JOIN MEMBER M ON A.MEMBER_NO = M.MEMBER_NO
+		WHERE A.ADDRESS_NO = ${addressNo}
+		AND A.DELETED_YN = 'N'
+	</select>
 </mapper>

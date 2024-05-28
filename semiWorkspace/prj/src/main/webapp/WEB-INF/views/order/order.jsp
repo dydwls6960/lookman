@@ -27,14 +27,18 @@
               <div class="shipping-info__select">
                 <c:forEach var="address" items="${requestScope.dto.addresses}" varStatus="status">
                   <c:if test="${address.defaultAddressYn eq 'Y'}">
-                    <input type="radio" name="address" id="address${status.index}"
-                      data-address-no="${address.addressNo}" checked>
-                    <label for="address${status.index}">집</label>
+                    <div class="address-radio-container">
+                      <input type="radio" name="address" id="address${status.index}"
+                        data-address-no="${address.addressNo}" checked>
+                      <label for="address${status.index}">집</label>
+                    </div>
                   </c:if>
                   <c:if test="${address.defaultAddressYn eq 'N'}">
-                    <input type="radio" name="address" id="address${status.index}"
-                      data-address-no="${address.addressNo}">
-                    <label for="address${status.index}">${requestScope.dto.memberName}님의 배송지</label>
+                    <div class="address-radio-container">
+                      <input type="radio" name="address" id="address${status.index}"
+                        data-address-no="${address.addressNo}">
+                      <label for="address${status.index}">${requestScope.dto.memberName}님의 배송지</label>
+                    </div>
                   </c:if>
                 </c:forEach>
               </div>
@@ -43,8 +47,8 @@
             <div class="shipping-info">
               <span>이름 / 연락처</span>
               <div class="shipping-info__contact">
-                <span>${requestScope.dto.memberName}</span>
-                <span>${requestScope.dto.phoneNumber}</span>
+                <span class="memberName">${requestScope.dto.memberName}</span>
+                <span class="phoneNumber">${requestScope.dto.phoneNumber}</span>
               </div>
             </div>
 
@@ -61,10 +65,7 @@
             <div class="shipping-info">
               <span>배송 요청사항</span>
               <div class="shipping-info__requirements">
-                <select name="req" id="req">
-                  <option value="?" selected="selected">${requestScope.dto.addresses[0].defaultShippingReq}</option>
-                  <option value="1">부재 시 집 앞에 놔주세요</option>
-                </select>
+                <input class="shippingReq" type="text" value="${requestScope.dto.addresses[0].defaultShippingReq}">
               </div>
             </div>
 

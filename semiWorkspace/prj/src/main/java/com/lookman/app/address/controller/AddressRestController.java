@@ -10,8 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.lookman.app.address.dto.AddressDto;
 import com.lookman.app.address.service.AddressService;
-import com.lookman.app.address.vo.AddressVo;
 
 @WebServlet("/address/rest")
 public class AddressRestController extends HttpServlet {
@@ -26,10 +26,15 @@ public class AddressRestController extends HttpServlet {
 		try {
 
 			String addressNo = req.getParameter("addressNo");
-			AddressVo avo = as.getAddressByNo(addressNo);
+			
+			// service
+			AddressDto dto = as.getAddressByNo(addressNo);
+			
+			// json
 			Gson gson = new Gson();
-			String jsonStr = gson.toJson(avo);
-			System.out.println(jsonStr);
+			String jsonStr = gson.toJson(dto);
+
+			// result
 			resp.setContentType("application/json;charset=utf-8");
 			PrintWriter out = resp.getWriter();
 			out.write(jsonStr);

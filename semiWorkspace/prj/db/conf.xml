@@ -33,6 +33,8 @@
 			alias="OrderFormDetailsDto" />
 		<typeAlias type="com.lookman.app.address.vo.AddressVo"
 			alias="AddressVo" />
+		<typeAlias type="com.lookman.app.address.dto.AddressDto"
+			alias="AddressDto" />
 	</typeAliases>
 
 	<environments default="development">

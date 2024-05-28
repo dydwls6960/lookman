@@ -143,11 +143,11 @@
 				    <th>주문자</th>
 				    <th>주문상태</th>
 				    <th>결제방식</th>
-				    <th>베송비</th>
+				    <th>배송비</th>
 				    <th>상품금액</th>
 				    <th>주문일</th>
 				  </tr>
-				  <c:forEach items="ssoVoList" var="ssoVo">
+				  <c:forEach items="${ssoVoList}" var="ssoVo">
 				  	  <tr>
 					  	<td>${ssoVo.getOrdersNo()}</td>
 					    <td>${ssoVo.getMemberName()}</td>

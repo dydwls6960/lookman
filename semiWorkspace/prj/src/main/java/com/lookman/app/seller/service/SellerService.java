@@ -9,6 +9,7 @@ import com.lookman.app.product.vo.ProductColorVo;
 import com.lookman.app.product.vo.ProductSizeVo;
 import com.lookman.app.product.vo.ProductVo;
 import com.lookman.app.seller.dao.SellerDao;
+import com.lookman.app.seller.product.vo.SellerProductSearchVo;
 import com.lookman.app.seller.vo.SellerProductInquiryVo;
 import com.lookman.app.seller.vo.SellerSimpleOrderListVo;
 import com.lookman.app.seller.vo.SellerStatusVo;
@@ -105,5 +106,17 @@ public class SellerService {
 		JDBCTemplate.close(conn);
 		return pcVoList;
 	}
+
+	public List<ProductVo> getProductSearchList(SellerProductSearchVo spsVo, SellerVo loginSellerVo) throws Exception {
+		Connection conn=JDBCTemplate.getConnection();
+		
+		List<ProductVo> pVoList=dao.getProductSearchList(conn,spsVo,loginSellerVo);
+		
+		JDBCTemplate.close(conn);
+		
+		return pVoList;
+	}
+
+	
 
 }

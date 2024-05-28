@@ -26,6 +26,8 @@
 
 		<typeAlias type="com.lookman.app.cart.dto.CartHomeDto"
 			alias="CartHomeDto" />
+			
+			<typeAlias type="com.lookman.app.favorite.dto.FavoriteHomeDto" alias="FavoriteHomeDto"/>
 	</typeAliases>
 
 	<environments default="development">

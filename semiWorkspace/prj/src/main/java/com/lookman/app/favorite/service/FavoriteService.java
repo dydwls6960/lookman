@@ -1,8 +1,13 @@
 package com.lookman.app.favorite.service;
 
 import com.lookman.app.favorite.dao.FavoriteDao;
+import com.lookman.app.favorite.dto.FavoriteHomeDto;
 import com.lookman.app.favorite.vo.FavoriteVo;
+import com.lookman.app.member.vo.MemberVo;
+
 import static com.lookman.app.db.SQLSessionTemplate.*;
+
+import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 
@@ -56,6 +61,15 @@ public class FavoriteService {
 		ss.close();
 		
 		return count == 1;
+	}
+
+	public List<FavoriteHomeDto> getFavoriteItems(MemberVo loginMemberVo) throws Exception {
+		SqlSession ss = getSqlSession();
+		
+		List<FavoriteHomeDto> dtoList = fdao.getFavoriteItems(ss, loginMemberVo);
+		ss.close();
+		
+		return dtoList;
 	}
 
 }

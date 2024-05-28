@@ -223,6 +223,27 @@ DELETE FROM CART
 <foreach collection="array" item="no" separator="," open="WHERE CART_NO IN (" close=")">
     #{no}
 </foreach>
+;
+
+
+--------------------------------------------------------
+-- 찜한상품 페이지
+SELECT 
+    F.FAVORITE_NO
+    , S.SELLER_NO
+    , S.NAME SELLER_NAME
+    , P.PRODUCT_NO
+    , P.NAME PRODUCT_NAME
+    , P.PRICE
+    , PI.FILENAME THUMBNAIL_FILENAME
+    , (SELECT COUNT(*) FROM FAVORITE F2 WHERE F2.PRODUCT_NO = P.PRODUCT_NO) FAVORITE_CNT
+FROM FAVORITE F
+JOIN PRODUCT P ON F.PRODUCT_NO = P.PRODUCT_NO
+JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO
+JOIN PRODUCT_IMG PI ON P.PRODUCT_NO = PI.PRODUCT_NO AND PI.THUMBNAIL_YN = 'Y'
+WHERE MEMBER_NO = 1
+;
+
 
 
 --------------------------------------------------------

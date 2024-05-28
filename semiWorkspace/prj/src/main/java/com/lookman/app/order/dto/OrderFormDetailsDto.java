@@ -3,6 +3,7 @@ package com.lookman.app.order.dto;
 public class OrderFormDetailsDto {
 	private String thumbnailFilename;
 	private String sellerName;
+	private String productNo;
 	private String productName;
 	private String sizeName;
 	private String colorName;
@@ -14,10 +15,12 @@ public class OrderFormDetailsDto {
 	public OrderFormDetailsDto() {
 	}
 
-	public OrderFormDetailsDto(String thumbnailFilename, String sellerName, String productName, String sizeName,
-			String colorName, String orderQuantity, String inventoryQuantity, String productPrice, String orderPrice) {
+	public OrderFormDetailsDto(String thumbnailFilename, String sellerName, String productNo, String productName,
+			String sizeName, String colorName, String orderQuantity, String inventoryQuantity, String productPrice,
+			String orderPrice) {
 		this.thumbnailFilename = thumbnailFilename;
 		this.sellerName = sellerName;
+		this.productNo = productNo;
 		this.productName = productName;
 		this.sizeName = sizeName;
 		this.colorName = colorName;
@@ -41,6 +44,14 @@ public class OrderFormDetailsDto {
 
 	public void setSellerName(String sellerName) {
 		this.sellerName = sellerName;
+	}
+
+	public String getProductNo() {
+		return productNo;
+	}
+
+	public void setProductNo(String productNo) {
+		this.productNo = productNo;
 	}
 
 	public String getProductName() {
@@ -101,10 +112,10 @@ public class OrderFormDetailsDto {
 
 	@Override
 	public String toString() {
-		return "OrderDetailsDto [thumbnailFilename=" + thumbnailFilename + ", sellerName=" + sellerName
-				+ ", productName=" + productName + ", sizeName=" + sizeName + ", colorName=" + colorName
-				+ ", orderQuantity=" + orderQuantity + ", inventoryQuantity=" + inventoryQuantity + ", productPrice="
-				+ productPrice + ", orderPrice=" + orderPrice + "]";
+		return "OrderFormDetailsDto [thumbnailFilename=" + thumbnailFilename + ", sellerName=" + sellerName
+				+ ", productNo=" + productNo + ", productName=" + productName + ", sizeName=" + sizeName
+				+ ", colorName=" + colorName + ", orderQuantity=" + orderQuantity + ", inventoryQuantity="
+				+ inventoryQuantity + ", productPrice=" + productPrice + ", orderPrice=" + orderPrice + "]";
 	}
 
 }

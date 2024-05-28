@@ -4,7 +4,7 @@
 
   <head>
     <meta charset="UTF-8">
-    <title>장바구니</title>
+    <title>주문</title>
     <%@ include file="/WEB-INF/views/layout/util.jsp" %>
 
       <!-- vex modal -->
@@ -20,7 +20,7 @@
       <%@ include file="/WEB-INF/views/layout/nav-with-header-settings.jsp" %>
         <main class="main main-order">
           <h1>Order / Payment</h1>
-          <div class="order__shipping">
+          <section class="order__shipping">
             <h3>배송 정보</h3>
             <div class="shipping-info">
               <span>배송지</span>
@@ -69,7 +69,45 @@
               </div>
             </div>
 
-          </div>
+          </section>
+
+          <section class="order__details">
+            <h3>상품 정보</h3>
+            <table class="cart__table">
+              <thead>
+                <tr class="cart__table--header">
+                  <th>상품명(옵션)</th>
+                  <th>가격</th>
+                  <th>수량</th>
+                  <th>주문가격</th>
+                </tr>
+              </thead>
+              <tbody>
+
+                <c:forEach var="detail" items="${requestScope.dto.details}">
+                  <tr>
+                    <td>
+                      <div class="product-details">
+                        <a href="/app/products/${detail.productNo}" class="product-link"><img
+                            class="product-detail__img" src="/app/resources/img/product/${detail.thumbnailFilename}"
+                            alt="Product image"></a>
+                        <div class="product-detail__text">
+                          <p class="cart__seller-product">[${detail.sellerName}]
+                            ${detail.productName}</p>
+                          <%-- <p class="cart__product-name">${detail.productName}</p> --%>
+                            <p class="cart__order-options">옵션: ${detail.colorName} /
+                              ${detail.sizeName} / 재고 ${detail.inventoryQuantity}개 남음</p>
+                        </div>
+                      </div>
+                    </td>
+                    <td class="cart__price">${detail.productPrice}</td>
+                    <td class="cart__order-quantity">${detail.orderQuantity}</td>
+                    <td class="cart__order-price">${detail.orderPrice}</td>
+                  </tr>
+                </c:forEach>
+              </tbody>
+            </table>
+          </section>
 
         </main>
         <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

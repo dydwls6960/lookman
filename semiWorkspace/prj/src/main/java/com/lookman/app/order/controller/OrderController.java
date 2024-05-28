@@ -53,6 +53,7 @@ public class OrderController extends HttpServlet {
 
 			req.setAttribute("pageTitle", "주문서 작성");
 			req.setAttribute("dto", dto);
+			System.out.println(dto);
 			req.getRequestDispatcher("/WEB-INF/views/order/order.jsp").forward(req, resp);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

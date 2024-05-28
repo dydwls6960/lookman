@@ -17,7 +17,6 @@ document.addEventListener("DOMContentLoaded", () => {
         method: "GET",
         data: { addressNo },
         success: function (res) {
-          console.log(res);
           memberNameEl.textContent = res.memberName;
           phoneNumberEl.textContent = res.phoneNo;
           postcodeEl.textContent = `(${res.postcode})`;
@@ -27,7 +26,7 @@ document.addEventListener("DOMContentLoaded", () => {
           shippingReqEl.textContent = res.defaultReq;
         },
         error: function (data) {
-          console.log(data);
+          alert(data);
         },
       });
     });

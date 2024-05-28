@@ -28,31 +28,26 @@
 	   			<table id="productList" class="userList">
 				  <tr>
 				  	<th>상품번호</th>
+				  	<th>카테고리</th>
 				    <th>상품명</th>
 				    <th>상품이미지</th>
 				    <th>상품금액</th>
-				    <th>수량</th>
+				    <th>판매자</th>
 				    <th>등록일</th>
-				    <th>수정일</th>
+				    <th>조회수</th>
 				  </tr>
-				  <tr data-href="#">
-				  	<td>5</td>
-				    <td>옷</td>
-				    <td><img alt="" src=""> 옷~~~~</td>
-				    <td>74,000원</td>
-				    <td>5개</td>
-				    <td>24년05월19 13:00</td>
-				    <td>없음</td>
-				  </tr>
-				  <tr data-href="#">
-				  	<td>3</td>
-				    <td>옷</td>
-				    <td><img alt="" src=""> 옷~~~~</td>
-				    <td>34,000원</td>
-				    <td>5개</td>
-				    <td>24년05월19 13:00</td>
-				    <td>없음</td>
-				  </tr>
+				  <c:forEach items="${pVoList}" var="pVo">
+				  	  <tr data-href="#">
+					  	<td>${pVo.getProductNo()}</td>
+					  	<td>${pVo.getCategoryNo()}</td>
+					    <td>${pVo.getName()}</td>
+					    <td><img src="/app/resources/img/product/${pVo.getDeletedYn()}" width="100" height="100">${pVo.getDetails()}</td>
+					    <td>${pVo.getPrice()}</td>
+					    <td>${pVo.getSellerNo()}</td>
+					    <td>${pVo.getCreatedDate()}</td>
+					    <td>${pVo.getHit()}</td>
+					  </tr>
+				  </c:forEach>
 				</table>
 	   		</div>
     	</div>

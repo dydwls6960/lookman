@@ -13,8 +13,8 @@
 				</th>
 				<td style="text-align: left">
 					<select name="s-len">
-				        <option value="pName">상품명</option>
-				        <option value="pNo">상품번호</option>
+				        <option value="P.NAME">상품명</option>
+				        <option value="P.PRODUCT_NO">상품번호</option>
 				    </select>
 	   				 <input type="text" name="searchListText">
 				</td>

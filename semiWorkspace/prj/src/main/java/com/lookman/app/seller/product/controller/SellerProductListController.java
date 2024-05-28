@@ -55,6 +55,6 @@ public class SellerProductListController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		
 	}
 }

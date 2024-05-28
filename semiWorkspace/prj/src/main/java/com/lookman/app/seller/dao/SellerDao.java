@@ -224,22 +224,22 @@ public class SellerDao {
 
 	public List<SellerSimpleOrderListVo> getSimpleOrderListRowNum3(Connection conn, SellerVo loginSellerVo) throws Exception {
 		String sql="SELECT * FROM (\r\n"
-		           + "    SELECT O.ORDERS_NO, M.ID AS MEMBER_ID, M.NAME AS MEMBER_NAME, SS.NAME AS STATUS_NAME, C.NAME AS CARD_COMPANY_NAME, \r\n"
-		           + "           O.SHIPPING_FEE, P.PRICE, \r\n"
-		           + "           TO_CHAR(O.CREATED_DATE, 'YY\"년\"MM\"월\"DD\"일\" HH24:MI') AS FORMATTED_DATE\r\n"
-		           + "    FROM ORDERS O\r\n"
-		           + "    JOIN ORDER_DETAIL OD ON O.ORDERS_NO = OD.ORDER_DETAIL_NO\r\n"
-		           + "    JOIN PRODUCT P ON OD.PRODUCT_NO = P.PRODUCT_NO\r\n"
-		           + "    JOIN MEMBER M ON O.MEMBER_NO = M.MEMBER_NO\r\n"
-		           + "    JOIN ADDRESS A ON A.ADDRESS_NO = O.ADDRESS_NO\r\n"
-		           + "    JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO\r\n"
-		           + "    JOIN STATUS SS ON O.STATUS_NO = SS.STATUS_NO\r\n"
-		           + "    JOIN PAYMENT PM ON O.ORDERS_NO = PM.ORDERS_NO\r\n"
-		           + "    JOIN CARD_COMPANY C ON PM.CARD_COMPANY_NO = C.CARD_COMPANY_NO\r\n"
-		           + "    WHERE P.SELLER_NO = "+loginSellerVo.getSellerNo()
-		           + "    ORDER BY O.ORDERS_NO DESC\r\n"
-		           + ")\r\n"
-		           + "WHERE ROWNUM <= 3";
+				+ "    SELECT O.ORDERS_NO, M.ID AS MEMBER_ID, M.NAME AS MEMBER_NAME, SS.NAME AS STATUS_NAME, C.NAME AS CARD_COMPANY_NAME,\r\n"
+				+ "           O.SHIPPING_FEE, P.PRICE, S.SELLER_NO,\r\n"
+				+ "           TO_CHAR(O.CREATED_DATE, 'YY\"년\"MM\"월\"DD\"일\" HH24:MI') AS FORMATTED_DATE\r\n"
+				+ "    FROM ORDERS O\r\n"
+				+ "    JOIN ORDER_DETAIL OD ON O.ORDERS_NO = OD.ORDERS_NO -- Ensure correct JOIN condition\r\n"
+				+ "    JOIN PRODUCT P ON OD.PRODUCT_NO = P.PRODUCT_NO\r\n"
+				+ "    JOIN MEMBER M ON O.MEMBER_NO = M.MEMBER_NO\r\n"
+				+ "    JOIN ADDRESS A ON A.ADDRESS_NO = O.ADDRESS_NO\r\n"
+				+ "    JOIN SELLER S ON P.SELLER_NO = S.SELLER_NO\r\n"
+				+ "    JOIN STATUS SS ON O.STATUS_NO = SS.STATUS_NO\r\n"
+				+ "    JOIN PAYMENT PM ON O.ORDERS_NO = PM.ORDERS_NO\r\n"
+				+ "    JOIN CARD_COMPANY C ON PM.CARD_COMPANY_NO = C.CARD_COMPANY_NO\r\n"
+				+ "    WHERE P.SELLER_NO ="+loginSellerVo.getSellerNo()
+				+ "    ORDER BY O.ORDERS_NO DESC\r\n"
+				+ ")\r\n"
+				+ "WHERE ROWNUM <= 3";
 		PreparedStatement pstmt=conn.prepareStatement(sql);
 		ResultSet rs=pstmt.executeQuery();
 		
@@ -267,10 +267,9 @@ public class SellerDao {
             ssoVoList.add(ssoVo);
 		}
 		
-		
 		JDBCTemplate.close(rs);
 		JDBCTemplate.close(pstmt);
-		
+	
 		return ssoVoList;
 	}
 

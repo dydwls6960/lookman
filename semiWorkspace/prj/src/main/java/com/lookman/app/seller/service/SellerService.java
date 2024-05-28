@@ -63,7 +63,7 @@ public class SellerService {
 		
 		JDBCTemplate.close(conn);
 		
-		return null;
+		return ssoVoList;
 	}
 
 }

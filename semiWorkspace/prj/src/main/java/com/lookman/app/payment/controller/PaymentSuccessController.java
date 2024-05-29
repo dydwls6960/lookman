@@ -26,6 +26,27 @@ public class PaymentSuccessController extends HttpServlet {
 
 	@Override
 	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			String success = req.getParameter("success");
+			if (success == null || success.equals("") || !success.equals("true")) {
+				resp.sendRedirect("/app/home");
+				return;
+			}
+			
+			MemberVo loginMemberVo = (MemberVo) req.getSession().getAttribute("loginMemberVo");
+			
+			if (loginMemberVo == null) {
+				resp.sendRedirect("/app/member/login");
+				return;
+			}
+			
+			req.getRequestDispatcher("/WEB-INF/views/payment/success.jsp").forward(req, resp);
+		} catch (Exception e) {
+			e.printStackTrace();
+			System.out.println(e.getMessage());
+			req.setAttribute("errMsg", e.getMessage());
+			req.getRequestDispatcher("/WEB-INF/views/common/error.jsp").forward(req, resp);
+		}
 	}
 
 	@Override
@@ -51,11 +72,11 @@ public class PaymentSuccessController extends HttpServlet {
 
 			// process payment (service)
 			int result = ps.savePaymentInfo(payResDto);
-			
-			if (result != 0) {
+			System.out.println(result);
+			if (result == 0) {
 				throw new Exception("결제 과정 진행 중 에러.");
 			}
-			
+
 			// response
 			resp.setContentType("application/json");
 			PrintWriter out = resp.getWriter();

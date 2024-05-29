@@ -74,7 +74,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 cardCompanyNo = 3;
                 break;
             }
-            console.log("cardCompanyNo:", cardCompanyNo);
 
             // include memberNo, shippingReq, addressNo to data
             data.memberNo = memberNo;
@@ -91,9 +90,11 @@ document.addEventListener("DOMContentLoaded", () => {
               data: JSON.stringify(data),
               success: function (res) {
                 console.log(res);
-
-                // if res.message === "ok" redirect to payment complete
-                // else,,
+                if (res.message === "success") {
+                  window.location.href = "/app/payment/success?success=true";
+                } else {
+                  alert("결제 실패 했습니다.");
+                }
               },
               error: function (err) {
                 console.log(err);

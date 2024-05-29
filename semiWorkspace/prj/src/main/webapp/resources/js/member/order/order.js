@@ -12,6 +12,8 @@ document.addEventListener("DOMContentLoaded", () => {
     memberEmail,
     memberName,
     memberPhone,
+    memberAddr,
+    memberPostcode,
     makeMerchantUid,
     totalPrice,
     concatProdName,
@@ -29,12 +31,27 @@ document.addEventListener("DOMContentLoaded", () => {
           buyer_email: memberEmail,
           buyer_name: memberName,
           buyer_tel: memberPhone,
+          buyer_addr: memberAddr,
+          buyer_postcode: memberPostcode,
         },
-        async function (res) {
-          if (res.success) {
-            console.log(res);
+        async function (data) {
+          if (data.success) {
+            console.log(data);
             console.log("hello world!");
             // make api call to backend to save data
+            // /app/payment/success
+            $.ajax({
+              url: "/app/payment/success",
+              method: "POST",
+              contentType: "application/json; charset=utf-8",
+              data: JSON.stringify(data),
+              success: function (res) {
+                console.log(res);
+              },
+              error: function (err) {
+                console.log(err);
+              },
+            });
           } else if (res.success == false) {
             alert(res.error_msg);
           }
@@ -53,6 +70,13 @@ document.addEventListener("DOMContentLoaded", () => {
     const memberName = payBtn.dataset.memberName;
     const memberEmail = payBtn.dataset.memberId;
     const memberPhone = payBtn.dataset.memberPhone;
+    const memberAddr = document
+      .querySelector(".shipping-info__address")
+      .textContent.replace(/\s+/g, " ")
+      .trim();
+    const memberPostcode = document
+      .querySelector(".postcode")
+      .textContent.replace(/[()]/g, "");
 
     const today = new Date();
     const hours = today.getHours();
@@ -85,6 +109,8 @@ document.addEventListener("DOMContentLoaded", () => {
       memberEmail,
       memberName,
       memberPhone,
+      memberAddr,
+      memberPostcode,
       makeMerchantUid,
       totalPrice,
       concatProdName,

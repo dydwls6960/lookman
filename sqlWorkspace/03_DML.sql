@@ -329,6 +329,11 @@ GROUP BY P.PRODUCT_NO, P.PRICE, S.NAME, P.NAME, PI.FILENAME
 ORDER BY AVG_RATING DESC, REVIEW_CNT DESC
 ;
 
+--------------------------------------------------------
+-- 결제 REST API
+SELECT *
+FROM PAYMENT;
+
 
 
 --------------------------------------------------------

@@ -27,8 +27,8 @@ public class CartDao {
 		return ss.delete("CartMapper.deleteCartItems", cartNoList);
 	}
 
-	public int deleteCartByMemberNo(SqlSession ss, PaymentResponseDto payResDto) {
-		return ss.delete("CartMapper.deleteCartByMemberNo", payResDto);
+	public int deleteCartByMemberNoAndInventory(SqlSession ss, PaymentResponseDto payResDto) {
+		return ss.delete("CartMapper.deleteCartByMemberNoAndInventory", payResDto);
 	}
 
 }

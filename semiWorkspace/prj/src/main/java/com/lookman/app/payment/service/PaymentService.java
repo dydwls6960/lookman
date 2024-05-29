@@ -49,9 +49,11 @@ public class PaymentService {
 					ss.commit();
 				}
 
-				// delete from cart where memberNo = ?
-				int delResult = cdao.deleteCartByMemberNo(ss, payResDto);
-				if (delResult > 0) {
+				// delete from cart where memberNo = ? and inventoryNo in (?, ?)
+				int delResult = cdao.deleteCartByMemberNoAndInventory(ss, payResDto);
+				if (delResult <= 0) {
+					throw new Exception("장바구니 아이템 삭제 중 에러");
+				} else {
 					ss.commit();
 				}
 				System.out.println("delResult: " + delResult);

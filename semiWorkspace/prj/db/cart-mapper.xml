@@ -55,9 +55,12 @@
 		</foreach>
 	</delete>
 	
-	<delete id="deleteCartByMemberNo">
+	<delete id="deleteCartByMemberNoAndInventory">
 		DELETE FROM CART
 		WHERE MEMBER_NO = ${memberNo}
+		<foreach collection="productDetails" item="detail" open="AND INVENTORY_NO IN (" separator="," close=")">
+			${detail.inventoryNo}
+		</foreach>
 	</delete>
-
+	
 </mapper>

@@ -22,4 +22,15 @@
 		AND I.PRODUCT_NO = #{productNo}
 	</select>
 
+	<update id="decrementInventories" parameterType="PaymentResponseDto">
+		BEGIN
+	    <foreach collection="productDetails" item="detail">
+	      UPDATE INVENTORY
+	      SET QUANTITY = QUANTITY - ${detail.quantity}
+	      WHERE INVENTORY_NO = #{detail.inventoryNo}
+	      AND PRODUCT_NO = #{detail.productNo};
+	    </foreach>
+	    END;
+	</update> 
+
 </mapper>

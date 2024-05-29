@@ -51,8 +51,11 @@ public class PaymentSuccessController extends HttpServlet {
 
 			// process payment (service)
 			int result = ps.savePaymentInfo(payResDto);
-			System.out.println(result);
-
+			
+			if (result != 0) {
+				throw new Exception("결제 과정 진행 중 에러.");
+			}
+			
 			// response
 			resp.setContentType("application/json");
 			PrintWriter out = resp.getWriter();
@@ -60,6 +63,10 @@ public class PaymentSuccessController extends HttpServlet {
 			out.flush();
 		} catch (Exception e) {
 			e.printStackTrace();
+			resp.setContentType("application/json");
+			PrintWriter out = resp.getWriter();
+			out.write("{\"message\": \"failure\"}");
+			out.flush();
 		}
 
 	}

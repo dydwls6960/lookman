@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="PaymentMapper">
+	<insert id="insertIntoPayment">
+		INSERT INTO PAYMENT(PAYMENT_NO, ORDERS_NO, CARD_COMPANY_NO, STATUS_NO, AMOUNT)
+		VALUES(SEQ_PAYMENT.NEXTVAL, ${ordersNo}, ${cardCompanyNo}, 2, ${paidAmount})
+	</insert>
+
+</mapper>

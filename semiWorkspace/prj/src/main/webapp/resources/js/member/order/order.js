@@ -61,11 +61,27 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
               });
 
+            // cardCompanyNo
+            let cardCompanyNo;
+            switch (data.pg_provider) {
+              case "kakaopay":
+                cardCompanyNo = 1;
+                break;
+              case "payco":
+                cardCompanyNo = 2;
+                break;
+              case "tosspayments":
+                cardCompanyNo = 3;
+                break;
+            }
+            console.log("cardCompanyNo:", cardCompanyNo);
+
             // include memberNo, shippingReq, addressNo to data
             data.memberNo = memberNo;
             data.addressNo = addressNo;
             data.shippingReq = shippingReq;
             data.productDetails = productDetails;
+            data.cardCompanyNo = cardCompanyNo;
 
             // make api call to backend to save data
             $.ajax({
@@ -111,6 +127,7 @@ document.addEventListener("DOMContentLoaded", () => {
       .querySelector(".postcode")
       .textContent.replace(/[()]/g, "");
 
+    // UID
     const today = new Date();
     const hours = today.getHours();
     const minutes = today.getMinutes();

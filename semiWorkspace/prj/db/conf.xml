@@ -66,5 +66,6 @@
 		<mapper resource="/address-mapper.xml" />
 		<mapper resource="/member-mapper.xml" />
 		<mapper resource="/order-detail-mapper.xml" />
+		<mapper resource="/payment-mapper.xml" />
 	</mappers>
 </configuration>

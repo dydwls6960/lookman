@@ -7,9 +7,9 @@
 		INSERT ALL
 		<foreach collection="productDetails" item="detail">
 			INTO ORDER_DETAIL (ORDER_DETAIL_NO, ORDERS_NO, PRODUCT_NO, INVENTORY_NO,
-			QUANTITY)
+			QUANTITY, STATUS_NO)
 			VALUES ((SELECT FN_GET_ORDER_DETAIL_SEQ_NEXTVAL FROM DUAL), ${ordersNo}, ${detail.productNo},
-			${detail.inventoryNo}, ${detail.quantity})
+			${detail.inventoryNo}, ${detail.quantity}, 1)
 		</foreach>
 		SELECT 1 FROM DUAL
 	</insert>

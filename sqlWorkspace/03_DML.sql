@@ -364,25 +364,46 @@ VALUES
 ;
 
 -- ORDER_DETAIL TABLE에 삽입
-SELECT *
-FROM ORDERS;
-SELECT SEQ_ORDERS.CURRVAL - 1
-FROM DUAL;
+--<insert id="insertIntoOrderDetail">
+--    INSERT ALL
+--    <foreach collection="productDetails" item="detail">
+--        INTO ORDER_DETAIL (ORDER_DETAIL_NO, ORDERS_NO, PRODUCT_NO, INVENTORY_NO,
+--        QUANTITY)
+--        VALUES ((SELECT FN_GET_ORDER_DETAIL_SEQ_NEXTVAL FROM DUAL), ${ordersNo}, ${detail.productNo},
+--        ${detail.inventoryNo}, ${detail.quantity})
+--    </foreach>
+--    SELECT 1 FROM DUAL
+--</insert>
+--;
 
-INSERT INTO ORDER_DETAIL(ORDER_DETAIL_NO, ORDERS_NO, PRODUCT_NO, INVENTORY_NO, QUANTITY)
-VALUES(SEQ_ORDER_DETAIL.NEXTVAL, SEQ_ORDERS.CURRVAL - 1, 1, 1, 3);
+-- 카트 테이블 삭제 (결제된 것)
+--<delete id="deleteCartByMemberNoAndInventory">
+--    DELETE FROM CART
+--    WHERE MEMBER_NO = ${memberNo}
+--    <foreach collection="productDetails" item="detail" open="AND INVENTORY_NO IN (" separator="," close=")">
+--        ${detail.inventoryNo}
+--    </foreach>
+--</delete>
+--;
 
-INSERT INTO ORDER_DETAIL(ORDER_DETAIL_NO, ORDERS_NO, PRODUCT_NO, INVENTORY_NO, QUANTITY)
-VALUES (SEQ_ORDER_DETAIL.NEXTVAL, SEQ_ORDERS.CURRVAL - 1, 1, 1, 3),
-VALUES (SEQ_ORDER_DETAIL.NEXTVAL, SEQ_ORDERS.CURRVAL - 1, 1, 2, 2),
-VALUES (SEQ_ORDER_DETAIL.NEXTVAL, SEQ_ORDERS.CURRVAL - 1, 1, 3, 1)
+-- 재고 DECREMENT
+--<update id="decrementInventories" parameterType="PaymentResponseDto">
+--    BEGIN
+--    <foreach collection="productDetails" item="detail">
+--      UPDATE INVENTORY
+--      SET QUANTITY = QUANTITY - ${detail.quantity}
+--      WHERE INVENTORY_NO = #{detail.inventoryNo}
+--      AND PRODUCT_NO = #{detail.productNo};
+--    </foreach>
+--    END;
+--</update> 
+--;
+
+-- 결제 테이블 INSERT
+INSERT INTO PAYMENT(PAYMENT_NO, ORDERS_NO, CARD_COMPANY_NO, STATUS_NO, AMOUNT)
+VALUES(SEQ_PAYMENT.NEXTVAL, 10, 1, 2, 5000)
 ;
 
-SELECT *
-FROM ORDERS
-;
-SELECT *
-FROM ORDER_DETAIL;
 
 --------------------------------------------------------
 -- 회원정보 수정 페이지
@@ -392,6 +413,7 @@ FROM MEMBER
 WHERE MEMBER_NO = ? 
 AND PWD = ?
 ;
+
 
 -- 새 비밀번호 
 UPDATE MEMBER 

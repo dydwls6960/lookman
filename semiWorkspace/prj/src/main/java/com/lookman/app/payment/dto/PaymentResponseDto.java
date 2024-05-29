@@ -83,6 +83,7 @@ public class PaymentResponseDto {
 	private String statusNo;
 	private String shippingReq;
 	private String shippingFee;
+	private String cardCompanyNo;
 	@SerializedName("productDetails")
 	private List<ProductDetailDto> productDetails;
 
@@ -94,7 +95,7 @@ public class PaymentResponseDto {
 			String buyerName, String buyerEmail, String buyerTel, String buyerAddr, String buyerPostcode,
 			Object customData, String status, long paidAt, String receiptUrl, String cardName, String bankName,
 			int cardQuota, String cardNumber, String ordersNo, String memberNo, String addressNo, String statusNo,
-			String shippingReq, String shippingFee, List<ProductDetailDto> productDetails) {
+			String shippingReq, String shippingFee, String cardCompanyNo, List<ProductDetailDto> productDetails) {
 		this.success = success;
 		this.impUid = impUid;
 		this.payMethod = payMethod;
@@ -125,6 +126,7 @@ public class PaymentResponseDto {
 		this.statusNo = statusNo;
 		this.shippingReq = shippingReq;
 		this.shippingFee = shippingFee;
+		this.cardCompanyNo = cardCompanyNo;
 		this.productDetails = productDetails;
 	}
 
@@ -368,6 +370,14 @@ public class PaymentResponseDto {
 		this.shippingFee = shippingFee;
 	}
 
+	public String getCardCompanyNo() {
+		return cardCompanyNo;
+	}
+
+	public void setCardCompanyNo(String cardCompanyNo) {
+		this.cardCompanyNo = cardCompanyNo;
+	}
+
 	public List<ProductDetailDto> getProductDetails() {
 		return productDetails;
 	}
@@ -386,8 +396,8 @@ public class PaymentResponseDto {
 				+ ", status=" + status + ", paidAt=" + paidAt + ", receiptUrl=" + receiptUrl + ", cardName=" + cardName
 				+ ", bankName=" + bankName + ", cardQuota=" + cardQuota + ", cardNumber=" + cardNumber + ", ordersNo="
 				+ ordersNo + ", memberNo=" + memberNo + ", addressNo=" + addressNo + ", statusNo=" + statusNo
-				+ ", shippingReq=" + shippingReq + ", shippingFee=" + shippingFee + ", productDetails=" + productDetails
-				+ "]";
+				+ ", shippingReq=" + shippingReq + ", shippingFee=" + shippingFee + ", cardCompanyNo=" + cardCompanyNo
+				+ ", productDetails=" + productDetails + "]";
 	}
 
 }

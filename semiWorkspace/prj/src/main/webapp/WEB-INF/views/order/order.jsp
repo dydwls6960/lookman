@@ -13,7 +13,14 @@
 
           <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
           <link rel="stylesheet" href="/app/resources/css/member/order/order.css">
+
+          <!-- 포트원 결제 -->
+          <script src="https://cdn.iamport.kr/v1/iamport.js" defer></script>
+          <!-- iamport.payment.js -->
+          <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js" defer></script>
           <script src="/app/resources/js/member/order/order.js" defer></script>
+          <!-- 포트원 결제 -->
+
     </head>
 
     <body>
@@ -94,7 +101,7 @@
                               alt="Product image"></a>
                           <div class="product-detail__text">
                             <p class="cart__seller-product">[${detail.sellerName}]
-                              ${detail.productName}</p>
+                              <span class="product-name">${detail.productName}</span></p>
                             <%-- <p class="cart__product-name">${detail.productName}</p> --%>
                               <p class="cart__order-options">옵션: ${detail.colorName} /
                                 ${detail.sizeName} / 재고 ${detail.inventoryQuantity}개 남음</p>
@@ -137,21 +144,30 @@
                 <span>결제 수단</span>
                 <div class="payment-info__method">
                   <div class="address-radio-container">
-                    <input type="radio" name="payment-method" id="kakao" checked="checked">
-                    <label for="kakao">카카오페이</label>
+                    <input type="radio" name="payment-method" id="kakaopay" checked="checked">
+                    <label for="kakaopay"><img src="/app/resources/img/img-logo--kakao.png" />카카오페이</label>
+                  </div>
+                  <div class="address-radio-container">
+                    <input type="radio" name="payment-method" id="tosspayments">
+                    <label for="tosspayments"><img src="/app/resources/img/img-logo--tosspay-sm.png" />토스페이</label>
+                  </div>
+                  <div class="address-radio-container">
+                    <input type="radio" name="payment-method" id="payco">
+                    <label for="payco"><img src="/app/resources/img/img-logo--payco.png" />PAYCO</label>
                   </div>
                   <div class="address-radio-container">
                     <input type="radio" name="payment-method" id="normal" disabled>
                     <label for="normal">일반결제</label>
                   </div>
-                  <div class="address-radio-container">
-                    <input type="radio" name="payment-method" id="toss" disabled>
-                    <label for="toss">토스페이</label>
-                  </div>
                 </div>
               </div>
 
-              <button type="button" id="pay-btn">결제하기</button>
+              <button type="button" id="pay-btn" data-total-price="${requestScope.dto.totalPrice}"
+                data-member-no="${sessionScope.loginMemberVo.memberNo}"
+                data-member-name="${sessionScope.loginMemberVo.name}" data-member-id="${sessionScope.loginMemberVo.id}"
+                data-member-phone="${sessionScope.loginMemberVo.phoneNo}">
+                <fmt:formatNumber value="${requestScope.dto.totalPrice}" type="number" pattern="#,##0" />원 결제하기
+              </button>
             </section>
 
           </main>

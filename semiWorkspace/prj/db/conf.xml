@@ -61,5 +61,6 @@
 		<mapper resource="/cart-mapper.xml" />
 		<mapper resource="/order-mapper.xml" />
 		<mapper resource="/address-mapper.xml" />
+		<mapper resource="/member-mapper.xml" />
 	</mappers>
 </configuration>

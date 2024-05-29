@@ -8,13 +8,14 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import org.apache.ibatis.session.SqlSession;
+
 import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
 
 public class MemberDao {
 
 	public int join(Connection conn, MemberVo mvo) throws Exception {
-		// TODO Auto-generated method stub
 		String sql = "INSERT INTO MEMBER (MEMBER_NO, ID, PWD, NAME, PHONE_NO) VALUES( SEQ_MEMBER.NEXTVAL , ? , ? , ? , ?)";
 		PreparedStatement pstmt = conn.prepareStatement(sql, Statement.RETURN_GENERATED_KEYS);
 
@@ -32,6 +33,7 @@ public class MemberDao {
 	}
 
 	public int checkIdDup(Connection conn, String id) throws SQLException {
+		
 		String sql = "SELECT COUNT(*) FROM MEMBER WHERE ID = ?";
 		PreparedStatement pstmt = conn.prepareStatement(sql);
 		pstmt.setString(1, id);
@@ -160,6 +162,11 @@ public class MemberDao {
 		close(pstmt);
 
 		return result;
+	}
+
+	public int checkIdDup(SqlSession ss, String id) {
+		
+		return ss.selectOne("MemberMapper.checkIdDup", id);
 	}
 
 }

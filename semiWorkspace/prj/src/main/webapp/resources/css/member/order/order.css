@@ -112,6 +112,7 @@
   margin-top: 24px;
   border: 1px solid var(--color-dark);
   cursor: pointer;
+  font-weight: 700;
   border-radius: var(--base-border-radius);
 }
 
@@ -120,4 +121,15 @@
   border: 1px solid var(--color-med);
   border-radius: var(--base-border-radius);
   padding: 16px;
+}
+
+.payment-info__method img {
+  max-height: 16px;
+  width: auto;
+}
+
+.payment-info__method label {
+  display: flex;
+  align-items: center;
+  gap: 4px;
 }

@@ -1,6 +1,7 @@
 package com.lookman.app.member.service;
 
 import static com.lookman.app.db.JDBCTemplate.close;
+import static com.lookman.app.db.SQLSessionTemplate.*;
 import static com.lookman.app.db.JDBCTemplate.commit;
 import static com.lookman.app.db.JDBCTemplate.getConnection;
 import static com.lookman.app.db.JDBCTemplate.rollback;
@@ -99,12 +100,16 @@ public class MemberService {
 	}
 
 	public boolean checkIdDup(String id) throws Exception {
-		Connection conn = getConnection();
-		int result = memDao.checkIdDup(conn, id);
-
-		close(conn);
-
+		SqlSession ss = getSqlSession();
+		int result = memDao.checkIdDup(ss, id);
+		ss.close();
 		return result == 0;
+//		Connection conn = getConnection();
+//		int result = memDao.checkIdDup(conn, id);
+//
+//		close(conn);
+//
+//		return result == 0;
 	}
 
 	public MemberVo login(MemberVo mvo) throws Exception {

@@ -11,13 +11,14 @@ public class OrderFormDetailsDto {
 	private String inventoryQuantity;
 	private String productPrice;
 	private String orderPrice;
+	private String inventoryNo;
 
 	public OrderFormDetailsDto() {
 	}
 
 	public OrderFormDetailsDto(String thumbnailFilename, String sellerName, String productNo, String productName,
 			String sizeName, String colorName, String orderQuantity, String inventoryQuantity, String productPrice,
-			String orderPrice) {
+			String orderPrice, String inventoryNo) {
 		this.thumbnailFilename = thumbnailFilename;
 		this.sellerName = sellerName;
 		this.productNo = productNo;
@@ -28,6 +29,7 @@ public class OrderFormDetailsDto {
 		this.inventoryQuantity = inventoryQuantity;
 		this.productPrice = productPrice;
 		this.orderPrice = orderPrice;
+		this.inventoryNo = inventoryNo;
 	}
 
 	public String getThumbnailFilename() {
@@ -110,12 +112,21 @@ public class OrderFormDetailsDto {
 		this.orderPrice = orderPrice;
 	}
 
+	public String getInventoryNo() {
+		return inventoryNo;
+	}
+
+	public void setInventoryNo(String inventoryNo) {
+		this.inventoryNo = inventoryNo;
+	}
+
 	@Override
 	public String toString() {
 		return "OrderFormDetailsDto [thumbnailFilename=" + thumbnailFilename + ", sellerName=" + sellerName
 				+ ", productNo=" + productNo + ", productName=" + productName + ", sizeName=" + sizeName
 				+ ", colorName=" + colorName + ", orderQuantity=" + orderQuantity + ", inventoryQuantity="
-				+ inventoryQuantity + ", productPrice=" + productPrice + ", orderPrice=" + orderPrice + "]";
+				+ inventoryQuantity + ", productPrice=" + productPrice + ", orderPrice=" + orderPrice + ", inventoryNo="
+				+ inventoryNo + "]";
 	}
 
 }

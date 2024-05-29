@@ -1,5 +1,7 @@
 package com.lookman.app.payment.dto;
 
+import java.util.List;
+
 import com.google.gson.annotations.SerializedName;
 
 public class PaymentResponseDto {
@@ -75,6 +77,15 @@ public class PaymentResponseDto {
 	@SerializedName("card_number")
 	private String cardNumber;
 
+	private String ordersNo;
+	private String memberNo;
+	private String addressNo;
+	private String statusNo;
+	private String shippingReq;
+	private String shippingFee;
+	@SerializedName("productDetails")
+	private List<ProductDetailDto> productDetails;
+
 	public PaymentResponseDto() {
 	}
 
@@ -82,7 +93,8 @@ public class PaymentResponseDto {
 			int paidAmount, String currency, String pgProvider, String pgType, String pgTid, String applyNum,
 			String buyerName, String buyerEmail, String buyerTel, String buyerAddr, String buyerPostcode,
 			Object customData, String status, long paidAt, String receiptUrl, String cardName, String bankName,
-			int cardQuota, String cardNumber) {
+			int cardQuota, String cardNumber, String ordersNo, String memberNo, String addressNo, String statusNo,
+			String shippingReq, String shippingFee, List<ProductDetailDto> productDetails) {
 		this.success = success;
 		this.impUid = impUid;
 		this.payMethod = payMethod;
@@ -107,6 +119,13 @@ public class PaymentResponseDto {
 		this.bankName = bankName;
 		this.cardQuota = cardQuota;
 		this.cardNumber = cardNumber;
+		this.ordersNo = ordersNo;
+		this.memberNo = memberNo;
+		this.addressNo = addressNo;
+		this.statusNo = statusNo;
+		this.shippingReq = shippingReq;
+		this.shippingFee = shippingFee;
+		this.productDetails = productDetails;
 	}
 
 	public boolean isSuccess() {
@@ -301,6 +320,62 @@ public class PaymentResponseDto {
 		this.cardNumber = cardNumber;
 	}
 
+	public String getOrdersNo() {
+		return ordersNo;
+	}
+
+	public void setOrdersNo(String ordersNo) {
+		this.ordersNo = ordersNo;
+	}
+
+	public String getMemberNo() {
+		return memberNo;
+	}
+
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
+
+	public String getAddressNo() {
+		return addressNo;
+	}
+
+	public void setAddressNo(String addressNo) {
+		this.addressNo = addressNo;
+	}
+
+	public String getStatusNo() {
+		return statusNo;
+	}
+
+	public void setStatusNo(String statusNo) {
+		this.statusNo = statusNo;
+	}
+
+	public String getShippingReq() {
+		return shippingReq;
+	}
+
+	public void setShippingReq(String shippingReq) {
+		this.shippingReq = shippingReq;
+	}
+
+	public String getShippingFee() {
+		return shippingFee;
+	}
+
+	public void setShippingFee(String shippingFee) {
+		this.shippingFee = shippingFee;
+	}
+
+	public List<ProductDetailDto> getProductDetails() {
+		return productDetails;
+	}
+
+	public void setProductDetails(List<ProductDetailDto> productDetails) {
+		this.productDetails = productDetails;
+	}
+
 	@Override
 	public String toString() {
 		return "PaymentResponseDto [success=" + success + ", impUid=" + impUid + ", payMethod=" + payMethod
@@ -309,7 +384,10 @@ public class PaymentResponseDto {
 				+ applyNum + ", buyerName=" + buyerName + ", buyerEmail=" + buyerEmail + ", buyerTel=" + buyerTel
 				+ ", buyerAddr=" + buyerAddr + ", buyerPostcode=" + buyerPostcode + ", customData=" + customData
 				+ ", status=" + status + ", paidAt=" + paidAt + ", receiptUrl=" + receiptUrl + ", cardName=" + cardName
-				+ ", bankName=" + bankName + ", cardQuota=" + cardQuota + ", cardNumber=" + cardNumber + "]";
+				+ ", bankName=" + bankName + ", cardQuota=" + cardQuota + ", cardNumber=" + cardNumber + ", ordersNo="
+				+ ordersNo + ", memberNo=" + memberNo + ", addressNo=" + addressNo + ", statusNo=" + statusNo
+				+ ", shippingReq=" + shippingReq + ", shippingFee=" + shippingFee + ", productDetails=" + productDetails
+				+ "]";
 	}
 
 }

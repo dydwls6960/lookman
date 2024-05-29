@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.lookman.app.member.vo.MemberVo;
 import com.lookman.app.payment.dto.PaymentResponseDto;
 import com.lookman.app.payment.service.PaymentService;
 
@@ -30,6 +31,7 @@ public class PaymentSuccessController extends HttpServlet {
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
 		try {
+
 			StringBuilder jsonBuffer = new StringBuilder();
 			try (BufferedReader reader = req.getReader()) {
 				String line;
@@ -42,6 +44,8 @@ public class PaymentSuccessController extends HttpServlet {
 			String json = jsonBuffer.toString();
 			Gson gson = new Gson();
 			PaymentResponseDto payResDto = gson.fromJson(json, PaymentResponseDto.class);
+
+			// set needed data to dto
 
 			System.out.println(payResDto);
 

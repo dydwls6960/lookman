@@ -54,5 +54,10 @@
 			#{no}
 		</foreach>
 	</delete>
+	
+	<delete id="deleteCartByMemberNo">
+		DELETE FROM CART
+		WHERE MEMBER_NO = ${memberNo}
+	</delete>
 
 </mapper>

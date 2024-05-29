@@ -7,6 +7,7 @@ import org.apache.ibatis.session.SqlSession;
 import com.lookman.app.cart.dto.CartHomeDto;
 import com.lookman.app.cart.vo.CartItemVo;
 import com.lookman.app.member.vo.MemberVo;
+import com.lookman.app.payment.dto.PaymentResponseDto;
 
 public class CartDao {
 
@@ -24,6 +25,10 @@ public class CartDao {
 
 	public int deleteCartItems(SqlSession ss, String[] cartNoList) {
 		return ss.delete("CartMapper.deleteCartItems", cartNoList);
+	}
+
+	public int deleteCartByMemberNo(SqlSession ss, PaymentResponseDto payResDto) {
+		return ss.delete("CartMapper.deleteCartByMemberNo", payResDto);
 	}
 
 }

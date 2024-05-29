@@ -7,6 +7,7 @@ document.addEventListener("DOMContentLoaded", () => {
   const extraAddressEl = document.querySelector(".extraAddress");
   const detailedAddressEl = document.querySelector(".detailedAddress");
   const shippingReqEl = document.querySelector(".shippingReq");
+  const payBtn = document.querySelector("#pay-btn");
 
   const payment = (
     memberEmail,
@@ -17,7 +18,10 @@ document.addEventListener("DOMContentLoaded", () => {
     makeMerchantUid,
     totalPrice,
     concatProdName,
-    selectedPaymentMethod
+    selectedPaymentMethod,
+    memberNo,
+    addressNo,
+    shippingReq
   ) => {
     if (confirm("구매 하시겠습니까?")) {
       IMP.init("imp13251138");
@@ -37,9 +41,33 @@ document.addEventListener("DOMContentLoaded", () => {
         async function (data) {
           if (data.success) {
             console.log(data);
-            console.log("hello world!");
+
+            // collect product data
+            const productDetails = [];
+            document
+              .querySelectorAll(".product-name")
+              .forEach((productNameEl) => {
+                const productNo = productNameEl.dataset.productNo;
+                const inventoryNo = productNameEl.dataset.inventoryNo;
+                const quantity = productNameEl
+                  .closest("tr")
+                  .querySelector(".cart__order-quantity")
+                  .textContent.trim();
+
+                productDetails.push({
+                  productNo,
+                  inventoryNo,
+                  quantity,
+                });
+              });
+
+            // include memberNo, shippingReq, addressNo to data
+            data.memberNo = memberNo;
+            data.addressNo = addressNo;
+            data.shippingReq = shippingReq;
+            data.productDetails = productDetails;
+
             // make api call to backend to save data
-            // /app/payment/success
             $.ajax({
               url: "/app/payment/success",
               method: "POST",
@@ -47,6 +75,9 @@ document.addEventListener("DOMContentLoaded", () => {
               data: JSON.stringify(data),
               success: function (res) {
                 console.log(res);
+
+                // if res.message === "ok" redirect to payment complete
+                // else,,
               },
               error: function (err) {
                 console.log(err);
@@ -62,11 +93,13 @@ document.addEventListener("DOMContentLoaded", () => {
       return false;
     }
   };
-  const payBtn = document.querySelector("#pay-btn");
   payBtn.addEventListener("click", () => {
     // 구매자 정보
     const totalPrice = payBtn.dataset.totalPrice;
     const memberNo = payBtn.dataset.memberNo;
+    const addressNo = payBtn.dataset.addressNo;
+    const shippingReq = payBtn.dataset.shippingReq;
+
     const memberName = payBtn.dataset.memberName;
     const memberEmail = payBtn.dataset.memberId;
     const memberPhone = payBtn.dataset.memberPhone;
@@ -103,7 +136,6 @@ document.addEventListener("DOMContentLoaded", () => {
     const selectedPaymentMethod = document.querySelector(
       'input[name="payment-method"]:checked'
     ).id;
-    console.log(selectedPaymentMethod);
 
     payment(
       memberEmail,
@@ -114,7 +146,10 @@ document.addEventListener("DOMContentLoaded", () => {
       makeMerchantUid,
       totalPrice,
       concatProdName,
-      selectedPaymentMethod
+      selectedPaymentMethod,
+      memberNo,
+      addressNo,
+      shippingReq
     );
   });
 
@@ -134,6 +169,13 @@ document.addEventListener("DOMContentLoaded", () => {
           extraAddressEl.textContent = res.extraAddress;
           detailedAddressEl.textContent = res.detailedAddress;
           shippingReqEl.textContent = res.defaultReq;
+          console.log(res);
+          // update pay-btn dataset
+          payBtn.dataset.addressNo = res.addressNo;
+          payBtn.dataset.shippingReq =
+            res.defaultReq == shippingReqEl.value.trim()
+              ? res.defaultReq
+              : shippingReqEl.value;
         },
         error: function (data) {
           alert(data);

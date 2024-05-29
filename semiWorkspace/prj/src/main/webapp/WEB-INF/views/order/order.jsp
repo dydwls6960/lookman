@@ -101,7 +101,9 @@
                               alt="Product image"></a>
                           <div class="product-detail__text">
                             <p class="cart__seller-product">[${detail.sellerName}]
-                              <span class="product-name">${detail.productName}</span></p>
+                              <span class="product-name" data-product-no="${detail.productNo}"
+                                data-inventory-no="${detail.inventoryNo}">${detail.productName}</span>
+                            </p>
                             <%-- <p class="cart__product-name">${detail.productName}</p> --%>
                               <p class="cart__order-options">옵션: ${detail.colorName} /
                                 ${detail.sizeName} / 재고 ${detail.inventoryQuantity}개 남음</p>
@@ -165,7 +167,9 @@
               <button type="button" id="pay-btn" data-total-price="${requestScope.dto.totalPrice}"
                 data-member-no="${sessionScope.loginMemberVo.memberNo}"
                 data-member-name="${sessionScope.loginMemberVo.name}" data-member-id="${sessionScope.loginMemberVo.id}"
-                data-member-phone="${sessionScope.loginMemberVo.phoneNo}">
+                data-member-phone="${sessionScope.loginMemberVo.phoneNo}"
+                data-shipping-req="${requestScope.dto.addresses[0].defaultShippingReq}"
+                data-address-no="${requestScope.dto.addresses[0].addressNo}">
                 <fmt:formatNumber value="${requestScope.dto.totalPrice}" type="number" pattern="#,##0" />원 결제하기
               </button>
             </section>

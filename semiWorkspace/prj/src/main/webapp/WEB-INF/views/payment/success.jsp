@@ -15,7 +15,7 @@
       <%@ include file="/WEB-INF/views/layout/nav-with-header-cart.jsp" %>
         <main class="main main-result">
           <h1>결제 완료!</h1>
-          <a href="/app/member/orders/list">주문 목록</a>
+          <a href="/app/member/profile">주문 목록</a>
         </main>
 
         <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

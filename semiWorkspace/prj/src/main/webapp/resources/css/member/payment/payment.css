@@ -15,5 +15,6 @@
     text-decoration: none;
     background-color: var(--color-dark);
     color: var(--color-white);
+    border-radius: var(--base-border-radius);
   }
 }

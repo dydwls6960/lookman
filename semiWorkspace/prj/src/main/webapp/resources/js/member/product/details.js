@@ -112,27 +112,79 @@ document.addEventListener("DOMContentLoaded", () => {
   // 구매버튼
   buyBtn.addEventListener("click", () => {
     const actionItems = document.querySelectorAll(".details__action--item");
+    const memberNo = cartBtn.dataset.memberNo;
+
+    if (!memberNo) {
+      return (window.location.href = "/app/member/login");
+    }
 
     if (actionItems.length === 0) {
       alert("옵션을 선택해주세요.");
       return;
     }
 
-    let urlParams = new URLSearchParams();
+    let data = {
+      items: [],
+    };
 
     // forEach actionItems
     actionItems.forEach((item) => {
       const inventoryNo = item.dataset.inventoryNo;
       const quantity = item.querySelector(".item-quantity").value;
-      urlParams.append(`items[${inventoryNo}]`, quantity);
+      data.items.push({
+        inventoryNo: inventoryNo,
+        quantity: quantity,
+        memberNo,
+      });
     });
-    // append url string
-    const url = `/app/orders/order-form?${urlParams.toString()}`;
-    console.log(url);
+    console.log(data);
 
-    // redirect to url
-    window.location.href = url;
+    // post to url
+    $.ajax({
+      url: "/app/member/cart",
+      method: "POST",
+      data: JSON.stringify(data),
+      contentType: "application/json; charset=UTF-8",
+      success: (res) => {
+        if (res === "ok") {
+          // send redirect to cart page
+          window.location.href = "/app/member/cart";
+        } else {
+          alert("장바구니 추가 실패..");
+        }
+      },
+      error: (err) => {
+        console.log(err);
+        alert("에러 발생..");
+      },
+    });
   });
+
+  // FIXME:
+  // 구매버튼
+  // buyBtn.addEventListener("click", () => {
+  //   const actionItems = document.querySelectorAll(".details__action--item");
+
+  //   if (actionItems.length === 0) {
+  //     alert("옵션을 선택해주세요.");
+  //     return;
+  //   }
+
+  //   let urlParams = new URLSearchParams();
+
+  //   // forEach actionItems
+  //   actionItems.forEach((item) => {
+  //     const inventoryNo = item.dataset.inventoryNo;
+  //     const quantity = item.querySelector(".item-quantity").value;
+  //     urlParams.append(`items[${inventoryNo}]`, quantity);
+  //   });
+  //   // append url string
+  //   const url = `/app/orders/order-form?${urlParams.toString()}`;
+  //   console.log(url);
+
+  //   // redirect to url
+  //   window.location.href = url;
+  // });
 
   // 사이즈 옵션
   sizeSelect.addEventListener("change", (e) => {

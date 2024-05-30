@@ -12,7 +12,7 @@
 
         <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
         <link rel="stylesheet" href="/app/resources/css/cart.css">
-        <script src="/app/resources/js/cart.js" defer></script>
+        <script src="/app/resources/js/member/cart/cart.js" defer></script>
 
   </head>
 
@@ -20,7 +20,7 @@
     <div class="container">
       <%@ include file="/WEB-INF/views/layout/nav-with-header-settings.jsp" %>
         <main class="main main-cart">
-          <h1>order/payment</h1>
+          <h1>장바구니</h1>
           <table class="cart__table">
             <thead>
               <tr class="cart__table--header">
@@ -38,8 +38,7 @@
                 <tr>
                   <td>${dto.rownum}</td>
                   <td class="checkbox-td"><input class="item-checkbox" type="checkbox" name="${dto.cartNo}"
-                      id="${dto.cartNo}" data-cart-no="${dto.cartNo}"
-                      data-member-no="${dto.memberNo}" checked></td>
+                      id="${dto.cartNo}" data-cart-no="${dto.cartNo}" data-member-no="${dto.memberNo}" checked></td>
                   <td>
                     <div class="product-details">
                       <a href="/app/products/${dto.productNo}" class="product-link"><img class="product-detail__img"

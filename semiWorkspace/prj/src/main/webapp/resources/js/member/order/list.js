@@ -37,6 +37,29 @@ document.addEventListener("DOMContentLoaded", () => {
     default:
       break;
   }
+
+  const askBtn = document.querySelector(".ask-btn");
+  const revBtn = document.querySelector(".review-btn");
+  if (askBtn) {
+    askBtn.addEventListener("click", () => {
+      console.log("helo");
+      // get data
+
+      // vex
+
+      // ajax
+    });
+  }
+  if (revBtn) {
+    revBtn.addEventListener("click", () => {
+      console.log("helo");
+      // get data
+
+      // vex
+
+      // ajax
+    });
+  }
 });
 
 /*

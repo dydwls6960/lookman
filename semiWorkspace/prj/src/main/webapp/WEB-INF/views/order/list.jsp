@@ -10,7 +10,8 @@
       <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
       <link rel="stylesheet" href="/app/resources/css/member/order/list.css">
 
-      <script src="/app/resources/js/member/order/list.js" defer></script>
+      <%@ include file="/WEB-INF/views/layout/vex-modal.jsp" %>
+        <script src="/app/resources/js/member/order/list.js" defer></script>
   </head>
 
   <body>
@@ -78,8 +79,10 @@
                           class="orders-quantity">${dto.orderDetailQuantity}개</span></td>
                       <td class="orders__total-price">${dto.orderDetailPrice}원</td>
                       <td class="orders__status">${dto.orderDetailStatusName}</td>
-                      <td>
-                        <button class="del-btn" data-order-detail-no="${dto.orderDetailNo}">리뷰 작성</button>
+                      <td class="action-td">
+                        <button class="ask-btn" data-order-detail-no="${dto.orderDetailNo}">주문 문의</button>
+                        <br>
+                        <button class="review-btn" data-order-detail-no="${dto.orderDetailNo}">리뷰 작성</button>
                       </td>
                     </tr>
                   </c:forEach>

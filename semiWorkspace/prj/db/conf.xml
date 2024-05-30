@@ -38,6 +38,12 @@
 		<typeAlias
 			type="com.lookman.app.payment.dto.PaymentResponseDto"
 			alias="PaymentResponseDto" />
+		<typeAlias
+			type="com.lookman.app.order.detail.dto.OrderDetailsDto"
+			alias="OrderDetailsDto" />
+		<typeAlias
+			type="com.lookman.app.order.dto.OrderStatusCountDto"
+			alias="OrderStatusCountDto" />
 	</typeAliases>
 
 	<environments default="development">

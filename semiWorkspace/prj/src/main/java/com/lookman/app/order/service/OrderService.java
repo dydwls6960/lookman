@@ -9,8 +9,11 @@ import org.apache.ibatis.session.SqlSession;
 import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.member.vo.MemberVo;
 import com.lookman.app.order.dao.OrderDao;
+import com.lookman.app.order.detail.dto.OrderDetailsDto;
 import com.lookman.app.order.dto.OrderFormDetailsDto;
 import com.lookman.app.order.dto.OrderFormDto;
+import com.lookman.app.order.dto.OrderStatusCountDto;
+import com.lookman.app.order.vo.OrderVo;
 
 public class OrderService {
 
@@ -47,6 +50,22 @@ public class OrderService {
 		ss.close();
 
 		return dto;
+	}
+
+	public List<OrderDetailsDto> getOrderDetailListByStatus(OrderVo ovo) throws Exception {
+		SqlSession ss = getSqlSession();
+
+		List<OrderDetailsDto> dtoList = odao.getOrderDetailListByStatus(ss, ovo);
+		ss.close();
+		return dtoList;
+	}
+
+	public List<OrderStatusCountDto> getStatusCount(OrderVo ovo) throws Exception {
+		SqlSession ss = getSqlSession();
+
+		List<OrderStatusCountDto> statusDtoList = odao.getStatusCount(ss, ovo);
+		ss.close();
+		return statusDtoList;
 	}
 
 }

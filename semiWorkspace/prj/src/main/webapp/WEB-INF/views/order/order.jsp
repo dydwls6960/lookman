@@ -18,8 +18,8 @@
           <script src="https://cdn.iamport.kr/v1/iamport.js" defer></script>
           <!-- iamport.payment.js -->
           <script type="text/javascript" src="https://cdn.iamport.kr/js/iamport.payment-1.2.0.js" defer></script>
-          <script src="/app/resources/js/member/order/order.js" defer></script>
           <!-- 포트원 결제 -->
+          <script src="/app/resources/js/member/order/order.js" defer></script>
 
     </head>
 

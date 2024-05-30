@@ -1,15 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>에러</title>
-</head>
-<body>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+  <!DOCTYPE html>
+  <html>
 
-	<h1>에러 화면</h1>
-	<h2>${errMsg}</h2>
+  <head>
+    <meta charset="UTF-8">
+    <title>Lookman | 결제완료</title>
+    <%@ include file="/WEB-INF/views/layout/util.jsp" %>
+      <link rel="stylesheet" href="/app/resources/css/common/nav-with-header.css">
+      <link rel="stylesheet" href="/app/resources/css/member/payment/payment.css">
+  </head>
 
-</body>
-</html>
+  <body>
+    <div class="container">
+      <%@ include file="/WEB-INF/views/layout/nav-with-header-cart.jsp" %>
+        <main class="main main-result">
+          <h1>에러 화면</h1>
+          <p>${errMsg}</p>
+          <a href="/app/orders/list?statusNo=1">주문 목록</a>
+        </main>
+
+        <%@ include file="/WEB-INF/views/layout/footer.jsp" %>
+    </div>
+  </body>
+
+  </html>

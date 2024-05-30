@@ -36,54 +36,59 @@
           </section>
 
 
+
+
           <section class="profile__orders">
-            <table class="orders__table">
-              <thead>
-                <tr class="orders__table--header">
-                  <th>전체 ${requestScope.dtoList.size()}개, 주문번호</th>
-                  <th>주문번호</th>
-                  <th>상품명(옵션)</th>
-                  <th>가격</th>
-                  <th>수량</th>
-                  <th>총가격</th>
-                  <th>주문상태</th>
-                  <th>주문날짜</th>
-                  <th>관리</th>
-                </tr>
-              </thead>
-              <tbody>
-                <c:forEach var="dto" items="${requestScope.dtoList}">
-                  <tr>
-                    <td>${dto.ordersNo}</td>
-                    <td>${dto.orderDetailNo}</td>
-                    <td>
-                      <div class="product-details">
-                        <a href="/app/products/${dto.productNo}" class="product-link">
-                          <img class="product-detail__img" src="/app/resources/img/product/${dto.thumbnailFilename}"
-                            alt="Product image">
-                        </a>
-                        <div class="product-detail__text">
-                          <p class="orders__seller-product">[${dto.sellerName}]
-                            ${dto.productName}</p>
-                          <p class="orders__order-options">옵션: ${dto.colorName} /
-                            ${dto.sizeName}</p>
-                        </div>
-                      </div>
-                    </td>
-                    <td class="orders__price">${dto.productPrice}</td>
-                    <td class="orders__quantity">${dto.orderDetailQuantity}</td>
-                    <td class="orders__total-price">${dto.orderDetailPrice}</td>
-                    <td class="orders__status">${dto.orderDetailStatusName}</td>
-                    <td class="orders__date">${dto.orderDate}</td>
-                    <td>
-                      <button class="del-btn" data-order-detail-no="${dto.orderDetailNo}">리뷰 작성</button>
-                    </td>
+            <c:if test="${not empty requestScope.dtoList}">
+              <table class="orders__table">
+                <thead>
+                  <tr class="orders__table--header">
+                    <th>상품명(옵션)</th>
+                    <th>주문날짜</th>
+                    <th>주문번호</th>
+                    <th>가격(수량)</th>
+                    <th>총가격</th>
+                    <th>주문상태</th>
+                    <th>관리</th>
                   </tr>
-                </c:forEach>
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  <c:forEach var="dto" items="${requestScope.dtoList}">
+                    <tr>
+                      <td>
+                        <div class="product-details">
+                          <a href="/app/products/${dto.productNo}" class="product-link">
+                            <img class="product-detail__img" src="/app/resources/img/product/${dto.thumbnailFilename}"
+                              alt="Product image">
+                          </a>
+                          <div class="product-detail__text">
 
-
+                            <p class="orders__seller"><a
+                                href="/app/search-by-store?sellerNo=${dto.sellerNo}">[${dto.sellerName}]</a></p>
+                            <p class="orders__product"><a
+                                href="/app/products/${dto.productNo}"><strong>${dto.productName}</strong></a></p>
+                            <p class="orders__order-options">옵션: ${dto.colorName} /
+                              ${dto.sizeName}</p>
+                          </div>
+                        </div>
+                      </td>
+                      <td class="orders__date">${dto.orderDate}</td>
+                      <td>${dto.ordersNo}</td>
+                      <td class="orders__price-quantity">${dto.productPrice}원<br><span
+                          class="orders-quantity">${dto.orderDetailQuantity}개</span></td>
+                      <td class="orders__total-price">${dto.orderDetailPrice}원</td>
+                      <td class="orders__status">${dto.orderDetailStatusName}</td>
+                      <td>
+                        <button class="del-btn" data-order-detail-no="${dto.orderDetailNo}">리뷰 작성</button>
+                      </td>
+                    </tr>
+                  </c:forEach>
+                </tbody>
+              </table>
+            </c:if>
+            <c:if test="${empty requestScope.dtoList}">
+              <h3 class="empty-heading">목록이 비어있습니다.</h3>
+            </c:if>
           </section>
 
         </main>

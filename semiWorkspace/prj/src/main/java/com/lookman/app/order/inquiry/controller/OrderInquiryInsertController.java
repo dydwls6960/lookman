@@ -39,9 +39,11 @@ public class OrderInquiryInsertController extends HttpServlet {
 			int result = ois.insertOrderInquiry(oivo);
 
 			if (result == 1) {
-				//
+				req.getSession().setAttribute("alertMsg", "문의 작성 성공!");
+				resp.sendRedirect("/app/orders/list?statusNo=1");
+				return;
 			} else {
-				//
+				throw new Exception("문의 작성 중 에러 발생..");
 			}
 
 		} catch (Exception e) {

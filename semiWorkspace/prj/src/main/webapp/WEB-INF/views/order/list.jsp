@@ -80,7 +80,8 @@
                       <td class="orders__total-price">${dto.orderDetailPrice}원</td>
                       <td class="orders__status">${dto.orderDetailStatusName}</td>
                       <td class="action-td">
-                        <button class="ask-btn" data-order-detail-no="${dto.orderDetailNo}">주문 문의</button>
+                        <button class="ask-btn" data-orders-no="${dto.ordersNo}" data-seller-no="${dto.sellerNo}"
+                          data-order-detail-no="${dto.orderDetailNo}" data-member-no="${sessionScope.loginMemberVo.memberNo}">주문 문의</button>
                         <br>
                         <button class="review-btn" data-order-detail-no="${dto.orderDetailNo}">리뷰 작성</button>
                       </td>

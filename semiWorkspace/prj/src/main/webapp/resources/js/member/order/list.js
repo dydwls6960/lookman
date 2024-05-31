@@ -38,16 +38,59 @@ document.addEventListener("DOMContentLoaded", () => {
       break;
   }
 
-  const askBtn = document.querySelector(".ask-btn");
+  const askBtns = document.querySelectorAll(".ask-btn");
   const revBtn = document.querySelector(".review-btn");
-  if (askBtn) {
-    askBtn.addEventListener("click", () => {
-      console.log("helo");
-      // get data
+  if (askBtns) {
+    askBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        console.log("helo");
+        // get data
+        const orderDetailNo = btn.dataset.orderDetailNo;
+        const sellerNo = btn.dataset.sellerNo;
+        const memberNo = btn.dataset.memberNo;
+        console.log(orderDetailNo, sellerNo, memberNo);
 
-      // vex
-
-      // ajax
+        // vex
+        vex.dialog.open({
+          message: "주문문의 추가",
+          input: [
+            `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
+            `<input type="hidden" name="orderDetailNo" id="orderDetailNo" value="${orderDetailNo}">`,
+            `<input type="hidden" name="sellerNo" id="sellerNo" value="${sellerNo}">`,
+            `<input type="text" name="title" id="title" placeholder="제목" required>`,
+            `<textarea name="questionContent" id="questionContent" placeholder="내용" required></textarea>`,
+          ].join(""),
+          buttons: [
+            {
+              text: "추가",
+              type: "submit",
+              className:
+                "vex-dialog-button-primary vex-dialog-button vex-first",
+              click: function () {
+                const form = document.querySelector(".vex-dialog-form");
+                if (form) {
+                  form.submit();
+                }
+              },
+            },
+            $.extend({}, vex.dialog.buttons.NO, { text: "취소" }),
+          ],
+          callback: function (data) {
+            if (!data) {
+              // console.log("모달창 닫음.");
+            } else {
+            }
+          },
+          afterOpen: function () {
+            const form = document.querySelector(".vex-dialog-form");
+            if (form) {
+              form.setAttribute("action", "/app/orders/inquiry/insert");
+              form.setAttribute("method", "post");
+            }
+          },
+        });
+        // ajax
+      });
     });
   }
   if (revBtn) {
@@ -65,14 +108,14 @@ document.addEventListener("DOMContentLoaded", () => {
 /*
 addBtn.addEventListener("click", () => {
       const sellerNo = addBtn.dataset.sellerNo;
-      const productNo = addBtn.dataset.productNo;
+      const orderDetailNo = addBtn.dataset.orderDetailNo;
       const memberNo = addBtn.dataset.memberNo;
 
       vex.dialog.open({
         message: "상품문의 추가",
         input: [
           `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
-          `<input type="hidden" name="productNo" id="productNo" value="${productNo}">`,
+          `<input type="hidden" name="orderDetailNo" id="orderDetailNo" value="${orderDetailNo}">`,
           `<input type="hidden" name="sellerNo" id="sellerNo" value="${sellerNo}">`,
           `<input type="text" name="title" id="title" placeholder="제목" required>`,
           `<textarea name="questionContent" id="questionContent" placeholder="내용" required></textarea>`,

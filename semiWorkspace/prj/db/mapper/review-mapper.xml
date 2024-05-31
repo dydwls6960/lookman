@@ -21,4 +21,10 @@
 		WHERE REVIEW_NO = #{reviewNo}
 		AND MEMBER_NO = #{memberNo}
 	</update>
+	
+	
+	<insert id="insertReview">
+		INSERT INTO REVIEW (REVIEW_NO, MEMBER_NO, PRODUCT_NO, ORDERS_NO, RATING, CONTENT, CREATED_DATE) 
+		VALUES (SEQ_REVIEW.NEXTVAL, ${memberNo}, ${productNo}, ${ordersNo}, ${rating}, #{content}, SYSDATE)
+	</insert>
 </mapper>

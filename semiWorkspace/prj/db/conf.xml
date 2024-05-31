@@ -44,6 +44,9 @@
 		<typeAlias
 			type="com.lookman.app.order.dto.OrderStatusCountDto"
 			alias="OrderStatusCountDto" />
+		<typeAlias
+			type="com.lookman.app.inquiry.dto.OrderMemberInquiryDto"
+			alias="OrderMemberInquiryDto" />
 	</typeAliases>
 
 	<environments default="development">

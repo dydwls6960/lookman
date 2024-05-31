@@ -1,7 +1,6 @@
 package com.lookman.app.member.service;
 
 import static com.lookman.app.db.JDBCTemplate.close;
-import static com.lookman.app.db.SQLSessionTemplate.*;
 import static com.lookman.app.db.JDBCTemplate.commit;
 import static com.lookman.app.db.JDBCTemplate.getConnection;
 import static com.lookman.app.db.JDBCTemplate.rollback;
@@ -17,9 +16,11 @@ import com.lookman.app.address.dao.AddressDao;
 import com.lookman.app.address.dto.AddressDto;
 import com.lookman.app.address.vo.AddressVo;
 import com.lookman.app.inquiry.dao.ProductInquiryDao;
+import com.lookman.app.inquiry.dto.OrderMemberInquiryDto;
 import com.lookman.app.inquiry.dto.ProductMemberInquiryDto;
 import com.lookman.app.member.dao.MemberDao;
 import com.lookman.app.member.vo.MemberVo;
+import com.lookman.app.order.inquiry.dao.OrderInquiryDao;
 import com.lookman.app.review.dao.ReviewDao;
 import com.lookman.app.review.dto.ReviewDto;
 
@@ -29,12 +30,14 @@ public class MemberService {
 	private AddressDao addDao;
 	private ReviewDao revDao;
 	private ProductInquiryDao piDao;
+	private OrderInquiryDao oiDao;
 
 	public MemberService() {
 		this.memDao = new MemberDao();
 		this.addDao = new AddressDao();
 		this.revDao = new ReviewDao();
 		this.piDao = new ProductInquiryDao();
+		this.oiDao = new OrderInquiryDao();
 	}
 
 	public int join(MemberVo mvo, AddressVo avo) throws Exception {
@@ -202,7 +205,7 @@ public class MemberService {
 		List<ReviewDto> reviews = revDao.selectReviewsByMemberNo(conn, loginMemberVo);
 
 		close(conn);
-		
+
 		return reviews;
 	}
 
@@ -214,6 +217,15 @@ public class MemberService {
 		ss.close();
 
 		return pidtoList;
+	}
+
+	public List<OrderMemberInquiryDto> selectOrderInquiriesByMemberNo(MemberVo loginMemberVo) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<OrderMemberInquiryDto> oidtoList = oiDao.selectOrderInquiriesByMemberNo(ss, loginMemberVo);
+
+		ss.close();
+
+		return oidtoList;
 	}
 
 }

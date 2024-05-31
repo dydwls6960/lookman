@@ -39,16 +39,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   const askBtns = document.querySelectorAll(".ask-btn");
-  const revBtn = document.querySelector(".review-btn");
+  const revBtns = document.querySelectorAll(".review-btn");
   if (askBtns) {
     askBtns.forEach((btn) => {
       btn.addEventListener("click", () => {
-        console.log("helo");
         // get data
         const orderDetailNo = btn.dataset.orderDetailNo;
         const sellerNo = btn.dataset.sellerNo;
         const memberNo = btn.dataset.memberNo;
-        console.log(orderDetailNo, sellerNo, memberNo);
 
         // vex
         vex.dialog.open({
@@ -68,7 +66,9 @@ document.addEventListener("DOMContentLoaded", () => {
                 "vex-dialog-button-primary vex-dialog-button vex-first",
               click: function () {
                 const form = document.querySelector(".vex-dialog-form");
-                if (form) {
+                const title = form.querySelector("#title").value;
+                const content = form.querySelector("#questionContent").value;
+                if (form && title && content) {
                   form.submit();
                 }
               },
@@ -89,18 +89,58 @@ document.addEventListener("DOMContentLoaded", () => {
             }
           },
         });
-        // ajax
       });
     });
   }
-  if (revBtn) {
-    revBtn.addEventListener("click", () => {
-      console.log("helo");
-      // get data
+  if (revBtns) {
+    revBtns.forEach((btn) => {
+      btn.addEventListener("click", () => {
+        const memberNo = btn.dataset.memberNo;
+        const ordersNo = btn.dataset.ordersNo;
+        const productNo = btn.dataset.productNo;
 
-      // vex
-
-      // ajax
+        // vex
+        vex.dialog.open({
+          message: "리뷰 작성",
+          input: [
+            `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
+            `<input type="hidden" name="ordersNo" id="ordersNo" value="${ordersNo}">`,
+            `<input type="hidden" name="productNo" id="productNo" value="${productNo}">`,
+            `<input type="number" min="1" step="1" max="5" name="rating" id="rating" placeholder="평점*" required>`,
+            `<textarea name="content" id="content" placeholder="내용" required></textarea>`,
+          ].join(""),
+          buttons: [
+            {
+              text: "추가",
+              type: "submit",
+              className:
+                "vex-dialog-button-primary vex-dialog-button vex-first",
+              click: function () {
+                const form = document.querySelector(".vex-dialog-form");
+                const rating = form.querySelector("#rating").value;
+                const content = form.querySelector("#content").value;
+                if (form && rating && content) {
+                  form.submit();
+                }
+              },
+            },
+            $.extend({}, vex.dialog.buttons.NO, { text: "취소" }),
+          ],
+          callback: function (data) {
+            if (!data) {
+              // console.log("모달창 닫음.");
+            } else {
+            }
+          },
+          afterOpen: function () {
+            const form = document.querySelector(".vex-dialog-form");
+            if (form) {
+              form.setAttribute("action", "/app/member/review/insert");
+              form.setAttribute("method", "post");
+            }
+          },
+        });
+      });
     });
   }
 });

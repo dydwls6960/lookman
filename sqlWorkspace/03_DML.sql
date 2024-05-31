@@ -514,6 +514,9 @@ AND R.DELETED_YN = 'N'
 ORDER BY R.REVIEW_NO DESC, R.CREATED_DATE DESC
 ;
 
+SELECT *
+FROM ORDER_DETAIL;
+
 -- 리뷰 수정
 UPDATE REVIEW 
 SET 
@@ -533,6 +536,25 @@ AND MEMBER_NO = 1
 ;
 
 
+--------------------------------------------------------
+-- 주문문의 
+INSERT INTO ORDER_INQUIRY (ORDER_INQUIRY_NO, ORDER_DETAIL_NO, MEMBER_NO, SELLER_NO, STATUS_NO, TITLE, QUESTION_CONTENT) 
+VALUES (SEQ_ORDER_INQUIRY.NEXTVAL, ${orderDetailNo}, ${memberNo}, ${sellerNo}, 11, '배송 상태 문의', '주문한 상품의 배송 상태는 어떻게 되나요?');
+
+
+SELECT *
+FROM ORDER_INQUIRY
+;
+SELECT *
+FROM STATUS;
+
+SELECT *
+FROM REVIEW
+WHERE PRODUCT_NO = 3;
+
+select *
+from order_detail
+where order_detail_no = 3;
 
 --------------------------------------------------------
 -- 내 상품문의 관리 페이지

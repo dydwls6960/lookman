@@ -24,6 +24,7 @@
             <a href="/app/member/edit" class="settings__link">내 정보 수정</a>
             <a href="/app/member/review" class="settings__link">내 리뷰 관리</a>
             <a href="/app/member/product-inquiry" class="settings__link">내 상품문의 관리</a>
+            <a href="/app/member/order-inquiry" class="settings__link">내 주문문의 관리</a>
             <a href="/app/member/address" class="settings__link">배송지 관리</a>
             <a href="/app/member/logout" class="settings__link">로그아웃</a>
           </div>

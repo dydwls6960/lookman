@@ -4,10 +4,44 @@
   "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="OrderInquiryMapper">
 	<insert id="insertOrderInquiry">
-		INSERT INTO ORDER_INQUIRY (ORDER_INQUIRY_NO, ORDER_DETAIL_NO, MEMBER_NO,
-		SELLER_NO, STATUS_NO, TITLE, QUESTION_CONTENT)
-		VALUES (SEQ_ORDER_INQUIRY.NEXTVAL, ${orderDetailNo}, ${memberNo},
+		INSERT INTO ORDER_INQUIRY (ORDER_INQUIRY_NO,
+		ORDER_DETAIL_NO, MEMBER_NO,
+		SELLER_NO, STATUS_NO, TITLE,
+		QUESTION_CONTENT)
+		VALUES (SEQ_ORDER_INQUIRY.NEXTVAL, ${orderDetailNo},
+		${memberNo},
 		${sellerNo}, 11, #{title}, #{questionContent})
 	</insert>
+
+	<select id="selectOrderInquiriesByMemberNo"
+		resultType="OrderMemberInquiryDto">
+		SELECT 
+		    OI.ORDER_INQUIRY_NO
+		    , OD.ORDERS_NO 
+		    , OI.ORDER_DETAIL_NO
+		    , OD.INVENTORY_NO
+		    , P.PRODUCT_NO
+	        , P.NAME PRODUCT_NAME
+		    , OI.MEMBER_NO
+		    , M.NAME MEMBER_NAME
+		    , SL.SELLER_NO
+		    , SL.NAME SELLER_NAME
+		    , PI.FILENAME THUMBNAIL_FILENAME
+		    , S.NAME STATUS
+		    , OI.TITLE
+		    , OI.QUESTION_CONTENT
+		    , OI.RESPONSE_CONTENT
+		    , OI.ASK_DATE
+		    , OI.RESPONSE_DATE
+		    , OI.DELETED_YN
+		FROM ORDER_INQUIRY OI
+		JOIN MEMBER M ON OI.MEMBER_NO = M.MEMBER_NO
+		JOIN ORDER_DETAIL OD ON OI.ORDER_DETAIL_NO = OD.ORDER_DETAIL_NO
+		JOIN PRODUCT P ON OD.PRODUCT_NO = P.PRODUCT_NO
+		JOIN PRODUCT_IMG PI ON OD.PRODUCT_NO = PI.PRODUCT_NO AND PI.THUMBNAIL_YN = 'Y'
+		JOIN SELLER SL ON P.SELLER_NO = SL.SELLER_NO
+		JOIN STATUS S ON OI.STATUS_NO = S.STATUS_NO
+		WHERE OI.MEMBER_NO = ${memberNo}
+	</select>
 
 </mapper>

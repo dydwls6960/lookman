@@ -121,6 +121,7 @@
           </section>
 
 
+			<!-- TODO: add memberNo == writerNo -->
           <section class="details__review" id="details__review">
             <h2 class="review__heading">구매후기
               (${requestScope.dto.reviewCnt})</h2>

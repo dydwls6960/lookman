@@ -43,4 +43,18 @@ public class OrderInquiryService {
 		return result;
 	}
 
+	public int editInquiry(OrderInquiryVo oivo) throws Exception {
+		SqlSession ss = getSqlSession();
+		int result = dao.editInquiry(ss, oivo);
+		if (result == 1) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+
+		ss.close();
+
+		return result;
+	}
+
 }

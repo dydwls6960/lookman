@@ -22,4 +22,8 @@ public class OrderInquiryDao {
 		return ss.update("OrderInquiryMapper.deleteInquiry", oivo);
 	}
 
+	public int editInquiry(SqlSession ss, OrderInquiryVo oivo) {
+		return ss.update("OrderInquiryMapper.editInquiry", oivo);
+	}
+
 }

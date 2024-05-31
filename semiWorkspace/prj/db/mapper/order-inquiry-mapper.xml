@@ -51,5 +51,15 @@
 		WHERE ORDER_INQUIRY_NO = ${orderInquiryNo}
 		AND MEMBER_NO = ${memberNo}
 	</update>
+	
+	<update id="editInquiry">
+		UPDATE ORDER_INQUIRY
+		SET 
+			TITLE = #{title}
+			, QUESTION_CONTENT = #{questionContent}
+		WHERE MEMBER_NO = ${memberNo}
+			AND SELLER_NO = ${sellerNo}
+			AND ORDER_INQUIRY_NO = ${orderInquiryNo}
+	</update>
 
 </mapper>

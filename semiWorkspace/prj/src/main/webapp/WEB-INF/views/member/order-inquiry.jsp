@@ -39,6 +39,7 @@
                     <div class="upper__div--btns">
                       <button type="button" class="edit-btn" data-order-inquiry-no="${inquiry.orderInquiryNo}"
                         data-member-no="${inquiry.memberNo}" data-title="${inquiry.title}"
+                        data-seller-no="${inquiry.sellerNo}"
                         data-question-content="${inquiry.questionContent}">수정</button>
                       <button type="button" class="delete-btn" data-order-inquiry-no="${inquiry.orderInquiryNo}"
                         data-member-no="${inquiry.memberNo}">삭제</button>

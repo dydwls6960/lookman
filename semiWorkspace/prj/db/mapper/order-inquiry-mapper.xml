@@ -42,6 +42,14 @@
 		JOIN SELLER SL ON P.SELLER_NO = SL.SELLER_NO
 		JOIN STATUS S ON OI.STATUS_NO = S.STATUS_NO
 		WHERE OI.MEMBER_NO = ${memberNo}
+		AND OI.DELETED_YN = 'N'
 	</select>
+	
+	<update id="deleteInquiry">
+		UPDATE ORDER_INQUIRY
+		SET DELETED_YN = 'Y'
+		WHERE ORDER_INQUIRY_NO = ${orderInquiryNo}
+		AND MEMBER_NO = ${memberNo}
+	</update>
 
 </mapper>

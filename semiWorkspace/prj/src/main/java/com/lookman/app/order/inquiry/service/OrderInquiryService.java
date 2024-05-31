@@ -29,4 +29,18 @@ public class OrderInquiryService {
 		return result;
 	}
 
+	public int deleteInquiry(OrderInquiryVo oivo) throws Exception {
+		SqlSession ss = getSqlSession();
+
+		int result = dao.deleteInquiry(ss, oivo);
+		if (result == 1) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+
+		ss.close();
+		return result;
+	}
+
 }

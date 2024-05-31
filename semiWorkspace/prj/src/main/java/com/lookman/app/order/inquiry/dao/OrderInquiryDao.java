@@ -18,4 +18,8 @@ public class OrderInquiryDao {
 		return ss.selectList("OrderInquiryMapper.selectOrderInquiriesByMemberNo", loginMemberVo);
 	}
 
+	public int deleteInquiry(SqlSession ss, OrderInquiryVo oivo) {
+		return ss.update("OrderInquiryMapper.deleteInquiry", oivo);
+	}
+
 }

@@ -11,10 +11,13 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.lookman.app.product.vo.ProductVo;
+import com.lookman.app.seller.order.vo.SellerOrderListVo;
+import com.lookman.app.seller.product.vo.SellerProductInquiryVo;
+import com.lookman.app.seller.product.vo.SellerProductListVo;
 import com.lookman.app.seller.service.SellerService;
-import com.lookman.app.seller.vo.SellerProductInquiryVo;
+import com.lookman.app.seller.vo.SellerInquiryVo;
+import com.lookman.app.seller.vo.SellerStateVo;
 import com.lookman.app.seller.vo.SellerSimpleOrderListVo;
-import com.lookman.app.seller.vo.SellerStatusVo;
 import com.lookman.app.seller.vo.SellerVo;
 
 @WebServlet("/seller/home")
@@ -31,21 +34,24 @@ public class SellerHomeController extends HttpServlet{
 			HttpSession session = req.getSession();
 			
 			SellerVo loginSellerVo=(SellerVo)req.getSession().getAttribute("loginSellerVo");
-			String sellerNo=loginSellerVo.getSellerNo();
-			SellerStatusVo ssVo= ss.getSellerStatus(sellerNo);
-			List<ProductVo> pVoList=ss.getProductListRowNum3(loginSellerVo);
-			List<SellerProductInquiryVo> spiVoList=ss.getProductInquiryListRowNum3(loginSellerVo);
-			List<SellerSimpleOrderListVo> ssoVoList=ss.getSimplerOrderListRowNum3(loginSellerVo);
-//			&& ssVo != null && pVoList !=null && spiVoList != null && ssoVoList != null
-			
-			if(loginSellerVo != null) {
-				req.setAttribute("ssVo", ssVo);
-				req.setAttribute("pVoList", pVoList);
+			if(loginSellerVo!=null) {
+				String sellerNo=loginSellerVo.getSellerNo();
+				SellerStateVo spsVo= ss.getSellerStatus(sellerNo); 										//수정완료
+				SellerInquiryVo siVo=ss.getSellerInquiryVo(sellerNo);									//수정완료
+				List<SellerProductListVo> splVoList=ss.getProductListRowNum3(loginSellerVo);			//수정완료
+				List<SellerProductInquiryVo> spiVoList=ss.getProductInquiryListRowNum3(loginSellerVo);	//수정완료
+				List<SellerOrderListVo> solVoList=ss.getSimplerOrderListRowNum3(loginSellerVo);			//수정완료
+				
+				req.setAttribute("spsVo", spsVo);
+				req.setAttribute("siVo", siVo);
+				req.setAttribute("splVoList", splVoList);
 				req.setAttribute("spiVoList", spiVoList);
-				req.setAttribute("ssoVoList", ssoVoList);
+				req.setAttribute("solVoList", solVoList);
 				req.getRequestDispatcher("/WEB-INF/views/seller/home.jsp").forward(req, resp);
+				
 			}else {
-				resp.sendRedirect("/app/seller/login");
+				session.setAttribute("alertMsg", "로그인 하고 와주세요");
+				req.getRequestDispatcher("/WEB-INF/views/seller/login.jsp").forward(req, resp);
 			}
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -55,6 +61,6 @@ public class SellerHomeController extends HttpServlet{
 	}
 	@Override
 	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-	
+		doPost(req, resp);
 	}
 }

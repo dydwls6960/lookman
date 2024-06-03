@@ -1,6 +1,4 @@
-$(document).ready(function() {
-  $('tr[data-href]').on('click', function() {
-    var url = $(this).data('href');
-    window.location.href = url;
-  });
-});
+function goInquiryUpdate(productInquiryNo) {
+    window.location.href = "/app/seller/home/product/inquiry/update?productInquiryNo=" + productInquiryNo;
+}
+

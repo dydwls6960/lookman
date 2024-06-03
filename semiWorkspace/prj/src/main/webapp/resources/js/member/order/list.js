@@ -106,7 +106,7 @@ document.addEventListener("DOMContentLoaded", () => {
             `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
             `<input type="hidden" name="ordersNo" id="ordersNo" value="${ordersNo}">`,
             `<input type="hidden" name="productNo" id="productNo" value="${productNo}">`,
-            `<input type="number" min="1" step="1" max="5" name="rating" id="rating" placeholder="평점*" required>`,
+            `<input type="number" min="1" step="1" max="5" name="rating" id="rating" value="1" placeholder="평점*" required>`,
             `<textarea name="content" id="content" placeholder="내용" required></textarea>`,
           ].join(""),
           buttons: [
@@ -119,7 +119,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const form = document.querySelector(".vex-dialog-form");
                 const rating = form.querySelector("#rating").value;
                 const content = form.querySelector("#content").value;
-                if (form && rating && content) {
+                console.log(rating);
+                if (form && rating && content && rating >= 1 && rating <= 5) {
                   form.submit();
                 }
               },

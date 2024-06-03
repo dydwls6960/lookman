@@ -29,7 +29,8 @@
                 <div class="review__item--upper">
                   <span>${review.memberName}</span>
                   <div class="upper__div">
-                    <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
+<!--                     <img src="/app/resources/img/rating__stars.svg" alt="stars svg"> -->
+					<span><span style="color: #FFC633;">&#9733;</span> ${review.rating}</span>
                     <div class="upper__div--text">
                       <span class="review__date">
                         <c:if test="${not empty review.editedDate}">

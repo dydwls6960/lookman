@@ -64,7 +64,10 @@ document.addEventListener("DOMContentLoaded", () => {
             className: "vex-dialog-button-primary vex-dialog-button vex-first",
             click: function () {
               const form = document.querySelector(".vex-dialog-form");
-              if (form) {
+              const rating = form.querySelector("#rating").value;
+              const content = form.querySelector("#content").value;
+              console.log(rating);
+              if (form && rating && content && rating >= 1 && rating <= 5) {
                 form.submit();
               }
             },

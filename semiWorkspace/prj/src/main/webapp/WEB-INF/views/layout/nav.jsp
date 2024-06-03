@@ -73,3 +73,13 @@
         <a href="/app/store" class="sub-nav__item sub-nav__store">스토어</a>
       </div>
     </nav>
+    <script defer>
+      const navSearch = document.querySelector(".nav__search");
+      navSearch.addEventListener("keydown", e => {
+        if (e.key === "Enter") {
+          const searchKey = navSearch.value;
+          const url = "/app/search?name=" + searchKey;
+          window.location.href = url;
+        }
+      })
+    </script>

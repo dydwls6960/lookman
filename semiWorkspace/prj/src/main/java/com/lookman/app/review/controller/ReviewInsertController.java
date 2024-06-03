@@ -39,7 +39,7 @@ public class ReviewInsertController extends HttpServlet {
 			int result = rs.insertReview(rvo);
 			
 			if (result == 1) {
-				req.getSession().setAttribute("alertMsg", "문의 작성 성공!");
+				req.getSession().setAttribute("alertMsg", "리뷰 작성 성공!");
 				resp.sendRedirect("/app/member/review");
 				return;
 			} else {

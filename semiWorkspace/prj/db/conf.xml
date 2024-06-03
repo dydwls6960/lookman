@@ -47,6 +47,8 @@
 		<typeAlias
 			type="com.lookman.app.inquiry.dto.OrderMemberInquiryDto"
 			alias="OrderMemberInquiryDto" />
+		<typeAlias type="com.lookman.app.product.dto.ProductHomeDto"
+			alias="ProductHomeDto" />
 	</typeAliases>
 
 	<environments default="development">

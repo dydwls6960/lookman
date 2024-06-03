@@ -154,4 +154,11 @@ public class ProductService {
 		return dtoList;
 	}
 
+	public List<ProductHomeDto> searchProducts(String name) throws Exception {
+		SqlSession ss = getSqlSession();
+		List<ProductHomeDto> dtoList = dao.searchProducts(ss, name);
+		ss.close();
+		return dtoList;
+	}
+
 }

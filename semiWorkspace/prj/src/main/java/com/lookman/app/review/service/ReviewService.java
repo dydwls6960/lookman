@@ -31,20 +31,32 @@ public class ReviewService {
 		return result;
 	}
 
-
 	public int deleteReview(ReviewVo rvo) throws Exception {
 		SqlSession ss = getSqlSession();
-		
+
 		int result = dao.deleteReview(ss, rvo);
-		
+
 		if (result == 1) {
 			ss.commit();
 		} else {
 			ss.rollback();
 		}
-		
+
 		ss.close();
-		
+
+		return result;
+	}
+
+	public int insertReview(ReviewVo rvo) throws Exception {
+		SqlSession ss = getSqlSession();
+		int result = dao.insertReview(ss, rvo);
+		if (result == 1) {
+			ss.commit();
+		} else {
+			ss.rollback();
+		}
+
+		ss.close();
 		return result;
 	}
 

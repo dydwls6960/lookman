@@ -13,8 +13,7 @@ document.addEventListener("DOMContentLoaded", () => {
   delBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
       const memberNo = btn.dataset.memberNo;
-      const reviewNo = btn.dataset.reviewNo;
-
+      const orderInquiryNo = btn.dataset.orderInquiryNo;
       vex.dialog.confirm({
         message: "삭제하시겠습니까?",
         buttons: [
@@ -30,12 +29,17 @@ document.addEventListener("DOMContentLoaded", () => {
         afterOpen: function () {
           const form = document.querySelector(".vex-dialog-form");
           form.setAttribute("method", "post");
-          form.setAttribute("action", "/app/member/review/delete");
+          form.setAttribute("action", "/app/orders/inquiry/delete");
           const memberInput = returnHiddenInputElement("memberNo", memberNo);
-          const reviewNoInput = returnHiddenInputElement("reviewNo", reviewNo);
+          const orderInquiryNoInput = returnHiddenInputElement(
+            "orderInquiryNo",
+            orderInquiryNo
+          );
 
+          form
+            .querySelector(".vex-dialog-input")
+            .appendChild(orderInquiryNoInput);
           form.querySelector(".vex-dialog-input").appendChild(memberInput);
-          form.querySelector(".vex-dialog-input").appendChild(reviewNoInput);
         },
       });
     });
@@ -44,30 +48,31 @@ document.addEventListener("DOMContentLoaded", () => {
   // 수정 버튼
   editBtns.forEach((btn) => {
     btn.addEventListener("click", () => {
+      const orderInquiryNo = btn.dataset.orderInquiryNo;
+      const sellerNo = btn.dataset.sellerNo;
       const memberNo = btn.dataset.memberNo;
-      const reviewNo = btn.dataset.reviewNo;
-      const rating = btn.dataset.rating;
-      const content = btn.dataset.content;
-
+      const title = btn.dataset.title;
+      const questionContent = btn.dataset.questionContent;
+      // vex
       vex.dialog.open({
-        message: "리뷰 수정",
+        message: "주문문의 수정",
         input: [
           `<input type="hidden" name="memberNo" id="memberNo" value="${memberNo}">`,
-          `<input type="hidden" name="reviewNo" id="reviewNo"value="${reviewNo}">`,
-          `<input type="number" min="1" step="1" max="5" name="rating" id="rating" placeholder="평점*" required value="${rating}">`,
-          `<input type="text" name="content" id="content" placeholder="내용" required value="${content}">`,
+          `<input type="hidden" name="orderInquiryNo" id="orderInquiryNo" value="${orderInquiryNo}">`,
+          `<input type="hidden" name="sellerNo" id="sellerNo" value="${sellerNo}">`,
+          `<input type="text" name="title" id="title" placeholder="제목" value=${title} required>`,
+          `<textarea name="questionContent" id="questionContent" placeholder="내용" required>${questionContent}</textarea>`,
         ].join(""),
         buttons: [
           {
-            text: "수정",
+            text: "추가",
             type: "submit",
             className: "vex-dialog-button-primary vex-dialog-button vex-first",
             click: function () {
               const form = document.querySelector(".vex-dialog-form");
-              const rating = form.querySelector("#rating").value;
-              const content = form.querySelector("#content").value;
-              console.log(rating);
-              if (form && rating && content && rating >= 1 && rating <= 5) {
+              const title = form.querySelector("#title").value;
+              const content = form.querySelector("#questionContent").value;
+              if (form && title && content) {
                 form.submit();
               }
             },
@@ -78,20 +83,12 @@ document.addEventListener("DOMContentLoaded", () => {
           if (!data) {
             // console.log("모달창 닫음.");
           } else {
-            console.log(
-              data.memberNo,
-              data.addressNo,
-              data.postcode,
-              data.address,
-              data.address2,
-              data.extraAddress
-            );
           }
         },
         afterOpen: function () {
           const form = document.querySelector(".vex-dialog-form");
           if (form) {
-            form.setAttribute("action", "/app/member/review/edit");
+            form.setAttribute("action", "/app/orders/inquiry/edit");
             form.setAttribute("method", "post");
           }
         },

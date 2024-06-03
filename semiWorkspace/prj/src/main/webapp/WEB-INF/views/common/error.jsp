@@ -16,7 +16,6 @@
         <main class="main main-result">
           <h1>에러 화면</h1>
           <p>${errMsg}</p>
-          <a href="/app/orders/list?statusNo=1">주문 목록</a>
         </main>
 
         <%@ include file="/WEB-INF/views/layout/footer.jsp" %>

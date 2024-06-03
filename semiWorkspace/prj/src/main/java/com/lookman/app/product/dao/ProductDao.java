@@ -214,4 +214,8 @@ public class ProductDao {
 		return inventoryDetails;
 	}
 
+	public List<ProductHomeDto> searchProducts(SqlSession ss, String name) {
+		return ss.selectList("ProductMapper.searchProducts", name);
+	}
+
 }

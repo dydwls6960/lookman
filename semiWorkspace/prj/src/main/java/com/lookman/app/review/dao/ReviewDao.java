@@ -119,4 +119,8 @@ public class ReviewDao {
 		int result = ss.update("ReviewMapper.deleteReview", rvo);
 		return result;
 	}
+
+	public int insertReview(SqlSession ss, ReviewVo rvo) {
+		return ss.insert("ReviewMapper.insertReview", rvo);
+	}
 }

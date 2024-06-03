@@ -121,6 +121,7 @@
           </section>
 
 
+			<!-- TODO: add memberNo == writerNo -->
           <section class="details__review" id="details__review">
             <h2 class="review__heading">구매후기
               (${requestScope.dto.reviewCnt})</h2>
@@ -131,8 +132,10 @@
                   <div class="upper__div">
                     <img src="/app/resources/img/rating__stars.svg" alt="stars svg">
                     <div class="upper__div--text">
-                      <span class="review__date">${review.createdDate}</span> <a href="/app/report/${review.memberNo}"
-                        class="review__report">신고</a>
+                      <span class="review__date">${review.createdDate}</span> 
+					<c:if test="${sessionScope.loginMemberVo != null && review != null && sessionScope.loginMemberVo.memberNo != review.memberNo}">
+					    <a href="/app/report?memberNo=${review.memberNo}" class="review__report">신고</a>
+					</c:if>
                     </div>
                   </div>
                 </div>

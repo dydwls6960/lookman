@@ -13,19 +13,26 @@
 				</th>
 				<td style="text-align: left">
 					<select name="s-len">
-				        <option value="name">주문자명</option>
-				        <option value="no">주문번호</option>
+				        <option value="P.NAME">상품명</option>
+				        <option value="P.PRODUCT_NO">상품번호</option>
 				    </select>
-	   				 <input type="text">
+	   				 <input type="text" name="searchListText">
 				</td>
 			</tr>
 
 			<tr>
 				<th>
-					가격
+					처리상태
 				</th>
 				<td class="search-field" style="text-align: left">
-			        <input type="text"> ~ <input type="text">
+			        <select name="s-status">
+			            <option value="all">전체</option>
+			            <option value="1">입금/결제</option>
+			            <option value="2">결제완료</option>
+			            <option value="3">배송준비중</option>
+			            <option value="4">배송중</option>
+			            <option value="5">배송완료</option>
+			        </select>
     			</td>
 			</tr>
 			

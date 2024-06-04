@@ -14,6 +14,7 @@ import com.lookman.app.category.vo.CategoryVo;
 import com.lookman.app.product.vo.ProductColorVo;
 import com.lookman.app.product.vo.ProductSizeVo;
 import com.lookman.app.product.vo.ProductVo;
+import com.lookman.app.seller.product.vo.SellerProductListVo;
 import com.lookman.app.seller.product.vo.SellerProductSearchVo;
 import com.lookman.app.seller.service.SellerService;
 import com.lookman.app.seller.vo.SellerVo;
@@ -42,25 +43,17 @@ public class SellerProductSelectController extends HttpServlet{
 			    searchText = "all";
 			}
 			String categoryNo=req.getParameter("s-cate");
-			String sizeNo=req.getParameter("s-size");
-			String colorNo=req.getParameter("s-color");
 			
 			SellerProductSearchVo spsVo=new SellerProductSearchVo();
 			spsVo.setSearch(search);
 			spsVo.setSearchText(searchText);
 			spsVo.setCategoryNo(categoryNo);
-			spsVo.setSizeNo(sizeNo);
-			spsVo.setColorNo(colorNo);
 			
 			System.out.println(spsVo);
-			List<ProductVo> pVoList=ss.getProductSearchList(spsVo,loginSellerVo);
+			List<SellerProductListVo> splVoList=ss.getProductSearchList(spsVo,loginSellerVo);
 			List<CategoryVo> cVoList=ss.getCategoryList();
-			List<ProductSizeVo> psVoList=ss.getSizeList();
-			List<ProductColorVo> pcVoList=ss.getColorList();
-			req.setAttribute("pVoList", pVoList);
+			req.setAttribute("splVoList", splVoList);
 			req.setAttribute("cVoList",cVoList );
-			req.setAttribute("psVoList",psVoList );
-			req.setAttribute("pcVoList",pcVoList );
 			
 			
 			req.getRequestDispatcher("/WEB-INF/views/seller/product/select.jsp").forward(req, resp);

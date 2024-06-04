@@ -27,40 +27,20 @@
 	   			<table id="salesHistory" class="userList">
 				  <tr>
 				  	<th>주문번호</th>
-				  	<th>상품번호</th>
+				    <th>상품번호</th>
 				    <th>주문자</th>
-				    <th>수량</th>
 				    <th>주문상태</th>
-				    <th>결제방식</th>
 				    <th>주문일</th>
 				  </tr>
-				  <tr data-href="#">
-				  	<td>3</td>
-				    <td>1</td>
-				    <td>이용진</td>
-				    <td>3</td>
-				    <td>결제완료</td>
-				    <td>포인트</td>
-				    <td>24년05월19 13:00</td>
-				  </tr>
-				  <tr data-href="#">
-				  	<td>2</td>
-				    <td>1</td>
-				    <td>이용진</td>
-				    <td>2</td>
-				    <td>입금전</td>
-				    <td>무통장</td>
-				    <td>24년05월19 11:00</td>
-				  </tr>
-				  <tr data-href="#">
-				  	<td>2</td>
-				    <td>3</td>
-				    <td>이용진</td>
-				    <td>4</td>
-				    <td>입금전</td>
-				    <td>무통장</td>
-				    <td>24년05월19 11:00</td>
-				  </tr>
+				  <c:forEach items="${solVoList}" var="solVo">
+				  	  <tr>
+					  	<td>${solVo.getOrderDetailNo()}</td>
+					    <td>${solVo.getProductNo()}</td>
+					    <td>${solVo.getMemberName()}</td>
+					    <td>${solVo.getStatusName()}</td>
+					    <td>${solVo.getCreateDate()}</td>
+					  </tr>
+				  </c:forEach>
 				</table>
 	   		</div>
     	</div>

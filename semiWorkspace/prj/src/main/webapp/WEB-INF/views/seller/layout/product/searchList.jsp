@@ -34,33 +34,7 @@
     			</td>
 			</tr>
 			
-			<tr>
-				<th>
-					사이즈
-				</th>
-				<td class="membership-checkboxes" style="text-align: left">
-			        <select name="s-size">
-			            <option value="all">전체</option>
-			            <c:forEach items="${psVoList}" var="psVo">
-				            <option value="${psVo.getSizeNo()}">${psVo.getName()}</option>    	
-				  		</c:forEach>
-			        </select>
-    			</td>
-			</tr>
 			
-			<tr>
-				<th>
-					색상
-				</th>
-				<td class="membership-checkboxes" style="text-align: left">
-			        <select name="s-color">
-			            <option value="all">전체</option>
-			            <c:forEach items="${pcVoList}" var="pcVo">
-				            <option value="${pcVo.getColorNo()}">${pcVo.getName()}</option>    	
-				  		</c:forEach>
-			        </select>
-   				</td>
-			</tr>
 		</table>
 		<div id="search-div">
 			<input type="submit" value="검색">

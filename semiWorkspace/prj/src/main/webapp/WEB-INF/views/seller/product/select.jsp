@@ -22,30 +22,26 @@
     	<div class="seller-div">
     		<div id="add">
 		    	<span><span id="b-g">&#10073;</span> 상품리스트</span>
-		    	<a href="#">+상품추가</a>
+		    	<a href="/app/seller/product/insert">+상품추가</a>
 	   		</div>
 	   		<div>
 	   			<table id="productList" class="userList">
 				  <tr>
 				  	<th>상품번호</th>
 				  	<th>카테고리</th>
-				    <th>상품명</th>
-				    <th>상품이미지</th>
+				    <th>상품</th>
 				    <th>상품금액</th>
 				    <th>판매자</th>
 				    <th>등록일</th>
-				    <th>조회수</th>
 				  </tr>
-				  <c:forEach items="${pVoList}" var="pVo">
-				  	  <tr data-href="#">
-					  	<td>${pVo.getProductNo()}</td>
-					  	<td>${pVo.getCategoryNo()}</td>
-					    <td>${pVo.getName()}</td>
-					    <td><img src="/app/resources/img/product/${pVo.getDeletedYn()}" width="100" height="100">${pVo.getDetails()}</td>
-					    <td>${pVo.getPrice()}</td>
-					    <td>${pVo.getSellerNo()}</td>
-					    <td>${pVo.getCreatedDate()}</td>
-					    <td>${pVo.getHit()}</td>
+				  <c:forEach items="${splVoList}" var="splVo">
+				  	  <tr onclick="goToProductDetail(${splVo.getProductNo()})">
+					  	<td>${splVo.getProductNo()}</td>
+					  	<td>${splVo.getCategoryName()}</td>
+					    <td><img src="/app/resources/img/product/${splVo.getImgName()}" width="100" height="100">${splVo.getProductName()}</td>
+					    <td>${splVo.getProductPrice()}</td>
+					    <td>${splVo.getSellerName()}</td>
+					    <td>${splVo.getCreateDate()}</td>
 					  </tr>
 				  </c:forEach>
 				</table>

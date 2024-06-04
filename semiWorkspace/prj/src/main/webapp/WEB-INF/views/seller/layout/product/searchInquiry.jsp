@@ -11,24 +11,26 @@
 								<th>
 									검색어
 								</th>
-								<td class="search-field" style="text-align: left">
-							        <select name="s-cate">
-							            <option value="all">전체</option>
-							            <option value="1">카테고리1</option>
-							            <option value="2">카테고리2</option>
-							            <option value="3">카테고리3</option>
-							            <option value="4">카테고리4</option>
-							        </select>
-							        
-							        <select name="s-len">
-								        <option value="name">작성자 아이디</option>
-								        <option value="nicl">작성자 닉네임</option>
-								        <option value="title">문의제목</option>
-								        <option value="content">문의내용</option>
+								<td style="text-align: left">
+									<select name="s-len">
+								        <option value="M.NAME">회원이름</option>
+								        <option value="P.PRODUCT_NO">상품번호</option>
+								        <option value="PI.TITLE">문의제목</option>
 								    </select>
-					   				 <input type="text">
+					   				 <input type="text" name="searchListText">
+								</td>
+							</tr>
+							<tr>
+								<th>
+									처리상태
+								</th>
+								<td class="search-field" style="text-align: left">
+							        <select name="s-status">
+							            <option value="all">전체</option>
+							            <option value="11">문의접수</option>
+							            <option value="12">답변완료</option>
+							        </select>
 				    			</td>
-								
 							</tr>
 			
 						</table>

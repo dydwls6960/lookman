@@ -27,24 +27,24 @@
 	   			<table id="salesHistory" class="userList">
 				  <tr>
 				  	<th>주문번호</th>
-				  	<th>상품번호</th>
+				    <th>상품번호</th>
 				    <th>주문자</th>
-				    <th>수량</th>
 				    <th>주문상태</th>
-				    <th>배송현황</th>
-				    <th>주문일</th>
-				    <th>버튼</th>
+				    <th>주문상태변경</th>
 				  </tr>
-				  <tr data-href="#">
-				  	<td>2</td>
-				    <td>3</td>
-				    <td>이용진</td>
-				    <td>4</td>
-				    <td>입금전</td>
-				    <td>배송전</td>
-				    <td>24년05월19 11:00</td>
-				    <td><input type="button" value="배송현황변경"></td>
-				  </tr>
+				  <c:forEach items="${solVoList}" var="solVo">
+				  	  <tr>
+					  	<td>${solVo.getOrderDetailNo()}</td>
+					    <td>${solVo.getProductNo()}</td>
+					    <td>${solVo.getMemberName()}</td>
+					    <td>${solVo.getStatusName()}</td>
+					    <td>
+					    	<input type="button" value="배송준비중">
+					    	<input type="button" value="배송시작">
+					    	<input type="button" value="배송완료">
+					    </td>
+					  </tr>
+				  </c:forEach>
 				</table>
 	   		</div>
     	</div>

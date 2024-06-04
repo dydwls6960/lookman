@@ -13,13 +13,12 @@
 								</th>
 								<td class="search-field" style="text-align: left">
 							        <select name="s-len">
-								        <option value="name">상품명</option>
-								        <option value="nicl">상품번호</option>
-								        <option value="title">작성자아이디</option>
-								        <option value="content">작성자닉네임</option>
-								        <option value="content">별점</option>
+							        	<option value="all">전체</option>
+								        <option value="R.RATING">별점</option>
+								        <option value="P.PRODUCT_NO">상품번호</option>
+								        <option value="M.NAME">작성자</option>
 								    </select>
-					   				 <input type="text">
+					   				 <input type="text" name="searchListText">
 				    			</td>
 								
 							</tr>

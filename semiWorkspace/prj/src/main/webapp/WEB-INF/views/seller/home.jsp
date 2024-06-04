@@ -22,22 +22,24 @@
 	   		</div>
     		<div id="f-content">
     			<span id="f-c-right" class="f-c-item">
-    				전체 상품현황
+    				판매자 상품현황
     				<div>
     					<table id="userCnt">
 						  <tr>
-						    <th>전체상품</th>
-						    <th>전체 조회수</th>
-						    <th>전체 찜목록</th>
-						    <th>총 주문건수</th>
+						    <th>상품수</th>
+						    <th>찜수</th>
+						    <th>주문수</th>
 						    <th>총액</th>
+						    <th>수수료</th>
+						    <th>순이익</th>
 						  </tr>
 						  <tr>
-						  	<td>${ssVo.getAllProductCnt()}</td>
-						  	<td>${ssVo.getAllHitSum()}</td>
-						  	<td>${ssVo.getAllFavoriteCnt()}</td>
-						    <td>${ssVo.getAllOrderCnt()}</td>
-						    <td>${ssVo.getAllPriceSum()}</td>
+						  	<td>${spsVo.getProductCnt()}</td>
+						  	<td>${spsVo.getFavoriteCnt()}</td>
+						  	<td>${spsVo.getOrderCnt()}</td>
+						    <td>${spsVo.getTotalPrice()}</td>
+						    <td>${spsVo.getCharge()}</td>
+						    <td>${spsVo.getNetProfit()}</td>
 						  </tr>
 						</table>
     				</div>
@@ -47,16 +49,16 @@
     				<div>
     					<table id="userCnt">
 						  <tr>
-						    <th>주문수</th>
-						    <th>총주문금액</th>
-						    <th>수수료</th>
-						    <th>순이익</th>
+						    <th>문의수</th>
+						    <th>미처리수</th>
+						    <th>처리수</th>
+						    <th>삭제수</th>
 						  </tr>
 						 <tr>
-						    <td>${ssVo.getAllOrderCnt()}</td>
-						    <td>${ssVo.getAllPriceSum()}</td>
-						    <td>${ssVo.getAllPriceSum()*0.1}</td>
-						    <td>${ssVo.getAllPriceSum()-ssVo.getAllPriceSum()*0.1}</td>
+						    <td>${siVo.getInquiryCnt()}</td>
+						    <td>${siVo.getBeforeInquiryCnt()}</td>
+						    <td>${siVo.getAfterInquiryCnt()}</td>
+						    <td>${siVo.getDeleteInquiryCnt()}</td>
 						</tr>
 
 						</table>
@@ -75,23 +77,19 @@
 				  <tr>
 				  	<th>상품번호</th>
 				  	<th>카테고리</th>
-				    <th>상품명</th>
-				    <th>상품이미지</th>
+				    <th>상품</th>
 				    <th>상품금액</th>
 				    <th>판매자</th>
 				    <th>등록일</th>
-				    <th>조회수</th>
 				  </tr>
-				  <c:forEach items="${pVoList}" var="pVo">
+				  <c:forEach items="${splVoList}" var="splVo">
 				  	  <tr>
-					  	<td>${pVo.getProductNo()}</td>
-					  	<td>${pVo.getCategoryNo()}</td>
-					    <td>${pVo.getName()}</td>
-					    <td><img src="/app/resources/img/product/${pVo.getDeletedYn()}" width="100" height="100">${pVo.getDetails()}</td>
-					    <td>${pVo.getPrice()}</td>
-					    <td>${pVo.getSellerNo()}</td>
-					    <td>${pVo.getCreatedDate()}</td>
-					    <td>${pVo.getHit()}</td>
+					  	<td>${splVo.getProductNo()}</td>
+					  	<td>${splVo.getCategoryName()}</td>
+					    <td><img src="/app/resources/img/product/${splVo.getImgName()}" width="100" height="100">${splVo.getProductName()}</td>
+					    <td>${splVo.getProductPrice()}</td>
+					    <td>${splVo.getSellerName()}</td>
+					    <td>${splVo.getCreateDate()}</td>
 					  </tr>
 				  </c:forEach>
 				</table>
@@ -107,24 +105,20 @@
     			<table id="userDeclaration" class="userList">
 				  <tr>
 				  	<th>문의번호</th>
-				    <th>아이디</th>
+				  	<th>상품번호</th>
 				    <th>닉네임</th>
-				    <th>상품상태</th>
 				    <th>문의제목</th>
-				    <th>문의내용</th>
 				    <th>문의날짜</th>
-				    <th>처리여부</th>
+				    <th>문의상태</th>
 				  </tr>
 				  <c:forEach items="${spiVoList}" var="spiVo">
 				  	  <tr>
-					  	<td>${spiVo.getProduct_inquiry_no()}</td>
-					    <td>${spiVo.getMember_id()}</td>
-					    <td>${spiVo.getMember_name()}</td>
-					    <td>${spiVo.getStatus_name()}</td>
-					    <td>${spiVo.getTitle()}</td>
-					    <td>${spiVo.getQuestion_content()}</td>
-					    <td>${spiVo.getAsk_date()}</td>
-					    <td>${spiVo.getPrivate_yn()}</td>
+					  	<td>${spiVo.getProductInquiryNo()}</td>
+					    <td>${spiVo.getProductNo()}</td>
+					    <td>${spiVo.getMemberName()}</td>
+					    <td>${spiVo.getProductInquiryTitle()}</td>
+					    <td>${spiVo.getAskDate()}</td>
+					    <td>${spiVo.getStatusName()}</td>
 					  </tr>
 				  </c:forEach>
 				</table>
@@ -140,22 +134,18 @@
     			<table id="userDeclaration" class="userList">
 				  <tr>
 				  	<th>주문번호</th>
+				    <th>상품번호</th>
 				    <th>주문자</th>
 				    <th>주문상태</th>
-				    <th>결제방식</th>
-				    <th>배송비</th>
-				    <th>상품금액</th>
 				    <th>주문일</th>
 				  </tr>
-				  <c:forEach items="${ssoVoList}" var="ssoVo">
+				  <c:forEach items="${solVoList}" var="solVo">
 				  	  <tr>
-					  	<td>${ssoVo.getOrdersNo()}</td>
-					    <td>${ssoVo.getMemberName()}</td>
-					    <td>${ssoVo.getStatusName()}</td>
-					    <td>${ssoVo.getCardName()}</td>
-					    <td>${ssoVo.getShippingFee()}</td>
-					    <td>${ssoVo.getProductPrice()}</td>
-					    <td>${ssoVo.getCreatedDate()}</td>
+					  	<td>${solVo.getOrderDetailNo()}</td>
+					    <td>${solVo.getProductNo()}</td>
+					    <td>${solVo.getMemberName()}</td>
+					    <td>${solVo.getStatusName()}</td>
+					    <td>${solVo.getCreateDate()}</td>
 					  </tr>
 				  </c:forEach>
 				</table>

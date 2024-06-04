@@ -15,26 +15,27 @@
         <a href="#" class="collapsed">판매관리 <span class="indicator">&#9654;</span></a>
         <ul>
           <li><a href="/app/seller/home/order/list">판매내역</a></li>
-          <li><a href="/app/seller/home/order/state">주문상태</a></li>
+          <li><a href="/app/seller/home/order/state">주문상태변경</a></li>
         </ul>
       </li>
+      <!--  
       <li>
         <a href="#" class="collapsed">반품/취소/교환 <span class="indicator">&#9654;</span></a>
         <ul>
-          <li><a href="/app/seller/home/request/pbe">입금전 취소요청</a></li>
-          <li><a href="/app/seller/home/request/dbe">배송전 환불요청</a></li>
-          <li><a href="/app/seller/home/request/daf">배송후 반품요청</a></li>
-          <li><a href="/app/seller/home/request/dafex">배송후 교환요청</a></li>
+          <li><a href="/app/seller/home/request/pbe">취소요청</a></li>
+          <li><a href="/app/seller/home/request/dbe">환불요청</a></li>
+          <li><a href="/app/seller/home/request/daf">반품요청</a></li>
+          <li><a href="/app/seller/home/request/dafex">교환요청</a></li>
         </ul>
       </li>
+      -->
       <li>
         <a href="#" class="collapsed">통계분석 <span class="indicator">&#9654;</span></a>
         <ul>
-          <li><a href="#">주문 통계</a></li>
-          <li><a href="#">매출 통계</a></li>
-          <li><a href="#">별점 통계</a></li>
+          <li><a href="/app/seller/home/statistics">판매자 통계</a></li>
         </ul>
       </li>
+      <!-- 
       <li>
         <a href="#" class="collapsed">고객지원 <span class="indicator">&#9654;</span></a>
         <ul>
@@ -42,5 +43,6 @@
           <li><a href="#">관리자 메모</a></li>
         </ul>
       </li>
+      -->
     </ul>
   </div>

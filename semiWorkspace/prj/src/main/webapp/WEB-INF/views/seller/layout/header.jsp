@@ -12,8 +12,8 @@
 			<a href="#"><img src="/app/resources/img/icon__settings.svg"></a>
 		  </span>
 		  <div id="dropdown-menu" class="dropdown-menu">
-		    <a href="/app/profile">내 정보 보기</a>
-		    <a href="/app/logout">로그아웃</a>
+		    <!--<a href="/app/seller/profile">내 정보 보기</a>-->
+		    <a href="/app/seller/logout">로그아웃</a>
 		  </div>
 	  	</div>
   	</header>

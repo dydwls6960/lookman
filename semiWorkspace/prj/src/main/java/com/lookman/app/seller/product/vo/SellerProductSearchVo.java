@@ -6,17 +6,20 @@ public class SellerProductSearchVo {
 	private String categoryNo;
 	private String sizeNo;
 	private String colorNo;
+	private String statusNo;
 	public SellerProductSearchVo() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public SellerProductSearchVo(String search, String searchText, String categoryNo, String sizeNo, String colorNo) {
+	public SellerProductSearchVo(String search, String searchText, String categoryNo, String sizeNo, String colorNo,
+			String statusNo) {
 		super();
 		this.search = search;
 		this.searchText = searchText;
 		this.categoryNo = categoryNo;
 		this.sizeNo = sizeNo;
 		this.colorNo = colorNo;
+		this.statusNo = statusNo;
 	}
 	public String getSearch() {
 		return search;
@@ -48,11 +51,18 @@ public class SellerProductSearchVo {
 	public void setColorNo(String colorNo) {
 		this.colorNo = colorNo;
 	}
+	public String getStatusNo() {
+		return statusNo;
+	}
+	public void setStatusNo(String statusNo) {
+		this.statusNo = statusNo;
+	}
 	@Override
 	public String toString() {
 		return "SellerProductSearchVo [search=" + search + ", searchText=" + searchText + ", categoryNo=" + categoryNo
-				+ ", sizeNo=" + sizeNo + ", colorNo=" + colorNo + "]";
+				+ ", sizeNo=" + sizeNo + ", colorNo=" + colorNo + ", statusNo=" + statusNo + "]";
 	}
+	
 	
 	
 }

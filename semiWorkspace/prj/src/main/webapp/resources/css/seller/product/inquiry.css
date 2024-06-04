@@ -32,7 +32,8 @@
 #user-search select[name="s-len"],
 #user-search select[name="s-cate"],
 #user-search select[name="s-size"],
-#user-search select[name="s-color"] {
+#user-search select[name="s-color"],
+#user-search select[name="s-status"] {
   padding: 4px; /* 내부 여백 */
   border: 1px solid #ccc; /* 테두리 스타일 */
   border-radius: 4px; /* 둥근 모서리 */
@@ -102,12 +103,17 @@ table#productList tr:not(:first-child) {
     height: 100px;
 }
 
- /* 세 번째 td를 왼쪽 정렬하고 이미지와 텍스트를 스타일링 */
-#productList td:nth-child(3) {
-    text-align: left;
-}
+
 /* 이미지와 텍스트가 같은 라인에 있고 텍스트는 중앙 정렬되도록 */
 #productList td:nth-child(3) img {
     vertical-align: middle;
     margin-right: 10px;
 }
+
+
+
+
+
+
+
+

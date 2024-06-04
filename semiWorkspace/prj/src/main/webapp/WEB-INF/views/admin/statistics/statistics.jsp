@@ -10,9 +10,9 @@
 </head>
 
 <body>
-  <%@ include file="/WEB-INF/views/seller/layout/nav.jsp" %>
+  <%@ include file="/WEB-INF/views/admin/layout/nav.jsp" %>
   <div id="container">
-  	<%@ include file="/WEB-INF/views/seller/layout/header.jsp" %>
+  	<%@ include file="/WEB-INF/views/admin/layout/header.jsp" %>
     <main>
 	    <div id="addr">판매자홈 > 통계</div>
     	<br>
@@ -83,7 +83,7 @@
     		</div>
     	</div>
     </main>
-    <%@ include file="/WEB-INF/views/seller/layout/footer.jsp" %>
+    <%@ include file="/WEB-INF/views/admin/layout/footer.jsp" %>
   </div>
 </body>
 </html>
